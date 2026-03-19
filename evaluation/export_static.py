@@ -15,7 +15,7 @@ from evaluation.utils import list_tasks_grouped, load_task_info, load_checklist,
 TEXT_EXTS = {'.txt','.md','.py','.js','.json','.jsonl','.csv','.tsv','.yml','.yaml','.sh','.bash','.r','.html','.css','.xml','.ini','.cfg','.conf','.toml','.log','.dat','.tex','.bib','.sql','.c','.cpp','.h','.java','.go','.rs','.jl','.m','.ipynb'}
 IMG_EXTS = {'.png','.jpg','.jpeg','.gif','.bmp','.webp','.svg'}
 
-RCB_DIR = Path(__file__).resolve().parent.parent.parent / "RCB"
+RCB_DIR = Path(__file__).resolve().parent.parent.parent / "ResearchClawBench-Home"
 DATA_DIR = RCB_DIR / "data"
 
 
@@ -84,7 +84,8 @@ def export_tasks():
             # Copy viewable task files (data/, related_work/) preserving structure
             workspace_dst = task_dir / "workspace"
             if workspace_dst.exists():
-                shutil.rmtree(workspace_dst)
+                shutil.rmtree(workspace_dst, ignore_errors=True)
+            exported_paths = set()
             for item in tree:
                 if item["type"] != "file":
                     continue
@@ -93,9 +94,13 @@ def export_tasks():
                     dst_file.parent.mkdir(parents=True, exist_ok=True)
                     with open(dst_file, "w", encoding="utf-8") as f:
                         f.write(instructions_text)
+                    exported_paths.add(item["path"])
                     continue
                 src_file = src_task / item["path"]
                 if not src_file.exists():
+                    continue
+                # Skip files with very long paths (Windows limitation)
+                if len(str(workspace_dst / item["path"])) > 200:
                     continue
                 ext = src_file.suffix.lower()
                 # Only copy viewable files under size limits (text/img: 2MB, PDF: 15MB)
@@ -104,6 +109,15 @@ def export_tasks():
                     dst_file = workspace_dst / item["path"]
                     dst_file.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(src_file, dst_file)
+                    exported_paths.add(item["path"])
+
+            # Mark exported files in the tree
+            for item in tree:
+                if item["type"] == "file":
+                    item["exported"] = item["path"] in exported_paths
+
+            with open(task_dir / "files.json", "w", encoding="utf-8") as f:
+                json.dump(tree, f, indent=2)
 
     print(f"Exported {sum(len(v) for v in grouped.values())} tasks")
 
@@ -187,6 +201,7 @@ def export_runs():
         files_dst = run_out_dir / "workspace"
         if files_dst.exists():
             shutil.rmtree(files_dst)
+        run_exported = set()
         for item in tree:
             if item["type"] != "file":
                 continue
@@ -201,6 +216,14 @@ def export_runs():
                 dst = files_dst / item["path"]
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(src, dst)
+                run_exported.add(item["path"])
+
+        # Mark exported files in tree
+        for item in tree:
+            if item["type"] == "file":
+                item["exported"] = item["path"] in run_exported
+        with open(run_out_dir / "files.json", "w", encoding="utf-8") as f:
+            json.dump(tree, f, indent=2)
 
         # Save run data
         with open(run_out_dir / "data.json", "w", encoding="utf-8") as f:

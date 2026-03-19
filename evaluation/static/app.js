@@ -478,9 +478,32 @@ async function selectTask(taskId) {
 
   const paperIframe = document.getElementById('paper-iframe');
   if (paperIframe) {
-    paperIframe.src = STATIC_MODE
-      ? `data/tasks/${taskId}/paper.pdf`
-      : `${API}/api/tasks/${taskId}/paper`;
+    if (STATIC_MODE) {
+      // Check if paper was exported by trying to load it
+      const paperUrl = `data/tasks/${taskId}/paper.pdf`;
+      const paperContainer = paperIframe.parentElement;
+      try {
+        const resp = await fetch(paperUrl);
+        const ct = resp.headers.get('content-type') || '';
+        if (resp.ok && ct.includes('pdf')) {
+          paperIframe.style.display = 'block';
+          paperIframe.src = paperUrl;
+          // Remove any fallback message
+          const old = paperContainer.querySelector('.placeholder');
+          if (old) old.remove();
+        } else {
+          paperIframe.style.display = 'none';
+          if (!paperContainer.querySelector('.placeholder')) {
+            paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF too large for GitHub Pages.<br><br>View on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+          }
+        }
+      } catch (_) {
+        paperIframe.style.display = 'none';
+        paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF not available.<br><br>View on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+      }
+    } else {
+      paperIframe.src = `${API}/api/tasks/${taskId}/paper`;
+    }
   }
   await loadRuns(taskId);
   document.getElementById('terminal-body').innerHTML = '<div class="placeholder">Select a run to see agent output</div>';
@@ -580,7 +603,7 @@ async function selectRun(runId) {
     if (files && files.length) {
       renderFileTree(files, runId, null);
       let latest = null;
-      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name)) continue; if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f; }
+      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false) continue; if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f; }
       if (latest) {
         const url = `data/runs/${runId}/workspace/${latest.path}`;
         renderFileContent(latest.path, latest.name, url, null, `data/runs/${runId}/workspace/`, latest.path);
@@ -955,8 +978,13 @@ function renderStaticTaskFileTree(files, taskId) {
           e.stopPropagation();
           document.querySelectorAll('.file-tree-item').forEach(el => el.classList.remove('active'));
           item.classList.add('active');
-          const url = `data/tasks/${taskId}/workspace/${f.path}`;
-          renderFileContent(f.path, f.name, url, null, `data/tasks/${taskId}/workspace/`, f.path);
+          if (f.exported === false) {
+            document.getElementById('file-content-header').textContent = f.path;
+            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+          } else {
+            const url = `data/tasks/${taskId}/workspace/${f.path}`;
+            renderFileContent(f.path, f.name, url, null, `data/tasks/${taskId}/workspace/`, f.path);
+          }
         };
       }
       const pp = f.path.includes('/') ? f.path.substring(0, f.path.lastIndexOf('/')) : null;
@@ -1000,11 +1028,15 @@ function renderFileTree(files, runId, taskId) {
       item.onclick = (e) => {
         e.stopPropagation();
         if (STATIC_MODE && runId) {
-          // Static mode: load from exported workspace files
           document.querySelectorAll('.file-tree-item').forEach(el => el.classList.remove('active'));
           item.classList.add('active');
-          const url = `data/runs/${runId}/workspace/${f.path}`;
-          renderFileContent(f.path, f.name, url, null, `data/runs/${runId}/workspace/`, f.path);
+          if (f.exported === false) {
+            document.getElementById('file-content-header').textContent = f.path;
+            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+          } else {
+            const url = `data/runs/${runId}/workspace/${f.path}`;
+            renderFileContent(f.path, f.name, url, null, `data/runs/${runId}/workspace/`, f.path);
+          }
         } else if (runId) {
           loadFile(runId, f.path, f.name, e);
         } else if (taskId) {
@@ -1053,8 +1085,20 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
     return;
   }
 
+  const GITHUB_FALLBACK = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+
   if (VIEWABLE_IMG_EXTS.has(ext)) {
-    div.innerHTML = `<img src="${url}">`;
+    if (STATIC_MODE) {
+      const img = new Image();
+      img.src = url;
+      img.style.maxWidth = '100%';
+      img.style.borderRadius = '6px';
+      img.onerror = () => { div.innerHTML = GITHUB_FALLBACK; };
+      div.innerHTML = '';
+      div.appendChild(img);
+    } else {
+      div.innerHTML = `<img src="${url}">`;
+    }
   } else if (VIEWABLE_EMBED_EXTS.has(ext)) {
     div.innerHTML = `<iframe src="${url}" style="width:100%;height:100%;border:none"></iframe>`;
   } else if (VIEWABLE_TABLE_EXTS.has(ext)) {

@@ -12,7 +12,7 @@
 [![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-10-scientific-domains)
 [![GitHub](https://img.shields.io/github/stars/black-yt/ResearchClawBench?style=social)](https://github.com/black-yt/ResearchClawBench)
 
-**Can AI Agents Truly Do Science — From Re-Discovery to New Discovery**
+**Can AI Agents Truly Do End-to-End Science — From Re-Discovery to New Discovery**
 
 
 [Quick Start](#-quick-start) | [How It Works](#%EF%B8%8F-how-it-works) | [Domains](#-10-scientific-domains) | [Leaderboard](#-leaderboard) | [Add Your Agent](#-add-your-own-agent)
