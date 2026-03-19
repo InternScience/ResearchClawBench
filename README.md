@@ -192,7 +192,7 @@ Each domain contains **4 carefully curated tasks** with complete experimental da
 ```bash
 git clone https://github.com/InternScience/ResearchClawBench.git
 cd ResearchClawBench
-pip install flask flask-cors python-dotenv structai openpyxl
+pip install -r evaluation/requirements.txt
 ```
 
 ### 2. Configure
@@ -202,7 +202,7 @@ Create `evaluation/.env` with your scoring model credentials:
 ```env
 OPENAI_API_KEY=sk-xxx
 OPENAI_BASE_URL=https://api.openai.com/v1
-SCORER_MODEL=gpt-4o
+SCORER_MODEL=gpt-5.1
 ```
 
 ### 3. Launch
