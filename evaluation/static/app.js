@@ -500,12 +500,12 @@ async function selectTask(taskId) {
         } else {
           paperIframe.style.display = 'none';
           if (!paperContainer.querySelector('.placeholder')) {
-            paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF too large for GitHub Pages.<br><br>View on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+            paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF too large for GitHub Pages.<br><br>View on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
           }
         }
       } catch (_) {
         paperIframe.style.display = 'none';
-        paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF not available.<br><br>View on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+        paperContainer.innerHTML = '<div class="placeholder" style="padding:20px">Paper PDF not available.<br><br>View on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
       }
     } else {
       paperIframe.src = `${API}/api/tasks/${taskId}/paper`;
@@ -986,7 +986,7 @@ function renderStaticTaskFileTree(files, taskId) {
           item.classList.add('active');
           if (f.exported === false) {
             document.getElementById('file-content-header').textContent = f.path;
-            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
           } else {
             const url = `data/tasks/${taskId}/workspace/${f.path}`;
             renderFileContent(f.path, f.name, url, null, `data/tasks/${taskId}/workspace/`, f.path);
@@ -1038,7 +1038,7 @@ function renderFileTree(files, runId, taskId) {
           item.classList.add('active');
           if (f.exported === false) {
             document.getElementById('file-content-header').textContent = f.path;
-            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+            document.getElementById('file-content-body').innerHTML = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
           } else {
             const url = `data/runs/${runId}/workspace/${f.path}`;
             renderFileContent(f.path, f.name, url, null, `data/runs/${runId}/workspace/`, f.path);
@@ -1080,7 +1080,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
   const div = document.getElementById('file-content-body');
   const ext = name.split('.').pop().toLowerCase();
 
-  const GITHUB_REPO = 'https://github.com/black-yt/ResearchClawBench';
+  const GITHUB_REPO = 'https://github.com/InternScience/ResearchClawBench';
 
   if (!isViewableFile(name)) {
     if (STATIC_MODE) {
@@ -1091,7 +1091,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
     return;
   }
 
-  const GITHUB_FALLBACK = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
+  const GITHUB_FALLBACK = '<div class="placeholder">This file is too large for GitHub Pages.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>';
 
   if (VIEWABLE_IMG_EXTS.has(ext)) {
     if (STATIC_MODE) {
@@ -1126,7 +1126,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
         html = '<div class="placeholder">Empty spreadsheet</div>';
       }
       div.innerHTML = html;
-    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
+    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
   } else if (VIEWABLE_CSV_EXTS.has(ext)) {
     try {
       const text = await (await fetch(url)).text();
@@ -1144,7 +1144,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
       html += '</tbody></table></div>';
       html += `<div style="margin-top:8px;font-size: 13.5px;color:var(--text-tertiary)">${lines.length} rows × ${rows[0].length} cols</div>`;
       div.innerHTML = html;
-    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
+    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
   } else {
     try {
       const text = await (await fetch(url)).text();
@@ -1174,7 +1174,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
           div.innerHTML = `<pre class="file-code-block"><code>${esc(text)}</code></pre>`;
         }
       }
-    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/black-yt/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
+    } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
   }
 }
 

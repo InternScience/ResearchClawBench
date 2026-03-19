@@ -4,13 +4,13 @@
 
 <div align="center">
 
-[![Official Site](https://img.shields.io/badge/Official%20Site-333399.svg?logo=homepage)](https://black-yt.github.io/ResearchClawBench-Home/)&#160;
-[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/black-yt/ResearchClawBench)&#160;
+[![Official Site](https://img.shields.io/badge/Official%20Site-333399.svg?logo=homepage)](https://InternScience.github.io/ResearchClawBench-Home/)&#160;
+[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/InternScience/ResearchClawBench)&#160;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Domains](https://img.shields.io/badge/Domains-10-green.svg)](#-10-scientific-domains)
 [![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-10-scientific-domains)
-[![GitHub](https://img.shields.io/github/stars/black-yt/ResearchClawBench?style=social)](https://github.com/black-yt/ResearchClawBench)
+[![GitHub](https://img.shields.io/github/stars/InternScience/ResearchClawBench?style=social)](https://github.com/InternScience/ResearchClawBench)
 
 **ResearchClawBench: Evaluating AI Agents for Automated Research from Rediscovery to New Discovery**
 
@@ -159,7 +159,7 @@ Each domain contains **4 carefully curated tasks** with complete experimental da
 ### 1. Install
 
 ```bash
-git clone https://github.com/black-yt/ResearchClawBench.git
+git clone https://github.com/InternScience/ResearchClawBench.git
 cd ResearchClawBench
 pip install flask flask-cors python-dotenv structai openpyxl
 ```
@@ -302,10 +302,10 @@ We welcome contributions in several forms:
 
 ## ⭐ Star History
 
-<a href="https://star-history.com/#black-yt/ResearchClawBench&Date">
+<a href="https://star-history.com/#InternScience/ResearchClawBench&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=black-yt/ResearchClawBench&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=black-yt/ResearchClawBench&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=black-yt/ResearchClawBench&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=InternScience/ResearchClawBench&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=InternScience/ResearchClawBench&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=InternScience/ResearchClawBench&type=Date" />
  </picture>
 </a>
