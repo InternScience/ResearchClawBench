@@ -115,9 +115,6 @@ class TaskRunner:
         with open(self.meta_path, "w", encoding="utf-8") as f:
             json.dump(meta, f, indent=2)
 
-    # Env vars that should NOT leak into agent subprocesses (scorer-only)
-    _STRIP_ENV_VARS = {"OPENAI_API_KEY", "OPENAI_BASE_URL", "SCORER_MODEL"}
-
     def run(self):
         """Launch agent subprocess, capture stdout to output file."""
         start_time = time.time()
@@ -129,7 +126,7 @@ class TaskRunner:
             workspace=workspace_path,
         )
 
-        clean_env = {k: v for k, v in os.environ.items() if k not in self._STRIP_ENV_VARS}
+        clean_env = os.environ.copy()
 
         try:
             self.process = subprocess.Popen(
