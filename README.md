@@ -35,7 +35,7 @@ Unlike benchmarks that test coding ability or factual recall, ResearchClawBench 
 <tr>
 <td align="center" width="25%">🔄<br/><b>Two-Stage Pipeline</b><br/><sub>Autonomous research + rigorous peer-review-style evaluation</sub></td>
 <td align="center" width="25%">🧪<br/><b>40 Real-Science Tasks</b><br/><sub>10 disciplines, complete datasets from published papers</sub></td>
-<td align="center" width="25%">👁️<br/><b>Multimodal LLM Judge</b><br/><sub>Weighted checklist with text & image criteria</sub></td>
+<td align="center" width="25%">👁️<br/><b>Expert-Annotated Data</b><br/><sub>Tasks, checklists & datasets curated by domain experts</sub></td>
 <td align="center" width="25%">🤖<br/><b>Multi-Agent Support</b><br/><sub>Claude Code, Codex CLI, OpenClaw & custom agents</sub></td>
 </tr>
 <tr>
@@ -61,6 +61,37 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 - **Fine-grained, multimodal scoring.** A weighted checklist with text and image criteria, judged by an LLM acting as a strict peer reviewer.
 - **Agent-agnostic.** Ships with first-class support for Claude Code, Codex CLI, and OpenClaw. Bring your own agent in one line.
 - **From Re-Discovery to New Discovery.** Scoring above 50 means matching the original paper; above 70 means *surpassing* it. The frontier is wide open.
+
+---
+
+## 🏗️ Data Construction
+
+Every task in ResearchClawBench is built through a rigorous, expert-driven pipeline to ensure scientific validity and reproducibility:
+
+```mermaid
+flowchart TD
+    A["📄 High-Quality Paper Collection\n(Target Paper)"] --> B["🧑‍🔬 Human Expert Extraction\n(Core Task Instructions)"]
+    B --> C["📋 Evaluation Checklist\n(Criteria + Keywords + Weights)"]
+    B --> D["📂 Data & Related Work Collection\n(Datasets + Reference Papers)"]
+    C --> E["✅ Human Reproduction & Validation\n(Verify checklist is reproducible)"]
+    D --> E
+
+    style A fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
+    style B fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style C fill:#fce7f3,stroke:#ec4899,stroke-width:2px
+    style D fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style E fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px
+```
+
+1. **High-Quality Paper Collection** — Domain experts select recent, high-impact publications with clear methodology and reproducible results across 10 scientific disciplines.
+
+2. **Expert Task Extraction** — Human experts read each paper and distill the core research task into structured instructions, identifying the key scientific question, input data, and expected outputs.
+
+3. **Checklist Design** — Experts create a fine-grained evaluation checklist with weighted criteria (text and image items), each with specific technical keywords that a judge must verify.
+
+4. **Data & Related Work Collection** — The original datasets used in the paper are gathered, along with relevant reference materials, to form a self-contained research workspace.
+
+5. **Human Reproduction & Validation** — Human researchers independently reproduce the paper's results using only the provided data and instructions, verifying that every checklist item is achievable. This ensures the benchmark is fair and the checklist is grounded in reality.
 
 ---
 
