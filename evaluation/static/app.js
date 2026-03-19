@@ -534,6 +534,7 @@ async function selectTask(taskId) {
     document.getElementById('file-content-header').textContent = 'No file selected';
     document.getElementById('file-content-body').innerHTML = '<div class="placeholder">Select a file from the explorer</div>';
     document.getElementById('terminal-body').innerHTML = '<div class="placeholder">No runs yet</div>';
+    showDuration(null);
     document.getElementById('report-content').innerHTML = '<div class="placeholder">Report appears after run completes</div>';
     document.getElementById('score-total-area').innerHTML = '';
     document.querySelectorAll('.checklist-score-slot').forEach(el => el.innerHTML = '');
@@ -604,6 +605,7 @@ async function selectRun(runId) {
   if (STATIC_MODE) {
     // Static mode: load everything from exported JSON/files
     const runData = await fetchStaticJSON(`data/runs/${runId}/data.json`);
+    showDuration(runData?.duration_seconds);
     // File tree
     const files = await fetchStaticJSON(`data/runs/${runId}/files.json`);
     if (files && files.length) {
@@ -656,7 +658,9 @@ async function selectRun(runId) {
     switchTab(state.lastTab);
   } else {
     const meta = await (await fetch(`${API}/api/runs/${runId}/meta`)).json();
+    showDuration(meta.duration_seconds);
     if (meta.status === 'running') {
+      showDuration(null); // clear during running
       startStreaming(runId); switchTab(state.lastTab); loadWorkspace(runId);
     } else {
       // Load workspace + file first, then the rest in parallel
@@ -1393,4 +1397,17 @@ function agentLogoHtml(name, size = 16) {
 
 async function fetchStaticJSON(path) {
   try { return await (await fetch(path)).json(); } catch (_) { return null; }
+}
+
+function formatDuration(seconds) {
+  if (!seconds && seconds !== 0) return '';
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  if (m >= 60) { const h = Math.floor(m / 60); return `${h}h${m % 60}m`; }
+  return `${m}m${s}s`;
+}
+
+function showDuration(seconds) {
+  const el = document.getElementById('duration-display');
+  if (el) el.textContent = seconds != null ? formatDuration(seconds) : '';
 }

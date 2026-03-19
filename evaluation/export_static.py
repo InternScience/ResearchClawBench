@@ -152,6 +152,7 @@ def export_runs():
             "status": meta.get("status"),
             "agent_name": meta.get("agent_name", ""),
             "model": meta.get("model", ""),
+            "duration_seconds": meta.get("duration_seconds"),
         }
 
         # Score
@@ -239,6 +240,7 @@ def export_runs():
         "status": r["status"],
         "agent_name": r["agent_name"],
         "model": r["model"],
+        "duration_seconds": r.get("duration_seconds"),
         "total_score": r.get("score", {}).get("total_score"),
     } for r in exported]
     with open(DATA_DIR / "runs_index.json", "w", encoding="utf-8") as f:

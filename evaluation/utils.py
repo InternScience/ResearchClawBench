@@ -82,6 +82,7 @@ def list_runs(task_id: Optional[str] = None):
             "status": meta.get("status", "unknown"),
             "agent_name": meta.get("agent_name", ""),
             "model": meta.get("model", ""),
+            "duration_seconds": meta.get("duration_seconds"),
             "workspace": str(d),
         })
     return runs

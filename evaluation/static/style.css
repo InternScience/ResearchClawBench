@@ -527,6 +527,10 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .terminal-status::before { content:''; width:6px; height:6px; border-radius:50%; background: var(--text-tertiary); }
 .terminal-status.running::before { background:var(--warn); animation:pulse 1.5s ease-in-out infinite; }
 .terminal-status.completed::before { background:var(--ok); }
+.duration-badge {
+    font-size: 11px; color: var(--text-tertiary); font-family: var(--mono);
+    background: var(--bg-inset); padding: 1px 6px; border-radius: 4px;
+}
 .terminal-body {
     padding: 12px;
     font-family: var(--font); font-size: 15.5px; line-height: 1.5;

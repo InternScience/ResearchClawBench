@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import threading
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -119,6 +120,7 @@ class TaskRunner:
 
     def run(self):
         """Launch agent subprocess, capture stdout to output file."""
+        start_time = time.time()
         prompt_file_path = str(self.instructions_path.resolve())
         workspace_path = str(self.workspace.resolve())
 
@@ -152,9 +154,10 @@ class TaskRunner:
             self.process.wait()
             exit_code = self.process.returncode
             detected_model = self._detect_model()
+            duration = round(time.time() - start_time)
             self._write_meta(
                 "completed" if exit_code == 0 else "failed",
-                {"exit_code": exit_code, "model": detected_model}
+                {"exit_code": exit_code, "model": detected_model, "duration_seconds": duration}
             )
         except Exception as e:
             if self.process and self.process.poll() is None:
@@ -162,7 +165,8 @@ class TaskRunner:
                     self.process.terminate()
                 except OSError:
                     pass
-            self._write_meta("failed", {"error": str(e)})
+            duration = round(time.time() - start_time)
+            self._write_meta("failed", {"error": str(e), "duration_seconds": duration})
         finally:
             # Guarantee meta is never left as "running"
             try:
