@@ -12,7 +12,7 @@
 [![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-10-scientific-domains)
 [![GitHub](https://img.shields.io/github/stars/InternScience/ResearchClawBench?style=social)](https://github.com/InternScience/ResearchClawBench)
 
-**ResearchClawBench: Evaluating AI Agents for Automated Research from Rediscovery to New Discovery**
+**Evaluating AI Agents for Automated Research from Rediscovery to New Discovery**
 
 
 [Quick Start](#-quick-start) | [How It Works](#%EF%B8%8F-how-it-works) | [Domains](#-10-scientific-domains) | [Leaderboard](#-leaderboard) | [Add Your Agent](#-add-your-own-agent)
