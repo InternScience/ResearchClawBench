@@ -1,0 +1,53 @@
+[
+    {
+        "type": "image",
+        "content": "The random point charge experiment demonstrates that the Latent Ewald Summation (LES) method can recover exact atomic charges from energy and force data alone. Using a dataset of 128-atom configurations with fixed +1e and -1e charges, we train a CACE model that predicts both energies/forces and latent charges. The resulting plots show learning curves, test-set force errors, and a charge parity scatter plot, confirming that the model accurately extracts electrostatic information without any charge labels.",
+        "path": "images/fig1_random_charges.png",
+        "keywords": [
+            "Charge recovery: Predicted latent charges correlate nearly perfectly with true point charges (R² ≈ 1, MAE < 0.05 e), proving electrostatic information is learned from energy/force data.",
+            "Force accuracy: Test-set force MAE is below 0.05 eV/Å, demonstrating the model's ability to predict forces precisely.",
+            "Data efficiency: With as few as 80 training configurations, the model achieves high accuracy, highlighting sample efficiency.",
+            "Cutoff robustness: Despite using a small cutoff (4 Å), the model accurately captures long-range Coulomb interactions via LES, outperforming pure short-range models.",
+            "Comparison to explicit-charge methods: LES reduces force errors by ~40% compared to methods that explicitly fit partial charges (e.g., 4G-HDNNP), and recovers charges without charge labels."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "The charged molecular dimer experiment illustrates the critical role of long-range electrostatics when fragments are separated beyond the short-range cutoff. Using two molecules with net charges +1e and -1e at varying distances, the CACE model trained on distorted dimer configurations reproduces the reference binding energy curve almost exactly, demonstrating that LES correctly handles non-local Coulomb interactions.",
+        "path": "images/fig3_dimer_binding.png",
+        "keywords": [
+            "Binding curve accuracy: Predicted energies match the reference within 0.05 eV RMSE across all separations (3–12 Å).",
+            "Long-range capture: For separations > 5 Å (cutoff), the model still follows the 1/r decay, while a pure short-range model would plateau.",
+            "Charge self-consistency: Sum of predicted latent charges on each molecule is within 0.05 e of ±1e, even though total charge was not provided.",
+            "Dipole and force accuracy: Dipole moments computed from latent charges agree with reference (MAE < 0.05 D); forces agree within 0.1 eV/Å.",
+            "Generalization: The model correctly predicts energies for unseen separation distances, demonstrating robust extrapolation."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "The Ag₃ cluster experiment shows that the framework can distinguish potential energy surfaces corresponding to different total charge states (+1 and -1) without explicit charge labels. By training separate CACE models on each charge state (or using a global charge embedding), the predicted energy–bond length curves correctly separate the two surfaces and match the reference Morse+Coulomb model, validating the method's ability to learn charge-dependent physics.",
+        "path": "images/fig5_ag3_energy.png",
+        "keywords": [
+            "PES separation: The model clearly distinguishes Ag₃⁺ and Ag₃⁻ curves, with an energy difference of ~0.3 eV near equilibrium that matches the reference.",
+            "Equilibrium properties: Predicted equilibrium bond lengths and energies agree with reference within 0.02 Å and 0.02 eV/atom.",
+            "Force accuracy: Per-atom force errors are below 0.05 eV/Å for both charge states.",
+            "Implicit charge-state learning: The model learns the effect of total charge without requiring charge equilibration, resolving the degeneracy of local environments.",
+            "Comparison to baselines: The LES-based model outperforms methods that explicitly fit atomic partial charges (e.g., 4G-HDNNP) by ~40% lower force RMSE."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "Large-scale MD applicability: LES scales linearly with system size and has been successfully applied to molecular dynamics simulations of systems with thousands of atoms (e.g., water interfaces, ionic liquids). The method maintains energy conservation and reproduces structural and dynamical properties, demonstrating its readiness for real-world applications.",
+        "path": null,
+        "keywords": [
+            "Scaling: Computational cost scales as O(N log N) for Ewald summation, comparable to standard short-range potentials.",
+            "Energy conservation: In NVE simulations, total energy drift is below 0.01 meV/atom/ps, indicating smooth forces.",
+            "Structural accuracy: Radial distribution functions and dipole correlation spectra match reference simulations.",
+            "Efficiency: MD step time is only 20–30% higher than a pure short-range potential of same cutoff, making LES practical for production runs."
+        ],
+        "weight": 0.1
+    }
+]

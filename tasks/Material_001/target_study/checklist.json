@@ -1,0 +1,35 @@
+[
+    {
+        "type": "text",
+        "content": "This result verifies the effectiveness of graph neural networks in predicting material properties. The results show that the model can learn from atomic-level structural features and accurately predict the formation energy, demonstrating the core capability of AI in predicting material properties.",
+        "path": null,
+        "keywords": [
+            "Model convergence: Training loss steadily decreased below 0.012 within 50 epochs, indicating the GNN model effectively learned complex relationships between material structures and formation energy.",
+            "Prediction accuracy: On the test set, the mean absolute error (MAE) between predicted and true values was 0.15 eV/atom, consistent with the GNN prediction accuracy range (0.1-0.2 eV) reported in the literature.",
+            "Generalization capability: The model demonstrated good generalization performance on unseen synthetic material structures, validating the scalability of AI methods in material property prediction."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "This result verifies the ability of the variational autoencoder in generating material structures. The distribution of the generated structural parameters in the physical property space overlaps with the original data, demonstrating the feasibility of generative AI in material reverse design.",
+        "path": "images/structure_generation.png",
+        "keywords": [
+            "Structural rationality: Generated structure parameters showed lattice parameters $a$, $b$, $c$ distributed in the range of \\SIrange{5.1}{5.9}{\\angstrom}, consistent with typical inorganic crystal lattice parameter ranges (\\SIrange{4}{6}{\\angstrom}).",
+            "Distribution consistency: KL divergence of 0.15 indicated high consistency between generated and original structure distributions in parameter space, validating VAE's ability to capture real material structure distributions",
+            "Generation diversity: Generated structures covered 85% of the original data distribution area in the 9-dimensional parameter space, demonstrating the generative model's ability to produce diverse new material candidates."
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "image",
+        "content": "This result verifies the efficiency of Bayesian optimization in optimizing experimental conditions. It found the optimal conditions for the simulated reaction within just 20 iterations, demonstrating the practical value of AI methods in accelerating material synthesis optimization.",
+        "path": "images/bayesian_optimization_convergence.png",
+        "keywords": [
+            "Optimization efficiency: Bayesian optimization achieved \\SI{90}{\\percent} of peak TOF value within \\num{10} iterations and reached a peak of \\num{9.8} within \\num{20} iterations, showing \\num{3}\\texttimes{} efficiency improvement compared to random search.",
+            "Parameter accuracy: Found optimal conditions were \\SI{352.4}{\\celsius} temperature and \\SI{19.8}{bar} pressure, with less than \\SI{1}{\\percent} error from the simulated function's optimal point (\\SI{350}{\\celsius}, \\SI{20}{bar}), validating the optimization algorithm's precision.",
+            "Convergence stability: Convergence curves showed TOF values stabilizing above 9.5 after 15 iterations with standard deviation less than 0.2, demonstrating the robustness of Bayesian optimization in material experimental optimization."
+        ],
+        "weight": 0.35
+    }
+]

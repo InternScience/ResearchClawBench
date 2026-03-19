@@ -1,0 +1,7 @@
+=== 深度层级数影响 ===
+Levels 1: Accuracy = 0.5379
+Levels 2: Accuracy = 0.5226
+Levels 4: Accuracy = 0.4829
+Levels 6: Accuracy = 0.4685
+Levels 8: Accuracy = 0.4582
+ByteTrack: Accuracy = 0.5379

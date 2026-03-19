@@ -1,0 +1,77 @@
+# Multi-component Icosahedral Reproduction Data
+# Complete simulation data for reproducing multi-component icosahedral shell stacking theory
+
+## 1. Core Theory Data
+
+# Hexagonal coordinate sequence
+hexagonal_coords = [(0,0), (0,1), (0,2), (0,3), (0,4), (0,5), (1,0), (1,1), (1,2), (1,3), (1,4), (1,5), (2,0), (2,1), (2,2), (2,3), (2,4), (2,5), (3,0), (3,1), (3,2), (3,3), (3,4), (3,5), (4,0), (4,1), (4,2), (4,3), (4,4), (4,5), (5,0), (5,1), (5,2), (5,3), (5,4), (5,5)]
+
+# Mackay magic number sequence
+mackay_sequence = [1, 13, 55, 147, 309]
+
+# New magic number sequence (b=5)
+new_sequence_b5 = [1, 13, 45, 117, 239, 431]
+
+# Chiral category labels
+chiral_labels = ['MC', 'BG', 'Ch1', 'Ch2', 'Ch3', 'Ch4', 'Ch5']
+
+# Geometric constants
+sin_2pi_5 = 0.9510565162951535
+cos_2pi_5 = 0.3090169943749474
+
+# Shell color mapping
+shell_colors = {'MC': '#1f77b4', 'BG': '#ff7f0e', 'Ch1': '#2ca02c', 'Ch2': '#d62728', 'Ch3': '#9467bd', 'Ch4': '#8c564b', 'Ch5': '#e377c2'}
+
+## 2. Experimental Verification Data
+
+# Atomic physical parameters (atomic radius, Å)
+atomic_radii = [('Na', 1.86), ('K', 2.27), ('Rb', 2.48), ('Cs', 2.65), ('Ag', 1.44), ('Cu', 1.28), ('Ni', 1.24)]
+
+# Atomic pair compatibility data
+atomic_pairs_compatibility = [('Na', 'Rb', 0.22), ('Ag', 'Cu', 0.12), ('Ag', 'Ni', 0.15), ('Cu', 'Ni', 0.032)]
+
+# Optimal size mismatch range
+optimal_mismatch_ranges = [('MC', 'MC', 0.03, 0.05), ('MC', 'Ch1', 0.12, 0.16), ('MC', 'Ch2', 0.19, 0.22), ('MC', 'BG', 0.08, 0.10)]
+
+# Multi-component cluster validation data
+multicomponent_clusters = [('Na13@Rb32', 'Na', 'Rb', 'MC', 'Ch1'), ('K13@Cs42', 'K', 'Cs', 'MC', 'Ch2'), ('Ag13@Cu45', 'Ag', 'Cu', 'MC', 'Ch1')]
+
+# Shell energy relative values (normalized units)
+shell_energies = [(1, 'MC', 0.00), (2, 'MC', -2.35), (2, 'Ch1', -2.15), (3, 'MC', -4.82), (3, 'Ch1', -4.61), (3, 'BG', -4.55)]
+
+# Size mismatch calculation parameters
+mismatch_params = [(1, 2, 'MC', 'MC', 0.04), (1, 2, 'MC', 'Ch1', 0.14), (2, 3, 'MC', 'MC', 0.038), (2, 3, 'MC', 'Ch1', 0.136), (2, 3, 'Ch1', 'Ch2', 0.21)]
+
+# Experimental validation points (T_i, T_{i+1}, measured sm, theoretical sm)
+experimental_points = [(1, 3, 0.048, 0.045), (3, 4, 0.042, 0.044), (4, 7, 0.138, 0.142), (7, 12, 0.132, 0.139)]
+
+## 3. Dynamic Growth Simulation Data
+
+# Growth simulation parameters
+growth_parameters = [('temperature', 300.0), ('deposition_rate', 0.01), ('simulation_steps', 1000), ('beta_factor', 1.0), ('delta_opt', 0.04), ('random_seed', 42)]
+
+# Growth path probability weights
+path_probability_weights = [('conservative_step', 0.65), ('mismatch_driven_step', 0.25), ('random_step', 0.10)]
+
+# Initial seed structure
+initial_seeds = [('Na13', 'MC', [(0,0)], [('Na', 1.86)]), ('Na13@Rb32', 'Ch1', [(0,0), (1,0)], [('Na', 1.86), ('Rb', 2.48)]), ('Ag13', 'MC', [(0,0)], [('Ag', 1.44)])]
+
+# Deposition atom sequence
+deposition_sequences = [('Na13 + Na', ['Na']*50), ('Na13@Rb32 + Rb', ['Rb']*30), ('Ag13 + Cu', ['Cu']*20 + ['Ag']*10 + ['Cu']*20), ('Rb72 + Cs', ['Cs']*40)]
+
+# Growth experimental result data (steps, chiral category, average mismatch)
+growth_results = [(0, 'MC', 0.00), (10, 'MC', 0.01), (20, 'MC', 0.02), (30, 'MC', 0.025), (40, 'MC', 0.03), (50, 'MC', 0.035), (0, 'Ch1', 0.00), (10, 'Ch1', 0.12), (20, 'Ch1', 0.14), (30, 'Ch1', 0.138), (40, 'Ch1', 0.136), (50, 'Ch1', 0.135), (0, 'MC', 0.00), (10, 'MC', 0.08), (20, 'Ch1', 0.14), (30, 'Ch1', 0.15), (40, 'Ch1', 0.145), (50, 'Ch1', 0.142)]
+
+# Path selection statistics
+path_selection_stats = [('Conservative path', 325), ('Mismatch-driven path', 125), ('Random path', 50), ('Reverse step', 100)]
+
+# Potential function parameters (Lennard-Jones parameters: ε, σ)
+lj_parameters = [('Na-Na', 1.0, 3.72), ('Rb-Rb', 1.0, 4.96), ('Cs-Cs', 1.0, 5.30), ('Ag-Ag', 1.0, 2.88), ('Cu-Cu', 1.0, 2.56), ('Na-Rb', 1.0, 4.34), ('Ag-Cu', 1.0, 2.72)]
+
+# Thermodynamic parameters
+thermodynamic_params = [('kT', 0.02585), ('boltzmann', 8.617e-5), ('pressure', 1.0), ('timestep', 0.001)]
+
+## 4. Dataset Summary Index
+
+# All data file name indices
+data_file_indices = ['hexagonal_coords', 'mackay_sequence', 'new_sequence_b5', 'chiral_labels', 'shell_colors', 'atomic_radii', 'atomic_pairs_compatibility', 'optimal_mismatch_ranges', 'multicomponent_clusters', 'shell_energies', 'mismatch_params', 'experimental_points', 'growth_parameters', 'path_probability_weights', 'initial_seeds', 'deposition_sequences', 'growth_results', 'path_selection_stats', 'lj_parameters', 'thermodynamic_params']

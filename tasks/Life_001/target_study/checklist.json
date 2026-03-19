@@ -1,0 +1,54 @@
+[
+    {
+        "type": "image",
+        "content": "Using the MinSum optimization objective and a simulated cancer cell population of 10,000 cells, the immune response probabilities of NeoAgDT-optimized vaccines were evaluated across 7 gastrointestinal cancer patients. The violin plots reveal pronounced patient-specific efficacy: for some patients (e.g., #3995, #4032) the optimal vaccine composition achieves medium-to-high response probabilities in most cancer cells, while for others (e.g., #3978) the response probabilities remain predominantly low. These distributions are stable across 10 repeated simulations and directly reflect the heterogeneous potential of digital twin‑guided vaccine designs.",
+        "path": "images/response_distribution.png",
+        "keywords": [
+            "Immune response probability",
+            "MinSum optimization objective",
+            "Simulated cancer cell population (10,000 cells)",
+            "7 gastrointestinal cancer patients",
+            "Patient‑specific therapeutic efficacy"
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "image",
+        "content": "For the same 7 patients and optimal vaccine compositions (MinSum, 10,000 cells), the coverage ratio – the fraction of cells with a response probability above a given threshold – declines monotonically as the threshold increases. The rate of decline shows marked inter‑patient variability, and 95% confidence intervals (derived from 10 repeated simulations) confirm the reliability of these trends. This analysis quantifies the expected population‑level efficacy under different response stringency criteria, extending the per‑cell results of Figure 4.",
+        "path": "images/coverage_curve.png",
+        "keywords": [
+            "Coverage ratio",
+            "Response probability threshold",
+            "95% confidence intervals",
+            "10 repeated simulations",
+            "Inter‑patient variability"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "The optimization runtime of NeoAgDT scales approximately linearly with the size of the simulated cancer cell population, as shown on a logarithmic scale for 7 patients. Across all tested population sizes (10–10,000 cells), the runtime remains below 100 seconds, and at the practical size of 5,000 cells it averages ≤10 seconds. The trend is highly consistent among patients, providing a quantitative basis for balancing computational cost and simulation fidelity in clinical applications.",
+        "path": "images/runtime.png",
+        "keywords": [
+            "Optimization runtime",
+            "Population size gradient (10–10,000)",
+            "Logarithmic scale",
+            "Average of 10 runs",
+            "≤10 seconds at 5,000 cells"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "NeoAgDT’s vaccine compositions achieve superior recall of experimentally validated neoantigens compared to 11 traditional ranking‑based methods (e.g., NetMHCpan, MHCflurry). On the 7‑patient dataset, NeoAgDT consistently includes a larger fraction of true immunogenic mutations within the 10‑element budget, while many conventional approaches miss several validated targets. This demonstrates that digital twin simulation combined with integer linear programming effectively prioritizes neoantigens that are more likely to elicit a T‑cell response.",
+        "path": null,
+        "keywords": [
+            "Recall of validated neoantigens",
+            "Comparison with 11 traditional methods",
+            "10‑element vaccine budget",
+            "Experimental validation (Tran et al. 2015)",
+            "Superior prioritization by NeoAgDT"
+        ],
+        "weight": 0.3
+    }
+]

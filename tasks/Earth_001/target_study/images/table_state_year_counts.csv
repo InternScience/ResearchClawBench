@@ -1,0 +1,210 @@
+state,year,count
+california,2000,7
+california,2001,9
+california,2002,11
+california,2003,10
+california,2004,11
+california,2005,12
+california,2006,10
+california,2007,11
+california,2008,8
+california,2009,10
+california,2010,7
+california,2011,8
+california,2012,5
+california,2013,7
+california,2014,7
+california,2015,10
+california,2016,11
+california,2017,11
+california,2018,6
+california,2019,5
+california,2020,1
+california,2021,6
+california,2022,8
+california,2023,9
+california,2024,11
+california,2025,4
+colorado,2000,1
+colorado,2001,1
+colorado,2002,4
+colorado,2003,7
+colorado,2004,7
+colorado,2005,7
+colorado,2006,6
+colorado,2007,8
+colorado,2008,7
+colorado,2009,6
+colorado,2010,6
+colorado,2011,6
+colorado,2012,6
+colorado,2013,6
+colorado,2014,6
+colorado,2015,6
+colorado,2016,6
+colorado,2017,6
+colorado,2018,7
+colorado,2019,5
+colorado,2020,4
+colorado,2021,3
+colorado,2022,4
+colorado,2023,5
+colorado,2024,7
+colorado,2025,5
+idaho,2000,1
+idaho,2002,4
+idaho,2003,6
+idaho,2004,5
+idaho,2005,5
+idaho,2006,4
+idaho,2007,4
+idaho,2008,5
+idaho,2009,3
+idaho,2010,4
+idaho,2011,3
+idaho,2012,2
+idaho,2013,2
+idaho,2014,3
+idaho,2015,3
+idaho,2016,2
+idaho,2017,2
+idaho,2018,2
+idaho,2019,1
+idaho,2021,1
+idaho,2022,4
+idaho,2023,3
+idaho,2024,3
+idaho,2025,1
+kansas,2002,1
+kansas,2003,1
+kansas,2004,1
+kansas,2005,1
+kansas,2006,1
+kansas,2007,1
+kansas,2008,1
+kansas,2009,1
+kansas,2010,1
+kansas,2011,1
+kansas,2012,1
+kansas,2013,1
+kansas,2014,1
+kansas,2015,1
+kansas,2016,1
+montana,2007,1
+nevada,2001,3
+nevada,2002,5
+nevada,2003,5
+nevada,2004,5
+nevada,2005,6
+nevada,2006,4
+nevada,2007,3
+nevada,2008,5
+nevada,2009,5
+nevada,2010,2
+nevada,2011,3
+nevada,2012,2
+nevada,2013,3
+nevada,2014,3
+nevada,2016,2
+nevada,2017,1
+nevada,2018,1
+north dakota,2000,2
+north dakota,2001,1
+north dakota,2002,2
+north dakota,2003,2
+north dakota,2004,2
+north dakota,2005,2
+north dakota,2006,3
+north dakota,2007,2
+north dakota,2008,3
+north dakota,2009,2
+north dakota,2010,2
+north dakota,2011,2
+north dakota,2012,2
+north dakota,2013,2
+north dakota,2014,2
+north dakota,2015,2
+north dakota,2016,2
+north dakota,2017,2
+north dakota,2018,2
+north dakota,2020,2
+north dakota,2021,1
+north dakota,2023,1
+north dakota,2024,1
+oklahoma,2000,1
+oregon,2025,1
+south dakota,2023,1
+texas,2000,7
+texas,2001,5
+texas,2002,9
+texas,2003,12
+texas,2004,10
+texas,2005,8
+texas,2006,5
+texas,2007,3
+texas,2008,1
+texas,2009,4
+texas,2010,4
+texas,2011,3
+texas,2012,3
+texas,2013,2
+texas,2014,2
+texas,2015,2
+texas,2016,3
+texas,2017,3
+texas,2018,2
+texas,2019,1
+texas,2020,4
+texas,2021,3
+texas,2022,4
+texas,2024,3
+texas,2025,1
+utah,2000,1
+utah,2001,3
+utah,2002,5
+utah,2003,5
+utah,2004,5
+utah,2005,5
+utah,2006,5
+utah,2007,6
+utah,2008,6
+utah,2009,6
+utah,2010,5
+utah,2011,5
+utah,2012,4
+utah,2013,5
+utah,2014,5
+utah,2015,5
+utah,2016,5
+utah,2017,5
+utah,2018,5
+utah,2019,4
+utah,2020,1
+utah,2021,6
+utah,2022,7
+utah,2023,7
+utah,2024,7
+utah,2025,7
+wyoming,2000,1
+wyoming,2002,1
+wyoming,2003,1
+wyoming,2004,1
+wyoming,2005,1
+wyoming,2006,2
+wyoming,2007,3
+wyoming,2008,3
+wyoming,2009,3
+wyoming,2010,3
+wyoming,2011,2
+wyoming,2012,3
+wyoming,2013,3
+wyoming,2014,3
+wyoming,2015,2
+wyoming,2016,2
+wyoming,2017,1
+wyoming,2018,1
+wyoming,2019,3
+wyoming,2022,2
+wyoming,2023,2
+wyoming,2024,2
+wyoming,2025,2

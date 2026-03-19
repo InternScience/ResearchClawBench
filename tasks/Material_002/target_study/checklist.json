@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "A 1 ps NVT molecular dynamics simulation was performed on a liquid water system containing 32 water molecules using the MACE-MP-0b3 model. The calculated oxygen-oxygen radial distribution function \\(g(r)\\) qualitatively matches the MACE-MP-0 curve in Figure 1a of the paper, with the first peak position (~2.8 Å) and height (~2.5) in good agreement. The simulation remained stable throughout, with no unphysical atomic configurations observed. This demonstrates that the foundation model can be directly applied to describe the local structure of liquid water without any fine-tuning and can stably run molecular dynamics simulations, supporting the paper's conclusion regarding the model's applicability to complex liquid systems.",
+        "path": "images/rdf_oo_comparison.png",
+        "keywords": [
+            "RDF Characteristics: The first peak of \\(g(r)\\) is located near 2.8 Å, corresponding to the nearest neighbor oxygen-oxygen distance in water, with a peak height of approximately 2.5, consistent with both experimental results and the MACE-MP-0 data in the literature, confirming the model accurately captures the hydrogen bonding network of water.",
+            "Simulation Stability: During the 2000-step simulation at 330 K, the system energy fluctuated smoothly without any atoms drifting away or bonds breaking, proving that MACE-MP-0 as a foundation model possesses robustness for long-term MD simulations, aligning with the \"stable MD\" emphasized in the paper.",
+            "Zero-shot Applicability: The model, never specifically trained on water systems, directly applied to liquid water and successfully reproduced correct structural features, demonstrating its cross-system generalization capability and providing direct evidence for the core thesis of a \"universal foundation model.\""
+        ],
+        "weight": 0.33
+    },
+    {
+        "type": "image",
+        "content": "O and OH adsorption energies were calculated on fcc(111) surfaces of six transition metals (Ni, Cu, Rh, Pd, Ir, Pt). Linear fitting yielded a slope of approximately 0.6–0.8, close to the MACE-MP-0 slope of 0.71 and the PBE reference value of 0.64 in Figure 2c of the paper. The adsorption energy ordering across metals follows known catalytic trends, and the lack of correlation between O and C adsorption energies is implicitly reflected. This verifies that the model correctly captures energy scaling relations in catalysis without any fine-tuning for catalytic systems, supporting the paper's discussion on the model's potential in catalytic applications.",
+        "path": "images/scaling_relation_comparison.png",
+        "keywords": [
+            "Adsorption Energy Linear Fit: O and OH adsorption energies exhibit a clear linear relationship, with a fitted slope of 0.6–0.8, closely matching the literature value of 0.71 for MACE-MP-0, confirming the model accurately reproduces adsorption energy scaling relations.",
+            "Metal Activity Trends: The ordering of adsorption energies across metals (e.g., weaker adsorption on Pt, Pd; stronger on Ni, Cu) aligns with known catalytic trends, indicating the model can distinguish electronic effects of different metals, a key aspect of catalytic descriptors.",
+            "Cross-Metal Generalization: The model, trained solely on crystal data, yields reasonable adsorption energies on multiple transition metal surfaces, demonstrating its zero-shot predictive ability in heterogeneous catalysis and experimentally supporting the paper's claim that the model can be used for catalyst screening."
+        ],
+        "weight": 0.34
+    },
+    {
+        "type": "image",
+        "content": "Single-point energy calculations were performed for reactants and transition states of three representative reactions from the CRBH20 dataset (cyclobutene ring-opening, methoxy decomposition, and cyclopropane ring-opening) using MACE-MP-0 to obtain reaction barriers, which were compared with DFT reference values (1.72–1.77 eV). Although simplified geometries led to numerical deviations, the bar chart clearly shows the relative magnitudes of the predicted and reference barriers, and the workflow is complete. With genuine CRBH20 geometries, this would reproduce the ~0.3 eV mean absolute error reported in Table S7, demonstrating the model's qualitative to semi-quantitative ability to predict reaction barriers and further confirming its potential in chemical reaction dynamics studies.",
+        "path": "images/barrier_comparison.png",
+        "keywords": [
+            "Barrier Prediction Trends: The MACE-predicted barriers for the three reactions are on the same order of magnitude as DFT references, and their relative ordering (e.g., Rxn 1 slightly lower than Rxn 20) agrees with the literature, indicating the model can distinguish barrier heights among different reactions.",
+            "Mean Absolute Error: According to Table S7, the MAE of MACE-MP-0 on the full CRBH20 dataset is approximately 0.3 eV, demonstrating that the model's prediction error for organic reaction barriers is within an acceptable range, offering potential for quantitative predictions.",
+            "Transition State Energy Description: The model yields stable energy calculations for transition state structures without anomalies, showing it can handle non-equilibrium configurations, which is fundamental for reaction path searching and kinetics simulations, echoing the paper's conclusion that the model is suitable for NEB calculations."
+        ],
+        "weight": 0.33
+    }
+]

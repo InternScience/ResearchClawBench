@@ -1,0 +1,35 @@
+{
+    "task": "The task of this study is to design and evaluate a novel graph neural network architecture, termed Kolmogorov–Arnold Graph Neural Networks (KA-GNNs), for molecular property prediction by representing molecules as graphs with atom-level and bond-level features (including both covalent and non-covalent interactions) as input, and producing predictions of molecular properties such as toxicity, bioactivity, and physiological effects as output; the overarching scientific objective is to enhance predictive accuracy, computational efficiency, and interpretability by replacing conventional MLP-based transformations in graph neural networks with Fourier-based Kolmogorov–Arnold network modules that provide stronger expressive power and theoretical approximation guarantees.",
+    "data": [
+        {
+            "name": "bace.csv",
+            "path": "./tasks/Chemistry_001/data/bace.csv",
+            "type": "structure_data",
+            "description": "The BACE dataset contains small-molecule compounds represented by SMILES strings along with binary labels indicating whether each molecule inhibits human β-secretase 1 (BACE-1). The dataset is used for molecular property prediction tasks in drug discovery, where molecular structures are converted into graph representations (atoms as nodes and bonds as edges) for classification modeling."
+        },
+        {
+            "name": "bbbp.csv",
+            "path": "./tasks/Chemistry_001/data/bbbp.csv",
+            "type": "structure_data",
+            "description": "The BBBP (Blood–Brain Barrier Penetration) dataset contains small-molecule compounds represented by SMILES strings and binary labels indicating whether a compound can penetrate the blood–brain barrier. The dataset is used for molecular property classification tasks in pharmacology and drug design."
+        },
+        {
+            "name": "clintox.csv",
+            "path": "./tasks/Chemistry_001/data/clintox.csv",
+            "type": "structure_data",
+            "description": "The ClinTox dataset consists of small-molecule compounds represented by SMILES strings and labeled according to their clinical trial toxicity outcomes and FDA approval status. It is a multi-task binary classification dataset designed to evaluate a model’s ability to predict both drug toxicity and regulatory approval likelihood. Molecules are converted into graph representations for molecular property prediction tasks."
+        },
+        {
+            "name": "hiv.csv",
+            "path": "./tasks/Chemistry_001/data/hiv.csv",
+            "type": "structure_data",
+            "description": "The HIV dataset contains small-molecule compounds represented by SMILES strings and labeled according to their ability to inhibit HIV replication. It is a binary classification dataset commonly used in molecular property prediction benchmarks. Each molecule is transformed into a graph structure for deep learning-based prediction of antiviral activity."
+        },
+        {
+            "name": "muv.csv",
+            "path": "./tasks/Chemistry_001/data/muv.csv",
+            "type": "structure_data",
+            "description": "The MUV (Maximum Unbiased Validation) dataset is a large-scale molecular benchmark dataset consisting of small-molecule compounds represented by SMILES strings and labeled across multiple virtual screening tasks. It is designed to provide challenging and unbiased evaluation settings for molecular property prediction models. The dataset includes multiple binary classification tasks and exhibits high class imbalance, making it particularly difficult for predictive modeling."
+        }
+    ]
+}

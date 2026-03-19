@@ -1,0 +1,59 @@
+[
+    {
+        "type": "text",
+        "content": "The dataset comprises 832 cloud seeding project records from 2000 to 2025, covering 13 U.S. states. Extraction using an LLM pipeline achieved an average field-level accuracy of 98.38% (manual review of 200 samples). Field accuracies range from 92% (control area) to 100% (project name, year, season), with most fields above 97%. This validates the dataset's reliability for downstream analysis.",
+        "path": null,
+        "keywords": [
+            "Total record count (832) verified directly from CSV.",
+            "Temporal coverage (2000–2025) confirmed via parsed year field.",
+            "State coverage (13 states) derived from normalized state labels.",
+            "Overall accuracy (98.38%) reported from paper's manual validation (n=200).",
+            "Field-level accuracy ranges (92%–100%) documented in Table 1."
+        ],
+        "weight": 0.22
+    },
+    {
+        "type": "image",
+        "content": "Geographic concentration in western states: California, Colorado, and Utah account for the majority of activities. The choropleth fill intensity (by state-level project count) and overlaid points (jittered around state centroids) reproduce the spatial pattern described in the paper, with additional clusters in Texas and the northern Rockies.",
+        "path": "images/figure3_state_distribution.png",
+        "keywords": [
+            "State totals aggregated from project rows before mapping.",
+            "Fill intensity mapped to computed state counts (exported in state-count table).",
+            "Point overlay approximates distribution, though exact coordinates are simulated."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Annual activity trend: a peak in the early-to-mid 2000s, a decline through the 2010s, and a renewed increase after 2021. The stacked bars by state (top 13 states) show interannual variability and confirm the rebound in recent years, aligning with the paper's Figure 4.",
+        "path": "images/figure4_annual_trend.png",
+        "keywords": [
+            "State-year matrix computed directly from data and exported.",
+            "Annual totals cross-checked against standalone yearly-count table.",
+            "Trend phases (peak, decline, rebound) supported by exported counts."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Primary stated purposes: augmenting snowpack and increasing precipitation dominate, together accounting for over 70% of mentions. Other purposes (hail suppression, visibility improvement) appear less frequently. Multi-label entries were split and normalized to concept-level categories before counting.",
+        "path": "images/figure5_purpose_distribution.png",
+        "keywords": [
+            "Multi‑label purpose strings split into individual concepts.",
+            "Alias normalization (e.g., 'increase rainfall' → 'increase precipitation') applied.",
+            "Dominant categories verified via exported purpose-count table."
+        ],
+        "weight": 0.19
+    },
+    {
+        "type": "image",
+        "content": "Seeding agent and deployment method: silver iodide is the most common agent across all apparatus types. Ground‑based generators and aircraft are the predominant deployment methods, with a substantial number of projects using both. The heatmap of top agents versus apparatus reflects the operational patterns highlighted in the paper.",
+        "path": "images/figure6_agent_apparatus_heatmap.png",
+        "keywords": [
+            "Agent–apparatus co‑occurrence counts from row‑level data (exported cross‑tab).",
+            "Heatmap intensity mapped directly to observed counts.",
+            "Top agents selected based on marginal frequency (exported agent-count table)."
+        ],
+        "weight": 0.19
+    }
+]

@@ -1,0 +1,41 @@
+{
+    "task": "Build a transparent geospatial levelized-cost model to estimate the delivered cost of African green hydrogen to Europe (via ammonia shipping and reconversion) by 2030 under multiple financing and policy scenarios, identify least-cost/competitive locations, and quantify how de-risking and the interest-rate environment change cost competitiveness relative to producing green hydrogen in Europe.",
+    "data": [
+        {
+            "name": "hex_final_NA_min.csv",
+            "path": "./tasks/Energy_003/Data/hex_final_NA_min.csv",
+            "type": "feature_data",
+            "description": "Simulated dataset for African hydrogen production sites, including latitude, longitude, PV potential, wind potential, and distances to road, grid, ocean, and water infrastructure. Used as input for LCOH calculations."
+        },
+        {
+            "name": "ne_10m_admin_0_countries.shp",
+            "path": "./tasks/Energy_003/data/africa_map/ne_10m_admin_0_countries.shp",
+            "type": "vector_data",
+            "description": "Main shapefile containing country boundary geometries for Africa and the world at 1:10m scale. Used as basemap for spatial visualizations."
+        },
+        {
+            "name": "ne_10m_admin_0_countries.shx",
+            "path": "./tasks/Energy_003/data/africa_map/ne_10m_admin_0_countries.shx",
+            "type": "vector_data",
+            "description": "Shape index file required for reading the shapefile geometry data efficiently."
+        },
+        {
+            "name": "ne_10m_admin_0_countries.dbf",
+            "path": "./tasks/Energy_003/data/africa_map/ne_10m_admin_0_countries.dbf",
+            "type": "vector_data",
+            "description": "Attribute database file containing tabular information (country names, codes, etc.) associated with each geometry."
+        },
+        {
+            "name": "ne_10m_admin_0_countries.prj",
+            "path": "./tasks/Energy_003/data/africa_map/ne_10m_admin_0_countries.prj",
+            "type": "vector_data",
+            "description": "Projection file that defines the coordinate system and map projection of the shapefile data."
+        },
+        {
+            "name": "ne_10m_admin_0_countries.cpg",
+            "path": "./tasks/Energy_003/data/africa_map/ne_10m_admin_0_countries.cpg",
+            "type": "vector_data",
+            "description": "Code page file specifying the character encoding used in the .dbf attribute file (typically UTF-8 or Latin-1)."
+        }
+    ]
+}

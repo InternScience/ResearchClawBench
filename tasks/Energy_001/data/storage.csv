@@ -1,0 +1,4 @@
+bus,carrier,p_nom,e_nom,efficiency
+Bus1,PHS,300,1800,0.75
+Bus3,PHS,250,1500,0.75
+Bus12,PHS,200,1200,0.75

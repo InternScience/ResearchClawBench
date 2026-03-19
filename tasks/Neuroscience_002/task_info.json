@@ -1,0 +1,17 @@
+{
+    "task": "Input: An over-segmented electron microscopy (EM) image volume of a fly brain and a pair of adjacent neuron segments (a query segment and a candidate segment) located near a potential truncation point\nOutput: A binary prediction (0 or 1) indicating whether the two given segments belong to the same neuron and should be merged.\nScientific Goal: To automate the proofreading process in large-scale connectomics by accurately predicting connectivity between over-segmented neuron fragments, thereby reducing the massive manual workload required to reconstruct complete neurons from petascale EM data.",
+    "data": [
+        {
+            "name": "test_simulated.csv",
+            "path": "./tasks/Neuroscience_002/data/test_simulated.csv",
+            "type": "structure_data",
+            "description": "Contains approximately 3600 samples (30% of total). Identical structure to the training set: 20 features, label, and degradation type. Used for evaluating model performance on unseen data."
+        },
+        {
+            "name": "train_simulated.csv",
+            "path": "./tasks/Neuroscience_002/data/train_simulated.csv",
+            "type": "structure_data",
+            "description": "Contains approximately 8400 samples (70% of total). Each sample has 20 feature columns (0‑19) representing morphology, intensity, and embedding modalities, a binary label (1 for same neuron, 0 otherwise), and a degradation type (Misalignment, Missing Sections, Mixed, or Average). The data is stratified by degradation to ensure balanced representation."
+        }
+    ]
+}

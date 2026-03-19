@@ -1,0 +1,104 @@
+# Data files for reproducing the three experiments
+
+## Common data
+- MACE foundation model file: "MACE-MP-0b3-medium.model" (to be downloaded from https://github.com/ACEsuit/mace-mp/releases)
+
+## Experiment 1: Water RDF simulation
+- Number of water molecules: 32
+- Box size (Å): 12.0 (cubic)
+- Temperature (K): 330
+- Time step (fs): 0.5
+- Total number of MD steps: 2000
+- Friction coefficient for Langevin thermostat (fs⁻¹): 0.01
+- Coordinates of a single water molecule (in Å, from ASE molecule('H2O') after centering):
+  O: [0.000000, 0.000000, 0.119262]
+  H: [0.000000, 0.763239, -0.477047]
+  H: [0.000000, -0.763239, -0.477047]
+
+## Experiment 2: Adsorption energy scaling relations
+- Metals and their lattice constants (Å) for fcc(111) surface:
+  Ni: 3.52
+  Cu: 3.61
+  Rh: 3.80
+  Pd: 3.89
+  Ir: 3.84
+  Pt: 3.92
+- Slab parameters:
+  - Miller indices: (111)
+  - Size: (2, 2, 3) (2x2 surface unit cell, 3 layers)
+  - Vacuum gap (Å): 10.0
+- Adsorbate placement:
+  - Site: fcc hollow
+  - Height above surface (Å): 1.5
+- Geometry relaxation:
+  - Fixed layers: bottom 2 layers (tags ≥ 2)
+  - Force convergence tolerance (eV/Å): 0.05 (default BFGS in ASE)
+- Gas phase molecules (isolated in a 10 Å box):
+  O atom coordinates: [0,0,0]
+  OH molecule coordinates (approximate):
+    O: [0,0,0]
+    H: [0,0,1.0]
+
+## Experiment 3: Reaction barrier comparison (simplified geometries)
+- Model reactions (three) with reactant and transition state coordinates (Å):
+
+  ### Reaction 1 (Rxn 1 – cyclobutene ring‑opening)
+  - Reactant (C₄H₄):
+    C: [0.000, 0.000, 0.000]
+    C: [1.500, 0.000, 0.000]
+    C: [1.500, 1.500, 0.000]
+    C: [0.000, 1.500, 0.000]
+    H: [-0.500, -0.500, 0.000]
+    H: [2.000, -0.500, 0.000]
+    H: [2.000, 2.000, 0.000]
+    H: [-0.500, 2.000, 0.000]
+  - Transition state:
+    C: [0.000, 0.000, 0.000]
+    C: [1.400, 0.200, 0.000]
+    C: [1.400, 1.300, 0.000]
+    C: [0.000, 1.500, 0.000]
+    H: [-0.500, -0.500, 0.000]
+    H: [1.900, -0.300, 0.000]
+    H: [1.900, 1.800, 0.000]
+    H: [-0.500, 2.000, 0.000]
+
+  ### Reaction 2 (Rxn 11 – methoxy decomposition)
+  - Reactant (CH₃O):
+    C: [0.000, 0.000, 0.000]
+    H: [0.000, 1.000, 0.000]
+    H: [0.900, -0.500, 0.000]
+    H: [-0.900, -0.500, 0.000]
+    O: [1.200, 0.000, 0.000]
+  - Transition state:
+    C: [0.000, 0.000, 0.000]
+    H: [0.000, 1.000, 0.000]
+    H: [0.900, -0.500, 0.000]
+    H: [-0.900, -0.500, 0.000]
+    O: [1.500, 0.000, 0.000]
+
+  ### Reaction 3 (Rxn 20 – cyclopropane ring‑opening)
+  - Reactant (C₃H₆):
+    C: [0.000, 0.000, 0.000]
+    C: [1.500, 0.000, 0.000]
+    C: [0.750, 1.300, 0.000]
+    H: [-0.500, -0.500, 0.000]
+    H: [2.000, -0.500, 0.000]
+    H: [0.750, 2.000, 0.000]
+    H: [0.000, 0.000, 1.000]
+    H: [1.500, 0.000, 1.000]
+    H: [0.750, 1.300, 1.000]
+  - Transition state:
+    C: [0.000, 0.000, 0.000]
+    C: [1.500, 0.000, 0.000]
+    C: [0.750, 1.300, 0.000]
+    H: [-0.500, -0.500, 0.000]
+    H: [2.000, -0.500, 0.000]
+    H: [0.750, 2.000, 0.000]
+    H: [0.000, 0.000, 1.500]
+    H: [1.500, 0.000, 1.500]
+    H: [0.750, 1.300, 1.500]
+
+- DFT reference barriers (eV) for comparison (from CRBH20 paper):
+  Rxn 1: 1.72
+  Rxn 11: 1.74
+  Rxn 20: 1.77

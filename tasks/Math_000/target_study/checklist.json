@@ -1,0 +1,37 @@
+[
+    {
+        "type": "text",
+        "content": "The pseudo-depth method estimates relative target depth from 2D images by measuring the distance from the bounding box bottom to the image bottom edge. It relies on two scene priors: the camera is above ground and all objects lie on a flat plane. Pseudo-depth reflects the occlusion order, with closer objects having larger values, enabling depth-based scene decomposition without 3D sensors.",
+        "path": null,
+        "keywords": [
+            "Pseudo-depth definition: distance from bounding box bottom to image bottom",
+            "Reliance on camera-above-ground and flat-ground priors",
+            "Pseudo-depth reflects relative depth order (near → far)"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "Depth Cascade Matching (DCM) uses pseudo-depth to partition trajectories and detections into multiple depth levels. It performs IoU-based association sequentially from the nearest to the farthest depth level, propagating unmatched objects to deeper levels. This hierarchical decomposition transforms dense crowds into sparse subsets, reducing association ambiguity and improving occlusion handling.",
+        "path": null,
+        "keywords": [
+            "Partition targets by depth intervals",
+            "Association only within same depth level",
+            "Unmatched targets cascade to next depth level",
+            "IoU-based matching without appearance features"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "SparseTrack integrates pseudo-depth and DCM into the tracking-by-detection pipeline, achieving state-of-the-art results on MOT17, MOT20, and DanceTrack using only IoU matching. It substantially outperforms the IoU-only baseline ByteTrack (e.g., +2.0 HOTA, +0.7 MOTA on MOT17). The number of depth levels for low-score detections is critical: increasing levels improves association of occluded targets up to an optimum (4–6 levels), after which gains saturate. DCM is plug-and-play and can enhance existing trackers, demonstrating that depth-based target decomposition is a powerful strategy for dense occlusion tracking.",
+        "path": "images/depth_levels_effect.png",
+        "keywords": [
+            "SparseTrack outperforms ByteTrack on MOT17/20 and DanceTrack",
+            "Optimal depth levels (4–6) maximize performance",
+            "DCM is plug-and-play and tracker-agnostic",
+            "Only IoU matching, no appearance or motion enhancement"
+        ],
+        "weight": 0.7
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "type": "image",
+        "content": " Energy-momentum map from tr-ARPES showing the main Dirac cone and a clear replica band induced by the 5 μm pump excitation.",
+        "path": "images/comprehensive_results_summary.png",
+        "keywords": [
+            "Clear visualization of the main Dirac cone.",
+            "Clear visualization of a replica band shifted from the main cone.",
+            "Axes labeled with energy (eV) and momentum (Å⁻¹).",
+            "Data acquired at a time delay of ~1 ps after pump excitation."
+        ],
+        "weight": 0.5
+    },
+    {
+        "type": "image",
+        "content": "Plot showing the intensity of the replica band as a function of pump polarization angle (θp), demonstrating a characteristic anisotropy.",
+        "path": "images/floquet_volkov_simulation.png",
+        "keywords": [
+            "Intensity plotted against polarization angle (θp).",
+            "Shows a clear periodic variation (e.g., sinusoidal) in intensity.",
+            "Matches the trend predicted by the Volkov state scattering model.",
+            "Experimental data points overlaid with theoretical fit curve."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "The anisotropy in the replica band intensity confirms that the replication mechanism involves scattering with photon-dressed Volkov final states, not just the initial Floquet-Bloch state.",
+        "path": null,
+        "keywords": [
+            "Explicitly states the involvement of Volkov final states.",
+            "Links the polarization dependence to the scattering mechanism.",
+            "Distinguishes this mechanism from simpler band replication."
+        ],
+        "weight": 0.2
+    }
+]

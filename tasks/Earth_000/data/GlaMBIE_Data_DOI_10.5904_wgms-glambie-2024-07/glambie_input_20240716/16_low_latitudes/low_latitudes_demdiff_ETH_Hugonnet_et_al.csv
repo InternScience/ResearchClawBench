@@ -1,0 +1,5 @@
+start_dates,end_dates,changes,errors,unit,author
+2000.0,2005.0,-2.34,1.04,m,Hugonnet et al.
+2005.0,2010.0,-2.625,0.92,m,Hugonnet et al.
+2010.0,2015.0,-2.705,1.05,m,Hugonnet et al.
+2015.0,2020.0,-3.085,1.15,m,Hugonnet et al.

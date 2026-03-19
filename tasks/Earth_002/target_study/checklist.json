@@ -1,0 +1,50 @@
+[
+    {
+        "type": "text",
+        "content": "Under all three SSP scenarios (245, 370, and 585), approximately 40-56% of global mangrove areas will face high to severe levels of combined risk from tropical cyclone regime shifts and sea level rise by 2100. The proportion increases with emission pathway severity: SSP245 (~40%), SSP370 (~48%), and SSP585 (~56%).",
+        "path": null,
+        "keywords": [
+            "Global mangrove extent: 40-56% at high to severe risk",
+            "Risk magnitude: Scores 3 (high) to 5 (severe)",
+            "Scenario comparison: SSP245 < SSP370 < SSP585",
+            "Combined risk: TC frequency change + SLR rate"
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "Global risk distribution maps (SSP245, SSP370, SSP585) reveal that Southeast Asia, Central America, Southeast Africa, and the Southwest Pacific are the primary hotspots. Southeast Asia shows the most extensive high-to-severe risk, particularly in the Philippines, Vietnam, Malaysia, and Indonesia.",
+        "path": "images/fig1_global_risk.png",
+        "keywords": [
+            "Spatial distribution: Global risk patterns",
+            "Regional hotspots: Southeast Asia, Central America, Southeast Africa, Southwest Pacific",
+            "Country-level severity: Philippines, Vietnam, Malaysia, Indonesia",
+            "Scenario progression: Risk expansion with higher SSPs"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Under SSP370, detailed hotspot maps show concentrated severe risk (score 5) in the Philippines, eastern Vietnam, northern Mozambique, and parts of Central America. Southeast Asia remains the most critically affected region, with extensive very high to severe risk across its archipelagos.",
+        "path": "images/fig2_hotspots_ssp370.png",
+        "keywords": [
+            "Four hotspots: Southeast Asia, Central America, Southeast Africa, Southwest Pacific",
+            "Severe risk foci: Philippines, Vietnam, Mozambique, Florida/Bahamas",
+            "Regional heterogeneity: Varying risk levels within hotspots",
+            "SSP370 focus: Most severe scenario for comparison"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Comparison of risk area percentages across SSPs highlights that higher emissions drastically increase the proportion of mangroves exposed to very high and severe risk. For instance, severe risk (score 5) grows from ~1% under SSP245 to ~13% under SSP585, underscoring the mitigation benefits of lower emission pathways.",
+        "path": "images/global_risk_barchart.png",
+        "keywords": [
+            "Risk category breakdown: None to severe (6 levels)",
+            "Scenario contrast: SSP245 vs SSP370 vs SSP585",
+            "Severe risk escalation: From <2% to >12%",
+            "Policy implication: Emission reduction reduces mangrove risk"
+        ],
+        "weight": 0.1
+    }
+]

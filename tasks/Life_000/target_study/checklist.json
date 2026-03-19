@@ -1,0 +1,90 @@
+[
+    {
+        "type": "text",
+        "content": "The study successfully developed machine-learning-optimized hydrogels (specifically R1-max) that achieve an underwater adhesive strength ($F_a$) exceeding 1 MPa on glass substrates, representing an order-of-magnitude improvement over previously reported hydrogels.",
+        "path": null,
+        "keywords": [
+            "States the specific hydrogel name (R1-max)",
+            "States the quantitative achievement (> 1 MPa)",
+            "Mentions improvement over literature/previous reports"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "A specific combination of hydrophobic (BA), aromatic (PEA), and cationic (ATAC) monomers was identified as the key design principle ('Golden Triangle') for robust underwater adhesion, leveraging hydrophobic effects and electrostatic interactions.",
+        "path": null,
+        "keywords": [
+            "Identifies the three key monomers: BA, PEA, ATAC",
+            "Explains the mechanism (hydrophobic + electrostatic)",
+            "States this as the core design principle"
+        ],
+        "weight": 0.1
+    },
+    {
+        "type": "text",
+        "content": "Ideal random copolymerization, utilizing monomers with reactivity ratios close to unity, is proven to be essential for statistically replicating protein sequence features; non-ideal synthesis leads to composition drift and significantly lower adhesive performance.",
+        "path": null,
+        "keywords": [
+            "Mentions 'ideal random copolymerization'",
+            "Mentions 'reactivity ratios close to unity'",
+            "Contrasts with non-ideal synthesis/composition drift"
+        ],
+        "weight": 0.1
+    },
+    {
+        "type": "image",
+        "content": "Figure 1 illustrates the data-driven workflow and quantitatively compares the adhesive strength of the new DM-driven and ML-driven hydrogels against conventional literature values.",
+        "path": "images/fig1_workflow_comparison.png",
+        "keywords": [
+            "Shows the 3-step loop: Data Mining -> Experiment -> Machine Learning",
+            "Includes the comparison chart (Fig. 1b)",
+            "Visually demonstrates the gap between 'this study' and 'literature'"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "Figure 2 presents the bioinformatics analysis of 24,707 adhesive proteins, identifying 'relative composition' and specific functional class neighbors as the critical design features that guided the monomer selection.",
+        "path": "images/fig2.png",
+        "keywords": [
+            "Shows data mining results/heatmaps",
+            "Validates the 'relative composition' hypothesis",
+            "Links protein features to monomer selection"
+        ],
+        "weight": 0.1
+    },
+    {
+        "type": "image",
+        "content": "Figure 3 displays the screening results of the initial 180 bio-inspired hydrogels, validating that data-mining-derived formulations can yield adhesion up to 147 kPa (G-max).",
+        "path": "images/fig3_initial_screening.png",
+        "keywords": [
+            "Shows the bar chart/distribution of 180 samples (Fig. 3e)",
+            "Highlights the G-max performance",
+            "Demonstrates the variability in the initial dataset"
+        ],
+        "weight": 0.1
+    },
+    {
+        "type": "image",
+        "content": "Figure 4 demonstrates the Machine Learning optimization process, where UMAP visualization reveals that the RFR-GP model explored novel chemical spaces distinct from the training data, and SHAP analysis confirms the feature importance of BA, PEA, and ATAC.",
+        "path": "images/fig4_ml_optimization.png",
+        "keywords": [
+            "Includes UMAP plot showing training vs. ML-generated points",
+            "Includes SHAP beeswarm plot showing feature impact",
+            "Demonstrates the 'extrapolation' capability of the model"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "Figure 5 characterizes the final super-adhesive hydrogels (R1-max), showcasing their mechanical properties, universal adhesion across diverse substrates (metals, plastics, ceramics), and exceptional durability (>1 year).",
+        "path": "images/fig5_final_performance.png",
+        "keywords": [
+            "Shows stress-strain curves or mechanical data",
+            "Shows adhesion strength bar charts for multiple substrates (Fig. 5e)",
+            "Includes evidence of long-term durability (Fig. 5f)"
+        ],
+        "weight": 0.15
+    }
+]

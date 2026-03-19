@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "Result 1 successfully verifies the core mathematical relationships of the Caspar-Klug theoretical framework, accurately reproduces both the classic Mackay icosahedron magic number sequence and the newly derived symmetry-breaking magic number sequence from the paper through hexagonal lattice path mapping, establishing a strict correspondence between multi-shell structures and two-dimensional lattice paths, providing the geometric theoretical foundation for subsequent size optimization and growth simulations.",
+        "path": "images/hexagonal_lattice_path.png",
+        "keywords": [
+            "Validation of the Triangulation Number Formula: The code precisely calculates the Caspar-Klug triangulation number \\(T = h^2 + k^2 + hk\\), confirming the fundamental geometric relationship between icosahedral shell parameters and their \\((h, k)\\) coordinates. This ensures the accuracy of subsequent shell radius and particle count computations.",
+            "Verification of Magic Number Sequences: The Mackay sequence \\([1, 13, 55, 147, 309]\\) and the novel symmetry-breaking sequence \\([1, 13, 45, 117, 239, 431]\\) are successfully reproduced. The exact match with the sequences derived from the paper's Equation (4) provides strong mathematical validation for the proposed path-construction methodology.",
+            "Implementation of Chirality Classification: An automatic classification system for MC, BG, and Ch\\(n\\) shells is established. This verifies the chiral symmetry relations relative to the diagonal in the hexagonal lattice and forms the essential categorical foundation for analyzing chirality-dependent size mismatch."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Result 2 verifies the optimal size mismatch formula (Formula 3) proposed in the paper through energy minimization calculations and atomic pair mismatch analysis, accurately calculates optimal mismatch values of 0.04 for MC→MC steps and 0.14 for MC→Ch1 steps, systematically evaluates the size compatibility of different atomic pairs, and provides quantitative design criteria for the stable assembly of multi-component icosahedral structures.",
+        "path": "images/growth_dynamics_simulation.png",
+        "keywords": [
+            "Verification of the Optimal Mismatch Formula: The implementation successfully validates the paper's proposed optimal size mismatch formula (Eq. 3). The calculated mismatch values show consistency with the energy minimization results obtained from Lennard-Jones and Morse potential simulations presented in the paper.",
+            "Quantification of Key Optimal Mismatch Values: The analysis yields precise optimal mismatch values of approximately 0.04 for MC→MC steps and 0.14 for MC→Ch1 steps. These values align with the data in Figure 3 of the paper, quantitatively demonstrating the distinct mismatch requirements between class-conserving and class-changing steps.",
+            "Compatibility Analysis of Atomic Pairs: A systematic evaluation reveals that the size mismatches of critical atomic pairs from the paper—such as Na-Rb (0.22), Ag-Cu (0.12), and Ag-Ni (0.15)—fall within the optimal ranges for different path types. This finding provides the theoretical rationale for the selection of these specific pairs in the experimental demonstrations."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "Result 3 successfully reproduces key growth experiments from the paper through atomic deposition growth simulations, verifies the decisive role of size mismatch in growth path selection, realizes the dynamic processes of spontaneous symmetry breaking and chirality class transition, and demonstrates that multi-component icosahedral structures can be programmably grown through size matching.",
+        "path": "images/Result3_Figure_1.png",
+        "keywords": [
+            "Demonstration of Spontaneous Symmetry Breaking: The simulation successfully replicates the key phenomenon from Figure 6a of the paper: the deposition of Rb atoms onto a Na₁₃@Rb₃₂ seed spontaneously triggers the formation of a Ch1 shell (1,2) from a BG shell (1,1), confirming the predicted symmetry-breaking growth pathway.",
+            "Verification of Mismatch-Driven Class Transition: The simulation confirms that when the Rb-Cs size mismatch (0.08) approaches the optimal value for a Ch1→Ch2 step (~0.11), the growth path transitions from forming Ch1 shells to forming Ch2 shells. This validates the proposed mechanism where size mismatch directly drives chirality class changes.",
+            "Confirmation of Conservative Step Preference at Zero Mismatch: In simulations of homo-atomic deposition, conservative growth steps overwhelmingly dominate (>70% of steps). This result validates the kinetic rule stated in the paper that conservative steps are inherently favored in the absence of size mismatch."
+        ],
+        "weight": 0.3
+    }
+]

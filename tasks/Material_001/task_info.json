@@ -1,0 +1,11 @@
+{
+    "task": "Input:\r\nMultimodal materials data: atomic structures, chemical compositions, crystal graphs, microscopy images, spectral data (XRD, FTIR, etc.), text from scientific literature, material property databases, synthesis conditions, and experimental parameters.  \r\n\r\nOutput:\r\nPredicted material properties (mechanical, electronic, catalytic, etc.), generated novel material structures/microstructures, optimized synthesis/processing parameters, and classification/segmentation results for material characterization.  \r\n\r\nScientific Objective:\r\nTo accelerate the discovery, development, and optimization of advanced materials by integrating multimodal data through AI/ML models, enabling data-driven inverse design and reducing reliance on traditional trial-and-error approaches.",
+    "data": [
+        {
+            "name": "M-AI-Synth__Materials_AI_Dataset_.txt",
+            "path": "./tasks/Material_002/data/M-AI-Synth__Materials_AI_Dataset_.txt",
+            "type": "structure_data",
+            "description": "This dataset is designed for rapid validation of three core AI application workflows in materials science—property prediction, structure generation, and experimental optimization—supporting code prototyping and fundamental algorithm testing."
+        }
+    ]
+}

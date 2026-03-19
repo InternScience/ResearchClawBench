@@ -1,0 +1,17 @@
+{
+    "task": "To constrain the properties of ultralight bosons (ULBs) by developing and applying a novel Bayesian statistical framework. This framework translates the physics of black hole superradiance into a probabilistic model that ingests the full posterior distributions (not just point estimates) of black hole mass and spin measurements. The goal is to derive statistically rigorous upper limits on ULB masses and self-interaction coupling strengths, thereby using astrophysical data to probe fundamental particle physics.",
+    "data": [
+        {
+            "name": "IRAS_09149-6206_samples.dat",
+            "path": "./tasks/Astronomy_000/data/IRAS_09149-6206_samples.dat",
+            "type": "feature_data",
+            "description": "Contains the posterior distribution samples for the mass and dimensionless spin parameter of the supermassive black hole IRAS 09149-6206, providing the fundamental observational input for the constraint analysis in the supermassive black hole regime."
+        },
+        {
+            "name": "M33_X-7_samples.dat",
+            "path": "./tasks/Astronomy_000/data/M33_X-7_samples.dat",
+            "type": "feature_data",
+            "description": "Contains the posterior distribution samples for the mass and dimensionless spin parameter of the stellar-mass black hole in the X-ray binary M33 X-7, serving as the primary dataset for demonstrating and applying the Bayesian constraint framework."
+        }
+    ]
+}

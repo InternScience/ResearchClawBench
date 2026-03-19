@@ -1,0 +1,58 @@
+[
+    {
+        "type": "image",
+        "content": "At a fixed depth of d=12, the fidelity estimate decreases as the number of qubits N increases, and linear XEB, log‑XEB, and MB regression probability show mutually consistent scaling trends within the verifiable regime.",
+        "path": "images/Figure_7.png",
+        "keywords": [
+            "fixed depth d=12",
+            "qubits N",
+            "MB return probability",
+            "XEB^lin"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Within the classically verifiable regime for N=40, the fidelity estimate decreases overall as the circuit depth d increases (when d rises from 8 to 20, the estimated fidelity drops from on the order of ~0.6 to ~0.3), and the trends given by different estimators are consistent within error bars.",
+        "path": "images/Figure_7.png",
+        "keywords": [
+            "fidelity estimate",
+            "Estimator consistency (XEB/MB/GC)",
+            "depth d"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "At N=56, the MB regression probability as a fidelity estimate decreases as the depth increases. Moreover, a depth-12 fidelity estimate point consistent with direct measurement can be inferred from the MB regression probability at depth 24, using a mirror circuit constructed from an exact depth-12 RCS circuit.",
+        "path": "images/Figure_7.png",
+        "keywords": [
+            "MB return probability",
+            "mirror circuits",
+            "Estimator consistency (XEB/MB/GC)"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "The fidelity prediction curve from the gate‑counting model is consistent in overall trend with the experimentally estimated fidelity points, and the 1σ interval derived from propagating model uncertainties covers a portion of the experimental scatter, indicating that the gate‑level error model has explanatory power within this experimental regime.",
+        "path": null,
+        "keywords": [
+            "The fidelity prediction curve from the gate‑counting model is consistent in overall trend with the experimentally estimated fidelity points, and the 1σ interval derived from propagating model uncertainties covers a portion of the experimental scatter, indicating that the gate‑level error model has explanatory power within this experimental regime.",
+            "uncertainty propagation",
+            "trend agreement"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "On the N=40 verification subset, the counts‑weighted linear XEB reproduction yields the following: for each depth (d=8, 10, 12, 14, 16, 18, 20), all 50 instances were able to compute XEB; the mean XEB value shows an overall decreasing trend as d increases, accompanied by statistical fluctuations. This result is consistent with the depth‑dependent decay trend reported in the paper for N=40.",
+        "path": "images/xeb_vs_depth_errorbar.png",
+        "keywords": [
+            "verification subset",
+            "counts-weighted XEB",
+            "depth sweep"
+        ],
+        "weight": 0.25
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "type": "image",
+        "content": "The experiment successfully validated the efficacy of the Vicrop method across both standard and high-resolution scenarios, demonstrating its ability to correct the model's initial perceptual errors—specifically refining a date reading from 02/22/2014 to 02/20/2012 and rectifying a pose classification from 'walking' (A) to 'squatting' (C)—while systematically generating and archiving the corresponding bounding box visualizations and attention heatmaps as qualitative evidence.",
+        "path": "images/tast1.png",
+        "keywords": [
+            "Vicrop QA (Visual Cropping for QA): The core training-free mechanism that improves perception by cropping and zooming into relevant image regions based on attention.",
+            "Relative Attention Map (Rel Att): The specific algorithm used to calculate which parts of the image are most relevant to the user's query, guiding the cropping process.",
+            "High-Resolution Perception (High Res): A metric or capability demonstrating the model's improved performance on detailed visual tasks (like Demo 2) when processing higher resolution inputs compared to standard inputs."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "The experimental results on the TextVQA dataset demonstrate that both gradient-based and relative attention mechanisms significantly enhance the LLaVA model's baseline performance of 45.18%, with the gradient attention method achieving a slightly superior cropping accuracy of 55.54% compared to the 54.93% attained by relative attention, thereby confirming the efficacy of these training-free perception algorithms in resolving fine-grained visual details.",
+        "path": null,
+        "keywords": [
+            "Raw Accuracy (raw_acc): The baseline performance metric (45.18%) representing the model's ability to answer questions using the original, uncropped image input.",
+            "Crop Accuracy (crop_acc): The enhanced performance metric achieved after applying the Vicrop algorithm to zoom in on relevant regions, serving as the primary indicator of the method's effectiveness.",
+            "Gradient vs. Relative Attention (grad_att / rel_att): The two distinct attention computation strategies being benchmarked, where grad_att uses gradient backpropagation and rel_att uses relative token attention to determine where the model should \"look.\""
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "text",
+        "content": "The experiment employing the Qwen2.5-3B model on the TextVQA dataset demonstrates a uniform performance enhancement, where grad_att, pure_grad, and rel_att algorithms all identically boosted the baseline accuracy from 70.56% to 77.10%, suggesting that for this specific architecture and data partition, the resolution gain provided by the cropping mechanism is the dominant driver of improvement, rendering the subtle differences between specific attention strategies negligible in the final outcome.",
+        "path": null,
+        "keywords": [
+            "The phenomenon observed here where different algorithmic approaches (grad_att, pure_grad, rel_att) yield identical results, suggesting the model's response is robust enough that minor differences in cropping boxes do not alter the final answer.",
+            "The ability of the Vicrop/Perception method to function effectively not just on the original LLaVA model but also on a completely different architecture like Qwen2.5, proving the method is not model-specific.",
+            "Refers to the significantly higher starting accuracy of Qwen2.5 (70.56%) compared to LLaVA (45.18%), indicating a stronger foundational capability which may compress the margin for differentiation between the various attention methods.",
+            "Refers to the mechanism where the codebase supports new models (like Qwen2.5) not through the original authors, but via open-source contributions (Pull Requests), highlighting the modularity and reproducibility of the paper's core idea.",
+            "A likely explanation for the identical scores across different algorithms (rel_att/grad_att) in this specific experiment, suggesting that the third-party adaptation might have simplified the attention calculation logic or that the strong baseline of Qwen2.5 masks the subtle differences between specific attention strategies."
+        ],
+        "weight": 0.4
+    }
+]

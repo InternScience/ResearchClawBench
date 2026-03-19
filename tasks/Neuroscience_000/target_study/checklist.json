@@ -1,0 +1,57 @@
+[
+    {
+        "type": "image",
+        "content": "Precision-recall curves for Attack classifiers across all six simulated conditions (Lab1, Lab2, Male, Female, RI, CSDS) show strong performance with average precision (AP) values consistently above 0.85. The right panel displays the PR curve for Sniffing (Lab1 only) with AP=0.88. This confirms that supervised classifiers can reliably distinguish behaviors across varied experimental contexts, supporting the paper's emphasis on threshold-aware evaluation.",
+        "path": "images/figure1_pr_curves.png",
+        "keywords": [
+            "PR curves are generated from held-out test set predictions for each condition.",
+            "AP values shown in the figure are directly computed from prediction probabilities.",
+            "Curve data underlying the plot are not exported by default but can be recomputed from the provided code."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "SHAP value comparison between Lab1 and Lab2 attack classifiers reveals that Lab2 relies more heavily on animal distance features, while Lab1 places greater importance on intruder movement. This demonstrates how SHAP can quantify cross‑laboratory differences in behavioral classifiers, echoing the paper's multi‑site consortium analysis (Fig. 3c).",
+        "path": "images/figure_shap_comparison_lab.png",
+        "keywords": [
+            "Mean SHAP values per feature category were computed on test-set samples using TreeSHAP.",
+            "Feature categories are defined in utils.py based on biological relevance (distance, movement, shape).",
+            "The comparison highlights that even classifiers with similar overall accuracy can have different decision rules."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "SHAP comparison between Male and Female attack classifiers shows that Male attacks are more influenced by resident shape, whereas Female attacks depend more on intruder movement. This aligns with the paper's finding that sex differences in aggression are reflected in distinct behavioral motifs (Fig. 5d).",
+        "path": "images/figure_shap_comparison_sex.png",
+        "keywords": [
+            "Mean SHAP values aggregated over the same feature categories as the lab comparison.",
+            "The direction of differences (e.g., resident shape more important in males) matches the simulated weight adjustments.",
+            "This provides a quantitative, explainable metric for sex‑specific behavioral strategies."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "SHAP comparison between RI and CSDS environments indicates that the RI attack classifier emphasizes resident movement, while CSDS relies more on intruder shape and distance. This reflects the differing arena sizes and protocols, consistent with the paper's demonstration that environmental context alters behavioral classification rules (Fig. 6c).",
+        "path": "images/figure_shap_comparison_env.png",
+        "keywords": [
+            "SHAP values computed from the same procedure as previous comparisons.",
+            "The observed differences are consistent with the simulated protocol variations (RI: larger arena, CSDS: confined space).",
+            "This illustrates how SHAP can disentangle environmental influences on behavior."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Permutation importance ranking for the Lab1 attack classifier identifies the top 15 features, with distance and movement features dominating. This provides feature‑level interpretability and confirms that the classifier relies on biologically meaningful pose‑derived measurements, supporting the paper's claim that SimBA enables model transparency.",
+        "path": "images/figure5_feature_importance.png",
+        "keywords": [
+            "Importance is measured as the drop in F1 score when permuting each feature on held-out test data.",
+            "The plot is saved with the top features clearly labeled; underlying values are available in shap_values.csv.",
+            "This analysis complements SHAP by offering a global view of feature contributions."
+        ],
+        "weight": 0.2
+    }
+]

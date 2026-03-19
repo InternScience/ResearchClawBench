@@ -1,0 +1,142 @@
+\documentclass[aps,prl,twocolumn,superscriptaddress,longbibliography]{revtex4-2}
+\usepackage{amsmath,amssymb}
+\usepackage[pdftex]{hyperref,graphicx}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = blue, citecolor = blue}
+\usepackage{physics}
+\usepackage{xcolor}
+\usepackage{bm}
+\newcommand{\hl}[1]{\textcolor{red}{#1}}
+\newcommand{\hll}[1]{\color{red}{#1}\par\color{black}}
+
+
+\begin{document}
+\title{Topological Phases in AB-Stacked MoTe$_2$/WSe$_2$: $\mathbb{Z}_2$ Topological Insulators, Chern Insulators, and Topological Charge Density Waves}
+
+\author{Haining Pan}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+\author{Ming Xie}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+\author{Fengcheng Wu}
+\email{wufcheng@whu.edu.cn}
+\affiliation{School of Physics and Technology, Wuhan University, Wuhan 430072, China}
+\affiliation{Wuhan Institute of Quantum Technology, Wuhan 430206, China}
+
+\author{Sankar Das Sarma}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+\begin{abstract}
+    We present a theory on the quantum phase diagram of AB-stacked MoTe$_2$/WSe$_2$ using a self-consistent Hartree-Fock calculation performed in the plane-wave basis, motivated by the observation of topological states in this system. At filling factor $\nu=2$ (two holes per moir\'e unit cell), Coulomb interaction can stabilize a $\mathbb{Z}_2$ topological insulator by opening a charge gap. At $\nu=1$, the interaction induces three classes of competing states, spin density wave states, an in-plane ferromagnetic state, and a valley polarized state, which undergo first-order phase transitions tuned by an out-of-plane displacement field. The valley polarized state becomes a Chern insulator for certain displacement fields.  Moreover, we predict a topological charge density wave forming a honeycomb lattice with ferromagnetism at $\nu=2/3$. Future directions on this versatile system hosting a rich set of quantum phases are discussed.
+\end{abstract}
+
+\maketitle
+
+\textit{Introduction.---} Topological phases of matter have been among the most active and important research areas in condensed matter physics ever since the experimental discovery of the quantum Hall effect~\cite{vonklitzing1980new} in the presence of strong magnetic fields.
+The mechanism of the quantum Hall effect, especially the quantization of Hall conductance, has been understood in terms of the topological invariant of the Chern number~\cite{thouless1982quantized,niu1985quantized}.
+The concept of quantum Hall insulators has been generalized to quantum anomalous Hall insulators (also known as Chern insulators) \cite{haldane1988model} and quantum spin Hall insulators (also known as $\mathbb{Z}_2$ topological insulators) \cite{kane2005quantum}, where the former exhibits quantized Hall effect without the external magnetic field, and the latter is the topological state in the presence of time-reversal symmetry.
+Among the extensive topological theoretical predictions~\cite{onoda2003quantized,qi2006topological,qi2008topological,liu2008quantum,yu2010quantized,qiao2010quantum,nomura2011surfacequantized,zhang2019topological,li2019intrinsic,otrokov2019prediction,liu2008quantuma,zhang2019nearly,bernevig2006quantum,sheng2006quantum,qian2014quantum}, only a limited number of systems have so far been studied experimentally manifesting unambiguous topological invariants: Chern insulators have been realized in magnetically doped topological insulator thin films~\cite{chang2013experimental,zhao2020tuning}, few-layer MnBi$_2$Te$_4$~\cite{deng2020quantum,liu2020robust}, and graphene-based moir\'e materials~\cite{sharpe2019emergent,serlin2020intrinsic,chen2020tunable,polshyn2020electrical,polshyn2022topological}, and transport signatures of the quantum spin Hall effect have been reported in HgTe quantum wells~\cite{konig2007quantum}, InAs/GaSb quantum wells~\cite{knez2010finite,knez2011evidence} and monolayer WTe$_2$~\cite{fei2017edge,wu2018observation}.
+
+The recent advent of moir\'e materials, followed by the discovery of correlated insulators and superconductors in magic-angle twisted bilayer graphene~\cite{cao2018correlated,cao2018unconventional}, provides vast new opportunities to design different phases of matter, including the topological phases discussed above~\cite{yankowitz2019tuning,chen2019evidence,cao2020tunable,chen2020electrically,wong2020cascade,serlin2020intrinsic,sharpe2019emergent,lu2019superconductors,shen2020correlated,choi2019electronic,xie2019spectroscopic,chen2019signatures,chen2020tunable,liu2020tunable}. It was theoretically proposed \cite{wu2019topological} that moir\'e bands in twisted transition metal dichalcogenide homobilayers can be mapped to the Kane-Mele model~\cite{wu2019topological,pan2020band,devakul2021magic}. Coulomb repulsion can further drive broken symmetry insulating states (e.g., Chern insulators) because the topological moir\'e bands have narrow bandwidth. This leads to interesting physics involving the interplay between band topology and strong correlations. %which is not common in quantum Hall systems. 
+A recent experiment on AB-stacked MoTe$_2$/WSe$_2$ \cite{li2021quantum} reported well-developed quantum anomalous Hall effect at filling factor $\nu=1$, and possible evidence for quantum spin Hall effect at $\nu=2$. This experiment is unprecedented, as it demonstrates experimentally that quantum anomalous Hall and quantum spin Hall effects could be realized in a single system, something that has never happened before as the two phenomena are quite distinct. It is also surprising, as it utilizes a heterobilayer instead of the homobilayer proposed in Ref.~\onlinecite{wu2019topological} for the manifestation of Transition Metal Dichalcogenides (TMD) topology. The surprising rich phenomena observed in MoTe$_2$/WSe$_2$ calls for detailed theoretical studies \cite{xie2022valleypolarized,zhang2021spintextured,devakul2021quantum}.
+
+In this Letter, we present a topological theoretical study of interacting AB-stacked MoTe$_2$/WSe$_2$. The single-particle physics is described by a continuum moir\'e Hamiltonian that incorporates the topmost valence bands from both layers. An out-of-plane displacement field tunes the band offset between the two layers, and drives a topological phase transition for the first moir\'e valence band. The Coulomb interaction is treated using a self-consistent Hartree-Fock approximation {\it without} the bias of projecting it to a few selected moir\'e bands. Our main results are summarized as follows.
+{(1) At $\nu=2$, the single-particle band structure predicts a metallic state in the topological regime, but the Coulomb interaction can open up a gap, and therefore, stabilize the $\mathbb{Z}_2$ topological insulator. 
+(2) At $\nu=1$, we obtain a rich quantum phase diagram that includes three classes of competing phases, spin density wave states, an in-plane ferromagnetic state, and a valley polarized state. The valley polarized state becomes a Chern insulator for a certain range of displacement fields. 
+(3) At the fractional filling factor $\nu=2/3$, we predict a topological density wave state, and identify the condition for its experimental realization.
+
+Our results provide a consistent mean-field description of the experimental observations (along with new predictions) in Ref.~\onlinecite{li2021quantum}, which is an important step toward a full understanding of quantum phases in the moir\'e TMD physics. In a broader perspective, our work establishes affirmatively that the interplay between many-body interaction and single-particle band topology can induce a rich set of distinct topological phases (e.g., quantum anomalous Hall insulators and quantum spin Hall insulators) within one realistic system.}
+
+\textit{Model.---}
+% the Ab stacked shown in fig 1a
+We focus on AB-stacked MoTe$_2$/WSe$_2$ with an exact $180^\circ$ twist angle. The moir\'e superlattices have the $C_{3v}$ point group symmetry and a moir\'e period $a_M=a_{\mathfrak{b}}a_{\mathfrak{t}}/\abs{a_{\mathfrak{b}}-a_{\mathfrak{t}}}$, where $(a_{\mathfrak{b}},a_{\mathfrak{t}})$=(3.575\AA, 3.32\AA) are the lattice constant of MoTe$_2$ and WSe$_2$, respectively. The large lattice constant mismatch makes the moir\'e superlattices relatively immune to twist angle disorder. As shown in Fig.~\ref{fig:1} (a), there are three high-symmetry regions in one moir\'e unit cell, labeled as MM,  XX, and MX, corresponding to  local atomic configurations with $C_{3z}$ (threefold
+rotational) symmetry.
+
+The density functional theory calculation~\cite{zhang2021spintextured,li2021quantum} of AB-stacked MoTe$_2$/WSe$_2$ shows that states at the valence band edge originate from $\pm K$ valleys of MoTe$_2$, where $\pm K$ refer to corners of the monolayer Brillouin zone. Therefore, we focus on $\pm K$ valleys which are related by the $\mathcal{T}$ symmetry. For valence bands at the two valleys, there are large spin splittings that are both valley and layer dependent, as illustrated in Fig.~\ref{fig:1} (b).  By retaining the topmost valence bands from each layer, we construct \cite{wu2019topological,pan2020band,zhang2021spintextured} a valley-dependent continuum Hamiltonian as follows  
+\begin{equation}\label{eq:Ham}
+    H_{\tau}=\begin{pmatrix}
+        -\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}+\Delta_{\mathfrak{b}}(\bm{r}) &  \Delta_{\text{T},\tau}(\bm{r})\\
+        \Delta_{\text{T},\tau}^\dag(\bm{r}) & -\frac{\hbar^2\left(\bm{k}-\tau \bm{\kappa}\right)^2}{2m_\mathfrak{t}}+ \Delta_\mathfrak{t}(\bm{r})+V_{z\mathfrak{t}}
+    \end{pmatrix},
+\end{equation} 
+where $\tau=\pm 1$ represents $\pm K$ valleys, and $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is at a corner of the  moir\'e Brillouin zone.  For each valley, the $2\times 2$ Hamiltonian hybridizes the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$), where the off diagonal terms describe the interlayer tunneling $\Delta_{\text{T},\tau}$, and the diagonal terms describe the momentum-shifted kinetic energy with the effective mass $(m_{\mathfrak{b}},m_{\mathfrak{t}})=(0.65,0.35)m_e$ ($m_e$ is the rest electron mass), plus the intralayer potential $\Delta_{\mathfrak{b}/\mathfrak{t}}$, and a band offset $V_{z\mathfrak{t}}$ [Fig.~\ref{fig:1}(b)]. Our $H_\tau$ differs from that in Ref.~\onlinecite{zhang2021spintextured} by a gauge transformation. 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=3.4in]{Fig1.pdf}
+    \caption{(a) Moir\'e superlattice of AB-stacked MoTe$_2$/WSe$_2$. (b) A schematic plot for band alignment in the heterobilayer. Only states in the dashed box are retained in the Hamiltonian $H_\tau$. (c) Single-particle moir\'e band structure with parameters ($w$, $V_\mathfrak{b}$, $V_{z\mathfrak{t}}$) =(12 meV, 7 meV, $-$20 meV). Orange (blue) lines show $+K$($-K$)-valley moir\'e bands. {The dashed line shows the Fermi energy of the charge neutrality.} The first moir\'e valence band from $\pm K$ valleys carry $\pm 1$ Chern number. {(See the Supplemental Material~\cite{HeteroBilayer_SM}\cite*{wu2020quantum, fukui2005chern, monkhorst1976special} for the definition of high-symmetry points in the moir\'e Brillouin zone.)} (d) Single-particle topological phase diagram of the first moir\'e valence band as a function of $w$ and $V_{z\mathfrak{t}}$ with $V_\mathfrak{b}$=7 meV.}
+    \label{fig:1}
+\end{figure}
+
+The periodic potential  $\Delta_{\mathfrak{b}}(\bm{r})$ is parametrized as 
+\begin{equation}\label{eq:Delta_b}
+    \Delta_{\mathfrak{b}}(\bm{r})=2V_{\mathfrak{b}}\sum_{j=1,3,5} \cos(\bm{g}_j \cdot \bm{r}+\psi_{\mathfrak{b}}),
+\end{equation}
+where $V_{\mathfrak{b}}$ and $\psi_{\mathfrak{b}}$ respectively characterize the amplitude and spatial pattern of the potential, and $\bm{g}_j=\frac{4\pi}{\sqrt{3} a_M} \left(- \sin \frac{\pi (j-1)}{3}, \cos \frac{\pi (j-1)}{3}\right)$ are the moir\'e reciprocal lattice vectors in the first shell. We set $\Delta_{\mathfrak{t}}(\bm{r})=0$, since the low-energy physics only involves the band maximum of WSe$_2$ \cite{zhang2021spintextured}.  The interlayer tunneling term is
+\begin{equation}\label{eq:Delta_T}
+    \Delta_{\text{T},\tau}(\bm{r})=\tau w \left(1+\omega^{\tau} e^{i\tau\bm{g}_2\cdot\bm{r}}+\omega^{2\tau} e^{i\tau\bm{g}_3\cdot\bm{r}} \right),
+\end{equation}
+where $w$ describes the tunneling strength, and $\omega=e^{i\frac{2\pi}{3}} $ following the $C_{3z}$ symmetry \cite{zhang2021spintextured}. The valley dependence of $ \Delta_{\text{T},\tau}$ is constrained by $\mathcal{T}$ symmetry. Here $ \Delta_{\text{T},\tau}$ couples states with opposite spins, which is symmetry allowed because the heterobilayer breaks the $z \rightarrow -z$  mirror symmetry. For parameters in $H_\tau$, we take $\psi_{\mathfrak{b}}=-14^{\circ}$ such that the potential maximum of $\Delta_{\mathfrak{b}}(\bm{r})$ is at the MM site \cite{zhang2021spintextured}; $V_{z\mathfrak{t}}$ is a parameter that is experimentally controllable by an applied out-of-plane displacement field; $V_{\mathfrak{b}}$ and $w$ are taken as theoretical parameters that can be adjusted to study different phases. We note that the interlayer tunneling 
+strength $w$ can be modified by pressure. 
+
+The low-energy moir\'e bands and their topology are tunable by $V_{z\mathfrak{t}}$. For the intrinsic band offset $V_{z\mathfrak{t}}$ that has a large negative value ($\sim -$ 110 meV) \cite{zhang2021spintextured}, the topmost moir\'e valence band at each valley mainly derives from the MoTe$_2$ layer and can be described by a tight-binding model on a triangular lattice, which is topologically trivial. By reducing $|V_{z\mathfrak{t}}|$ with an external displacement field, the energy gap between the topmost moir\'e valence bands derived respectively from MoTe$_2$ and WSe$_2$ can close and then reopen. This band inversion enabled by the tunneling term  $ \Delta_{\text{T},\tau}$ can lead to topological phase transitions. Figure~\ref{fig:1}(d) presents a topological phase diagram characterized by the valley-contrast Chern numbers $C_{\pm K}$ of the first moir\'e valence band in the parameter space of ($V_{z\mathfrak{t}}$, $w$). For $V_{z\mathfrak{t}}$ above the critical value, $C_{\pm K}$ become nontrivial with value ($\pm 1$). Figure~\ref{fig:1}(c) plots a representative moir\'e band structure in the topologically nontrivial regime of Fig.~\ref{fig:1}(d). Note that there is no overall energy gap that separates the first and second moir\'e valence bands in Fig.~\ref{fig:1}(c). The effect of many-body interaction on this gap is crucial as studied in the following.
+
+
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=3.4in]{Fig2.pdf}
+    \caption{(a) Band structure from the HF calculation  at $\nu=2$ with the same parameters as Fig.~\ref{fig:1}(c). Orange (blue) lines show $+K$($-K$)-valley moir\'e bands. {The two horizontal dashed lines identify the charge gap at $\nu=2$.} Here $\epsilon=15$. (b) Charge gap at $\nu=2$ from the HF calculation as a function of $V_{z\mathfrak{t}}$ and $\epsilon$.  The gap vanishes at the dashed line, which separates phase I (topologically trivial insulators) and phase II ($\mathbb{Z}_2$ topological insulators). Here $w$=12 meV and $V_\mathfrak{b}$=7 meV.}
+    \label{fig:2}
+\end{figure}
+
+
+\textit{Coulomb Interactions.---} The bandwidth of the first moir\'e valence band is on the order of $\hbar^2 \bm{\kappa}^2/(2 m_{\mathfrak{b}}) \approx 47 $ meV, while the characteristic Coulomb interaction strength is on the order of $e^2/(\epsilon a_M) \approx 31 $ meV for $a_M  \approx 4.7 $ nm and dielectric constant $\epsilon= 10 $. Therefore, the Coulomb interaction has an energy scale comparable to the bandwidth [Fig.~\ref{fig:1}(c)], which puts the system in the strongly interacting regime with possible interaction-induced quantum phase transitions. We consider the dual-gate screened Coulomb interaction with the momentum-dependent potential $V(q)=2\pi e^2 \tanh(q d)/(\epsilon q)$, where $d$ is the gate-to-sample distance. We set $d=5$ nm \cite{li2021quantum} unless otherwise stated. The dielectric constant $\epsilon$ is of the order of $10-20$ , and we vary $\epsilon$ to illustrate how physical properties depend on the interaction strength.
+
+We treat the Coulomb interaction using a self-consistent Hartree-Fock (HF) approximation applied to the continuum Hamiltonian in the plane-wave basis (see the Supplemental Material ~\cite{HeteroBilayer_SM} for details). Here, we do {\it not} project the Coulomb interaction onto a few low-energy moir\'e bands, because it is generally not possible to identify a set of bands that are energetically isolated from other bands [Fig.~\ref{fig:1}(c)]. Our approach allows us to study interaction effects for different parameter regimes in a unified manner. We note that HF theory, although qualitatively reliable, may overestimate the tendency toward ordering, and may not be able to quantitatively capture the global phase diagram. Nevertheless, it is an important and nontrivial question of principle whether the experimental observations can be captured by a mean-field theory. 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=3.4in]{Fig3.pdf}
+    \caption{(a) Interaction-induced phase diagram at $\nu=1$ as a function of $V_{z\mathfrak{t}}$ and $\epsilon$.  (b)-(d) Spin textures in the bottom layer for the three SDW states. The green, orange and red dots mark MM, XX and {MX} sites, respectively, {where their sizes indicate the corresponding charge densities.} (e)  Charge gap at $\nu=1$ as a function of $V_{z\mathfrak{t}}$ with $\epsilon$=15, $w$=12 meV, and $V_\mathfrak{b}$=7 meV. (f) Band structure of $\nu=1$ VP ChI calculated using the HF method at $\epsilon=15$ and $V_{z\mathfrak{t}}=-10$ meV. Orange (blue) lines show $+K$($-K$)-valley moir\'e bands. {The two horizontal dashed lines identify the charge gap at $\nu=1$.}
+        }
+    \label{fig:3}
+\end{figure}
+
+
+\textit{$\mathbb{Z}_2$ topological insulator at $\nu=2$.---}
+For the single-particle band structure shown in Fig.~\ref{fig:1}(c), $\nu=2$ would correspond to a metallic state since there is no overall gap that separates the first and second moir\'e valence bands. However, after performing the self-consistent HF calculations using the same set of parameters, we find that a true gap develops at $\nu=2$, as shown in  Fig.~\ref{fig:2}(a).  The first moir\'e valence band at each valley remains topologically nontrivial. Therefore, the $\nu=2$ insulator in  Fig.~\ref{fig:2}(a) belongs to
+the $\mathbb{Z}_2$ time-reversal invariant topological insulator as the $\mathbb{Z}_2$ topological invariant, defined in our case by $\text{mod}[(C_{+K}-C_{-K})/2,2]$~\cite{kane2005quantum}, is nontrivial given $C_{\pm K}=\pm 1$. This can be viewed as a realization of the interaction-induced quantum spin Hall insulator~\cite{kane2005quantum}.
+
+For generic parameter values, we present the topological phase diagram at $\nu=2$ calculated using the HF approximation as a function of $\epsilon$ and $V_{z\mathfrak{t}}$ in Fig.~\ref{fig:2}(b), where there are two phases, the topologically trivial phase and the $\mathbb{Z}_2 $ topological insulator phase, respectively for $V_{z\mathfrak{t}}$ below and above a critical value. At the critical $V_{z\mathfrak{t}}$, the charge gap vanishes.  The critical $V_{z\mathfrak{t}}$ increases as $\epsilon$ decreases (Coulomb interaction increases) because a stronger Coulomb interaction opens a larger charge gap in the topologically trivial phase, which requires a larger displacement field to close the gap so that the topological phase transition can happen.
+
+
+\textit{Competing phases at $\nu=1$.---} We study interaction-induced competing phases at $\nu=1$ and show the quantum phase diagram in Fig.~\ref{fig:3}(a), which includes three distinct classes of states, a valley polarized (VP) state, spin density wave (SDW) states, and an in-plane ferromagnetic state (FM$_x$). We first describe the VP state, where the first moir\'e valence bands at $\pm K$ valleys have unequal occupations. Therefore, the VP state carries a finite out-of-plane spin polarization and spontaneously breaks $\mathcal{T}$ symmetry. Figure~\ref{fig:3}(f) shows a representative band structure calculated using the HF method for the VP state, which has a finite charge gap at $\nu=1$ and realizes a Chern insulator (ChI) with a quantized Chern number 1.  This gives rise to the VP-ChI phase in Fig.~\ref{fig:3}(a). The VP state may become topologically trivial for a large negative $V_{z\mathfrak{t}}$. However, such a VP {\it trivial} phase is absent in Fig.~\ref{fig:3}(a) because it is energetically unfavorable compared with SDW states for the parameter ranges used in this figure. To the other extreme ($V_{z\mathfrak{t}}\sim 0$), the VP state may become a metallic state that has partial valley polarization, though not energetically favorable compared with FM$_x$ in Fig.~\ref{fig:3}(a).
+
+We now turn to SDW and FM$_x$ phases. The first moir\'e valence band in the topologically trivial regime of Fig.~\ref{fig:1}(d) can be described by a single-band tight-binding model on a triangular lattice, which, combined with the Coulomb interaction, realizes a generalized Hubbard model \cite{wu2018hubbard}. The single-band Hubbard model on a triangular lattice in the strong interaction limit has the $120^{\circ}$ antiferromagnetic N\'eel ground state \cite{wu2018hubbard,hu2021competing} at $\nu=1$, which spontaneously breaks the valley U(1) symmetry in our case and therefore, represents an intervalley-coherent state. The SDW in the $120^{\circ}$  N\'eel state spontaneously breaks the moir\'e translational symmetry, and has an expanded unit cell with a period $\sqrt{3} a_M$. In Figs.~\ref{fig:3}(b) -~\ref{fig:3}(d), we show three types of SDW states, distinguished by their charge and spin patterns in the bottom layer. In SDW1 and SDW2, the holes in the bottom layer are mainly concentrated on MM sites. Both SDW1 and SDW2 have the $120^{\circ}$  antiferromagnetic spin texture for holes on MM sites, but they differ by the spin vector chirality \cite{pan2020band}. In SDW3, the holes in the bottom layer are redistributed in moir\'e superlattices such that the hole density on MM and XX sites have comparable magnitude; the corresponding spin texture is shown in  Fig.~\ref{fig:3}(d). In addition, we also consider an FM$_x$ state (also an intervalley coherent state), where the spin for holes in the bottom is polarized along an in-plane direction. We perform a self-consistent HF calculation for the SDW and FM$_x$ states, compare their energies with the VP state, and obtain the phase diagram in Fig.~\ref{fig:3}(a) as a function of $V_{z\mathfrak{t}}$ and $\epsilon$.  
+
+In Fig.~\ref{fig:3}(e), we show the charge gap as a function of $V_{z\mathfrak{t}}$ at a fixed $\epsilon$. As $V_{z\mathfrak{t}}$ increases from a large negative value toward 0, there is a first-order phase transition between the topologically trivial SDW phase and the topological VP ChI phase. Because the first-order phase transition breaks adiabatic continuity, the charge gap does not need to vanish at the transition point, and there can be a discontinuous jump in the gap. In contrast, the experimental charge gap \cite{li2021quantum} evolves {\it continuously} across the transition from a Mott insulator to a Chern insulator at $\nu=1$, which could be due to disorder effects~\cite{ahn2022disorderinduced}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=3.4in]{Fig5.pdf}
+    \caption{(a) Interaction-induced phase diagram at $\nu=2/3$ with $\epsilon=17$, $w$=12 meV, and $V_\mathfrak{b}$=7 meV. Note that the sample-to-gate distance $d$ has changed from 5 nm to 15 nm compared with other figures. The two competing phases are  AF$_z$-HC and FM$_z$-HC, which respectively have AF$_z$ and FM$_z$ spin ordering on a generalized Wigner crystal with honeycomb lattice on the bottom layer. (b), (c) The spatial variation of the $z$ component spin $s_z$ on the bottom layer for AF$_z$-HC and FM$_z$-HC. The red dashed lines mark the emergent honeycomb lattice with a period of $\sqrt{3} a_M$ and vertices on MM sites.}
+    \label{fig:5}
+\end{figure}
+
+
+\textit{Topological charge density waves at $\nu=2/3$.---}
+Correlated insulators can develop not only at integer $\nu$, but also at fractional $\nu$, as demonstrated experimentally in Refs.~\onlinecite{xu2020correlated,li2021imaging,liu2021excitonic,regan2020mott,zhou2021bilayer}.  Here we focus on $\nu=2/3$, where the Coulomb interaction can induce a charge density wave (CDW) state that forms a honeycomb lattice~\cite{pan2020quantum}. The enlarged unit cell has a period $\sqrt{3} a_M$ and contains three MM sites, but only two out of the three are occupied by holes in the bottom layer, which, therefore, leads to an effective honeycomb lattice. We theoretically find that the CDW state at $\nu=2/3$ is sensitive to the long-range part of the Coulomb interaction, and can be energetically stabilized for $d=15$ nm rather than $d=5$ nm, where $d$ is the sample-to-gate distance and controls the effective range of the Coulomb interaction. 
+
+On the effective honeycomb lattice, there can be two types of spin ordering~\cite{pan2020quantum}: (1) antiferromagnetic (AF$_z$) order and (2) ferromagnetic (FM$_z$) order, where the spin polarization axis is out of the plane for both cases as illustrated respectively in Figs.~\ref{fig:5}(b) and~\ref{fig:5}(c). Here the FM$_z$ state is also valley polarized.  We perform self-consistent HF calculations respectively for the AF$_z$ honeycomb (AF$_z$-HC) state and the FM$_z$ honeycomb (FM$_z$-HC) state. Their energy competition gives rise to the $\nu=2/3$ phase diagram in Fig.~\ref{fig:5}(a), where the AF$_z$-HC and FM$_z$-HC states are favorable respectively for $V_{z\mathfrak{t}}$ below and above a critical value. Remarkably, when the FM$_z$-HC state becomes energetically favorable, it is also topologically nontrivial with a quantized Chern number 1. Therefore, there can be a topological CDW state at $\nu=2/3$.  Here the topology emerges with a mechanism similar to that of the VP ChI state at $\nu=1$, i.e., band inversion induced by $V_{z\mathfrak{t}}$. 
+
+\textit{Conclusion.---} Our self-consistent theoretical results provide a reasonable qualitative understanding of the field-induced topological states in Ref.~\onlinecite{li2021quantum}. The theory sets up a general framework to study topological interaction effects in a transition metal dichalcogenide based moir\'e system, and can be readily applied to study a variety of interaction-induced symmetry breaking phases~\cite{wang2020correlated, xu2020correlated, gu2021dipolar,zhang2021correlated,pan2021interactiondriven,pan2020quantum,pan2020band,pan2022interaction}. For AB-stacked MoTe$_2$/WSe$_2$, many future directions can be explored in both theory and experiment. The $\nu=1$ Chern insulator has spontaneous VP, but does {\it not} break any {\it continuous} symmetry. It is an Ising-type ordering with a finite Curie temperature, which could be theoretically estimated by studying the valley magnon and domain fluctuations~\cite{wu2020collective}. This VP state can result in interesting optical phenomena, for example, Faraday and Kerr rotations~\cite{tse2010giant}. The multiple distinct quantum phases (SDW, ChI, and $\mathbb{Z}_2$ topological insulators) that emerge in a single system can be used as building blocks to design new quantum phases on demand. For example, by introducing proximitized superconductivity, an interface between the $\nu=1$ SDW state and the $\nu=2$ $\mathbb{Z}_2$ topological insulator could host Majorana zero modes. 
+
+This work is supported by the National Key R$\&$D Program of China 2021YFA1401300 (F. W.) and the Laboratory for Physical Sciences (work at Maryland). We thank the University of Maryland High-Performance Computing Cluster (HPCC) for providing computational resources. F. W. also acknowledges support by startup funding from Wuhan University.
+
+\bibliography{Paper_HeteroBilayer}
+
+
+
+\end{document}

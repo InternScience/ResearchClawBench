@@ -1,0 +1,35 @@
+[
+    {
+        "type": "text",
+        "content": "The initial phase of the automated derivation successfully defined the physical model. The system constructed the non-interacting Kinetic Hamiltonian and the interaction Potential Hamiltonian in the continuum limit. It subsequently converted these single-particle formulations into a second-quantized matrix form and expanded them into summation notation, establishing the foundational operators for the many-body calculation.",
+        "path": null,
+        "keywords": [
+            "Construct Kinetic and Potential Hamiltonians (Continuum version).",
+            "Convert Hamiltonians from single-particle to second-quantized form.",
+            "Expand matrix representations into second-quantization summation forms."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "In this intermediate phase, the pipeline performed critical basis transformations specific to the paper's requirements. This included transforming the non-interacting Hamiltonian from real space to momentum space (Fourier transformation) and performing a particle-hole transformation. Crucially, the system applied Wick's theorem (Task 10) to the interaction Hamiltonian to perform the mean-field decomposition, preparing the terms for the Hartree-Fock approximation.",
+        "path": null,
+        "keywords": [
+            "Convert Hamiltonian from real space to momentum space (Fourier Transform).",
+            "Perform Particle-hole transformation (if required by the specific physics model).",
+            "Apply Wick's theorem to construct the interaction Hamiltonian."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "text",
+        "content": "The final phase focused on simplifying the mean-field terms to derive the effective Hamiltonian. The system extracted the quadratic terms and systematically processed the momentum reductions for both the Hartree (diagonal) and Fock (off-diagonal) terms. Finally, in Task 15, it successfully combined the kinetic, Hartree, and Fock contributions to output the complete, self-consistent Hartree-Fock Hamiltonian for the 2111.01152 system.",
+        "path": null,
+        "keywords": [
+            "Extract and simplify quadratic terms from the decomposed Hamiltonian.",
+            "Specific reduction of momentum indices in Hartree and Fock terms (reciprocal lattice processing).",
+            "Final combination of all terms into the complete Hartree-Fock Hamiltonian."
+        ],
+        "weight": 0.3
+    }
+]

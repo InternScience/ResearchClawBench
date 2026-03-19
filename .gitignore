@@ -134,6 +134,9 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+# Workspaces (evaluation runs)
+workspaces/
+
 # Environments
 .env
 .envrc
@@ -205,3 +208,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Claude Code local config
+.claude/
+
+# Local proxy startup script (machine-specific)
+start_proxy.sh

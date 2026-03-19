@@ -1,0 +1,47 @@
+[
+    {
+        "type": "text",
+        "content": "From 2000 to 2023, the cumulative mass loss of global glaciers (excluding the Greenland and Antarctic ice sheets) amounted to -6542 ± 387 Gt. Glacial mass loss accelerated significantly over the observation period. Glaciers are the dominant contributor to global sea-level rise.",
+        "path": null,
+        "keywords": [
+            "Cumulative mass change (Gt): -6542 ± 387",
+            "The average mass loss rate was −231 ± 23 Gt yr⁻¹ between 2000 and 2011, and increased to −314 ± 23 Gt yr⁻¹ during 2012–2023, representing an increase of 36 ± 10%.",
+            "Maximum annual mass loss on record: 548 ± 120 Gt in 2023",
+            "Mass loss from global glaciers exceeds the contributions from the Greenland and Antarctic ice sheets. Over the comparable period (approximately 2002–2021), glacial mass loss is 18% greater than that from the Greenland Ice Sheet and more than twice that from the Antarctic Ice Sheet."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "The regions with the largest absolute contributions are: Alaska (22%), the Canadian Arctic (20%), peripheral glaciers of Greenland (13%), and the Southern Andes (10%).\nThe regions with the largest relative mass loss (relative to their total ice volume in 2000) are: Central Europe (−39%), the Caucasus (−35%), New Zealand (−29%), Northern Asia (−23%), Western Canada and the Western United States (−23%), and low-latitude regions (−20%).",
+        "path": "images/Table.1.png",
+        "keywords": [
+            "Major contributing regions: Alaska, Canadian Arctic, peripheral glaciers of Greenland, Southern Andes",
+            "Regions with high relative mass loss: Central Europe, the Caucasus, New Zealand, and other small glacierized areas",
+            "Specific mass-change rate (m w.e. yr⁻¹): Used to compare the mass loss intensity across different regions."
+        ],
+        "weight": 0.1
+    },
+    {
+        "type": "image",
+        "content": "The long-term trends and interannual variability derived from different observational methods (DEM differencing, altimetry, gravimetry, and glaciological methods) are generally consistent within the reported uncertainties, although systematic differences still exist.",
+        "path": "images/Extend_Fig.3.png",
+        "keywords": [
+            "Compared with DEM differencing (available for all regions), altimetry generally observes smaller mass loss, with a mean difference of 0.08 ± 0.08 m w.e. yr⁻¹.",
+            "In regions where gravimetric measurements are included, the mean difference from DEM differencing is small (0.02 ± 0.08 m w.e. yr⁻¹), although large discrepancies exist in Alaska and the Southern Andes.",
+            "The long-term trends derived from glaciological observation sites are not representative of regional averages, with a mean bias of −0.10 ± 0.10 m w.e. yr⁻¹, ranging from −0.61 m w.e. yr⁻¹ to +0.53 m w.e. yr⁻¹."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Comparison of Observations with Model Projections and Future Outlook\nObservations through 2023 (18.1 mm sea-level equivalent) are already consistent with the median projection for 2040 under the low-emission scenario in IPCC AR6, indicating that we have exceeded the lowest projected mass loss for the period 2000–2040 from IPCC AR6.\nDue to the lagged response of glaciers to climate change, glacier mass loss will continue over the coming decades regardless of future emission pathways.\nIn most regions, observations fall within the 68th percentile range of the model ensemble. However, models tend to produce more negative (greater loss) projections than observations in the Russian Arctic, Central Asia, and western South Asia, whereas observed mass loss is more severe than model projections in the Southern Andes and New Zealand.\nUpdated models calibrated with global DEM differencing data show a higher projected loss range by 2040 (32–67 mm sea-level equivalent), further confirming that observations have surpassed earlier low-end projections.\nGlacier mass loss during the second half of this century is strongly dependent on the emission scenario. By 2100, global glaciers are projected to lose approximately one-quarter of their mass under the low-emission scenario and up to one-half under the high-emission scenario.",
+        "path": "images/Extend_Fig.5.png",
+        "keywords": [
+            "The observed value by 2023 has exceeded the low-end projection from IPCC AR6 for 2040.",
+            "Dependence of long-term mass loss on emission scenarios (25–29% to 43–54% by 2100)",
+            "The global estimate from GlaMBIE in this study is 4%, 9%, and 8% lower than the estimates from IPCC AR5, SROCC, and AR6, respectively."
+        ],
+        "weight": 0.3
+    }
+]

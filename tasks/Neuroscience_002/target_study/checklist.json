@@ -1,0 +1,67 @@
+[
+    {
+        "type": "text",
+        "content": "The constructed FlyTracing dataset is derived from the registration of FFN over-segmentation results of the FAFB full fly brain with FlyWire manually proofread skeletons, covering a volume of 3.2×10⁶ μm³ and containing 1.6×10⁶ neuron segment connection pairs. Compared with existing datasets including PNI, Kasthuri and SNEMI3D, FlyTracing achieves a three-order-of-magnitude scale increase in both volume and the number of segment connection pairs. As the first neuron segment connection dataset covering the entire fly brain, it has stronger regional diversity and scene generalization than existing datasets built only on densely annotated small blocks, and can provide sufficient and comprehensive training and testing data support for large-scale neuron tracing algorithms.",
+        "path": null,
+        "keywords": [
+            "FlyTracing dataset",
+            "FAFB full fly brain FFN over-segmentation",
+            "FlyWire proofread skeletons  3.2×10⁶ μm³ volume",
+            "1.6×10⁶ segment connection pairs  Three-order-of-magnitude scale increase",
+            "Segment-neuron registration"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "On 3000 FlyTracing test blocks, quantitative comparison of different fusion schemes of 3D morphological representations and image features shows that the PointNet++ model fusing surface point cloud and Connect-Embed achieves the optimal Recall, Precision and F1-score in all scenarios (average, misalignment, missing sections, mixed degradation). Connect-Embed outperforms Intensity and Seg-Embed, and multi-modal fusion is significantly superior to single-modal schemes for neuron segment connectivity prediction.",
+        "path": null,
+        "keywords": [
+            "3000 test blocks",
+            "Recall/Precision/F1-score",
+            "PointNet++ + Connect-Embed",
+            "Surface point cloud",
+            "Multi-modal feature fusion"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "text",
+        "content": "Ablation experiments on EmbedNet with different λ₃ configurations show that the adaptive λ₃ weight strategy (initialized to 1, linearly decreased to 0.2) achieves the optimal embedding discriminative ability (mean rank=1.41), far better than fixed λ₃ or training with Lseg only. This strategy enables the model to converge via dense segmentation supervision first and then focus on learning segment connectivity discriminative features from merge/split loss.",
+        "path": null,
+        "keywords": [
+            "EmbedNet",
+            "Adaptive λ₃ weight strategy",
+            "Lseg (segmentation clustering loss)",
+            "Merge/split loss",
+            "Mean rank (discriminative ability)"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "Precision-Recall curves of all models on EM blocks with imaging artifacts (300~800nm misalignment, 2~3 missing sections, mixed degradation) show that PointNet++ + Connect-Embed outperforms all comparison models significantly. Connect-Embed effectively compensates for the loss of neuronal morphological feature information caused by imaging artifacts, endowing the model with strong robustness on low-quality EM images for connectivity prediction.",
+        "path": "images/x5.png",
+        "keywords": [
+            "Precision-Recall (PR) curve",
+            "Imaging artifacts (misalignment/missing sections)",
+            "PointNet++ + Connect-Embed",
+            "Model robustness",
+            "Morphological feature information loss"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Voxel-level Connect-Embed embeddings of positive/negative neuron segment pairs are projected into RGB 3D space via PCA for visualization. The results show Connect-Embed has strong discriminability: positive pairs (same neuron) have highly similar embedding features, while negative pairs (different neurons) have distinct features. It can provide clear feature clues for connectivity prediction even when neuronal morphology is distorted by imaging artifacts.",
+        "path": "images/x6.png",
+        "keywords": [
+            "Connect-Embed embedding",
+            "PCA dimensionality reduction",
+            "Positive/negative sample pairs",
+            "Embedding discriminability",
+            "Morphological feature distortion"
+        ],
+        "weight": 0.15
+    }
+]

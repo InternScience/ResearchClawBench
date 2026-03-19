@@ -1,0 +1,36 @@
+[
+    {
+        "type": "text",
+        "content": " AlphaGeometry solves 25 out of 30 (83.3%) problems on the IMO-AG-30 benchmark, outperforming the previous state-of-the-art (Wu's method: 10/30) and approaching the performance of an average IMO gold medalist",
+        "path": null,
+        "keywords": [
+            "IMO-AG-30 benchmark.",
+            "Success rate: 25/30.",
+            "Baseline comparison: Wu's method (10/30).",
+            "Human-level comparison: IMO gold medalist avg (25.9/30)."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "text",
+        "content": "Synthetic data scale: 100 million examples.",
+        "path": null,
+        "keywords": [
+            "No human demonstrations used for training.",
+            "Verification by automated tools.",
+            "Outputs are human-readable, verifiable proofs."
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "text",
+        "content": "The traceback algorithm (in trace_back.py) identifies an unused premise in IMO 2004 P1, leading to the discovery of a more general theorem.",
+        "path": null,
+        "keywords": [
+            "Function of the traceback algorithm.",
+            "Discovery of a more general theorem.",
+            "Demonstrates capacity for novel mathematical insight."
+        ],
+        "weight": 0.25
+    }
+]

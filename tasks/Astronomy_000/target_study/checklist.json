@@ -1,0 +1,40 @@
+[
+    {
+        "type": "text",
+        "content": "The analysis ingests posterior samples for the target black holes. For the stellar-mass black hole M33 X-7, the marginalized posterior distributions yield a mass of M_mean ± M_std solar masses and a dimensionless spin of a*_mean ± a*_std. This quantitative characterization of observational constraints forms the fundamental data layer for all subsequent superradiance calculations.",
+        "path": null,
+        "keywords": [
+            "The complete probability distribution of a black hole's parameters (mass M, spin a*) given the observational data, representing the state-of-the-art knowledge with quantified uncertainties.",
+            "The gravitational mass of the black hole, a primary determinant of the superradiant instability condition for a given boson mass (μ).",
+            "The angular momentum of the black hole normalized from 0 (non-spinning) to ~1 (maximally spinning). High spin is a prerequisite for efficient superradiance.",
+            "A key statistic from the posterior distribution that quantifies the observational uncertainty in the mass and spin estimates, which is propagated through the entire Bayesian analysis."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "The core statistical output is the exclusion curve, which plots the probability that the observed black hole (M33 X-7) has not been spun down via superradiance as a function of the ultralight boson mass μ. This probability is computed by integrating the black hole's posterior distribution over the parameter space excluded by the superradiance theory for each boson mass. The curve demonstrates the constraining power of the data and the sensitivity of the method.",
+        "path": "images/m33x7_exclusion.png",
+        "keywords": [
+            "For each boson mass, the probability that the black hole's observed parameters are compatible with the absence of significant superradiant spin-down, calculated via Monte Carlo integration over the posterior samples.",
+            "The mass of the hypothetical ultralight boson (in eV), scanned over a wide range (e.g., 10⁻¹⁴ to 10⁻¹⁰ eV) to identify the most constrained regions.",
+            "The theoretical timescale for boson cloud growth and black hole spin depletion. The calculation checks if τ_sr is shorter than the black hole’s effective lifetime (τ_BH).",
+            "The statistical method that convolves the observational uncertainties (the full posterior) with the theoretical “yes/no” condition of superradiance to produce a smooth probability curve.",
+            "A horizontal reference line at P_excl = 0.05. Boson masses for which the curve falls below this line are considered ruled out at the 95% confidence level."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "This is the primary physical finding. By identifying where the exclusion probability (Result 2) falls below a specific confidence threshold (e.g., 5%), the analysis derives upper limits on the dimensionless self-interaction coupling constant g of the ultralight boson across a defined mass range. For example, the conclusion states that for a boson of mass μ_X eV, the coupling is constrained to be g < Y GeV⁻¹ at 95% confidence, given the age and observed parameters of the black hole M33 X-7.",
+        "path": null,
+        "keywords": [
+            "The maximum allowable value of the boson's self-interaction coupling constant, expressed in units of GeV⁻¹. Values above this limit would have caused observable spin-down.",
+            "A fundamental parameter of the boson field that governs the strength of interactions between bosons in the cloud, affecting the superradiance saturation and the potential for “bosenova” collapse.",
+            "The specific interval of boson masses (e.g., [μ_min, μ_max] in eV) for which a meaningful upper limit on g can be derived, determined by the black hole's mass and the superradiance condition.",
+            "The statistical certainty associated with the upper limit, derived from the probability threshold in the exclusion curve. It means there is a 95% probability that the true coupling strength lies below g_max if the boson exists at that mass.",
+            "The specific astrophysical source used to derive the constraint. The limit depends on this system's precise mass, spin, and estimated age (τ_BH)."
+        ],
+        "weight": 0.5
+    }
+]

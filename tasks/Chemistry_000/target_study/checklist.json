@@ -1,0 +1,39 @@
+[
+    {
+        "type": "image",
+        "content": "KA-GNN (including KA-GCN and KA-GAT variants) consistently outperforms conventional GNN architectures across seven MoleculeNet benchmark datasets, achieving state-of-the-art ROC-AUC scores. In particular, KA-GCN and KA-GAT show substantial improvements over standard GCN and GAT models on complex datasets such as ClinTox, MUV, and BBBP, demonstrating that replacing MLP modules with Fourier-based KAN modules significantly enhances molecular representation learning and predictive performance.",
+        "path": "images/cc4d517e-d400-4714-a343-617b7e657b51.png",
+        "keywords": [
+            "ROC-AUC improvement across seven datasets",
+            "Consistent superiority over GCN/GAT baselines",
+            "Strong performance on ClinTox and MUV (hard benchmarks)",
+            "Statistical robustness (mean ± standard deviation)"
+        ],
+        "weight": 0.45
+    },
+    {
+        "type": "text",
+        "content": "Fourier-series-based KAN modules provide stronger function approximation capability than B-spline and polynomial variants, leading to superior predictive accuracy and lower computational cost. Theoretical analysis guarantees universal approximation power, and empirical comparisons show that Fourier-based KA-GNN achieves both higher ROC-AUC and reduced runtime compared to MLP-based and other KAN variants, making it both more expressive and more computationally efficient.",
+        "path": null,
+        "keywords": [
+            "Fourier basis vs B-spline vs polynomial comparison",
+            "Reduced parameter redundancy vs MLP",
+            "Universal approximation guarantee (Theorem 2)",
+            "Better convergence and training stability"
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "text",
+        "content": "KA-GAT provides improved interpretability by highlighting chemically meaningful functional groups and substructures through gradient-based saliency maps and subgraph masking techniques. The model identifies key functional groups such as fluoro, amide, and aromatic rings as dominant contributors to prediction outcomes, demonstrating that Fourier-based KAN modules not only enhance predictive accuracy but also align learned representations with domain-relevant chemical knowledge.",
+        "path": null,
+        "keywords": [
+            "Saliency map analysis (atom-level and bond-level gradients)",
+            "Identification of functional groups (fluoro, amide, aromatic)",
+            "Subgraph extraction via GNNExplainer",
+            "Alignment with chemical intuition",
+            "Improved domain interpretability over baseline GNNs"
+        ],
+        "weight": 0.2
+    }
+]

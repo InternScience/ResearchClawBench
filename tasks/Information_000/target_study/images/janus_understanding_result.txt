@@ -1,0 +1,3 @@
+Sure, here is the LaTeX code for the given formula:
+
+\[ A_n = a_0 \left[ 1 + \frac{3}{4} \sum_{k=1}^{n} \left( \frac{4}{9} \right)^k \right] \]

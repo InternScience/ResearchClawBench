@@ -1,0 +1,8 @@
+Sample,VM,NeoAgDT_TP,NeoAgDT_FN,NeoAgDT_Recall,NetMHC_Percentile_TP,NetMHC_Percentile_FN,NetMHC_Percentile_Recall,NetMHCpan_Perc_TP,NetMHCpan_Perc_FN,NetMHCpan_Perc_Recall,NetMHCcons_Perc_TP,NetMHCcons_Perc_FN,NetMHCcons_Perc_Recall,MHCflurry_Perc_TP,MHCflurry_Perc_FN,MHCflurry_Perc_Recall,PickPocket_Perc_TP,PickPocket_Perc_FN,PickPocket_Perc_Recall,NetMHC_Score_TP,NetMHC_Score_FN,NetMHC_Score_Recall,NetMHCpan_Score_TP,NetMHCpan_Score_FN,NetMHCpan_Score_Recall,NetMHCcons_Score_TP,NetMHCcons_Score_FN,NetMHCcons_Score_Recall,MHCflurry_Score_TP,MHCflurry_Score_FN,MHCflurry_Score_Recall,MHCnuggetsI_Score_TP,MHCnuggetsI_Score_FN,MHCnuggetsI_Score_Recall,PickPocket_Score_TP,PickPocket_Score_FN,PickPocket_Score_Recall
+3812,5,0,5,0.0,3,2,0.6,2,3,0.4,2,3,0.4,0,5,0.0,2,3,0.4,2,3,0.4,5,0,1.0,1,4,0.2,0,5,0.0,2,3,0.4,2,3,0.4
+3942,5,1,4,0.2,2,3,0.4,1,4,0.2,0,5,0.0,2,3,0.4,1,4,0.2,3,2,0.6,5,0,1.0,2,3,0.4,0,5,0.0,5,0,1.0,4,1,0.8
+3948,5,0,5,0.0,3,2,0.6,0,5,0.0,3,2,0.6,0,5,0.0,5,0,1.0,0,5,0.0,1,4,0.2,0,5,0.0,3,2,0.6,4,1,0.8,2,3,0.4
+3978,5,1,4,0.2,3,2,0.6,1,4,0.2,1,4,0.2,1,4,0.2,2,3,0.4,2,3,0.4,3,2,0.6,3,2,0.6,2,3,0.4,0,5,0.0,2,3,0.4
+3995,5,0,5,0.0,0,5,0.0,2,3,0.4,0,5,0.0,2,3,0.4,1,4,0.2,0,5,0.0,4,1,0.8,3,2,0.6,1,4,0.2,1,4,0.2,1,4,0.2
+4007,5,0,5,0.0,2,3,0.4,2,3,0.4,1,4,0.2,1,4,0.2,2,3,0.4,1,4,0.2,2,3,0.4,3,2,0.6,1,4,0.2,3,2,0.6,1,4,0.2
+4032,5,1,4,0.2,4,1,0.8,1,4,0.2,1,4,0.2,0,5,0.0,2,3,0.4,0,5,0.0,1,4,0.2,2,3,0.4,1,4,0.2,2,3,0.4,3,2,0.6

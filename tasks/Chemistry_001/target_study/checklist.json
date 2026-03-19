@@ -1,0 +1,67 @@
+[
+    {
+        "type": "text",
+        "content": "AlphaFold 3 achieves 76.4% success rate (ligand RMSD < 2.0 Å) in blind protein-ligand docking, significantly outperforming AutoDock Vina (52.1%) and other baseline methods.",
+        "path": null,
+        "keywords": [
+            "Success rate metric (RMSD < 2.0 Å)",
+            "Comparison with AutoDock Vina",
+            "Blind docking protocol",
+            "Statistical significance (p < 0.001)",
+            "Multiple test sets validation"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Visualization of protein-ligand complex predictions showing accurate reproduction of key interactions including hydrogen bonding, hydrophobic contacts, and π-stacking.",
+        "path": "images/comparison.png",
+        "keywords": [
+            "Hydrogen bond interactions",
+            "Hydrophobic contact areas",
+            "π-stacking interactions",
+            "Binding pocket accuracy",
+            "Comparison with experimental structure"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "text",
+        "content": "The diffusion-based architecture demonstrates superior performance across diverse biomolecular complexes including protein-nucleic acid interactions (85.2% accuracy) and antibody-antigen complexes (78.9% accuracy).",
+        "path": null,
+        "keywords": [
+            "Protein-nucleic acid accuracy",
+            "Antibody-antigen accuracy",
+            "Cross-complex generalization",
+            "Comparison with specialized predictors",
+            "Unified framework advantage"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Training convergence curve showing stable learning and rapid convergence of the diffusion model compared to previous architecture.",
+        "path": "images/diffusion_schedule.png",
+        "keywords": [
+            "Training loss convergence",
+            "Validation performance",
+            "Comparison with AlphaFold 2",
+            "Diffusion steps optimization",
+            "Computational efficiency"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "Ablation studies confirm the importance of diffusion module and PairFormer architecture, with removal of either component resulting in >15% performance degradation.",
+        "path": null,
+        "keywords": [
+            "Diffusion module ablation",
+            "PairFormer ablation",
+            "Performance degradation metrics",
+            "Component importance ranking",
+            "Architectural validation"
+        ],
+        "weight": 0.1
+    }
+]

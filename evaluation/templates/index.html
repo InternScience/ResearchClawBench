@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchClawBench</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=20260319d">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/markdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <aside id="sidebar">
+            <div class="sidebar-header" id="sidebar-title" style="cursor:pointer">
+                <div class="logo">R</div>
+                <div>
+                    <h1>ResearchClawBench</h1>
+                    <p class="subtitle">Scientific Research Benchmark</p>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <h3>Tasks</h3>
+                <div id="task-browser"></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>Run History</h3>
+                <div id="run-history"></div>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <div id="welcome-screen">
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>ResearchClawBench</h2>
+                            <p class="subtitle">Scientific Research Benchmark — AI Agent Frontier</p>
+                        </div>
+                        <div class="stats" id="welcome-stats"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Frontier</h3>
+                        <p class="chart-subtitle">Best score per task across all agents. 50 = matches original paper, 100 = surpasses it.</p>
+                        <div class="chart-legend" id="chart-legend"></div>
+                        <div class="chart-container">
+                            <canvas id="frontier-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Leaderboard</h3>
+                        <div class="leaderboard-wrap" id="leaderboard-wrap">
+                            <p class="placeholder">No scored runs yet. Run tasks and score them to populate the leaderboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="task-view" style="display:none">
+                <!-- Header bar -->
+                <div class="task-header">
+                    <div class="task-header-info">
+                        <button class="btn btn-back" id="btn-back">&#8592; Dashboard</button>
+                        <span class="task-domain-badge" id="task-domain"></span>
+                        <h2 id="task-title"></h2>
+                    </div>
+                    <div class="task-header-actions">
+                        <div class="agent-options-inline" id="agent-options"></div>
+                        <div class="agent-custom-row" id="agent-custom-row" style="display:none">
+                            <input type="text" id="agent-custom-cmd" placeholder='custom command...'>
+                        </div>
+                        <button class="btn btn-primary" id="btn-start-run">
+                            <span class="btn-icon">&#9654;</span> Start Run
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Task description (collapsible) -->
+                <div class="task-desc-bar" id="task-desc-bar">
+                    <span class="task-desc-label">Task Description</span><span id="task-description"></span>
+                </div>
+
+                <!-- Sub-tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="research">Auto Research</button>
+                    <button class="tab" data-tab="eval">Evaluation</button>
+                </div>
+
+                <!-- Auto Research: 3-column VS Code layout -->
+                <div class="tab-panel active" id="panel-research">
+                    <div class="research-layout">
+                        <!-- Left: File Tree -->
+                        <div class="research-col research-col-tree">
+                            <div class="col-header">
+                                <span>Explorer</span>
+                                <div class="toggle-switch" id="btn-toggle-tree" title="Expand/Collapse all folders">
+                                    <span>Expand</span>
+                                    <div class="toggle-track on" id="toggle-tree-track"><div class="toggle-knob"></div></div>
+                                </div>
+                            </div>
+                            <div class="col-body" id="file-tree"></div>
+                        </div>
+                        <!-- Center: File Content -->
+                        <div class="research-col research-col-editor">
+                            <div class="col-header">
+                                <span id="file-content-header">No file selected</span>
+                                <div class="toggle-switch" id="btn-file-follow" title="Auto-follow latest file">
+                                    <span>Follow</span>
+                                    <div class="toggle-track on" id="toggle-file-track"><div class="toggle-knob"></div></div>
+                                </div>
+                            </div>
+                            <div class="col-body" id="file-content-body">
+                                <div class="placeholder">Select a file from the explorer</div>
+                            </div>
+                        </div>
+                        <!-- Right: AI Conversation -->
+                        <div class="research-col research-col-chat">
+                            <div class="col-header">
+                                <span class="terminal-status" id="terminal-status">Agent Output</span>
+                                <div style="display:flex;gap:8px;align-items:center">
+                                    <button class="btn btn-stop btn-xs" id="btn-stop-run" style="display:none">Stop</button>
+                                    <div class="toggle-switch" id="btn-auto-follow" title="Auto-follow latest messages">
+                                        <span>Follow</span>
+                                        <div class="toggle-track on" id="toggle-track"><div class="toggle-knob"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-body terminal-body" id="terminal-body">
+                                <div class="placeholder">Start a run to see AI steps...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluation: 3-column layout -->
+                <div class="tab-panel" id="panel-eval">
+                    <div class="eval-layout">
+                        <!-- Left: Target Paper -->
+                        <div class="eval-col eval-col-paper">
+                            <div class="col-header">Target Paper</div>
+                            <div class="col-body" style="padding:0">
+                                <iframe id="paper-iframe" style="width:100%;height:100%;border:none;display:block;"></iframe>
+                            </div>
+                        </div>
+                        <!-- Center: AI Report -->
+                        <div class="eval-col eval-col-report">
+                            <div class="col-header">AI Report</div>
+                            <div class="col-body report-card" id="report-content">
+                                <div class="placeholder">Report appears after run completes</div>
+                            </div>
+                        </div>
+                        <!-- Right: Checklist + Score -->
+                        <div class="eval-col eval-col-checklist">
+                            <div class="col-header">
+                                <span>Checklist</span>
+                                <button class="btn btn-primary btn-xs" id="btn-score">Score</button>
+                            </div>
+                            <div class="col-body" id="checklist-panel">
+                                <div id="score-total-area"></div>
+                                <div id="task-checklist-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js?v=20260319d"></script>
+</body>
+</html>

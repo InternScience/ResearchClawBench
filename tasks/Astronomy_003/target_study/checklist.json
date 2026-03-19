@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "This reproduction simulates the distribution of waveform differences between the two highest resolutions for the 3756 binary black hole simulations in the SXS catalog. The generated histogram shows that the difference values approximately follow a log-normal distribution, with a median of about \\(4\\times10^{-4}\\), and the majority of differences lie between \\(10^{-4}\\) and \\(10^{-2}\\). This result closely matches the median (\\(4\\times10^{-4}\\)) obtained from real data in Figure 6 of the paper, confirming that the overall numerical error level of the SXS catalog is within the acceptable accuracy range for current gravitational-wave observations and providing core quantitative evidence for the catalog's reliability.",
+        "path": "images/figure6.png",
+        "keywords": [
+            "Median waveform difference of \\(4\\times10^{-4}\\): This value directly corresponds to the “median waveform difference between resolutions is \\(4\\times10^{-4}\\)” stated in the paper, serving as the key metric for overall catalog accuracy.",
+            "Log‑normal distribution characteristics: The distribution of differences exhibits a log‑normal shape, indicating that most simulation errors are concentrated at low levels, while a few show larger errors due to extreme parameters or length, consistent with the paper’s qualitative error description.",
+            "Logarithmic y‑axis in the histogram: The use of a logarithmic scale clearly displays the difference distribution spanning four orders of magnitude, highlighting the concentration of high‑accuracy simulations, exactly matching the visualization style of Figure 6 in the paper."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "This reproduction simulates the distribution of waveform differences decomposed by spherical harmonic mode \\(\\ell\\) (from 2 to 8). The results show that the median difference increases monotonically with \\(\\ell\\) (from about \\(3\\times10^{-4}\\) at \\(\\ell=2\\) to about \\(1.5\\times10^{-3}\\) at \\(\\ell=8\\)), and the scatter range (16th–84th percentile) broadens for higher \\(\\ell\\). This trend is fully consistent with the analysis of real data in Figure 7 of the paper, indicating that higher‑\\(\\ell\\) modes have larger numerical errors. However, because their amplitude contributions are smaller, the overall waveform accuracy remains dominated by the leading mode \\(\\ell=2\\), providing error‑weighting guidance for multi‑mode waveform modeling.",
+        "path": "images/figure7.png",
+        "keywords": [
+            "Median increase with \\(\\ell\\): From \\(\\ell=2\\) to \\(\\ell=8\\), the median difference grows by a factor of about 5, quantifying the dependence of errors on mode order, consistent with the paper’s conclusion that “errors increase with \\(\\ell\\)”.",
+            "Broad percentile range for high \\(\\ell\\): The 16th–84th percentile interval widens with \\(\\ell\\), indicating that higher‑\\(\\ell\\) modes are more unstable and more affected by numerical noise, matching the shaded bands in Figure 7.",
+            "Overall error still dominated by \\(\\ell=2\\): Although higher‑\\(\\ell\\) modes have larger relative errors, their absolute contribution is small; thus, the catalog’s overall accuracy remains determined by the \\(\\ell=2\\) mode, which is the physical basis for reasonably truncating higher modes in waveform modeling."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "This reproduction simulates the distribution of waveform differences for two extrapolation‑order combinations (N=2 vs N=3 and N=2 vs N=4). The results show that the median difference for N=2 vs N=3 is about \\(2\\times10^{-5}\\), and for N=2 vs N=4 about \\(5\\times10^{-5}\\); both are more than an order of magnitude smaller than the numerical truncation error median (\\(4\\times10^{-4}\\)) from Figure 6. This comparison confirms that extrapolation errors are far smaller than numerical resolution errors, indicating that the extrapolation procedure (default N=2) used in the SXS catalog is sufficiently accurate and does not limit waveform precision, in full agreement with the core conclusion of Figure 8 in the paper.",
+        "path": "images/figure8.png",
+        "keywords": [
+            "Median difference for N=2 vs N=3 of \\(2\\times10^{-5}\\): This value quantifies the small change when upgrading from second‑order to third‑order extrapolation, demonstrating good convergence.",
+            "Median difference for N=2 vs N=4 of \\(5\\times10^{-5}\\): Slightly larger than the previous value, but still far below the numerical truncation error, indicating that higher‑order extrapolation does not significantly alter the waveform and that extrapolation errors have saturated.",
+            "Comparison with numerical truncation error: Both extrapolation differences are more than an order of magnitude smaller than the median in Figure 6, directly confirming the paper’s statement that “extrapolation errors do not dominate waveform errors” and ensuring the reliability of the catalog’s post‑processing pipeline."
+        ],
+        "weight": 0.3
+    }
+]

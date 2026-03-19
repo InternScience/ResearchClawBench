@@ -1,0 +1,11 @@
+{
+    "task": "Input\nThe connectome of the motion pathway in the Drosophila optic lobe (including the number of synaptic connections, polarity, and spatial distribution of 64 cell types). Unknown single-neuron kinetic parameters (time constants, resting potentials) and unit synaptic strengths, which need to be determined through optimization. Output\nA deep mechanistic network (DMN) whose structure strictly follows the connectome, with parameters learned through task optimization, capable of simulating the voltage activities of 45,669 neurons in response to visual stimuli. Detailed predictions of the neural activity of each neuron, as well as quantitative analysis of motion detection mechanisms. Scientific Goal\nTo demonstrate that the activity of each neuron in a neural circuit can be accurately predicted solely based on connectome measurements (structure) and task knowledge (functional goals), thereby establishing a bridge from structure to function. Overall Task\nConstruct a connectome-constrained and task-optimized deep mechanistic network that can perform optical flow estimation tasks, and reveal the computational role of each neuron in the Drosophila visual system in motion detection through model predictions.",
+    "data": [
+        {
+            "name": "flow",
+            "path": "./tasks/Neuroscience_001/data/flow",
+            "type": "sequence_data",
+            "description": "the complete ensemble of 50 pre-trained deep mechanistic network (DMN) models, along with all necessary configuration files, synapse count matrices, and cell‑type annotations. These models are constrained by the fly connectome and optimized for optic flow estimation, allowing users to directly simulate neural responses, reproduce key analyses from the paper, and generate experimentally testable hypotheses without retraining."
+        }
+    ]
+}

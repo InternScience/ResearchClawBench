@@ -1,0 +1,101 @@
+{
+    "task": "Input: Patient-specific sequencing data (tumor DNA/RNA, healthy DNA), HLA typing results, mutation VAF, gene expression (mean/variance), and prediction scores for peptide cleavage, MHC binding, and pMHC stability (from tools like pVACtools); vaccine manufacturing budget (maximum number of neoantigen elements).\nOutput: Optimal personalized neoantigen vaccine composition (a set of neoantigen elements), quantitative vaccine efficacy metrics (per-cell immune response probability, coverage ratio of tumor cells, IoU of optimal vaccine compositions), and optimization runtime data.",
+    "data": [
+        {
+            "name": "cell-populations.csv",
+            "path": "./tasks/Life_002/data/cell-populations.csv",
+            "type": "simulation_output",
+            "description": "This file contains simulated cancer cell populations for multiple repetitions. Each row represents a peptide presented by a specific cell, including cell ID, presented peptide, HLA allele, simulation name (e.g., '100-cells.10x'), and mutation identifier."
+        },
+        {
+            "name": "final-response-likelihoods.csv",
+            "path": "./tasks/Life_002/data/final-response-likelihoods.csv",
+            "type": "simulation_output",
+            "description": "For each simulated cell, this file provides the final probability of immune response (p_response) and its log value, along with the number of presented peptides, population identifier, and vaccine type. Used for generating response probability distributions and coverage curves."
+        },
+        {
+            "name": "optimization_runtime_data.csv",
+            "path": "./tasks/Life_002/data/optimization_runtime_data.csv",
+            "type": "performance_metric",
+            "description": "Contains the optimization runtime (in seconds) for different cell population sizes (e.g., 100, 1000) for each patient sample (3812, 3942, ...). Used to generate Figure 6 (runtime vs population size)."
+        },
+        {
+            "name": "selected-vaccine-elements.budget-10.minsum.adaptive.csv",
+            "path": "./tasks/Life_002/data/selected-vaccine-elements.budget-10.minsum.adaptive.csv",
+            "type": "optimization_output",
+            "description": "Lists the selected vaccine elements (peptides/mutations) under the MinSum objective with a budget of 10. Includes peptide, repetition, simulation name, weight, and run time. Used for recall analysis and vaccine composition."
+        },
+        {
+            "name": "sim-specific-response-likelihoods.csv",
+            "path": "./tasks/Life_002/data/sim-specific-response-likelihoods.csv",
+            "type": "simulation_output",
+            "description": "Provides response probabilities for specific simulation repetitions. Similar to final-response-likelihoods but with more detailed simulation identifiers (including repetition)."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-0.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-0.csv",
+            "type": "simulation_output",
+            "description": "One of 10 replicate files (rep-0 to rep-9) containing cell-level scores for each vaccine element. Each row gives the response probability for a specific cell and vaccine element, along with log probabilities. Used to aggregate cell response probabilities."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-1.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-1.csv",
+            "type": "simulation_output",
+            "description": "Replicate 1 of the vaccine element scores. Same structure as rep-0."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-2.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-2.csv",
+            "type": "simulation_output",
+            "description": "Replicate 2 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-3.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-3.csv",
+            "type": "simulation_output",
+            "description": "Replicate 3 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-4.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-4.csv",
+            "type": "simulation_output",
+            "description": "Replicate 4 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-5.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-5.csv",
+            "type": "simulation_output",
+            "description": "Replicate 5 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-6.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-6.csv",
+            "type": "simulation_output",
+            "description": "Replicate 6 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-7.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-7.csv",
+            "type": "simulation_output",
+            "description": "Replicate 7 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-8.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-8.csv",
+            "type": "simulation_output",
+            "description": "Replicate 8 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine-elements.scores.100-cells.10x.rep-9.csv",
+            "path": "./tasks/Life_002/data/vaccine-elements.scores.100-cells.10x.rep-9.csv",
+            "type": "simulation_output",
+            "description": "Replicate 9 of the vaccine element scores."
+        },
+        {
+            "name": "vaccine.budget-10.minsum.adaptive.csv",
+            "path": "./tasks/Life_002/data/vaccine.budget-10.minsum.adaptive.csv",
+            "type": "optimization_output",
+            "description": "Simplified vaccine composition file listing selected peptides and their counts/weights. Used for recall analysis."
+        }
+    ]
+}

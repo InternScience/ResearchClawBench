@@ -1,0 +1,53 @@
+{
+    "task": "Input: Raw nanopore electrical signal (FAST5/POD5), basecalled reads, reference genome/transcriptome sequences, and k-mer pore models.\r\nOutput: Signal-to-reference alignments in BAM format, nucleotide modification calls (e.g., m6A sites), performance benchmarks, and trained pore models.\r\nScientific Objective: To develop Uncalled4, a fast and accurate toolkit for nanopore signal alignment, enabling more sensitive and comprehensive detection of DNA and RNA modifications, while overcoming limitations of existing tools in speed, file format, and compatibility with new sequencing chemistries.",
+    "data": [
+        {
+            "name": "dna_r9.4.1_400bps_6mer_uncalled4.csv",
+            "path": "./tasks/Life_004/data/dna_r9.4.1_400bps_6mer_uncalled4.csv",
+            "type": "feature_data",
+            "description": "Contains 6-mer sequences and associated current statistics (mean, std, dwell time) for the DNA r9.4.1 pore model, used to generate substitution profiles and analyze base-position effects."
+        },
+        {
+            "name": "dna_r10.4.1_400bps_9mer_uncalled4.csv",
+            "path": "./tasks/Life_004/data/dna_r10.4.1_400bps_9mer_uncalled4.csv",
+            "type": "feature_data",
+            "description": "Provides 9-mer pore model data for DNA r10.4.1 chemistry, including mean current, standard deviation, and dwell time, enabling comparison of substitution patterns between different pore versions."
+        },
+        {
+            "name": "rna_r9.4.1_70bps_5mer_uncalled4.csv",
+            "path": "./tasks/Life_004/data/rna_r9.4.1_70bps_5mer_uncalled4.csv",
+            "type": "feature_data",
+            "description": "RNA001 pore model with 5-mer current parameters, used to study the relationship between nucleotide composition and ionic current in direct RNA sequencing."
+        },
+        {
+            "name": "rna004_130bps_9mer_uncalled4.csv",
+            "path": "./tasks/Life_004/data/rna004_130bps_9mer_uncalled4.csv",
+            "type": "feature_data",
+            "description": "RNA004 pore model (9-mer) containing current mean, standard deviation, and dwell time, facilitating comparison of RNA pore chemistries and their impact on signal characteristics."
+        },
+        {
+            "name": "performance_summary.csv",
+            "path": "./tasks/Life_004/data/performance_summary.csv",
+            "type": "feature_data",
+            "description": "Summary table of alignment time and file size for Uncalled4, f5c, Nanopolish, and Tombo across four sequencing chemistries, used to reproduce Table 1 performance benchmarks."
+        },
+        {
+            "name": "m6a_predictions_uncalled4.csv",
+            "path": "./tasks/Life_004/data/m6a_predictions_uncalled4.csv",
+            "type": "feature_data",
+            "description": "m6Anet prediction probabilities for each candidate site based on Uncalled4 alignments, used to compute precision-recall curves and compare modification detection sensitivity."
+        },
+        {
+            "name": "m6a_predictions_nanopolish.csv",
+            "path": "./tasks/Life_004/data/m6a_predictions_nanopolish.csv",
+            "type": "feature_data",
+            "description": "m6Anet prediction probabilities for the same sites using Nanopolish alignments, serving as a baseline for evaluating relative performance."
+        },
+        {
+            "name": "m6a_labels.csv",
+            "path": "./tasks/Life_004/data/m6a_labels.csv",
+            "type": "feature_data",
+            "description": "Ground truth binary labels (0/1) for each site, derived from GLORI or m6A-Atlas, used as the reference for precision-recall and ROC analysis."
+        }
+    ]
+}

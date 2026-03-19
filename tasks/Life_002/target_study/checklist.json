@@ -1,0 +1,59 @@
+[
+    {
+        "type": "text",
+        "content": "The alignment produced 9 chain-to-chain matches between the query (7xg4) and target (6n40) complexes (chains H, G, D, E, B, C, A, F, L in query all paired with corresponding chains in target), indicating a complete one-to-one correspondence of all subunits. This demonstrates Foldseek-Multimer's ability to correctly identify all chain pairings even in complexes with multiple subunits, consistent with the paper's claim of >99% correct chain pairing.",
+        "path": null,
+        "keywords": [
+            "Number of matched chain pairs: 9",
+            "All query chains are matched",
+            "Complete chain correspondence",
+            "Correct chain pairing rate >99%"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "The TM-score computed by Foldseek-Multimer for this alignment is 0.82 (query-length normalized), which exceeds the 0.65 threshold used in the paper to define structural similarity. This high TM-score indicates strong quaternary structure conservation between 7xg4 and 6n40. The score is comparable to what US-align would produce (Pearson's r > 0.95 as reported in Fig. 2a), confirming the accuracy of Foldseek-Multimer's alignment.",
+        "path": null,
+        "keywords": [
+            "TM-score: 0.82",
+            "TM-score threshold for similarity: ≥0.65",
+            "High correlation with US-align (r > 0.95)"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "The rotation matrices and translation vectors for the 9 chain pairs exhibit highly similar patterns (e.g., rotation matrix elements consistently near ±0.9, translations in range 150–250 Å), indicating that all chain pairs share a consistent superposition. This empirical observation validates Foldseek-Multimer's core algorithmic principle—clustering superposition vectors to identify compatible chain pairings—as described in Fig. 1c–d and the Methods section.",
+        "path": null,
+        "keywords": [
+            "Rotation matrices show comparable orientations",
+            "Translations fall within similar ranges",
+            "Consistent superposition supports clustering approach"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "The alignment was completed in 0.8 seconds on a single core, compared to an estimated 12 seconds for US-align on the same complex pair. This >10× speedup is consistent with Fig. 2b, which reports Foldseek-Multimer being 1–2 orders of magnitude faster than US-align for pairwise alignments. The speed advantage stems from efficient chain-to-chain comparison using the 3Di alphabet and superposition clustering, avoiding expensive dynamic programming.",
+        "path": null,
+        "keywords": [
+            "Runtime: 0.8 s",
+            "Estimated US-align runtime: 12 s",
+            "Speedup factor >10×",
+            "Matches Fig. 2b benchmark"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "Despite the low sequence identity between paired chains (average fident ≈ 4.5%, ranging from 2.1% to 7.3%), Foldseek-Multimer successfully detected structural homology, confirming its sensitivity in the 'twilight zone' of sequence similarity. This aligns with the paper's demonstration that Foldseek-Multimer can identify structurally similar complexes even when sequence identity falls below 25%, as shown in the CRISPR-Cas example (Fig. 2c) and the all-vs-all search (Fig. 2d).",
+        "path": null,
+        "keywords": [
+            "Average sequence identity: ~4.5%",
+            "Detection below twilight zone (<25% identity)",
+            "Sensitivity for remote homologs"
+        ],
+        "weight": 0.1
+    }
+]

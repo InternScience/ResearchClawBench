@@ -1,0 +1,37 @@
+[
+    {
+        "type": "text",
+        "content": "By constructing a generalized least squares system, 20 equations (including anchors, host measurements, calibrators, and Hubble flow constraints) were successfully integrated into a linear network with 14 optimization parameters. The system’s degrees of freedom (equations minus parameters) is 6, providing a reliable mathematical framework for subsequent parameter estimation.",
+        "path": null,
+        "keywords": [
+            "The system includes host distance equations, SNe Ia calibration equations, SBF calibration equations, cluster constraint equations, and Hubble flow intercept equations, fully covering all rungs of the distance ladder.",
+            "Optimization parameters include the distance modulus μ_host for each host galaxy, the reference absolute magnitudes M_SNIa and M_SBF for SNe Ia and SBF, and the logarithm log₁₀H₀ of the Hubble constant, ensuring all key physical quantities are directly constrained.",
+            "Although only diagonal covariances are used in this minimal implementation, the system design allows propagation of anchor uncertainties, method calibration errors, and observational errors through a full covariance matrix, laying the foundation for future analysis with complete datasets."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "Using a minimal dataset, the Distance Network solution yields a Hubble constant H₀ = 73.48 ± 0.81 km s⁻¹ Mpc⁻¹, with a relative uncertainty of 1.1%. This result closely matches the literature baseline value (73.50 ± 0.81 km s⁻¹ Mpc⁻¹), confirming the validity of the simplified framework. The derived SNe Ia absolute magnitude M_SNIa = –19.25 ± 0.03 and SBF reference magnitude M_SBF = –1.52 ± 0.05 are consistent with independent studies, and a reduced χ² of 1.02 indicates good self-consistency between the model and the data.",
+        "path": null,
+        "keywords": [
+            "The measurement uncertainty of 0.81 km s⁻¹ Mpc⁻¹ (1.1% relative) achieves the community consensus goal of “~1% precision,” primarily due to the joint constraints from multiple distance indicators.",
+            "The SNe Ia absolute magnitude M_SNIa = –19.25 agrees with Pantheon+ analysis (≈ –19.25), and its uncertainty of 0.03 reflects the combined contributions from host distances, light-curve fitting, and intrinsic scatter.",
+            "M_SBF = –1.52 demonstrates that the Surface Brightness Fluctuation method, calibrated via TRGB, provides an estimate of H₀ that is independent of and consistent with the Cepheid–SNe Ia route, strengthening the robustness of the result.",
+            "The reduced χ² ≈ 1.02 indicates that the adopted error budget (observational errors + intrinsic scatter + anchor uncertainties) matches the data residuals well, with no significant unmodeled systematic errors."
+        ],
+        "weight": 0.5
+    },
+    {
+        "type": "image",
+        "content": "The host galaxy distance residual plot shows the differences between the network solution and individual direct measurements. Most residuals lie within ±0.1 magnitudes and are symmetrically distributed around zero, indicating excellent consistency among measurements. For galaxies with both Cepheid and TRGB measurements (e.g., NGC1365, M101), the residuals share the same sign, confirming the reliability of cross-calibration between the two primary distance indicators.",
+        "path": "images/host_residuals.png",
+        "keywords": [
+            "All 11 host measurement residuals are within 2σ and show no systematic offset, demonstrating that the zero‑points of anchors (NGC4258, LMC) and methods (Cepheid, TRGB) are statistically self‑consistent.",
+            "For NGC1365, which has both Cepheid and TRGB measurements, the residuals are +0.02 and +0.01 mag, respectively; for M101, they are +0.01 and +0.02 mag. This indicates that the two primary distance indicators, sharing the same anchor (NGC4258), yield mutually consistent host distances.",
+            "The error bars in the residual plot already incorporate anchor uncertainties (e.g., 0.032 mag for NGC4258), and the observed scatter matches expectations, confirming that the network correctly handles anchor‑related covariances.",
+            "As a quick diagnostic tool, the residual plot visually reveals potential outliers or methodological biases; the absence of significant outliers supports the reliability of the baseline solution."
+        ],
+        "weight": 0.3
+    }
+]

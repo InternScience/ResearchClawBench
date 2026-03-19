@@ -1,0 +1,296 @@
+name,smiles,tg_exp,tg_md,std
+Poly(acrylamide),*CC(*)C(N)=O,438.0000,443.8305,33.6013
+Poly(N-isopropyl acrylamide),*CC(*)C(=O)NC(C)C,403.0000,443.1727,54.2141
+Poly(N-octyl acrylamide),*CC(*)C(=O)NCCCCCCCC,220.0000,281.0483,14.8764
+Poly(N-tert-butyl acrylamide),*CC(*)C(=O)NC(C)(C)C,401.0000,455.7896,38.3424
+Poly(N-sec-butyl acrylamide),*CC(*)C(=O)NC(C)CC,390.0000,432.4350,88.6815
+Poly(acrylic acid),*CC(*)C(=O)O,376.5000,487.6819,42.5847
+Poly(butyl acrylate),*CC(*)C(=O)OCCCC,219.5000,305.6611,22.6877
+Poly(2-cyanoethyl acrylate),*CC(*)C(=O)OCCC#N,277.0000,361.0387,36.4291
+Poly(cyclohexyl acrylate),*CC(*)C(=O)OC1CCCCC1,289.0000,415.8658,63.1276
+Poly(ethyl acrylate),*CC(*)C(=O)OCC,250.5000,386.0132,39.2243
+Poly(2-ethylhexyl acrylate),*CC(*)C(=O)OCC(CC)CCCC,221.0000,278.3588,26.2524
+Poly(hexyl acrylate),*CC(*)C(=O)OCCCCCC,215.5000,292.2444,23.5298
+Poly(isobutyl acrylate),*CC(*)C(=O)OCC(C)C,244.5000,339.1496,20.1590
+Poly(isopropyl acrylate),*CC(*)C(=O)OC(C)C,271.0000,368.2306,42.1475
+Poly(methyl acrylate),*CC(*)C(=O)OC,280.5000,451.6870,32.9969
+Poly(n-octyl acrylate),*CC(*)C(=O)OCCCCCCCC,208.0000,269.2730,25.9691
+Poly(propyl acrylate),*CC(*)C(=O)OCCC,230.0000,309.3206,38.6920
+Poly(sec-butyl acrylate),*CC(*)C(=O)OC(C)CC,253.0000,301.5286,8.9930
+Poly(octadecyl acrylate),*CC(*)C(=O)OCCCCCCCCCCCCCCCCCC,311.0000,261.3606,19.4226
+Poly(tert-butyl acrylate),*CC(*)C(=O)OC(C)(C)C,313.0000,427.2379,34.6144
+Poly(acrylonitrile),*CC(*)C#N,380.5000,378.2200,15.6081
+Poly(methacrylonitrile),*CC(*)(C)C#N,390.5000,426.2009,28.6399
+Poly(butylene adipate),*OCCCCOC(=O)CCCCC(*)=O,202.0000,298.3114,13.7220
+Poly(ethylene adipate),*OCCOC(=O)CCCCC(*)=O,230.0000,311.1543,11.3971
+Poly(propylene adipate),*OCCCOC(=O)CCCCC(*)=O,215.0000,317.2059,19.2334
+Poly(butylene),*CC(*)CC,236.5000,346.9449,27.9448
+Poly(butylethylene),*CC(*)CCCC,223.0000,277.7786,10.0411
+Poly(cyclohexylethylene),*CC(*)C1CCCCC1,381.5000,460.1916,51.6840
+Polyethylene,*CC*,196.0000,273.5688,17.0014
+Poly(1-nonene),*CC(*)CCCCCCC,225.0000,267.3746,15.7977
+Poly(hexylethylene),*CC(*)CCCCCC,218.0000,271.1445,20.5960
+Poly(isobutene),*CC(*)(C)C,200.5000,359.5477,11.3207
+Poly(isobutylethylene),*CC(*)CC(C)C,302.0000,362.4004,37.1618
+Poly(isopropylethylene),*CC(*)C(C)C,323.0000,420.9803,56.2003
+Poly(2-methylbut-1-ene),*CC(*)(C)CC,268.0000,408.4532,43.5881
+Poly(1-decene),*CC(*)CCCCCCCC,232.0000,273.2752,19.7376
+PoIy(1-heptene),*CC(*)CCCCC,225.5000,286.6275,38.4916
+Poly(propylene),*CC(*)C,248.5000,348.8668,56.1533
+Poly(1-pentene),*CC(*)CCC,230.5000,325.4477,27.3033
+Poly(tert-butylethylene),*CC(*)C(C)(C)C,337.0000,544.3044,93.8675
+Nylon 3 - Poly(propiolactam),*CCC(=O)N*,384.0000,382.6009,24.5122
+Nylon 6 - Poly(caprolactam),*NCCCCCC(*)=O,330.0000,371.1194,34.4530
+Nylon 8 - Polycapryllactam,*CCCCCCCC(=O)N*,324.0000,358.7296,15.8413
+Nylon 10 - Poly(ω-decanamide),*CCCCCCCCCC(=O)N*,315.0000,339.4541,21.6698
+Nylon 11 - Poly(ω-undecanamide),*CCCCCCCCCCC(=O)N*,330.0000,323.5238,13.3403
+Nylon 12 - Poly(ω-dodecanamide),*CCCCCCCCCCCC(=O)N*,313.0000,310.0617,9.8606
+Nylon 4-6 - Poly(tetramethylene adipamide) ,*CCCCNC(=O)CCCCC(=O)N*,353.0000,338.7053,17.9076
+Nylon 6-6 - Poly(hexamethylene adipamide),*CCCCCCNC(=O)CCCCC(=O)N*,324.0000,349.8467,26.0941
+Nylon 6-9 - Poly(hexamethylene azelamide),*CCCCCCNC(=O)CCCCCCCC(=O)N*,332.0000,316.7186,13.9297
+Nylon 6-10 - Poly(hexamethylene sebacamide),*CCCCCCNC(=O)CCCCCCCCC(=O)N*,323.0000,351.4777,18.1267
+Nylon 6-12 - Poly(hexamethylene dodecanediamide),*CCCCCCNC(=O)CCCCCCCCCCC(=O)N*,319.0000,326.6788,24.9770
+Nylon 10-10 - Poly(decamethylene sebacamide),*CCCCCCCCCCNC(=O)CCCCCCCCC(=O)N*,323.0000,304.0155,14.8656
+Poly(p-pentamethylenedibenzoic anhydride),*OC(=O)c1ccc(CCCCCc2ccc(C(*)=O)cc2)cc1,320.0000,417.4531,9.9488
+Poly(p-tetramethylenedibenzoic anhydride),*OC(=O)c1ccc(CCCCc2ccc(C(*)=O)cc2)cc1,316.0000,456.4910,22.9762
+Poly(1-2-butadiene),*CC(*)C=C,265.0000,292.1704,15.0173
+Poly(1-4-butadiene),*CC=CC*,171.0000,231.8875,17.0808
+Polycyclopentene,*C=CCCC*,178.0000,214.2418,12.2218
+Poly(1-ethyl-1-4-butadiene),*CCC=C(*)CC,197.0000,256.4887,18.6545
+Polyisoprene,*CCC=C(*)C,204.0000,277.1025,12.4820
+Poly(dimethyl fumarate),*C(C(=O)OC)C(*)C(=O)OC,373.0000,577.0545,111.9013
+Poly(diethyl fumarate),*C(C(=O)OCC)C(*)C(=O)OCC,284.0000,544.1727,116.3038
+Poly(dipropyl fumarate),*C(C(=O)OCCC)C(*)C(=O)OCCC,268.0000,386.5566,73.3678
+Poly(methyl cyanoacrylate),*CC(*)(C#N)C(=O)OC,434.5000,503.5375,46.5955
+Poly(ethyl cyanoacrylate),*CC(*)(C#N)C(=O)OCC,422.0000,483.3765,43.9267
+Poly(butyl cyanoacrylate),*CC(*)(C#N)C(=O)OCCCC,374.0000,408.9721,54.9878
+Poly(hexyl cyanoacrylate),*CC(*)(C#N)C(=O)OCCCCCC,359.0000,312.0872,13.2692
+Poly(octyl cyanoacrylate),*CC(*)(C#N)C(=O)OCCCCCCCC,322.0000,297.9526,30.4614
+Bisphenol-A diglycidyl ether epoxy or phenoxy resin,*CC(O)COc1ccc(C(C)(C)c2ccc(O*)cc2)cc1,372.0000,454.1497,50.8749
+Bisphenol-F Diglycidyl Ether Epoxy Resin,*CC(O)COc1ccc(Cc2ccc(O*)cc2)cc1,353.0000,390.0528,14.6713
+Poly(bis-A diglycidyl ether- alt - ethylenediamine),*CC(O)COc1ccc(C(C)(C)c2ccc(OCC(O)CNCCN*)cc2)cc1,410.0000,366.4338,14.5298
+Poly(bisphenol-A diglycidyl ether-alt-1-6-diamino hexane),*CC(O)COc1ccc(C(C)(C)c2ccc(OCC(O)CNCCCCCCN*)cc2)cc1,386.0000,363.0563,22.9798
+Poly(bisphenol-A diglycidyl ether-alt-1-8-diamino octane),*CC(O)COc1ccc(C(C)(C)c2ccc(OCC(O)CNCCCCCCCCN*)cc2)cc1,376.0000,337.3994,26.7411
+Poly(bisphenol A isophthalate),*Oc1ccc(C(C)(C)c2ccc(OC(=O)c3cccc(C(*)=O)c3)cc2)cc1,462.0000,529.2777,41.8313
+Poly(Bisphenol A terephthalate),*Oc1ccc(C(C)(C)c2ccc(OC(=O)c3ccc(C(*)=O)cc3)cc2)cc1,472.0000,529.7707,39.1269
+Poly(tetramethylene isophthalate),*CCCCOC(=O)c1cccc(C(=O)O*)c1,297.0000,400.3031,26.7880
+Poly(1-4-butylene sebacate),*OCCCCOC(=O)CCCCCCCCC(*)=O,214.0000,306.4085,15.1342
+Poly(1-4-butylene succinate),*OCCCCOC(=O)CCC(*)=O,238.0000,337.6281,13.6341
+Poly(butylene terephthalate),*CCCCOC(=O)c1ccc(C(=O)O*)cc1,313.0000,425.7577,25.3947
+Poly(ethylene sebacate),*OCCOC(=O)CCCCCCCCC(*)=O,244.0000,294.6003,10.4327
+Poly(ethylene succinate),*OCCOC(=O)CCC(*)=O,269.5000,382.5057,26.6238
+Poly(caprolactone),*CCCCCC(=O)O*,207.0000,295.2848,9.4043
+Poly(cyclohexanedimethylene terephthalate),*CC1CCC(COC(=O)c2ccc(C(=O)O*)cc2)CC1,364.0000,479.2877,31.5903
+Poly(ethylene isophthalate),*CCOC(=O)c1cccc(C(=O)O*)c1,324.0000,478.9862,37.8405
+Poly(ethylene 2-6-naphthalate),*OCCOC(=O)c1ccc2cc(C(*)=O)ccc2c1,394.5000,477.6213,20.3979
+Poly(ethylene phthalate),*CCOC(=O)c1ccccc1C(=O)O*,297.0000,418.2621,23.4505
+Poly(ethylene terephthalate),*CCOC(=O)c1ccc(C(=O)O*)cc1,344.5000,511.8778,37.2547
+Poly(1-6-hexylene sebacate),*OCCCCCCOC(=O)CCCCCCCCC(*)=O,213.0000,282.8241,4.2578
+Poly(hexylene succinate),*OCCCCCCOC(=O)CCC(*)=O,220.0000,315.3350,16.5994
+Polyhydroxybutyrate,*OC(=O)CC(*)C,276.0000,369.6203,21.0716
+Poly(γ-butyrolactone),*OCCC(*)=O,221.0000,358.0702,31.3075
+Polylactic acid,*OC(=O)C(*)C,332.0000,469.5462,21.9812
+Poly(1-3-propylene succinate),*OCCCOC(=O)CCC(*)=O,232.0000,334.4840,12.7909
+Poly(trimethylene terephthalate),*CCCOC(=O)c1ccc(C(=O)O*)cc1,326.0000,430.3315,4.1051
+Polyacetal,*CO*,214.5000,343.8584,9.9979
+Poly(3-butoxypropylene oxide),*CC(COCCCC)O*,194.0000,280.8129,19.3300
+Poly(ethylene glycol),*CCO*,215.5000,268.9654,11.7183
+Poly(hexamethylene oxide),*CCCCCCO*,204.0000,255.7218,6.5146
+Poly(3-methoxypropylene oxide),*CC(COC)O*,211.0000,320.6128,21.4963
+Poly[oxy(hexyloxymethyl)ethylene],*CC(COCCCCCC)O*,188.5000,266.2333,11.8418
+Poly(oxymethylene-oxyethylene),*CCOCO*,209.0000,279.0565,2.0006
+Poly(oxymethylene-oxytetramethylene),*CCCCOCO*,189.0000,276.4087,7.0342
+Poly(propylene glycol),*CC(C)O*,205.5000,300.3886,24.8808
+Poly(tetrahydrofuran),*CCCCO*,189.5000,261.6021,19.6220
+Poly(trimethylene glycol),*CCCO*,196.0000,256.6660,8.5408
+Poly(ether ketone),*Oc1ccc(C(=O)c2ccc(*)cc2)cc1,431.0000,525.2325,36.3222
+Poly(ether ketone ketone),*C(=O)c1ccc(C(=O)c2ccc(Oc3ccc(*)cc3)cc2)cc1,437.0000,520.4674,61.0206
+Poly(ether ether ketone),*Oc1ccc(Oc2ccc(C(=O)c3ccc(*)cc3)cc2)cc1,420.0000,518.7581,23.6552
+Poly(ethyleneketone),*CCC(*)=O,291.0000,301.0835,13.0949
+Poly(propyleneketone),*CC(C)C(*)=O,312.0000,336.2313,18.7778
+Poly(2-hydroxyethyl acrylate),*CC(*)C(=O)OCCO,259.0000,355.3197,45.5378
+Poly(2-hydroxyethyl methacrylate),*CC(*)(C)C(=O)OCCO,367.5000,428.4303,40.0452
+Poly(2-hydroxypropyl methacrylate),*CC(*)(C)C(=O)OCC(C)O,349.0000,449.5727,39.4101
+Poly(dimethyl itaconate),*CC(*)(CC(=O)OC)C(=O)OC,373.0000,598.0486,56.2582
+Poly[di(n-propyl) itaconate],*CC(*)(CC(=O)OCCC)C(=O)OCCC,306.0000,437.4467,119.2262
+Poly[di(n-butyl) itaconate],*CC(*)(C(=O)OCCCC)C(=O)OCCCC,285.0000,324.7037,99.4869
+Poly[di(n-propyl) itaconate],*CC(*)(CC(=O)OCCCCCC)C(=O)OCCCCCC,255.0000,305.9479,37.9093
+Polymethacrylamide,*CC(*)(C)C(N)=O,487.0000,520.3770,30.8741
+Poly(N-tert-butyl methacrylamide),*CC(*)(C)C(=O)NC(C)(C)C,433.0000,540.2856,96.7591
+Poly(butyl methacrylate),*CC(*)(C)C(=O)OCCCC,293.5000,327.3766,38.6214
+Poly(cyclohexyl methacrylate),*CC(*)(C)C(=O)OC1CCCCC1,369.5000,487.3733,130.1813
+Poly(decyl methacrylate),*CC(*)(C)C(=O)OCCCCCCCCCC,211.0000,307.9768,21.7560
+Poly(dodecyl methacrylate),*CC(*)(C)C(=O)OCCCCCCCCCCCC,218.0000,286.8194,42.3883
+Poly(ethyl methacrylate),*CC(*)(C)C(=O)OCC,331.0000,451.9653,66.8649
+Poly(hexyl methacrylate),*CC(*)(C)C(=O)OCCCCCC,267.0000,294.2813,30.3164
+Poly(isobutyl methacrylate),*CC(*)(C)C(=O)OCC(C)C,326.5000,509.8820,52.0584
+Poly(isopropyl methacrylate),*CC(*)(C)C(=O)OC(C)C,341.5000,510.6363,61.4261
+Poly(methyl methacrylate),*CC(*)(C)C(=O)OC,363.0000,498.9805,50.4463
+Poly(octadecyl methacrylate),*CC(*)(C)C(=O)OCCCCCCCCCCCCCCCCCC,312.0000,275.0867,30.8821
+Poly(Octyl methacrylate),*CC(*)(C)C(=O)OCCCCCCCC,240.5000,310.9148,28.1625
+Poly(2-phenylethyl methacrylate),*CC(*)(C)C(=O)OCCc1ccccc1,314.0000,392.3389,31.2797
+Poly(phenyl methacrylate),*CC(*)(C)C(=O)Oc1ccccc1,388.0000,480.5016,30.1976
+Poly(propyl methacrylate),*CC(*)(C)C(=O)OCCC,313.5000,416.7162,47.6976
+Poly(sec-butyl methacrylate),*CC(*)(C)C(=O)OC(C)CC,331.5000,437.3527,72.4962
+Poly(4-tert-butylcyclohexyl methacrylate),*CC(*)(C)C(=O)OC1CCC(C(C)(C)C)CC1,403.0000,536.4155,69.7479
+Poly(tert-butyl methacrylate),*CC(*)(C)C(=O)OC(C)(C)C,385.5000,562.8998,100.5806
+Poly(2-methoxystyrene),*CC(*)c1ccccc1OC,348.0000,443.3409,35.5375
+Poly(α-methylstyrene),*CC(*)(C)c1ccccc1,427.0000,497.0831,62.5691
+Poly(2-methylstyrene),*CC(*)c1ccccc1C,409.0000,452.7430,63.4014
+Poly(3-methylstyrene),*CC(*)c1cccc(C)c1,370.0000,448.3624,45.8195
+Poly(4-methylstyrene),*CC(*)c1ccc(C)cc1,377.0000,458.0666,19.6760
+Polystyrene,*CC(*)c1ccccc1,373.0000,429.8970,40.5062
+Poly(4-tert-butylstyrene),*CC(*)c1ccc(C(C)(C)C)cc1,402.0000,487.1288,51.3271
+Poly(p-phenylene vinylene),*C=Cc1ccc(*)cc1,353.0000,353.5751,17.5237
+Poly(2-6-dimethyl-p-phenylene oxide),*Oc1c(C)cc(*)cc1C,482.5000,564.5306,39.2136
+Poly(2-6-diphenyl-p-phenylene oxide),*Oc1c(-c2ccccc2)cc(*)cc1-c1ccccc1,495.0000,490.1022,43.5281
+Poly(vinylalcohol),*CC(*)O,355.5000,428.0411,58.4294
+Poly(4-hydroxystyrene),*CC(*)c1ccc(O)cc1,452.0000,487.0411,27.0547
+Poly(vinyl butyral),*CC1CC(*)OC(CCC)O1,334.0000,428.6825,23.2758
+Poly(vinyl formal),*CC1CC(*)OCO1,351.5000,485.7469,47.8826
+Poly(vinyl acetate),*CC(*)OC(C)=O,304.0000,451.7727,38.0617
+Poly(vinyl benzoate),*CC(*)OC(=O)c1ccccc1,344.0000,460.0042,53.3175
+Poly(vinyl formate),*CC(*)OC=O,305.5000,441.0657,14.5784
+Poly(vinyl propionate),*CC(*)OC(=O)CC,283.0000,410.0470,68.0429
+Poly(vinyl methyl ketone),*CC(*)C(C)=O,301.0000,376.7465,21.1427
+Poly(vinyl phenyl ketone),*CC(*)C(=O)c1ccccc1,323.0000,442.4186,29.7859
+Poly(vinylpyrrolidone),*CC(*)N1CCCC1=O,430.5000,601.5846,60.8250
+Poly(2-n-butyl-1-4-butadiene),*CC=C(C*)CCCC,192.0000,277.1684,25.7595
+Poly(vinyl n-octyl ether),*CC(*)OCCCCCCCC,194.0000,282.6334,8.1487
+Poly(2-n-propyl-1-4-butadiene),*CC=C(C*)CCC,196.0000,269.5671,20.3722
+Poly(2-ethyl-1-4-butadiene),*CC=C(C*)CC,197.0000,275.1614,11.1948
+Poly(vinyl n-decyl ether),*CC(*)OCCCCCCCCCC,197.0000,255.8580,13.7075
+Polyisoprene,*CC=C(C)C*,203.0000,263.1474,11.1653
+Polyoxyoctamethylene,*CCCCCCCCO*,203.0000,263.9979,11.8902
+Poly(tetramethylene adipate),*CCCCOC(=O)CCCCC(=O)O*,205.0000,297.4538,26.4066
+Poly(vinyl 2-ethylhexyl ether),*CC(*)OCC(CC)CCCC,207.0000,296.9333,40.2198
+Poly(vinyl n-pentyl ether),*CC(*)OCCCCC,207.0000,278.3520,37.4774
+Poly(vinyl n-hexyl ether),*CC(*)OCCCCCC,209.0000,270.6188,19.6119
+Polypentadiene,*CC(*)C=CC,213.0000,316.0462,32.2340
+Poly(n-heptyl acrylate),*CC(*)C(=O)OCCCCCCC,213.0000,267.5266,10.9548
+Poly(e-caprolactone),*OCCCCCC(*)=O,213.0000,287.4682,18.3180
+Poly(n-nonyl acrylate),*CC(*)C(=O)OCCCCCCCCC,215.0000,275.1849,20.9596
+Poly(decamethylene adipate),*CCCCCCCCCCOC(=O)CCCCC(=O)O*,217.0000,305.6769,21.9596
+Poly(oxycarbonyl-3-methylpentamethylene),*CCC(C)CCC(=O)O*,220.0000,327.6043,23.2566
+Poly(2-isopropyl-1-4-butadiene),*CC=C(C*)C(C)C,221.0000,291.5313,14.5931
+Poly(2-octyl acrylate),*CC(*)C(=O)OC(C)CCCCCC,228.0000,268.2528,34.6845
+Poly(ethylene azelate),*CCOC(=O)CCCCCCCC(=O)O*,228.0000,318.9540,10.2623
+Poly(ethylene adipate),*CCOC(=O)CCCCC(=O)O*,233.0000,327.9398,17.2590
+Poly(2-heptyl acrylate),*CC(*)C(=O)OC(C)CCCCC,235.0000,311.2121,34.4729
+Poly(6-methyl-1 -heptene),*CC(*)CCCC(C)C,239.0000,266.7708,22.2049
+Poly(ethylene sebacate),*CCOC(=O)CCCCCCCCC(=O)O*,243.0000,294.2079,19.3187
+Poly(vinyl isobutyl ether),*CC(*)OCC(C)C,251.0000,347.0209,17.4640
+Poly(3-pentyl acrylate),*CC(*)C(=O)OC(CC)CC,257.0000,306.5723,29.5691
+Poly(5-methyl-1-hexene),*CC(*)CCC(C)C,259.0000,281.9812,9.3862
+Poly(p-n-hexoxymethyl styrene),*CC(*)c1ccc(COCCCCCC)cc1,278.0000,290.0926,16.7554
+Poly(vinyl butyrate),*CC(*)OC(=O)CCC,278.0000,369.9127,55.2069
+Poly(p-n-butyl styrene),*CC(*)c1ccc(CCCC)cc1,279.0000,334.8479,47.8116
+Poly(2-ethylbutyl methacrylate),*CC(*)(C)C(=O)OCC(CC)CC,284.0000,358.4550,60.8945
+Poly(o-n-octoxy styrene),*CC(*)c1ccccc1OCCCCCCCC,286.0000,269.4571,17.0146
+Poly(2-t-butyl-1-4-butadiene),*CC=C(C*)C(C)(C)C,293.0000,342.5270,8.8533
+Poly(2-methoxyethyl methacrylate),*CC(*)(C)C(=O)OCCOC,293.0000,368.1520,32.7141
+Poly(p-n-propoxymethyl styrene),*CC(*)c1ccc(COCCC)cc1,295.0000,302.7808,23.2705
+Poly(ethyl-p-xylylene),*Cc1ccc(C*)c(CC)c1,298.0000,363.2196,26.9039
+Poly(neopentyl methacrylate),*CC(*)(C)C(=O)OCC(C)(C)C,306.0000,555.6770,90.3288
+Poly(12-aminododecanoic acid),*NCCCCCCCCCCCC(*)=O,310.0000,307.1861,23.3292
+Poly(4-cyclohexyl- 1 -butene),*CC(*)CCC1CCCCC1,313.0000,315.0828,29.0994
+Poly(hexamethylene sebacamide),*NCCCCCCNC(=O)CCCCCCCCC(*)=O,313.0000,332.9047,18.2242
+Poly(11-aminoundecanoic acid),*NCCCCCCCCCCC(*)=O,315.0000,328.9324,30.8991
+Poly(3-phenoxypropylene oxide),*CC(COc1ccccc1)O*,315.0000,338.0960,10.8097
+Poly(10-aminodecanoic acid),*NCCCCCCCCCC(*)=O,316.0000,328.2664,25.3781
+Poly(3-3-dimethylbutyl methacrylate),*CC(*)(C)C(=O)OCCC(C)(C)C,318.0000,481.3105,74.9619
+Poly[oxy(m-phenylene)],*Oc1cccc(*)c1,318.0000,471.9624,30.9380
+Poly(decamethylene sebacamide),*NCCCCCCCCCCNC(=O)CCCCCCCCC(*)=O,319.0000,323.7392,24.6096
+Poly(N-butyl acrylamide),*CC(*)C(=O)NCCCC,319.0000,328.7918,55.5695
+Poly(p-n-butoxy styrene),*CC(*)c1ccc(OCCCC)cc1,320.0000,345.2630,55.5303
+Poly(9-aminononanoic acid),*NCCCCCCCCC(*)=O,324.0000,323.0815,20.8219
+Poly(8-aminocaprylic acid),*NCCCCCCCC(*)=O,324.0000,325.6213,18.5764
+Poly(methyl-p-xylylene),*Cc1ccc(C*)c(C)c1,328.0000,386.5144,35.3022
+Poly(vinyl isobutyral),*CC(*)C(=O)C(C)C,329.0000,440.1917,101.8121
+Poly(p-isopentoxy styrene),*CC(*)c1ccc(OCCC(C)C)cc1,330.0000,342.7712,27.9534
+Poly(7-aminoheptanoic acid),*NCCCCCCC(*)=O,330.0000,333.2679,13.7465
+Poly(hexamethylene adipamide),*NCCCCCCNC(=O)CCCCC(*)=O,330.0000,333.8562,19.8701
+Poly(3-cyclopentyl- 1 -propene),*CC(*)CC1CCCC1,333.0000,352.6576,30.7958
+Poly(3-phenyl- 1-propene),*CC(*)Cc1ccccc1,333.0000,363.7211,37.9825
+Poly(p-xylylene),*Cc1ccc(C*)cc1,333.0000,358.9538,19.3106
+Poly(ethylene- 1-4-naphthalenedicarboxylate),*CCOC(=O)c1ccc(C(=O)O*)c2ccccc12,337.0000,502.1368,50.6694
+Poly(p-n-propoxy styrene),*CC(*)c1ccc(OCCC)cc1,343.0000,361.7459,54.5902
+Poly(ethylene-1-5-naphthalenedicarboxylate),*CCOC(=O)c1cccc2c(C(=O)O*)cccc12,344.0000,537.9001,46.1897
+Poly(vinyl propional),*CC(*)C(C)C=O,345.0000,410.3942,53.7736
+Poly(3-cyclohexyl- 1-propene),*CC(*)CC1CCCCC1,348.0000,407.4047,9.6578
+Poly(vinyl cyclopentane),*CC(*)C1CCCC1,348.0000,399.4654,58.2928
+Poly(p-methoxymethyl styrene),*CC(*)c1ccc(COC)cc1,350.0000,380.6121,42.5585
+Poly(ethylene oxybenzoate),*CCOC(=O)c1ccc(O*)cc1,355.0000,411.1147,13.0151
+Poly[oxy(p-phenylene)],*Oc1ccc(*)cc1,358.0000,475.7858,6.8966
+Poly(p-sec-butyl styrene),*CC(*)c1ccc(C(C)CC)cc1,359.0000,340.9155,28.6460
+Poly(p-ethoxy styrene),*CC(*)c1ccc(OCC)cc1,359.0000,378.9579,35.6230
+Poly(2-methyl-5-t-butyl styrene),*CC(*)c1cc(C(C)(C)C)ccc1C,360.0000,491.3761,36.4325
+Poly(p-isopropyl styrene),*CC(*)c1ccc(C(C)C)cc1,360.0000,450.6069,45.1415
+Poly(p-methoxy styrene),*CC(*)c1ccc(OC)cc1,362.0000,380.8643,39.4384
+Poly(4-methoxy-2-methyl styrene),*CC(*)c1ccc(OC)cc1C,363.0000,433.5349,57.5141
+Poly(cyano-p-xylylene),*Cc1ccc(C*)c(C#N)c1,363.0000,397.4688,10.7843
+Poly(m-xylylene adipamide),*NCc1cccc(CNC(=O)CCCCC(*)=O)c1,363.0000,380.5047,26.9262
+Poly(1-4-cyclohexylidene dimethylene terephthalate),*OCC1CCC(COC(=O)c2ccc(C(*)=O)cc2)CC1,368.0000,478.9691,45.5947
+Poly(2-5-dimethyl-p-xylylene),*Cc1cc(C)c(C*)cc1C,373.0000,464.4448,25.7765
+Phenoxy resin,*OCC(O)COc1ccc(C(C)(C)c2ccc(*)cc2)cc1,373.0000,407.1822,11.5585
+Poly(o-ethyl styrene),*CC(*)c1ccccc1CC,376.0000,454.6306,85.2815
+Poly(3-5-dimethyl styrene),*CC(*)c1cc(C)cc(C)c1,377.0000,449.6256,20.9969
+Poly(o-vinyl pyridine),*CC(*)c1ccccn1,377.0000,484.7439,61.1806
+Poly(3-4-dimethyl styrene),*CC(*)c1ccc(C)c(C)c1,384.0000,395.9646,76.7239
+Resin F,*OCC(O)COc1cccc(NC(=O)CCCC(=O)Nc2cccc(*)c2)c1,384.0000,468.1414,29.9843
+Poly(2-4-dimethyl styrene),*CC(*)c1ccc(C)cc1C,385.0000,457.8694,47.0750
+Poly(p-methoxycarbonyl styrene),*CC(*)c1ccc(C(=O)OC)cc1,386.0000,479.6708,51.1769
+Poly(p-xylylene sebacamide),*NCc1ccc(CNC(=O)CCCCCCCCC(*)=O)cc1,388.0000,356.3501,21.5283
+Poly[2-2-butane bis{4-(2-methylphenyl)}carbonate],*OC(=O)Oc1ccc(C(C)(CC)c2ccc(*)cc2C)c(C)c1,392.0000,549.5758,53.0997
+Poly(a-p-dimethyl styrene),*CC(*)(C)c1ccc(C)cc1,394.0000,474.1644,115.8705
+Poly[1-1-butane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(CCC)c2ccc(*)cc2)cc1,396.0000,438.1054,28.9837
+Poly(m-hydroxymethyl styrene),*CC(*)c1cccc(CO)c1,398.0000,385.1011,13.3945
+Polyetherimide 1,*Oc1ccc(Oc2ccc(Oc3ccc4c(c3)C(=O)N(CCCCCCN3C(=O)c5ccc(*)cc5C3=O)C4=O)cc2)cc1,401.0000,498.4607,32.3019
+Poly(hexamethylene isophthalamide),*NCCCCCCNC(=O)c1cccc(C(*)=O)c1,403.0000,407.7101,24.1394
+Poly[1-1-ethane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(C)c2ccc(*)cc2)cc1,403.0000,464.3232,25.8029
+Poly[2-2-butane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(C)(CC)c2ccc(*)cc2)cc1,407.0000,481.3967,42.2945
+Poly[2-2-pentane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(C)(CCC)c2ccc(*)cc2)cc1,410.0000,496.5277,26.3403
+Poly(m-phenylene isophthalate),*Oc1cccc(OC(=O)c2cccc(C(*)=O)c2)c1,411.0000,529.7910,43.8624
+Poly(p-phenyl styrene),*CC(*)c1ccc(-c2ccccc2)cc1,411.0000,399.7496,29.3173
+Poly(p-hydroxymethyl styrene),*CC(*)c1ccc(CO)cc1,413.0000,462.9030,51.8304
+Poly(p-vinyl pyridine),*CC(*)c1ccncc1,415.0000,464.2840,40.5489
+Poly(2-5-dimethyl styrene),*CC(*)c1cc(C)ccc1C,416.0000,472.8737,43.0293
+Poly[methane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(Cc2ccc(*)cc2)cc1,420.0000,425.3995,41.1365
+Poly(p-hydroxybenzoate),*Oc1ccc(C(*)=O)cc1,420.0000,496.1965,60.2592
+Poly[4-4-heptane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(CCC)(CCC)c2ccc(*)cc2)cc1,421.0000,509.2959,61.7695
+Poly[1-1-(2-methyl propane) bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(c2ccc(*)cc2)C(C)C)cc1,422.0000,485.3418,35.7569
+Poly(N-vinyl carbazole),*CC(*)n1c2ccccc2c2ccccc21,423.0000,394.3212,33.1313
+Bisphenol-A polycarbonate,*Oc1ccc(C(C)(C)c2ccc(OC(*)=O)cc2)cc1,423.0000,467.7694,15.0950
+Poly(p-vinyl naphthalene),*CC(*)c1ccc2ccccc2c1,424.0000,347.2123,30.5992
+Poly(a-vinyl naphthalene),*CC(*)c1cccc2ccccc12,432.0000,385.7680,15.2255
+Poly(o-hydroxymethyl styrene),*CC(*)c1ccccc1CO,433.0000,470.1925,73.6264
+Poly [1-1 -cyclopentane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C2(c3ccc(*)cc3)CCCC2)cc1,440.0000,457.9666,9.9057
+Poly(oxyterephthaloyloxy-2-methyl-1-4-phenyleneisopropylidene-3-methyl-1-4-phenylene),*OC(=O)c1ccc(C(=O)Oc2ccc(C(C)(C)c3ccc(*)c(C)c3)cc2C)cc1,444.0000,510.1898,30.2829
+Poly[1-1-cyclohexane bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C2(c3ccc(*)cc3)CCCCC2)cc1,444.0000,452.0980,85.1031
+Poly[1-1-(1-phenylethane) bis(4-phenyl)carbonate],*OC(=O)Oc1ccc(C(C)(c2ccccc2)c2ccc(*)cc2)cc1,449.0000,465.2108,42.8953
+Poly[2-2-propane bis{4-(2-6-dimethylphenyl)} carbonate],*OC(=O)Oc1cc(C)c(C(C)(C)c2c(C)cc(*)cc2C)c(C)c1,473.0000,510.7265,19.3820
+Poly(bisphenol-A terephthalate),*OC(=O)c1ccc(C(=O)Oc2ccc(C(C)(C)c3ccc(*)cc3)cc2)cc1,478.0000,469.8574,56.2211
+Poly[N-N'-(m-m'-oxydiphenylene-oxy-m-phenylene)pyromellitimide],*Oc1cccc(Oc2cccc(-n3c(=O)c4cc5c(=O)n(-c6cccc(*)c6)c(=O)c5cc4c3=O)c2)c1,494.0000,566.4301,29.1849
+Polyetherimide 3,*Oc1ccc(Oc2ccc(Oc3ccc4c(c3)C(=O)N(c3cccc(N5C(=O)c6ccc(*)cc6C5=O)c3)C4=O)cc2)cc1,500.0000,585.0984,62.5599
+Polycarbonate 2,*OC(=O)Oc1ccc(C2(c3ccc(*)cc3)CC3CCC2C3)cc1,505.0000,533.3223,58.8594
+Polyetherimide 4,*Oc1ccc(C(=O)c2ccc(Oc3ccc4c(c3)C(=O)N(c3cccc(N5C(=O)c6ccc(*)cc6C5=O)c3)C4=O)cc2)cc1,512.0000,543.1403,103.6719
+Polyimide 10,*c1cccc(C(=O)c2cccc(N3C(=O)c4ccc(C(=O)c5ccc6c(c5)C(=O)N(*)C6=O)cc4C3=O)c2)c1,513.0000,596.9370,129.8982
+Polycarbonate 3,*OC(=O)Oc1ccc(C2(c3ccc(*)cc3)CC3CC2C2CCCC32)cc1,520.0000,547.4731,50.9822
+Polyetherimide 5,*Oc1ccc(-c2ccc(Oc3ccc4c(c3)C(=O)N(c3cccc(N5C(=O)c6ccc(*)cc6C5=O)c3)C4=O)cc2)cc1,520.0000,595.1723,52.2529
+Polyquinoline 5,*c1ccc(Oc2ccc(-c3cc(-c4ccccc4)c4cc(Oc5ccc6nc(*)cc(-c7ccccc7)c6c5)ccc4n3)cc2)cc1,539.0000,513.3954,41.0937
+Polyquinoline 1,*c1cccc(-c2cc(-c3ccc(Oc4ccc(-c5cc(*)nc6ccccc56)cc4)cc3)c3ccccc3n2)c1,541.0000,587.7083,23.4635
+Poly[3-5-(4-phenyl-1-2-4-triazole)-1-4-phenylene-3-5-(4-phenyl-1-2-4-triazole)-1-3-phenylene],*c1ccc(-c2nnc(-c3cccc(-c4nnc(*)n4-c4ccccc4)c3)n2-c2ccccc2)cc1,543.0000,523.5708,159.3044
+Poly(m-phenylene isophthalamide),*Nc1cccc(NC(=O)c2cccc(C(*)=O)c2)c1,545.0000,565.6099,53.2952
+Polyquinoline 2,*c1cccc(-c2nc3ccccc3c(-c3ccc(Oc4ccc(-c5c(-c6ccccc6)c(*)nc6ccccc56)cc4)cc3)c2-c2ccccc2)c1,546.0000,609.7934,50.8270
+Torlon,*NC(=O)c1ccc2c(c1)C(=O)N(c1ccc(Cc3ccc(*)cc3)cc1)C2=O,550.0000,553.5590,118.6357
+Polyquinoline 9,*c1ccc(-c2cc(-c3ccccc3)c3cc(Oc4ccc5nc(*)cc(-c6ccccc6)c5c4)ccc3n2)cc1,573.0000,518.9018,103.8327
+Polyquinoline 6,*c1ccc(Oc2ccc(-c3nc4ccc(Oc5ccc6nc(*)c(-c7ccccc7)c(-c7ccccc7)c6c5)cc4c(-c4ccccc4)c3-c3ccccc3)cc2)cc1,578.0000,572.2697,62.5190
+Poly(quinoxaline-2-7-diylquinoxaline-7-2-diyl-p-terphenyl-4-4'-ylene),*c1ccc(-c2ccc(-c3ccc(-c4cnc5ccc(-c6ccc7ncc(*)nc7c6)cc5n4)cc3)cc2)cc1,578.0000,485.4071,10.7907
+Poly(quinoxaline-2-7-diyloxyquinoxaline-7-2-diyl-1-4-phenylene),*c1ccc(-c2cnc3ccc(Oc4ccc5ncc(*)nc5c4)cc3n2)cc1,579.0000,494.6170,52.7984
+Polyquinoline 7,*c1ccc(-c2ccc(-c3cc(-c4ccccc4)c4cc(Oc5ccc6nc(*)cc(-c7ccccc7)c6c5)ccc4n3)cc2)cc1,581.0000,552.9161,52.6617
+Poly(quinoxaline-2-7-diylcarbonylquinoxaline-7-2-diyl-1-4-phenylene),*c1ccc(-c2cnc3ccc(C(=O)c4ccc5ncc(*)nc5c4)cc3n2)cc1,591.0000,546.6202,36.2660
+Polyquinoline 3,*c1ccc(Oc2ccc(-c3cc(-c4ccc(Oc5ccc(-c6cc(*)nc7ccccc67)cc5)cc4)c4ccccc4n3)cc2)cc1,599.0000,538.7431,57.8027
+Poly(p-phenylene terephthalamide),*Nc1ccc(NC(=O)c2ccc(C(*)=O)cc2)cc1,600.0000,626.3676,13.7236
+Vitrimer-DGEBA-AA,*CC(O)COc1ccc(C(C)(C)c2ccc(OCC(O)COC(=O)CCCCC(=O)O*)cc2)cc1,317.0000,393.2121,11.6599
+Vitrimer-DGEAC-SA,*CC(O)COC(=O)C1CC2OC2CC1C(=O)OCC(O)COC(=O)CCCCCCCCC(=O)O*,304.0000,370.6853,20.8773
+Vitrimer-DGEBA-SA,*CC(O)COc1ccc(C(C)(C)c2ccc(OCC(O)COC(=O)CCCCCCCCC(=O)O*)cc2)cc1,323.0000,377.0222,12.9010

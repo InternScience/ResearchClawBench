@@ -1,0 +1,61 @@
+[
+    {
+        "type": "text",
+        "content": "DELVE introduces a bottom‑up unsupervised feature selection framework that first identifies dynamic co‑varying feature modules via local neighborhood analysis, then ranks all features by their association with a trajectory graph constructed from these modules. This approach effectively filters out noisy or static features that would otherwise distort cellular trajectory inference.",
+        "path": null,
+        "keywords": [
+            "Two‑step process: dynamic module identification, trajectory‑based ranking",
+            "Local variation captures dynamic features, not global variance",
+            "Filters static/noisy features prior to trajectory construction",
+            "Outperforms traditional methods overwhelmed by noise"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "In systematic benchmarks on simulated and real single‑cell datasets, DELVE consistently outperforms 11 existing feature selection methods across multiple metrics: it achieves higher precision@k for differentially expressed genes, higher k‑NN classification accuracy for cell types, and higher pseudotime correlation with ground truth cell progression. These advantages hold across linear, bifurcating, and tree‑structured trajectories.",
+        "path": null,
+        "keywords": [
+            "Compared against 11 other methods (supervised, similarity‑based, variance‑based)",
+            "Metrics: precision@k, classification accuracy, pseudotime correlation",
+            "Tested on linear, bifurcating, and tree topologies",
+            "Consistently superior performance"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "text",
+        "content": "DELVE exhibits strong robustness to common single‑cell noise sources, including low signal‑to‑noise ratio, reduced library size, and increased dropout. In simulated experiments, DELVE shows the smallest performance degradation as noise increases, whereas similarity‑based methods like Laplacian Score and MCFS suffer substantial declines. This resilience is crucial for analyzing noisy experimental data.",
+        "path": null,
+        "keywords": [
+            "Robust to low SNR, small library size, high dropout",
+            "Minimal performance drop under increasing noise",
+            "Contrasts with Laplacian Score, MCFS which degrade sharply",
+            "Key for real‑world noisy data"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "PHATE visualization using all features from the RPE cell‑cycle dataset shows a diffuse embedding with poor separation of cell cycle phases (G0/G1, S, G2, M). This baseline highlights the need for feature selection to resolve continuous biological trajectories.",
+        "path": "images/phate_All_features.png",
+        "keywords": [
+            "All features produce diffuse embedding",
+            "Poor phase separation indicates noise",
+            "Baseline for comparison with DELVE"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "PHATE visualization using DELVE‑selected features (top 30) on the RPE dataset reveals a smooth, continuous trajectory that tightly clusters cells by cell cycle phase. DELVE achieves high classification accuracy (0.96), NMI (0.60), and pseudotime correlation (0.66), demonstrating its ability to recover biologically meaningful progression from noisy imaging data.",
+        "path": "images/phate_Selected.png",
+        "keywords": [
+            "Smooth trajectory with tight phase clusters",
+            "Quantitative metrics: accuracy 0.96, NMI 0.60, pseudotime correlation 0.66",
+            "DELVE recovers biologically meaningful progression",
+            "Outperforms all‑feature baseline"
+        ],
+        "weight": 0.2
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "type": "image",
+        "content": "The production cost of green hydrogen shows significant spatial heterogeneity across Africa, with regions endowed with superior resources (such as Namibia, Morocco, and parts of South Africa) having distinct cost advantages.",
+        "path": "images/Fg1.png",
+        "keywords": [
+            "Wind and solar resource potential determines the electricity cost for hydrogen production.",
+            "Transportation and infrastructure distance impact the ultimate LCOH.",
+            "Costs exhibit a spatially clustered pattern as opposed to a uniform distribution."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "text",
+        "content": "In regions with superior resource conditions, African green hydrogen holds the potential to compete with international fossil fuel-based hydrogen production pathways, particularly demonstrating cost advantages in export-oriented scenarios.",
+        "path": null,
+        "keywords": [
+            "Low renewable electricity costs drive cost reductions.",
+            "Maritime export distances impact competitiveness.",
+            "Some regions have the potential to attain global supply positions."
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "text",
+        "content": "The cost of green hydrogen is determined not only by resource endowment but also by the systemic influence of infrastructure accessibility (roads, power grids, ports).",
+        "path": null,
+        "keywords": [
+            "Increased grid distance raises system costs.",
+            "Road transportation affects logistics costs.",
+            "Water source accessibility influences the feasibility of hydrogen production."
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "The production cost of green hydrogen exhibits significant spatial heterogeneity across Africa, with certain regions in South Africa demonstrating distinct cost advantages.",
+        "path": "images/min_lcoh_map_NA_2023_with_contour.png",
+        "keywords": [
+            "Wind and solar resource potential determines the electricity cost for hydrogen production.",
+            "Transportation and infrastructure distance impact the ultimate LCOH.",
+            "Costs exhibit a spatially clustered pattern as opposed to a uniform distribution."
+        ],
+        "weight": 0.2
+    }
+]

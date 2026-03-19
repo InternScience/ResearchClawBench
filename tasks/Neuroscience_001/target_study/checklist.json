@@ -1,0 +1,67 @@
+[
+    {
+        "type": "image",
+        "content": "Based on experimental connectome data from 64 cell types in the Drosophila visual lobe motor pathway, a hexagonal convolutional recurrent network (DMN) model was constructed. The model assumes spatial translation invariance and periodically tiles the local connectivity graph across the visual field, containing 45,669 neurons and 1,513,231 synapses. By sharing parameters (time constant, resting potential, and unit synaptic strength) for the same cell type, the number of free parameters was reduced from millions theoretically to 734. The model was implemented in PyTorch and can be trained end-to-end for optical flow estimation.",
+        "path": "images/41586_2024_7939_Fig1_HTML.png",
+        "keywords": [
+            "Connectome sources: FIB-25 & FIB-19, 64 cell types",
+            "Spatial tiling: 721 hexagonal columns",
+            "Neuron model: leaky linear non-spiking, single electrical compartment",
+            "Parameter reduction strategy – cell‑type sharing",
+            "Differentiable frameworks: PyTorch, BPTT"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "image",
+        "content": "Based on the experimental connectome data of 64 cell types in the Drosophila optic lobe motion pathway, a hexagonal convolutional recurrent network model (DMN) is constructed. The model assumes spatial translation invariance, periodically tiles the local connection graph in the visual field, and contains 45,669 neurons and 1,513,231 synapses. By sharing parameters (time constants, resting potentials, unit synaptic strengths) of the same cell type, the number of free parameters is reduced from theoretically millions to 734. The model is implemented in PyTorch and can be trained end-to-end to complete optical flow estimation.",
+        "path": "images/41586_2024_7939_Fig2_HTML.png",
+        "keywords": [
+            "Validation benchmark: 26 studies, 32 known ON/OFF cells",
+            "Evaluation index: Flash Response Index (FRI)",
+            "Model collection size: 50 DMN",
+            "Prediction accuracy (task optimal): 30/32",
+            "Prediction coverage: all 64 cells"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "DMN correctly predicts that T4 (ON) and T5 (OFF) are the first direction-selective neurons in the visual pathway, and the four subtypes (T4a–d, T5a–d) are selectively tuned to four orthogonal motion directions, respectively. The model correctly predicts that the known input neurons of T4/T5 (Mi1, Tm3, Mi4, Mi9, Tm1, Tm2, Tm4, Tm9, CT1) have no direction selectivity. It further predicts that TmY3, TmY4, TmY5a, TmY13, and TmY18 may be ON-motion selective, and their input connections do not include T4/T5, suggesting the existence of an independent motion computation pathway parallel to the classical pathway.",
+        "path": "images/41586_2024_7939_Fig3_HTML.png",
+        "keywords": [
+            "Target cells: T4a–d, T5a–d (8 subtypes)",
+            "Evaluation metrics: Direction Selectivity Index (DSI), preferred direction error",
+            "Prediction results: T4 ON-motion, T5 OFF-motion, 4 preferred directions are correct",
+            "Input neuron tuning: None of the 9 types of input cells have direction selectivity",
+            "Novel predictions: 5 types of TmY cells are ON-motion selective"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "Ablation experiments demonstrated that: ① Connectome constraints alone (random parameters) can predict contrast preference (FRI), but not orientation selectivity (DSI) and preference direction; ② Task optimization alone (without fine connectomes) cannot accurately predict either; ③ Synaptic polarity information is sufficient to predict contrast preference well, but to accurately predict orientation selectivity and preference direction, both single-cell resolution structural connectivity and task optimization are necessary. Coarse-graining experiments showed that merging T4/T5 subtypes (58 classes) did not affect prediction quality, but merging them into E/I/Mix classes resulted in a significant performance drop, demonstrating the necessity of fine cell type classification.",
+        "path": "images/41586_2024_7939_Fig4_HTML.png",
+        "keywords": [
+            "Comparison criteria: 7 DMN variants",
+            "Evaluation tasks: FRI, DSI, preference direction prediction",
+            "Key finding 1: Polar information is sufficient to predict contrast preferences but insufficient to predict direction selectivity",
+            "Key finding 2: Single-cell resolution connections + task optimization → optimal prediction",
+            "Coarsening: Merging T4/T5 subtypes (58 types) → performance remains unchanged; merging into E/I/Mix (3 types) → performance collapses"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "UMAP dimensionality reduction and clustering were performed on the responses of 50 DMNs under natural videos, revealing that the responses of multiple cell types form discrete clusters. Taking T4c as an example, the 50 models were divided into three functional clusters: correct upward selectivity, incorrect downward selectivity, and no directional selectivity. The average task error of the clusters increased in sequence, indicating that models with higher task performance tend to have correct physiological tuning. It was further revealed that the directional preference of T4c is closely coupled with the contrast preference of its input neurons Mi4/Mi9: when Mi4 is of the ON type and Mi9 is of the OFF type, T4c shows upward selectivity; conversely, it shows downward selectivity. This finding provides an effective strategy for constraining whole-brain model parameters by measuring the tuning of a small number of neurons.",
+        "path": "images/41586_2024_7939_Fig5_HTML.png",
+        "keywords": [
+            "Analysis method: UMAP + Gaussian mixture clustering (BIC)",
+            "Stimulus type: Natural video (Sintel)",
+            "Case cestering results: 3 clusters (correct upward, incorrect downward, no direction) ce",
+            "Relationship between task error and clusters: The correct cluster has the lowest error, and the no-direction cluster has the highest error",
+            "Mechanism coupling: Locking relationship between Mi4/Mi9 contrast preference and T4c direction preference"
+        ],
+        "weight": 0.1
+    }
+]

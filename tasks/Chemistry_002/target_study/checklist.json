@@ -1,0 +1,64 @@
+[
+    {
+        "type": "image",
+        "content": "Scatter plot comparing ΔHADDOCK scores (wt-mut) from alanine scanning with experimental ΔΔG values from SKEMPI for 28 single-point mutations in the barnase-barstar complex. Points are colored by the amino acid mutated to. A linear regression line yields a Pearson correlation coefficient of 0.60, indicating moderate agreement between computational predictions and experimental binding affinity changes.",
+        "path": "images/haddock3-alascan_VS_SKEMPI.png",
+        "keywords": [
+            "ΔHADDOCK vs ΔΔG scatter plot",
+            "28 single-point mutations",
+            "Pearson correlation 0.60",
+            "Validation of mutation effect prediction"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "Based on alanine scanning results from HADDOCK3, several residues in the barnase-barstar interface are identified as potential hot spots, where mutation to alanine causes large destabilization (most negative ΔHADDOCK scores). The top five residues with the largest Δscore (wt-mut) are: A:Arg59 (-25.3), A:His102 (-20.2), D:Asp35 (-18.5), A:Arg87 (-15.2), and D:Asp39 (-15.0). These residues are predicted to contribute significantly to binding energy, consistent with experimental data from SKEMPI (e.g., A:Arg59A ΔΔG = -4.9 kcal/mol; A:His102A ΔΔG = -6.1 kcal/mol).",
+        "path": null,
+        "keywords": [
+            "Top 5 destabilizing alanine mutations",
+            "Chain and residue numbers",
+            "Comparison with SKEMPI ΔΔG",
+            "Hot spot identification"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "HADDOCK3 successfully performed alanine scanning on the barnase-barstar complex (PDB 1BRS), mutating interface residues to alanine and recalculating the HADDOCK score. The ΔHADDOCK scores range from -25.3 to +5.9, with most interface mutations destabilizing the complex (negative Δscore). The method qualitatively reproduces experimental trends from SKEMPI, demonstrating its utility in assessing residue contributions in protein-protein interactions without requiring experimental data.",
+        "path": null,
+        "keywords": [
+            "Alanine scanning scope",
+            "ΔHADDOCK score range (-25.3 to +5.9)",
+            "Qualitative agreement with SKEMPI",
+            "Utility for binding energy assessment"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "text",
+        "content": "HADDOCK3's modular architecture enables handling of multi‑interface targeting and protein–glycan docking. For an antibody–antigen complex, multiple restraint sets in one run correctly identified the native epitope, producing models with DockQ up to 0.88, while a conventional run failed. For protein–glycan interactions, inserting an RMSD clustering step after rigid‑body docking boosted the success rate to 60% in the top 10 models for a lysozyme–oligosaccharide complex—a task not feasible with the fixed HADDOCK2 pipeline.",
+        "path": null,
+        "keywords": [
+            "Multi‑interface targeting in one run",
+            "Correct epitope identification (DockQ ≤ 0.88)",
+            "Intermediate clustering for glycan docking",
+            "60% success rate (top10)",
+            "Demonstrates modular flexibility"
+        ],
+        "weight": 0.15
+    },
+    {
+        "type": "text",
+        "content": "In CAPRI round 57, HADDOCK3 implemented a consensus scoring workflow combining HADDOCK EM scores with VorolF‑jury. For target 268 (antibody–peptide), this approach submitted the best overall model (DockQ = 0.72) and ranked it first in the scoring ensemble, highlighting the power of integrating multiple scoring functions through HADDOCK3's modular design.",
+        "path": null,
+        "keywords": [
+            "Consensus scoring workflow",
+            "CAPRI round 57, target 268",
+            "Best overall model (DockQ 0.72)",
+            "Ranked first in scoring set",
+            "Modular integration of scoring functions"
+        ],
+        "weight": 0.15
+    }
+]

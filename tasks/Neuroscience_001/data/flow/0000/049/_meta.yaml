@@ -1,0 +1,110 @@
+config:
+  type: NetworkDir
+  network:
+    connectome:
+      type: ConnectomeFromAvgFilters
+      file: fib25-fib19_v2.2.json
+      extent: 15
+      n_syn_fill: 1
+    dynamics:
+      type: PPNeuronIGRSynapses
+      activation:
+        type: relu
+    node_config:
+      bias:
+        type: RestingPotential
+        groupby:
+        - type
+        initial_dist: Normal
+        mode: sample
+        requires_grad: true
+        mean: 0.5
+        std: 0.05
+        penalize:
+          activity: true
+        seed: 0
+      time_const:
+        type: TimeConstant
+        groupby:
+        - type
+        initial_dist: Value
+        value: 0.05
+        requires_grad: true
+    edge_config:
+      sign:
+        type: SynapseSign
+        initial_dist: Value
+        requires_grad: false
+        groupby:
+        - source_type
+        - target_type
+      syn_count:
+        type: SynapseCount
+        initial_dist: Lognormal
+        mode: mean
+        requires_grad: false
+        std: 1.0
+        groupby:
+        - source_type
+        - target_type
+        - du
+        - dv
+      syn_strength:
+        type: SynapseCountScaling
+        initial_dist: Value
+        requires_grad: true
+        scale: 0.01
+        clamp: non_negative
+        groupby:
+        - source_type
+        - target_type
+  task:
+    type: Task
+    dataset:
+      type: MultiTaskSintel
+      tasks:
+      - flow
+      boxfilter:
+        extent: 15
+        kernel_size: 13
+      vertical_splits: 3
+      n_frames: 19
+      center_crop_fraction: 0.7
+      dt: 0.02
+      augment: true
+      random_temporal_crop: true
+      all_frames: false
+      resampling: true
+      interpolate: true
+      p_flip: 0.5
+      p_rot: 0.5
+      contrast_std: 0.2
+      brightness_std: 0.1
+      gaussian_white_noise: 0.08
+      gamma_std:
+      _init_cache: true
+      unittest: false
+      flip_axes:
+      - 0
+      - 1
+      - 2
+      - 3
+    decoder:
+      flow:
+        type: DecoderGAVP
+        shape:
+        - 8
+        - 2
+        kernel_size: 5
+        const_weight: 0.001
+        n_out_features:
+        p_dropout: 0.5
+    loss:
+      flow: l2norm
+    batch_size: 4
+    n_iters: 250000
+    n_folds: 4
+    fold: 1
+    seed: 0
+    task_weight:
+status: manually written

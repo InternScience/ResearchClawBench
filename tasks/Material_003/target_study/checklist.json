@@ -1,0 +1,54 @@
+[
+    {
+        "type": "image",
+        "content": "AI-guided inverse design framework combining high-throughput molecular dynamics simulations and a graph variational autoencoder (VAE) with dual encoders for multi-component vitrimers. A dataset of one million chemistries is curated, and Tg is calculated for 8,424 vitrimers using MD simulations calibrated by a Gaussian process model.",
+        "path": "images/__1.png",
+        "keywords": [
+            "inverse design framework",
+            "graph VAE",
+            "vitrimer dataset",
+            "high-throughput MD",
+            "GP calibration"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Discovery of novel vitrimers via Bayesian optimization in the VAE latent space targeting desired glass transition temperatures. Examples include vitrimers with maximum Tg (>500 K), exact Tg=373 K, and minimum Tg=248 K, all validated by MD simulations with GP calibration, demonstrating extrapolation beyond training data.",
+        "path": "images/__2.png",
+        "keywords": [
+            "Bayesian optimization",
+            "target Tg",
+            "novel vitrimers",
+            "extrapolation",
+            "MD validation"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Experimental synthesis and characterization of a vitrimer designed for Tg=323 K. The model proposed a candidate, which was slightly modified using chemical intuition and synthesized. Measured Tg (311–317 K) agrees well with the target, and the material exhibits healability and recyclability, confirming the framework's practical utility.",
+        "path": "images/__3.png",
+        "keywords": [
+            "experimental validation",
+            "Tg measurement",
+            "healability",
+            "recyclability",
+            "chemical intuition"
+        ],
+        "weight": 0.25
+    },
+    {
+        "type": "image",
+        "content": "Calibration of MD-simulated Tg against experimental Tg using a Gaussian process with a Tanimoto kernel on molecular fingerprints. The model accurately predicts the offset ΔTg, enabling reliable property estimation for novel vitrimers. Leave-one-out cross-validation yields low prediction error (MAE~13 K).",
+        "path": "images/tanimoto_paper_style.png",
+        "keywords": [
+            "Gaussian process",
+            "Tanimoto kernel",
+            "Tg calibration",
+            "prediction accuracy",
+            "LOOCV"
+        ],
+        "weight": 0.15
+    }
+]

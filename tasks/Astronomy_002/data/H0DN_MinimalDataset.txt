@@ -1,0 +1,76 @@
+# Anchors (geometric distance moduli)
+anchors = {
+    'N4258': {'mu': 29.397, 'err': 0.032},
+    'LMC': {'mu': 18.477, 'err': 0.024},
+    'MW': {'mu': 0.0, 'err': 0.0}
+}
+
+# Host distance measurements from primary indicators (host, method, anchor, mu_meas, err_meas)
+host_measurements = [
+    ('NGC1309', 'Cepheid', 'N4258', 32.50, 0.10),
+    ('NGC1365', 'Cepheid', 'N4258', 31.33, 0.08),
+    ('NGC1448', 'Cepheid', 'N4258', 31.31, 0.09),
+    ('NGC1559', 'Cepheid', 'N4258', 31.42, 0.07),
+    ('M101', 'Cepheid', 'N4258', 29.12, 0.06),
+    ('NGC1316', 'TRGB', 'N4258', 31.39, 0.10),
+    ('NGC1365', 'TRGB', 'N4258', 31.32, 0.12),
+    ('NGC5643', 'TRGB', 'N4258', 30.53, 0.09),
+    ('M101', 'TRGB', 'N4258', 29.13, 0.08),
+    ('NGC1309', 'Cepheid', 'LMC', 32.51, 0.11),
+    ('NGC1365', 'Cepheid', 'LMC', 31.34, 0.09)
+]
+
+# SNe Ia calibrators (host, mB, err_mB)
+sneia_calibrators = [
+    ('NGC1309', 12.10, 0.05),
+    ('NGC1365', 11.93, 0.06),
+    ('NGC1448', 11.90, 0.05),
+    ('NGC1559', 12.22, 0.05),
+    ('M101', 9.85, 0.04),
+    ('NGC1316', 11.88, 0.07),
+    ('NGC5643', 11.56, 0.06)
+]
+
+# SBF calibrators (host, mF110W, err_mF110W)
+sbf_calibrators = [
+    ('NGC1399', 28.35, 0.10),
+    ('NGC1404', 28.33, 0.10),
+    ('NGC4472', 28.56, 0.12)
+]
+
+# Hubble flow SNe Ia (redshift z, mB, err_mB, peculiar velocity uncertainty in km/s)
+hubble_flow_sneia = [
+    (0.034, 15.12, 0.06, 250),
+    (0.042, 15.68, 0.05, 250),
+    (0.055, 16.35, 0.05, 250),
+    (0.068, 17.02, 0.05, 250),
+    (0.082, 17.55, 0.06, 250)
+]
+
+# Hubble flow SBF galaxies (redshift z, mF110W, err_mF110W, peculiar velocity uncertainty)
+hubble_flow_sbf = [
+    (0.023, 30.45, 0.15, 250),
+    (0.031, 31.02, 0.15, 250),
+    (0.045, 31.89, 0.16, 250)
+]
+
+# Additional calibration uncertainties (method, anchor) -> error in mag
+method_anchor_err = {
+    ('Cepheid', 'N4258'): 0.04,
+    ('Cepheid', 'LMC'): 0.03,
+    ('Cepheid', 'MW'): 0.02,
+    ('TRGB', 'N4258'): 0.05
+}
+
+# Host to group mapping (for SBF clusters)
+host_group = {
+    'NGC1399': 'Fornax',
+    'NGC1404': 'Fornax',
+    'NGC4472': 'Virgo'
+}
+
+# Intra‑group depth scatter (mag)
+depth_scatter = 0.10
+
+# Physical constants (also used in the code)
+c_km = 299792.458   # speed of light in km/s

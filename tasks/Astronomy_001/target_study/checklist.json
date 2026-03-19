@@ -1,0 +1,35 @@
+[
+    {
+        "type": "text",
+        "content": "By generating simulated MCMC chains based on the best-fit parameters and their 1σ errors from Tables II and III of the paper, this step successfully constructs the parameter sample space for the ΛCDM, EDE, and w₀wₐ models, providing foundational data for the subsequent visualization of parameter constraints. This ensures that the triangle and distance plots accurately reflect the central values and dispersions reported in the paper. ",
+        "path": null,
+        "keywords": [
+            "The simulated chains assume independent Gaussian distributions, with means and 1σ errors strictly matching the best-fit values under the CMB+BAO combination from Tables II and III (e.g., Ωₘ=0.3037±0.0037, H₀=68.12±0.28), ensuring fidelity to the original data.",
+            "Each model is sampled with 20,000 points, sufficient for generating smooth posterior contours and mimicking the statistical properties of MCMC sampling.",
+            "The generated chain files are compatible with GetDist, providing standardized input for subsequent triangle plotting and distance calculations, serving as the data foundation for the reproduction."
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "The reproduced triangle plot (figure3_triangle.png) clearly displays the 2D posterior distributions of key cosmological parameters (Ωₘ, H₀, σ₈, nₛ, etc.) for the ΛCDM, EDE, and w₀wₐ models, qualitatively consistent with Figure 3 of the paper. The EDE model shows higher H₀ and σ₈ and slightly lower Ωₘ compared to ΛCDM, while the w₀wₐ model exhibits opposite trends (lower H₀, higher Ωₘ), confirming the different mechanisms by which each model responds to the acoustic tension. ",
+        "path": "images/figure3_triangle.png",
+        "keywords": [
+            "The best-fit region for the EDE model shows H₀≈70.9 km/s/Mpc, higher than ΛCDM’s 68.1 km/s/Mpc, and σ₈≈0.828, higher than ΛCDM’s 0.810, consistent with the parameter shifts reported in Table II.",
+            "The w₀wₐ model yields H₀≈63.5 km/s/Mpc and Ωₘ≈0.353, sharply contrasting with ΛCDM and EDE, validating the distinct directions in which late-time and early-time dark energy affect parameter space.",
+            "The slightly higher nₛ (≈0.982) in the EDE model reflects the compensation mechanism for EDE’s impact on CMB acoustic peaks, aligning with the paper’s discussion on the increase in nₛ."
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "The reproduced distance comparison plot (figure6_distance.png) compares the predictions of the ΛCDM, EDE, and w₀wₐ models for low-redshift residuals in distance modulus, D_V/r_d, and F_AP with DESI BAO and Union3 SNe data points. The results show that the EDE model’s theoretical curves better match the DESI BAO data at z<1, whereas the ΛCDM model exhibits systematic negative offsets, and the w₀wₐ model aligns more closely with SNe trends but deviates slightly from BAO. This directly validates that the EDE model better alleviates the acoustic tension between CMB and BAO while highlighting the discriminative power of the different models.  ",
+        "path": "images/figure6_distance.png",
+        "keywords": [
+            "In the redshift range z≈0.3-0.9, the relative deviation in D_V/r_d predicted by the EDE model (relative to the reference ΛCDM) falls within the error bars of DESI data points (e.g., Δ≈-0.02 at z=0.295), while the ΛCDM model itself shows a systematic negative offset, indicating that EDE improves the fit.",
+            "The w₀wₐ model predicts a shallower decline in D_V/r_d at z<0.5 but aligns with the negative trend in the SNe distance modulus (Δμ), reflecting its ability to adjust late-time expansion.",
+            "The predictions for F_AP show little variation among the three models, consistent with the large errors in the DESI data points, indicating that this quantity currently lacks discriminative power, though both EDE and ΛCDM are generally compatible with the data."
+        ],
+        "weight": 0.4
+    }
+]

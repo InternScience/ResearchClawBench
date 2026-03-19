@@ -1,0 +1,46 @@
+[
+    {
+        "type": "text",
+        "content": "FuXi extends the skillful forecast lead time (defined as ACC >= 0.6) for Z500 from 9.25 days (ECMWF HRES) to 10.5 days, and for T2M from 10 days to 14.5 days. In 15-day forecasts, FuXi achieves higher ACC than ECMWF ensemble mean on 67.92% and lower RMSE on 53.75% of all 240 variable-level-lead time combinations, demonstrating that the cascade ML approach achieves performance comparable to the world's leading operational ensemble prediction system.",
+        "path": null,
+        "keywords": [
+            "Z500 skillful forecast lead time (ACC >= 0.6): ECMWF HRES = 9.25 days, FuXi = 10.5 days",
+            "T2M skillful forecast lead time (ACC >= 0.6): ECMWF HRES = 10 days, FuXi = 14.5 days",
+            "FuXi outperforms ECMWF EM on 67.92% (ACC) and 53.75% (RMSE) of 240 variable-level-lead time combinations"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Figure 1: Comparison of globally averaged latitude-weighted ACC (rows 1-2) and RMSE (rows 3-4) of ECMWF HRES, GraphCast, and FuXi for 4 surface variables (MSL, T2M, U10, V10) and 4 upper-air variables at 500 hPa (Z500, T500, U500, V500) over 15-day forecast lead times using 2018 test data. FuXi (light blue) consistently outperforms ECMWF HRES (dark green) and GraphCast (orange) beyond 7-day lead times, achieving the highest ACC and lowest RMSE across all variables at extended forecast ranges.",
+        "path": "images/fig_p3_1.png",
+        "keywords": [
+            "FuXi ACC curves are above GraphCast and HRES curves for all 8 variables beyond 7-day lead times",
+            "FuXi RMSE curves are below GraphCast and HRES curves for all 8 variables beyond 7-day lead times",
+            "Z500 ACC crosses 0.6 threshold at approximately 10.5 days for FuXi vs 9.25 days for HRES; T2M ACC crosses 0.6 at approximately 14.5 days for FuXi vs 10 days for HRES"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "Figure 2: Comparison of FuXi with ECMWF ensemble mean (EM) over 15-day forecasts. Top panels show normalized ACC difference and normalized RMSE difference between FuXi and ECMWF EM for Z500, T500, U500, V500, MSL, T2M, U10, V10. Positive ACC difference (red) indicates FuXi outperforms EM. FuXi outperforms ECMWF EM in 0-9 day forecasts and achieves comparable performance overall, with higher ACC on 67.92% and lower RMSE on 53.75% of all 240 variable-level-lead time combinations.",
+        "path": "images/fig_p4_1.jpeg",
+        "keywords": [
+            "FuXi outperforms ECMWF EM (positive normalized ACC difference) for forecast lead times of 0-9 days across most variables",
+            "Beyond 9 days, FuXi is slightly inferior to ECMWF EM, showing the transition point where ensemble methods gain advantage",
+            "Overall FuXi achieves higher ACC on 67.92% and lower RMSE on 53.75% of all 240 variable-level-lead time combinations compared to ECMWF EM"
+        ],
+        "weight": 0.2
+    },
+    {
+        "type": "image",
+        "content": "Figure 3: Spatial distribution of Z500 geopotential height forecasts at different lead times (1, 3, 5, 7, 10 days) comparing ERA5 reanalysis (ground truth), ECMWF HRES, and FuXi predictions. FuXi maintains sharper and more accurate synoptic-scale weather patterns compared to ECMWF HRES at extended lead times. At 10-day lead time, FuXi still captures the major trough-ridge patterns while HRES shows more smoothing and spatial degradation. This demonstrates FuXi's superior ability to preserve fine-scale atmospheric structures in medium-range forecasts.",
+        "path": "images/fig_p5_1.png",
+        "keywords": [
+            "FuXi Z500 forecast fields maintain sharper trough-ridge patterns than ECMWF HRES at lead times beyond 5 days",
+            "At 10-day lead time, FuXi still captures major synoptic-scale features while HRES shows significant spatial smoothing and degradation",
+            "FuXi forecast fields are visually closer to ERA5 ground truth than HRES at all lead times, confirming the quantitative ACC/RMSE improvements shown in Figure 1"
+        ],
+        "weight": 0.3
+    }
+]

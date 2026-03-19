@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "LNS2+RL consistently demonstrates superior performance compared to state-of-the-art algorithms (LNS2, LaCAM, EECBS, SCRIMP) across high-agent-density tasks. Specifically, in maps with complex structures (like Maze or Warehouse), LNS2+RL maintains a success rate of over 50% in nearly half of the tested tasks, whereas baselines like LaCAM, EECBS, and SCRIMP drop to 0%.",
+        "path": "images/QQ_1769942696790.png",
+        "keywords": [
+            "Success Rate",
+            "Complex Obstacle Structure",
+            "High-Agent-Density Tasks"
+        ],
+        "weight": 0.4
+    },
+    {
+        "type": "image",
+        "content": "LNS2+RL significantly reduces the number of \"Remaining Colliding Pairs\" (CP) in the overall solution compared to vanilla LNS2, while maintaining a comparable Sum of Costs (SoC). For example, in random-small maps with 65 agents, LNS2+RL reduced remaining CP by 26.3% compared to LNS2, indicating it resolves complex deadlocks more effectively.",
+        "path": "images/QQ_1769942910026.png",
+        "keywords": [
+            "Remaining Colliding Pairs (CP)",
+            "Sum of Costs (SoC)",
+            "Comparison with Vanilla LNS2"
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "text",
+        "content": "Although the MARL model was trained exclusively on random maps, LNS2+RL demonstrates remarkable zero-shot generalization to unseen environments with distinct structures (Maze, Room, Warehouse). It achieves substantial improvements in Success Rate on these maps compared to baselines, refuting the limitation that MARL planners inevitably degrade when deviating from their training setup .",
+        "path": null,
+        "keywords": [
+            "Zero-Shot Generalization",
+            "Training on Random Maps",
+            "Unseen Map Structures"
+        ],
+        "weight": 0.3
+    }
+]

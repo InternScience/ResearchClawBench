@@ -1,0 +1,323 @@
+\documentclass[aps,prl,onecolumn,superscriptaddress,longbibliography]{revtex4-2}
+\usepackage{amsmath,amssymb}
+\usepackage[pdftex]{hyperref,graphicx}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = blue, citecolor = blue}
+\usepackage{physics}
+\usepackage{xcolor}
+\usepackage{bm}
+\newcommand{\hl}[1]{\textcolor{red}{#1}}
+\newcommand{\hll}[1]{\color{red}{#1}\par\color{black}}
+
+
+\begin{document}
+\title{Supplemental material for ``Topological Phases in AB-stacked MoTe$_2$/WSe$_2$: $\mathbb{Z}_2$ Topological Insulators, Chern Insulators, and Topological Charge Density Waves''}
+\author{Haining Pan}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+\author{Ming Xie}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+\author{Fengcheng Wu}
+\email{wufcheng@whu.edu.cn}
+\affiliation{School of Physics and Technology, Wuhan University, Wuhan 430072, China}
+\affiliation{Wuhan Institute of Quantum Technology, Wuhan 430206, China}
+
+\author{Sankar Das Sarma}
+\affiliation{Condensed Matter Theory Center and Joint Quantum Institute, Department of Physics, University of Maryland, College Park, Maryland 20742, USA}
+
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+%\renewcommand{\bibnumfmt}[1]{[S#1]}
+%\renewcommand{\citenumfont}[1]{S#1}
+\renewcommand{\thesection}{S\arabic{section}}
+
+
+\section{Single-particle Hamiltonian}
+
+The single-particle Hamiltonian in the second quantization formalism can be expressed as
+
+\begin{eqnarray}    &&\hat{\mathcal{H}}_0=\sum_{\tau={\pm}} \int d^2 \bm{r} \Psi_{\tau}^\dagger(\bm{r}) H_{\tau} \Psi_{\tau}(\bm{r}), \\
+    &&H_{\tau}=\begin{pmatrix}
+         -\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}+\Delta_{\mathfrak{b},\tau}(\bm{r}) &  \Delta_{\text{T},\tau}(\bm{r})\\
+        \Delta_{\text{T},\tau}^\dag(\bm{r}) & -\frac{\hbar^2\left(\bm{k}-\tau \bm{\kappa}\right)^2}{2m_\mathfrak{t}}+ \Delta_\mathfrak{t,\tau}(\bm{r})+V_{z\mathfrak{t}}
+    \end{pmatrix},\\
+    &&\Psi_{+}(\bm{r})=\begin{pmatrix}
+                    \psi_{\mathfrak{b},\uparrow,+}(\bm{r}) \\
+                    \psi_{\mathfrak{t},\downarrow,+}(\bm{r}) 
+                \end{pmatrix},  \quad
+    \Psi_{-}(\bm{r})=\begin{pmatrix}
+        \psi_{\mathfrak{b},\downarrow,-}(\bm{r}) \\
+        \psi_{\mathfrak{t},\uparrow,-}(\bm{r}) 
+    \end{pmatrix},
+\end{eqnarray}
+where $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$ is the momentum operator, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is at a corner of the moir\'e Brillouin zone ({as shown in Fig.~\ref{fig:BZ}}), and $a_M$ is the moir\'e lattice constant. Note that the spin index of the fermion operators $\Psi_{\tau}$ is both layer and valley dependent.
+
+The Hamiltonian $\hat{\mathcal{H}}_0$ respects the time reversal symmetry $\mathcal{T}$, which is defined as  
+\begin{equation}\label{eq:Ham}
+    \hat{\mathcal{T}} \psi_{l,s,\tau}(\bm{r}) \hat{\mathcal{T}}^{-1} = - \sum_{s'}\epsilon_{ss'} \psi_{l,s',-\tau}(\bm{r}),\quad
+    \hat{\mathcal{T}} \psi_{l,s,\tau}^{\dagger}(\bm{r}) \hat{\mathcal{T}}^{-1} = - \sum_{s'}\epsilon_{ss'} \psi_{l,s',-\tau}^{\dagger}(\bm{r})
+     ,\quad 
+     \hat{\mathcal{T}}i\hat{\mathcal{T}}^{-1}=-i,
+\end{equation} 
+where $\hat{\mathcal{T}}$ is an antiunitary operator, the layer index $l=\{\mathfrak{b},\mathfrak{t}\}$ for the bottom and top layer, the spin index $s=\{\uparrow, \downarrow\}$ for spin up and down, and $\epsilon_{ss'}$ is the totally antisymmetric tensor with $\epsilon_{\uparrow \downarrow} = - \epsilon_{\downarrow \uparrow} =1$. Here the $\hat{\mathcal{T}}$ operation flips both spin and valley indices.
+By imposing the $\mathcal{T}$ symmetry $\hat{\mathcal{T}} \hat{\mathcal{H}}_0 \hat{\mathcal{T}}^{-1} = \hat{\mathcal{H}}_0$, we find the following constraints 
+\begin{equation}
+    \Delta_{l,-\tau}(\bm{r})=\Delta_{l,\tau}^*(\bm{r}), \quad 
+    \Delta_{\text{T},-\tau}(\bm{r})=-\Delta_{\text{T},\tau}^*(\bm{r}),
+\end{equation}
+Because the Hamiltonian $H_{\tau}$ is Hermitian, $\Delta_{l,\tau}(\bm{r})=\Delta_{l,\tau}^*(\bm{r})$. Therefore, $\Delta_{l,-}(\bm{r})=\Delta_{l,+}(\bm{r})$, and we can denote the intralayer potential simply as $\Delta_{l}(\bm{r})$ by dropping the valley index. For the interlayer tunneling at $+K$ valley $\Delta_{\text{T},+}(\bm{r})=w\left(1+\omega e^{i\bm{g}_2\cdot\bm{r}}+\omega^{2} e^{i\bm{g}_3\cdot\bm{r}} \right)$, we obtain the tunneling at $-K$ valley as $\Delta_{\text{T},-}(\bm{r})=-w\left(1+\omega^{-1} e^{-i\bm{g}_2\cdot\bm{r}}+\omega^{-2} e^{-i\bm{g}_3\cdot\bm{r}} \right)$, where $\omega=e^{i\frac{2\pi}{3}}$, and we assume $w$ takes a real value. The form of $\Delta_{T,+}(\bm{r})$ is determined by $C_{3z}$ (threefold rotation) symmetry.
+
+Parameters of the single-particle Hamiltonian $H_{\tau}$ have been obtained through density-functional-theory(DFT) band structure calculation~\cite{zhang2021spintextured}. However, the obtained parameters $(w, V_b)$ are of the order of meV, which are likely too small to be accurately estimated by DFT. Therefore, we treat $(w, V_b)$ as adjustable parameters. The main physical picture that we obtain in this work remains valid if we vary $(w, V_b)$, which we have checked numerically. In addition, these parameters could be tunable by pressure applied between layers.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=3.4in]{Fig/BZ.pdf}
+    \caption{{A schematic illustration of the momentum space structure. The cyan and brown hexagons represent the  Brillouin zone of MoTe$_2$ (bottom layer) and WSe$_2$ (top layer), respectively. The small hexagon on the right (left) is the moir\'e Brillouin zone for $+K$ ($-K$) valley. Note that we use a different convention of the moir\'e Brillouin zone from that in Ref.~\cite{zhang2021spintextured} due to a gauge transformation which puts the center of the moir\'e Brillouin zone ($\gamma$ point) at the corner of the bottom layer Brillouin zone. We exaggerate the difference between MoTe$_2$ and WSe$_2$ Brillouin zones for illustration.}}
+    \label{fig:BZ}
+\end{figure}
+\section{Hartree-Fock calculation}
+In this section, we include the Coulomb interaction and derive the mean-field Hamiltonian by applying the Hartree-Fock (HF) approximation. We first rewrite $\hat{\mathcal{H}}_0$ in the momentum space with the creation operator being defined as $c_{\bm{k},l,\tau}^\dagger=\frac{1}{\sqrt{A}}\int \psi_{l,\tau}^\dagger(\bm{r}) e^{i \bm{k}\cdot \bm{r}} d^2 \bm{r}$ (the spin index is absent because it can be inferred from the valley and layer indices due to the effective spin-valley-layer locking), where $A$ is the total area. Thus, $\hat{\mathcal{H}}_0$ can be expressed as
+\begin{equation}
+    \hat{\mathcal{H}}_0=\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau} h_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}^{(\tau)} c_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger c_{\bm{k}_{\beta},l_{\beta},\tau},
+\end{equation}
+where $h^{(\tau)}$ is the Hamiltonian $H_{\tau}$ expanded in the plane-wave basis, and the momentum $\bm{k}$ is defined in the extended Brillouin zone {that spans the full momentum space, i.e., $\bm{k} \in \mathbb{R}^2$}. {Here, the subscripts $\alpha,\beta$ are index for momenta.} Due to Bloch's theorem, $h_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}^{(\tau)}$ is nonzero only when $\bm{k}_{\alpha}-\bm{k}_{\beta}$ is equal to {the linear combination of any multiples of hone of the moir\'e reciprocal lattice vectors (including the zero vector)}.
+
+At the charge neutrality (filling factor $\nu=0$) of the heterobilayer, all valence bands are below Fermi energy. We are interested in situations where the valence bands are slightly hole-doped. Therefore, it is convenient to study the many-body interaction in the hole basis.
+We define the hole operator as $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$,  and $\hat{\mathcal{H}}_0$ in the hole basis is
+\begin{equation}
+    \hat{\mathcal{H}}_0 = \sum_\tau\Tr h^{(\tau)}-\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau} [h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}} b_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau}
+\end{equation}
+By combing the single-particle Hamiltonian with the hole-hole Coulomb interaction term, we obtain the full Hamiltonian (dropping the constant term) as
+\begin{equation}\label{eq:full}
+    \begin{split}
+    \hat{\mathcal{H}}&=\hat{\mathcal{H}}_1+\hat{\mathcal{H}}_{\text{int}},\\
+        \hat{\mathcal{H}}_1&=\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau} \tilde{h}^{(\tau)}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}} b_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau},\\
+        \hat{\mathcal{H}}_{\text{int}}&=\frac{1}{2A} \sum_{\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}  }\sum_{l_{\alpha},l_{\beta}}\sum_{\tau_{\alpha},\tau_{\beta}} V(\bm{k}_{\alpha}-\bm{k}_{\delta}) b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \delta_{\bm{k}_{\alpha}+\bm{k}_{\beta}, \bm{k}_{\delta}+\bm{k}_{\gamma}},
+    \end{split}
+\end{equation}
+where $\tilde{h}^{(\tau)}=-[h^{(\tau)}]^{\intercal}$, the dual-gate screened Coulomb interaction $V(\bm{k})= {2\pi e^2\tanh(|\bm{k}|d)}/{(\epsilon |\bm{k}|)}$, $d$ is the sample-to-gate distance, and $\epsilon$ is the dielectric constant.
+
+Using the HF approximation, we obtain the following mean-field Hamiltonian $\hat{H}^{\text{HF}}$,
+\begin{equation}\label{eq:HF}
+    \begin{aligned}
+    \hat{\mathcal{H}}^{\text{HF}}&=\hat{\mathcal{H}}_1 +\hat{\mathcal{H}}_{\text{int}}^{\text{HF}},\\
+    \hat{\mathcal{H}}_{\text{int}}^{\text{HF}}&=\frac{1}{A} \sum_{\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}  }\sum_{l_{\alpha},l_{\beta}}\sum_{\tau_{\alpha},\tau_{\beta}} V(\bm{k}_{\alpha}-\bm{k}_{\delta})\biggl( \expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}} b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}\\
+        &-\expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} }b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}\biggr) \delta_{\bm{k}_{\alpha}+\bm{k}_{\beta}, \bm{k}_{\delta}+\bm{k}_{\gamma}}.
+    \end{aligned}
+\end{equation}
+
+{The Hartree-Fock solution can either preserve or spontaneously break the moir\'e lattice translational symmetry.} In our study, we always assume that the interaction-induced states have a real-space unit cell that is commensurate with the moir\'e unit cell, but the former can be larger than the latter, for example in charge/spin density wave states. In $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$, the average value $\expval{ b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}}$ is nonzero only when $\bm{k}_{\alpha}-\bm{k}_{\beta}=\bm{G}$, where $\bm{G}$ is a  reciprocal lattice vector (including the zero vector) of the resulting real-space unit cell. 
+
+{
+The total energy per moir\'e unit cell is obtained by averaging $\hat{H}$ in Eq.~\eqref{eq:full}, i.e., 
+\begin{equation}\label{eq:total}
+    \begin{aligned}
+        \expval{\hat{\mathcal{H}}}&=\expval{\hat{\mathcal{H}}_1}+\expval{\hat{\mathcal{H}}_{\text{int}}},\\
+        \expval{\hat{\mathcal{H}}_1}&=\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau} \tilde{h}^{(\tau)}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}} \expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau}},\\
+        \expval{\hat{\mathcal{H}}_{\text{int}}}&=\frac{1}{2A} \sum_{\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}  }\sum_{l_{\alpha},l_{\beta}}\sum_{\tau_{\alpha},\tau_{\beta}} V(\bm{k}_{\alpha}-\bm{k}_{\delta}) \biggr( \expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}} \expval{ b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}} \\
+        &- \expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} }\expval{b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}} \biggr) \delta_{\bm{k}_{\alpha}+\bm{k}_{\beta}, \bm{k}_{\delta}+\bm{k}_{\gamma}},
+    \end{aligned}
+\end{equation}
+}
+{
+\section{Numerical calculation of Chern number}
+In this section, we briefly introduce the numerical technique to calculate the Chern number~\cite{wu2020quantum,fukui2005chern}. For a non-degenerate band characterized by the wavefunction $\ket{u_n(\bm{k})}$, the Chern number of the $n$-th band is defined as 
+\begin{equation}\label{eq:C}
+    \mathcal{C}_n=\frac{1}{2\pi}\int_{\openone\mathbb{BZ}} \Omega_n(\bm{k}) \differential^2 k,
+\end{equation}
+where the Berry curvature $\Omega_n(\bm{k})=\partial_x A_{n,y}(\bm{k})-\partial_y A_{n,x}(\bm{k})$, and the Berry connection $A_{n,\mu} (\bm{k})= -i \matrixelement{u_n(\bm{k})}{\partial_\mu}{u_n(\bm{k})} $. 
+
+The direct way of calculation Eq.~\eqref{eq:C} by differentiating the wavefunction $\ket{u_n(\bm{k})}$ is numerically unstable because the gauge-dependent berry connection $\bm{A}_{n}(\bm{k})$ is not guaranteed to be continuous. Therefore, we resort to a gauge-independent method by first discretizing the first Brillouin zone $\openone\mathbb{BZ}$ into small nonoverlapping plaquettes $\Gamma_i$ (i.e., $\cup_i \Gamma_i = \openone\mathbb{BZ}$, $\Gamma_i \cap \Gamma_j=\Gamma_i \delta_{i,j}$) as per
+\begin{equation}
+    \mathcal{C}_n=\frac{1}{2\pi}\sum_{i}\int_{\Gamma_i}  \Omega_n(\bm{k}) \differential^2 k=\frac{1}{2\pi}\sum_{i} \oint_{\partial\Gamma_i} \differential \bm{k} \cdot \bm{A}_n(\bm{k}).
+\end{equation}
+For a sufficiently small plaquette enclosed by the loop $\partial \Gamma_i = \left( \bm{k}_{i,1},\bm{k}_{i,2}, \dots, \bm{k}_{i,s}, \bm{k}_{i,s+1}=\bm{k}_{i,1} \right) $, the flux of Berry curvature $\Phi_{n,i}=\int_{\Gamma_i}  \Omega_n(\bm{k}) \differential^2 k$ can be approximated by finite differences followed by computing its exponential,
+\begin{equation}\label{eq:angle}
+\begin{aligned}
+    e^{i \Phi_{n,i}}&=e^{ \oint_{\partial \Gamma_i} \differential \bm{k}^\mu \matrixelement{u_n(\bm{k})}{\partial_\mu}{u_n(\bm{k})}}=\prod_{s} e^{\delta k_{i,s}^\mu \matrixelement{u_n(\bm{k}_{i,s})}{\partial_\mu}{u_n(\bm{k}_{i,s})}}\approx \prod_{s} \left( 1+  \delta k_{i,s}^\mu \matrixelement{u_n(\bm{k}_{i,s})}{\partial_\mu}{u_n(\bm{k}_{i,s})} \right) \\
+    & \approx \prod_s \braket{u_n(\bm{k}_{i,s})}{u_n(\bm{k}_{i,s+1})},
+\end{aligned}
+\end{equation}
+which is manifestly gauge invariant. Thus, the flux on $\Gamma_i$ is simply the angle of Eq.~\eqref{eq:angle}, i.e.,
+\begin{equation}
+    \Phi_{n,i}=\arg \prod_s \braket{u_n(\bm{k}_{i,s})}{u_n(\bm{k}_{i,s+1})},
+\end{equation}
+and the Chern number is obtained by summing up all fluxes on small plaquettes $\Gamma_i$,
+\begin{equation}
+    \mathcal{C}_n=\frac{1}{2\pi}\sum_i \Phi_{n,i}.
+\end{equation}
+
+In our calculation, we solve the wavefunction $\ket{u_n(\bm{k})}$ self-consistently from the Hamiltonian~\eqref{eq:HF}, and discretize the first Brillouin zone using a Monkhorst-Pack grid of 15 by 15.~\cite{monkhorst1976special}  
+}
+\section{Mean-field Ansatz}
+
+We perform the Hartree-Fock calculation using an iterative approach. We start from an ansatz, i.e., an initial guess state (a Slater determinant state). The average value $\expval{ b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}}$ is calculated with respect to this ansatz, and we obtain the first generation of $\hat{\mathcal{H}}^{\text{HF}}$, which is diagonalized to obtain the next generation of state. This process is iterated until the convergence of the total energy is reached. We discuss choices of the ansatz in different situations in the following.
+
+For states at $\nu=2$, we diagonalize $\tilde{h}^{(\tau)}$, and take an ansatz in which the lowest energy band of $\tilde{h}^{(\tau)}$ at each valley is occupied and  other states are empty. This ansatz preserves the $\mathcal{T}$ symmetry.
+
+For the valley polarized (VP) state at $\nu=1$, we set a similar initial ansatz with the difference being that only the lowest band at $+K$ valley is fully occupied, which explicitly breaks the $\mathcal{T}$ symmetry. This initial ansatz will evolve to VP trivial insulator, VP Chern insulator or VP metallic state depending on the band offset $V_{z\mathfrak{t}}$.
+
+For the intervalley coherent phases, e.g., the SDW and FM$_x$ at $\nu=1$, we use an ancillary Hamiltonian $h_{\text{ansatz}}$ to generate the initial ansatz, and $h_{\text{ansatz}}$ has the following form
+\begin{equation}
+\begin{aligned}
+h_{\text{ansatz}} & =\begin{pmatrix}
+\tilde{h}^{(+)} & 0 \\
+0 & \tilde{h}^{(-)}
+\end{pmatrix}
++\delta h_{\text{ansatz}} \\
+\delta h_{\text{ansatz}} & = \alpha (\bm{S}\cdot \vec{\tau})\otimes \left(\frac{1+\sigma_z}{2}\right),
+\end{aligned}
+\end{equation}
+where $\vec{\tau}$ is the vector of the Pauli matrices acting on the valley space, and $\sigma_z$ is the $z$-component Pauli matrix acting on the layer space, and $\alpha$ is an energy constant. For simplicity, we choose $\delta h_{\text{ansatz}}$ such that it only acts on the bottom layer.
+
+For the in-plane FM$_x$ state,  we choose $ \bm{S}=\left( 1,0,0 \right)$ such that spin polarization in the bottom layer is along an in-plane direction, which leads to
+\begin{equation}
+    \delta h_{\text{ansatz}}^{(\text{FM}_x)}=\alpha \tau_x\otimes \left(\frac{1+\sigma_z}{2}\right)=\alpha 
+    \begin{pmatrix}
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0\\
+        1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 0\\
+    \end{pmatrix}.
+\end{equation}
+
+For the SDW state, the moir\'e lattice translational symmetry is broken so that the system has a $\sqrt{3}\times\sqrt{3}$ period. We assume that the three MM sites in the new enlarged unit cell carry an in-plane antiferromagnetic N\'eel spin ordering, which can have two chiralities $\chi=\pm 1$ (denoted by SDW1 and SDW2 in Fig. 3 in the main text). We define the spin texture as $\bm{S}=\sum_{j=1}^3 \left( \cos(\chi\bm{q}_j \cdot \bm{r}),\sin(\chi\bm{q}_j \cdot \bm{r}),0 \right)$, where $\bm{q}_j=\frac{4\pi}{\sqrt{3}a_M} \left( \cos(\frac{2\pi(j-1)}{3}), \sin(\frac{2\pi(j-1)}{3}) \right)$.
+This spin texture Hamiltonian is given by 
+\begin{equation}\label{eq:Hansatz}
+    \delta h_{\text{ansatz}}^{(\text{SDW})}(\chi)=\alpha\sum_{j=1}^3 \cos(\chi\bm{q}_j\cdot \bm{r})\tau_x \otimes \left(\frac{1+\sigma_z}{2}\right) + \sin(\chi\bm{q}_j\cdot \bm{r})\tau_y \otimes \left(\frac{1+\sigma_z}{2}\right) = \alpha\sum_{j=1}^3 
+    \begin{pmatrix}
+        0 & 0 & e^{-i\chi \bm{q}_{j}\cdot \bm{r}} & 0\\
+        0 & 0 & 0 & 0\\
+        e^{i\chi \bm{q}_{j}\cdot \bm{r}} & 0 & 0 & 0\\
+        0 & 0 & 0 & 0\\
+    \end{pmatrix}.
+\end{equation}
+
+In Fig. 3(a) in the main text, besides the SDW1 and SDW2, we find another SDW (denoted by SDW3) in the phase diagram which has the same chirality as SDW1 but has a charge density redistribution within one super unit cell. The SDW1 ansatz evolves to SDW3 for parameter regions where the SDW3 phase is favored.
+
+For the two phases at $\nu=2/3$ (FM$_z$ and AF$_z$), the charge order forms a honeycomb lattice with a period of $\sqrt{3} \times \sqrt{3}$, which can be generated by
+\begin{equation}\label{eq:nu23}
+    \delta h_{\text{ansatz}}^{(\nu=2/3)}=\alpha
+    \sum_{j=1}^{3}
+    \begin{pmatrix}
+        \cos(\bm{q}_{j}\cdot \bm{r}+\phi)+ V & 0 & 0 & 0\\
+        0 & 0 & 0 & 0\\
+        0 & 0 & \cos(\bm{q}_{j}\cdot \bm{r}-\phi) & 0\\
+        0 & 0 & 0 & 0\\
+    \end{pmatrix}.
+\end{equation} 
+For FM$_z$, we choose $\alpha<0$, $\phi=\pi$ and $V>0$  such that valley-dependent potential in Eq.~\eqref{eq:nu23} reaches its minimum at two vertices of a honeycomb lattice in real space and only at $+K$ valley in the valley pseudospin space. For AF$_z$, we choose $\alpha<0$, $\phi=2\pi/3$ and $V=0$; then the valley-dependent potential in Eq.~\eqref{eq:nu23} reaches its minimum in one vertex of the honeycomb lattice for $+K$ valley and the other vertex for $-K$ valley.
+
+
+\section{Energies of competing states}
+The phase diagrams in the main text are obtained by choosing the lowest energy state among all competing states. In this section, we explicitly show the energy per moir\'e unit cell of competing states at $\nu=1$ and $\nu=2/3$, where the energy is calculated according to Eq.~\eqref{eq:total}. Moreover, we present the corresponding charge density (CD) and spin density (SD) on both layers of every competing state in the real space. 
+%For $\nu=2$, there is no competing state because both phases have the same symmetry connected by a continuous topological quantum phase transformation. 
+
+For $\nu=1$, we show  the average energies per moir\'e unit cell of the competing states at  $\epsilon=12$ and $\epsilon=17$ in Fig.~\ref{fig:Energy11}(a) and \ref{fig:Energy11}(b), respectively. These competing states appear in the phase diagram of Fig. 3 in the main text. 
+
+{In Fig.~\ref{fig:Energy11}(a), at a small $\abs{V_{z\mathfrak{t}}}$, the energetic favorable state is in-plane ferromagnetism (FM$_x$). For generic values of $V_{z\mathfrak{t}}$, there are actually two types of in-plane ferromagnetic states, FM$_x$ and FM$_x^\prime$, as indicated by the light yellow line  ($V_{z\mathfrak{t}}<-12$ meV) and the yellow line ($V_{z\mathfrak{t}}>-12$ meV)  in Fig.~\ref{fig:Energy11}(a), respectively. These two phases differ in the localization of holes. The holes tend to be localized at XX for a small negative $V_{z\mathfrak{t}}$ in FM$_x$ [Fig.~\ref{fig:FMx_1}], while they are localized at MM for a large negative $V_{z\mathfrak{t}}$ in FM$_x^\prime$ [Fig.~\ref{fig:FMx_20}].}
+
+% We show the CDW and SDW of two FM$_x$ states at $\epsilon=12$ corresponding to Fig.~\ref{fig:Energy11}(a) in Fig.~\ref{fig:FMx_1} (for $V_{z\mathfrak{t}}=-1$ meV) and Fig.~\ref{fig:FMx_20} (for $V_{z\mathfrak{t}}=-20$ meV). They have the same period of CDW and SDW but differ in the localization of the holes, namely, the holes tend to be localized at XX for a small negative $V_{z\mathfrak{t}}$ as shown in Fig.~\ref{fig:FMx_1} while they are localized at MM for a large negative $V_{z\mathfrak{t}}$ in Fig.~\ref{fig:FMx_20}. 
+
+As $V_{z\mathfrak{t}}$ decreases towards more negative values, the energetically favorable state becomes the valley polarized state (VP), of which the CD and SD are shown in Fig.~\ref{fig:VP_10}. Finally, the energetically favorable state becomes SDW1  at a large negative $V_{z\mathfrak{t}}$, of which the CD and SD are shown in Fig.~\ref{fig:SDW1_20}. 
+
+For a larger dielectric constant, for example, at $\epsilon=17$, the two kinds of spin density waves (i.e., SDW2 and SDW3) become energetically favorable. The CD and SD for SDW2 and SDW3 are shown in Figs.~\ref{fig:SDW2_20} and~\ref{fig:SDW3_10}, respectively.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/Energy1,1.pdf}
+    \caption{$\nu=1$. The energies per moir\'e unit cell as a function of $V_{z\mathfrak{t}}$ at  (a) $\epsilon=12$ and (b) $\epsilon=17$. The competing states are: (i) FM$_x$ (yellow) or {FM$_x^\prime$ (light yellow)}; (ii) VP (red); (iii) SDW1 ($\epsilon=12$, blue) or SDW3 ($\epsilon=17$, blue); (iv) SDW2 (green).}
+    \label{fig:Energy11}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/FMx_1.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of FM$_x$ at $V_{z\mathfrak{t}}=-1$ meV and $\epsilon=12$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the in-plane spin texture with the false color indicating the magnitude on the bottom (b) and top layer (d), respectively($s_z$ vanishes). The gray solid lines connect MM points in the moir\'e lattice.}
+    \label{fig:FMx_1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/FMx_20.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of FM$_x^\prime$ at $V_{z\mathfrak{t}}=-20$ meV and $\epsilon=12$ (although it is not energy favorable compared to competing states at this set of parameters.). The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the in-plane spin texture with the false color indicating the magnitude on the bottom (b) and top layer (d), respectively($s_z$ vanishes). The gray solid lines connect MM points in the moir\'e lattice.}
+    \label{fig:FMx_20}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/VP_10.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of valley polarized state at $V_{z\mathfrak{t}}=-20$ meV and $\epsilon=12$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the out-of-plane spin component $s_z$ on the bottom (b) and top layer (d), respectively. The gray solid lines connect MM points in the moir\'e lattice.}
+    \label{fig:VP_10}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/SDW1_20.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of the SDW1 at $V_{z\mathfrak{t}}=-10$ meV and $\epsilon=12$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the in-plane spin texture with the false color indicating the magnitude on the bottom (b) and top layer (d), respectively($s_z$ vanishes). The gray solid lines connect MM points in the moir\'e lattice, and the red dashed lines show the magnetic unit cell with an enlarged period of $\sqrt{3} a_M$.}
+    \label{fig:SDW1_20}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/SDW2_20.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of the SDW2 at $V_{z\mathfrak{t}}=-20$ meV and $\epsilon=17$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the in-plane spin texture with the false color indicating the magnitude on the bottom (b) and top layer (d), respectively($s_z$ vanishes). The gray solid lines connect MM points in the moir\'e lattice, and the red dashed lines show the magnetic unit cell with an enlarged period of $\sqrt{3} a_M$.}
+    \label{fig:SDW2_20}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/SDW3_10.pdf}
+    \caption{$\nu=1$. The charge density waves and spin density waves of the SDW3 at $V_{z\mathfrak{t}}=-10$ meV and $\epsilon=17$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the in-plane spin texture with the false color indicating the magnitude on the bottom (b) and top layer (d), respectively($s_z$ vanishes). The gray solid lines connect MM points in the moir\'e lattice, and the red dashed lines show the magnetic unit cell with an enlarged period of $\sqrt{3} a_M$.}
+    \label{fig:SDW3_10}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=3.4in]{Fig/Energy2,3.pdf}
+    \caption{$\nu=2/3$. The energies per moir\'e unit cell of competing states as a function of $V_{z\mathfrak{t}}$ at $\epsilon=17$. The competing states include AF$_z$-HC (blue), FM$_z$-HC (red) and FM$_z$ (light red).}
+    \label{fig:Energy23}
+\end{figure}
+{Figure~\ref{fig:Energy23} shows the average energies per moir\'e unit cell of the  competing states at $\nu=2/3$. There are three competing states, (i)AF$_z$-HC, (ii) FM$_z$-HC, and (iii) FM$_z$, of which the CD and SD are shown in Figs.~\ref{fig:AF}, \ref{fig:FM_HC}, and \ref{fig:FM}, respectively. The FM$_z$-HC and AF$_z$-HC states  have, respectively, antiferromagnetic and ferromagnetic
+spin ordering on a generalized Wigner crystal with honeycomb lattice on the bottom layer. The FM$_z$ state has ferromagnetic spin ordering and respects the moir\'e lattice translational symmetry.
+}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/AF.pdf}
+    \caption{$\nu=2/3$. The charge density waves and spin density waves of AF$_z$-HC at $V_{z\mathfrak{t}}=-20$ meV at $\epsilon=17$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the spin component $s_z$ on the bottom (b) and top layer (d), respectively. The in-plane component of spin is zero. The red dashed lines mark the emergent honeycomb lattice with a period of $\sqrt{3} a_M$.}
+    \label{fig:AF}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/FM_HC.pdf}
+    \caption{$\nu=2/3$. The charge density waves and spin density waves of FM$_z$-HC at $V_{z\mathfrak{t}}=0$ meV at $\epsilon=17$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the spin component $s_z$ on the bottom (b) and top layer (d), respectively. The in-plane component of spin is zero. The red dashed lines mark the emergent honeycomb lattice with a period of $\sqrt{3} a_M$.}
+    \label{fig:FM_HC}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=6.8in]{Fig/FM.pdf}
+    \caption{$\nu=2/3$. The FM$_z$ without breaking the moir\'e lattice translational symmetry at $V_{z\mathfrak{t}}=-16$ meV at $\epsilon=17$. The first column shows the hole density $n$ on the bottom (a) and top layer (c); the second column shows the spin component $s_z$ on the bottom (b) and top layer (d), respectively. The in-plane component of spin is zero.}
+    \label{fig:FM}
+\end{figure}
+
+
+\bibliography{Paper_HeteroBilayer}
+
+\end{document}

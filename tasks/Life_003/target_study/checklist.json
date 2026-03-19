@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "The substitution profile heatmaps reproduced in this experiment confirm that Uncalled4‑trained pore models accurately capture the positional effects of nucleotides on ionic current. The central base exerts the strongest influence on current levels, with purines (A/G) enriched at low currents and pyrimidines (C/T) at high currents. The r10.4.1 model shows a secondary reader head effect, consistent with the double‑reader design, and all models exhibit the expected k‑mer position dependencies, validating the fidelity of Uncalled4’s training procedure.",
+        "path": "images/fig2a_substitution_profile.png",
+        "keywords": [
+            "Central base dominance: The k‑mer position with the largest current variation is the central base (e.g., position 2 in 5‑mers, position 4 in 9‑mers), confirming the pore’s sensitivity to the nucleotide directly within the reader head.",
+            "Purine/pyrimidine segregation: In DNA models, low current levels are associated with purines (A/G), while high currents are associated with pyrimidines (C/T), reflecting the physicochemical properties of bases.",
+            "Dual‑reader signature: The r10.4.1 model exhibits a secondary peak near the beginning of the k‑mer, corresponding to the second reader head, a feature absent in r9.4.1, validating the structural difference between pores."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "The reproduced performance benchmarks demonstrate that Uncalled4 consistently outperforms existing signal aligners across all tested sequencing chemistries. It is 1.3–6.8× faster than Nanopolish, f5c, and Tombo, while producing output files up to 20× smaller. These gains are achieved without compromising alignment quality, as indicated by comparable or lower model MAD values. The results confirm Uncalled4’s computational advantages, making it suitable for large‑scale epigenetic studies.",
+        "path": "images/table1_performance.png",
+        "keywords": [
+            "Alignment speed: Uncalled4 reduces alignment time by 1.7–1.9× compared to Nanopolish and 2.9–6.8× compared to Tombo, enabling rapid processing of large datasets.",
+            "Storage efficiency: The compressed BAM format is over 20× smaller than Nanopolish eventalign files and 6× smaller than gzip‑compressed eventalign, drastically reducing disk usage.",
+            "Consistent quality: Median absolute deviation (MAD) from the pore model is within 0.004 normalized units of the best performer, proving that speed gains do not sacrifice alignment accuracy."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "The precision‑recall curves show that m6Anet using Uncalled4 alignments achieves a significantly higher AUPRC than when using Nanopolish alignments. This indicates that Uncalled4 enables more sensitive detection of m6A modifications, identifying 26% more true‑positive sites in human cell lines (as validated by m6A‑Atlas). The improvement is consistent across coverage bins and gene categories, particularly in cancer‑relevant genes such as ABL1 and JUN.",
+        "path": "images/fig4b_m6a_pr_curve.png",
+        "keywords": [
+            "Higher AUPRC: Uncalled4‑based m6Anet achieves an AUPRC of ~0.60, compared to ~0.50 for Nanopolish, demonstrating superior discrimination of modified sites.",
+            "Increased recall: At a fixed precision of 85%, Uncalled4 finds 28% more true‑positive m6A sites than Nanopolish, directly confirming the 26% improvement reported in the paper.",
+            "Biological relevance: The additional sites detected by Uncalled4 are enriched in cancer‑related genes (e.g., ABL1, JUN), highlighting its value for disease‑focused epitranscriptomic research."
+        ],
+        "weight": 0.4
+    }
+]

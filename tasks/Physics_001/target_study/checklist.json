@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "By simulating the variation of the superfluid stiffness of magic-angle graphene with carrier density, it was found that the experimentally measured values are approximately one order of magnitude larger (enhancement factor ~10×) than the predictions of conventional Fermi liquid theory. This significant enhancement is highly consistent with theoretical models incorporating quantum geometric effects. This result provides the most direct static parameter evidence for the dominant role of quantum geometric effects in the superconductivity of magic-angle graphene, verifying the core argument of the paper.",
+        "path": "images/Result1_Figure_1.png",
+        "keywords": [
+            "Quantum Geometric Enhancement Factor: The experimentally measured superfluid stiffness \\( D_s \\) values are approximately 10 times (an order of magnitude enhancement) larger than the predictions of conventional Fermi liquid theory \\( D_s^{(\\text{conv})} \\), quantitatively verifying that the contribution of quantum geometric effects \\( D_s^{(\\text{QG})} \\) is dominant.",
+            "Carrier Density Scaling Relation: In both hole-doped (\\( \\nu < 0 \\)) and electron-doped (\\( \\nu > 0 \\)) regions, \\( D_s \\) shows an approximately linear increase with effective carrier density \\( \\bar{n} \\) (relative to \\( |\\nu|=2 \\)), but the slope far exceeds the prediction of conventional theory \\( D_s^{(\\text{conv})} = e^2\\bar{n}v_F/\\hbar k_F \\).",
+            "Consistency Between Theory and Experiment: The simulated experimental data points are in excellent agreement with the quantum geometric theoretical curve (assuming an effective Fermi velocity \\( v_F^{\\text{(QG)}} \\approx 3000\\ \\text{m/s} \\)), while showing significant deviation from the theoretical prediction based on the conventional Fermi velocity \\( v_F^{\\text{(conv)}} \\approx 700\\ \\text{m/s} \\)."
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "image",
+        "content": "By analyzing the temperature dependence of the superfluid stiffness, it was found to follow a power-law behavior \\( D_s(T) = D_s(0)[1 - (T/T_c)^n] \\), with a fitted exponent \\( n \\approx 2.5 \\pm 0.2 \\), clearly ruling out the exponential temperature dependence of isotropic s-wave BCS superconductors. This power-law exponent falls within the range of 2-3, consistent with the theoretically predicted behavior for an anisotropic superconducting gap, providing key thermodynamic evidence for the unconventional pairing mechanism in MATBG.",
+        "path": "images/Result2_Figure_1.png",
+        "keywords": [
+            "Determination of Power-Law Exponent: The fitted temperature dependence yields a power-law exponent \\( n = 2.5 \\pm 0.2 \\), which lies within the reported range of \\( n = 2-3 \\) in the literature, clearly ruling out the exponential behavior of isotropic BCS models (typically \\( n \\geq 4.5 \\)).",
+            "Evidence for Anisotropic Gap: The power-law exponent \\( n \\approx 2.3-2.8 \\) is consistent with the theoretically predicted temperature dependence for an anisotropic superconducting gap, indicating that MATBG possesses a direction-dependent superconducting gap structure, rather than isotropic s-wave pairing.",
+            "Linear Relationship in Log-Log Plot: In the plot of \\( \\log[D_s(0)-D_s(T)] \\) versus \\( \\log(T_c-T) \\), the low-temperature region shows a clear linear relationship with a slope of \\( n \\), further verifying the reliability of the power-law behavior and contrasting with the linear temperature dependence of nodal superconductors."
+        ],
+        "weight": 0.35
+    },
+    {
+        "type": "image",
+        "content": "By verifying the dependence of the superfluid stiffness on both DC and microwave currents, it was found that both exhibit a quadratic relationship \\( D_s(I) = D_s(0)[1 - (I/I_c)^2] \\), consistent with the description of current-induced pair-breaking in Ginzburg-Landau theory, but ruling out the linear current dependence of the nonlinear Meissner effect. This result supports the conclusion that MATBG has a nodeless anisotropic gap structure, completing the three-dimensional verification of the microscopic picture of superconductivity.",
+        "path": "images/Result3_Figure_1.png",
+        "keywords": [
+            "Confirmation of Quadratic Relationship: The DC current dependence shows \\( \\Delta D_s = D_s(0) - D_s(I) \\propto I^2 \\), with a correlation coefficient \\( R^2 > 0.98 \\), verifying the Ginzburg-Landau form of quadratic current dependence.",
+            "Critical Current Parameter: The fitted critical current is \\( I_c = 50 \\pm 2\\ \\text{nA} \\), which is of the same order of magnitude as the experimental values in the literature, and this parameter is related to the size of the superconducting gap and the quantum geometric contribution.",
+            "Consistency with Microwave Current: The microwave power dependence also shows a quadratic relationship. Since \\( P_{\\text{MW}} \\propto I_{\\text{MW}}^2 \\), the frequency shift \\( \\Delta f_r \\propto P_{\\text{MW}} \\) is equivalent to \\( D_s \\propto 1 - (I/I_c)^2 \\), verifying the consistency of the electromagnetic response."
+        ],
+        "weight": 0.3
+    }
+]

@@ -1,0 +1,11 @@
+{
+    "task": "Input: Formal statements of olympiad-level geometry problems (e.g., IMO diagrams and premises).\r\nOutput: Machine-verifiable, human-readable proofs for Euclidean geometry theorems.\r\nScientific Goal: To develop an AI system that autonomously solves complex geometry problems without human demonstrations, advancing neuro-symbolic reasoning in mathematics.",
+    "data": [
+        {
+            "name": "imo_ag_30.txt",
+            "path": "./tasks/Math_004/data/imo_ag_30.txt",
+            "type": "structure_data",
+            "description": "A curated benchmark of 30 geometry problems from the International Mathematical Olympiad (since 2000), used for final evaluation."
+        }
+    ]
+}

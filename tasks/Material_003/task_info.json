@@ -1,0 +1,17 @@
+{
+    "task": "Develop an AI-guided inverse-design framework for recyclable vitrimeric polymers by combining molecular dynamics simulations, Gaussian-process calibration, and a graph variational autoencoder, with the goal of generating new vitrimer chemistries that achieve desired glass transition temperatures (Tg) and validating selected candidates experimentally.",
+    "data": [
+        {
+            "name": "tg_calibration",
+            "path": "./tasks/Material_004/data/tg_calibration.csv",
+            "type": "feature_data",
+            "description": "Contains molecular SMILES, experimental Tg values, and MD simulated Tg values used to train and evaluate the Gaussian process calibration model."
+        },
+        {
+            "name": "tg_vitrimer_MD",
+            "path": "./tasks/Material_004/data/tg_vitrimer_MD.csv",
+            "type": "feature_data",
+            "description": "Contains molecular structures of vitrimer systems and their MD simulated Tg values used as input for the Gaussian process calibration to generate calibrated Tg predictions."
+        }
+    ]
+}

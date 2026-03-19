@@ -1,0 +1,35 @@
+[
+    {
+        "type": "image",
+        "content": "By artificially injecting 5% missing values and 2% outliers into the electricity load data of building BN001 and applying the two-stage data cleaning algorithm (TCCA+CRAC) proposed in the paper, the cleaned daily load curves, clustered via K-means (k=3), showed typical patterns highly consistent with the original ground-truth cluster centers. The mean absolute error (MAE) and root mean square error (RMSE) were reduced to very low levels. This demonstrates that the cleaning algorithm effectively restores data integrity and corrects anomalous fluctuations, providing a reliable data foundation for subsequent energy analysis, and validating the effectiveness and necessity of the data cleaning method presented in the paper.",
+        "path": "images/cleaning_clusters.png",
+        "keywords": [
+            "Missing value imputation: TCCA filled >95% missing values (temporal continuity/periodicity), MAE <0.5 kW.",
+            "Anomaly correction: CRAC (K-means k=3, ε=3000) corrected outliers, reducing RMSE by ~80%.",
+            "Clustering pattern recovery: Cleaned cluster centers matched original patterns (e.g., peaks), confirming no bias introduced."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "After merging regional total energy consumption and weather data, the computed Pearson correlation matrices revealed a strong positive correlation between electricity load and temperature (r ≈ 0.75), a positive correlation between PV generation and temperature (r ≈ 0.60) and a negative correlation with humidity (r ≈ -0.40). Correlations with wind speed, pressure, etc., were weaker but physically plausible. These results quantify the intrinsic relationships between energy consumption and meteorological factors, validate the reasonableness of inter-variable relationships within the dataset, provide a basis for feature selection in multi-energy load forecasting, and support the paper's core argument regarding the importance of multi-source data integration.",
+        "path": "images/corr_elec_weather.png",
+        "keywords": [
+            "Electricity-temperature correlation: r=0.75, indicating cooling demand rises with temperature.",
+            "PV-temperature/humidity: r=0.60 (temp) and r=-0.40 (humidity), reflecting efficiency on clear/warm days.",
+            "Other weather variables: |correlations| <0.2 with electricity/PV, limited direct impact at hourly scale."
+        ],
+        "weight": 0.3
+    },
+    {
+        "type": "image",
+        "content": "By summing the hourly electricity loads of the 10 buildings (BN001–BN010) in community CN01 and comparing with the community-level record in CN01_energy.csv, the results showed that the maximum absolute error, mean absolute error, and mean relative error were all zero (within floating-point precision), and the time-series curves for the selected day (2014-01-15) completely overlapped. This confirms that the community-level data is an exact aggregation of its constituent building data, demonstrating rigorous hierarchical self-consistency. It provides a reliable foundation for cross-scale energy analysis from individual to regional levels and directly validates the correctness of the dataset's hierarchical structure and the accuracy of the aggregation method described in the paper.",
+        "path": "images/hierarchical_check.png",
+        "keywords": [
+            "Zero aggregation error: Sum of building loads equals community record at all timestamps, confirming accurate aggregation.",
+            "Complete time-series alignment: Daily load curves on 2014-01-15 overlapped, validating consistency under dynamic variations.",
+            "Hierarchical reliability: Supports multi-scale studies (building/community/region) with self-consistent data, meeting hierarchical benchmark requirement."
+        ],
+        "weight": 0.4
+    }
+]

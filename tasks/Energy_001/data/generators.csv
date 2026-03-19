@@ -1,0 +1,44 @@
+bus,carrier,p_nom,marginal_cost
+Bus1,onshore wind,10000.0,0.0
+Bus2,onshore wind,10000.0,0.0
+Bus3,onshore wind,10000.0,0.0
+Bus4,onshore wind,10000.0,0.0
+Bus5,onshore wind,10000.0,0.0
+Bus6,onshore wind,500.0,0.0
+Bus7,onshore wind,500.0,0.0
+Bus8,onshore wind,500.0,0.0
+Bus9,onshore wind,500.0,0.0
+Bus10,onshore wind,500.0,0.0
+Bus11,onshore wind,500.0,0.0
+Bus12,onshore wind,500.0,0.0
+Bus13,onshore wind,500.0,0.0
+Bus14,onshore wind,500.0,0.0
+Bus15,onshore wind,500.0,0.0
+Bus16,onshore wind,500.0,0.0
+Bus17,onshore wind,500.0,0.0
+Bus18,onshore wind,500.0,0.0
+Bus19,onshore wind,500.0,0.0
+Bus20,onshore wind,500.0,0.0
+Bus1,gas,494.338644844741,50.0
+Bus2,gas,435.6745158869479,50.0
+Bus3,gas,714.3687545759647,50.0
+Bus4,gas,478.37666334679466,50.0
+Bus5,gas,440.4672548436904,50.0
+Bus6,gas,571.3480415791242,50.0
+Bus7,gas,370.4621124873813,50.0
+Bus8,gas,701.0984903770199,50.0
+Bus9,gas,337.2753218398854,50.0
+Bus10,gas,793.4434683002587,50.0
+Bus11,gas,686.1223846483288,50.0
+Bus12,gas,399.3578407670862,50.0
+Bus13,gas,302.7610585618012,50.0
+Bus14,gas,707.7307142274171,50.0
+Bus15,gas,653.4286719238086,50.0
+Bus16,gas,664.5035840204937,50.0
+Bus17,gas,685.6351733429728,50.0
+Bus18,gas,337.0223258670452,50.0
+Bus19,gas,479.23286427213634,50.0
+Bus20,gas,357.93452976256486,50.0
+Bus2,nuclear,1200.0,10.0
+Bus8,nuclear,1200.0,10.0
+Bus14,nuclear,1200.0,10.0

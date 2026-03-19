@@ -1,0 +1,38 @@
+{
+  "n_records": 832,
+  "year_min": 2000,
+  "year_max": 2025,
+  "n_states": 13,
+  "top_state": {
+    "state": "california",
+    "count": 215
+  },
+  "top_purpose": {
+    "purpose": "augment snowpack",
+    "count": 516
+  },
+  "top_agent": {
+    "agent": "silver iodide",
+    "count": 521
+  },
+  "annual_peak": {
+    "year": 2003,
+    "count": 49
+  },
+  "annual_min": {
+    "year": 2020,
+    "count": 12
+  },
+  "reported_validation_accuracy": 0.9838,
+  "manual_validation_sample_size": 200,
+  "wilson_95_ci": [
+    0.9550993566756918,
+    0.994265247997741
+  ],
+  "simulation_quantiles_2p5_50_97p5": [
+    0.965,
+    0.985,
+    1.0
+  ],
+  "simulation_prob_accuracy_ge_95pct": 0.99955
+}

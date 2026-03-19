@@ -1,0 +1,41 @@
+{
+    "task": "Input: Historical and future energy system data for Great Britain, including network topology, generator capacities, demand profiles, renewable time series, fuel prices, and National Grid’s Future Energy Scenarios (FES) up to 2050.\r\n\r\nOutput: Optimal power dispatch (generation, storage, curtailment) and system costs under different scenarios, with high spatial (29-node or zonal) and temporal (hourly) resolution.\r\n\r\nScientific objective: To provide a fully open-source, high-resolution model of the GB power system that enables transparent, reproducible analysis of future energy pathways, such as renewable integration, network constraints, and flexibility options.",
+    "data": [
+        {
+            "name": "buses.csv",
+            "path": "./tasks/Energy_002/data/buses.csv",
+            "type": "structure_data",
+            "description": "Defines the buses (nodes) of the power system, including bus name, nominal voltage, and carrier type. This information forms the foundation of the grid topology."
+        },
+        {
+            "name": "links.csv",
+            "path": "./tasks/Energy_002/data/links.csv",
+            "type": "structure_data",
+            "description": "Describes transmission lines (or links), including source bus, target bus, nominal power capacity, line length, and carrier type. Used to simulate grid transmission capabilities and constraints."
+        },
+        {
+            "name": "demand.csv",
+            "path": "./tasks/Energy_002/data/demand.csv",
+            "type": "sequence_data",
+            "description": "Provides hourly active power demand (MW) at each bus for 168 hours (one week). This is the electricity demand time series that the system must satisfy."
+        },
+        {
+            "name": "generators.csv",
+            "path": "./tasks/Energy_002/data/generators.csv",
+            "type": "structure_data",
+            "description": "Lists all generator units with attributes such as bus location, carrier type (e.g., wind, gas, nuclear), rated capacity, and marginal cost. Defines the generation resources of the system."
+        },
+        {
+            "name": "wind_cf.csv",
+            "path": "./tasks/Energy_002/data/wind_cf.csv",
+            "type": "sequence_data",
+            "description": "Contains hourly wind capacity factors (0~1) for each bus, reflecting the temporal variability of wind resources. Used to calculate the maximum available output of wind turbines."
+        },
+        {
+            "name": "storage.csv",
+            "path": "./tasks/Energy_002/data/storage.csv",
+            "type": "structure_data",
+            "description": "Describes the parameters of storage units, including bus location, type (e.g., pumped hydro), power capacity, energy capacity, and charge/discharge efficiency. Used to simulate the charging and discharging behavior of storage."
+        }
+    ]
+}
