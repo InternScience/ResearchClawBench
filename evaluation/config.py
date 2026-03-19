@@ -14,7 +14,7 @@ WORKSPACES_DIR = PROJECT_ROOT / "workspaces"
 WORKSPACES_DIR.mkdir(exist_ok=True)
 
 # Scoring model (OpenAI-compatible; override via SCORER_MODEL env var)
-SCORER_MODEL = os.environ.get("SCORER_MODEL", "gpt-4o")
+SCORER_MODEL = os.environ.get("SCORER_MODEL", "gpt-5.1")
 
 # Agent presets: name -> {cmd, label, icon}
 # {prompt_file} and {workspace} are substituted at runtime
