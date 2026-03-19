@@ -42,7 +42,7 @@ Unlike benchmarks that test coding ability or factual recall, ResearchClawBench 
 <td align="center">🚀<br/><b>Re-Discovery to New Discovery</b><br/><sub>50 = match the paper, 70+ = surpass it</sub></td>
 <td align="center">📋<br/><b>Fine-Grained Checklist</b><br/><sub>Per-item keywords, weights & reasoning</sub></td>
 <td align="center">📡<br/><b>Live Streaming UI</b><br/><sub>Watch agents code, plot & write in real-time</sub></td>
-<td align="center">🪶<br/><b>Lightweight Dependencies</b><br/><sub>Pure Flask + vanilla JS, no heavy frameworks</sub></td>
+<td align="center">🍃<br/><b>Lightweight Dependencies</b><br/><sub>Pure Flask + vanilla JS, no heavy frameworks</sub></td>
 </tr>
 </table>
 
