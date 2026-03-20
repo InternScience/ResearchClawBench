@@ -326,19 +326,24 @@ def api_run_meta(run_id):
         return jsonify({"error": "Meta not found"}), 404
 
 
-@app.route("/api/runs/<run_id>/files")
-def api_run_files(run_id):
-    """Get workspace file tree."""
+@app.route("/api/runs/<run_id>/input-files")
+def api_run_input_files(run_id):
+    """Get input files (data/, related_work/). These don't change during a run."""
     workspace = get_run_workspace(run_id)
     if not workspace:
         return jsonify({"error": "Run not found"}), 404
-    return jsonify(build_file_tree(workspace))
+    tree = []
+    for subdir in ["data", "related_work"]:
+        sub = workspace / subdir
+        if sub.exists():
+            tree.append({"name": subdir, "path": subdir, "type": "directory"})
+            tree.extend(build_file_tree(sub, subdir))
+    return jsonify(tree)
 
 
 @app.route("/api/runs/<run_id>/output-files")
 def api_run_output_files(run_id):
-    """Get only agent-generated files (code/, outputs/, report/) + INSTRUCTIONS.md.
-    Much faster than /files for workspaces with large data/ directories."""
+    """Get agent-generated files (code/, outputs/, report/) + INSTRUCTIONS.md."""
     workspace = get_run_workspace(run_id)
     if not workspace:
         return jsonify({"error": "Run not found"}), 404

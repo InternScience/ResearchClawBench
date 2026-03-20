@@ -93,7 +93,7 @@ const API = '';
 })();
 
 /* ── State ───────────────────────────────────────────────────────────── */
-let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research' };
+let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research', _cachedInputFiles: [], _selectEpoch: 0 };
 
 /* ── Init ────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
@@ -449,12 +449,16 @@ async function selectTask(taskId) {
   const stopBtn0 = document.getElementById('btn-stop-run');
   if (stopBtn0) stopBtn0.style.display = 'none';
 
+  const epoch = ++state._selectEpoch;
+  const stale = () => state._selectEpoch !== epoch;
+
   state.currentTaskId = taskId; state.currentRunId = null;
   document.querySelectorAll('.task-item').forEach(el => el.classList.toggle('active', el.dataset.taskId === taskId));
   document.getElementById('welcome-screen').style.display = 'none';
   document.getElementById('task-view').style.display = 'flex';
 
   // Immediately clear stale content from previous task
+  state._cachedInputFiles = [];
   document.getElementById('file-tree').innerHTML = '<div class="placeholder" style="padding:8px;opacity:.6">Loading...</div>';
   document.getElementById('file-content-header').textContent = '';
   document.getElementById('file-content-body').innerHTML = '<div class="placeholder">Loading...</div>';
@@ -476,6 +480,7 @@ async function selectTask(taskId) {
   const info = STATIC_MODE
     ? await fetchStaticJSON(`data/tasks/${taskId}/info.json`)
     : await (await fetch(`${API}/api/tasks/${taskId}/info`)).json();
+  if (stale()) return;
   document.getElementById('task-description').textContent = info?.task || '';
 
   try {
@@ -498,6 +503,7 @@ async function selectTask(taskId) {
       </div>`;
     }).join('');
   } catch (e) { document.getElementById('task-checklist-preview').innerHTML = '<p class="placeholder">No checklist</p>'; }
+  if (stale()) return;
 
   const paperIframe = document.getElementById('paper-iframe');
   if (paperIframe) {
@@ -507,6 +513,7 @@ async function selectTask(taskId) {
       const paperContainer = paperIframe.parentElement;
       try {
         const resp = await fetch(paperUrl);
+        if (stale()) return;
         const ct = resp.headers.get('content-type') || '';
         if (resp.ok && ct.includes('pdf')) {
           paperIframe.style.display = 'block';
@@ -533,6 +540,7 @@ async function selectTask(taskId) {
     }
   }
   await loadRuns(taskId);
+  if (stale()) return;
   document.getElementById('terminal-body').innerHTML = '<div class="placeholder">Select a run to see agent output</div>';
   document.getElementById('terminal-status').textContent = 'Agent Output';
   document.getElementById('terminal-status').className = 'terminal-status';
@@ -541,6 +549,7 @@ async function selectTask(taskId) {
   const runs = STATIC_MODE
     ? (state._runsIndex || []).filter(r => r.task_id === taskId).sort((a,b) => (b.timestamp||'').localeCompare(a.timestamp||''))
     : await (await fetch(`${API}/api/runs?task_id=${taskId}`)).json();
+  if (stale()) return;
   if (runs.length > 0) {
     await selectRun(runs[0].run_id);
   } else {
@@ -548,12 +557,12 @@ async function selectTask(taskId) {
     // Load task file tree (both modes)
     if (STATIC_MODE) {
       await loadStaticTaskFiles(taskId);
-      // Auto-open INSTRUCTIONS.md
+      if (stale()) return;
       const instrUrl = `data/tasks/${taskId}/workspace/INSTRUCTIONS.md`;
       renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', instrUrl, null, `data/tasks/${taskId}/workspace/`, 'INSTRUCTIONS.md');
     } else {
       await loadTaskFiles(taskId);
-      // Auto-open INSTRUCTIONS.md
+      if (stale()) return;
       const baseUrl = `${API}/api/tasks/${taskId}/file?path=`;
       renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', baseUrl + encodeURIComponent('INSTRUCTIONS.md'), null, baseUrl, 'INSTRUCTIONS.md');
     }
@@ -616,9 +625,8 @@ async function selectRun(runId) {
   stopAutoTrack();
 
   state.currentRunId = runId;
-  state.userSelectedFile = false;
   const fileTrack = document.getElementById('toggle-file-track');
-  if (fileTrack) fileTrack.classList.add('on');
+  if (fileTrack) fileTrack.classList.toggle('on', !state.userSelectedFile);
   const stopBtn = document.getElementById('btn-stop-run');
   if (stopBtn) stopBtn.style.display = 'none';
   document.querySelectorAll('.run-item').forEach(el => el.classList.toggle('active', el.dataset.runId === runId));
@@ -627,24 +635,33 @@ async function selectRun(runId) {
   document.getElementById('terminal-status').textContent = 'Agent Output';
   document.getElementById('terminal-status').className = 'terminal-status';
 
+  const isStale = () => state.currentRunId !== runId;
+
   if (STATIC_MODE) {
-    // Static mode: load everything from exported JSON/files
     const runData = await fetchStaticJSON(`data/runs/${runId}/data.json`);
+    if (isStale()) return;
     showDuration(runData?.duration_seconds);
     // File tree
     const files = await fetchStaticJSON(`data/runs/${runId}/files.json`);
+    if (isStale()) return;
     if (files && files.length) {
       renderFileTree(files, runId, null);
-      // Auto-open: latest viewable file by mtime
-      let best = null;
-      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false || !isAgentOutput(f.path)) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; }
-      if (best) {
-        const url = `data/runs/${runId}/workspace/${best.path}`;
-        renderFileContent(best.path, best.name, url, null, `data/runs/${runId}/workspace/`, best.path);
+      if (state.userSelectedFile) {
+        // Follow off — show INSTRUCTIONS.md as default
+        const instrUrl = `data/runs/${runId}/workspace/INSTRUCTIONS.md`;
+        renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', instrUrl, null, `data/runs/${runId}/workspace/`, 'INSTRUCTIONS.md');
+      } else {
+        let best = null;
+        for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false || !isAgentOutput(f.path)) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; }
+        if (best) {
+          const url = `data/runs/${runId}/workspace/${best.path}`;
+          renderFileContent(best.path, best.name, url, null, `data/runs/${runId}/workspace/`, best.path);
+        }
       }
     }
     // Agent output (limit to last 500 lines to prevent freeze)
     const outputLines = await fetchStaticJSON(`data/runs/${runId}/output.json`);
+    if (isStale()) return;
     const termBody = document.getElementById('terminal-body');
     termBody.innerHTML = '';
     if (outputLines && outputLines.length) {
@@ -684,6 +701,7 @@ async function selectRun(runId) {
     switchTab(state.lastTab);
   } else {
     const meta = await (await fetch(`${API}/api/runs/${runId}/meta`)).json();
+    if (isStale()) return;
     showDuration(meta.duration_seconds);
     if (meta.status === 'running') {
       startDurationTimer();
@@ -691,15 +709,23 @@ async function selectRun(runId) {
     } else {
       // Load workspace + file first, then the rest in parallel
       const wsFiles = await loadWorkspace(runId);
-      autoOpenLatestFile(runId, wsFiles);
+      if (isStale()) return;
+      if (state.userSelectedFile) {
+        // Follow off — show INSTRUCTIONS.md as default
+        const baseUrl = `${API}/api/runs/${runId}/file?path=`;
+        renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', baseUrl + encodeURIComponent('INSTRUCTIONS.md'), null, baseUrl, 'INSTRUCTIONS.md');
+      } else {
+        autoOpenLatestFile(runId, wsFiles);
+      }
       await Promise.all([loadSavedOutput(runId), loadReport(runId), loadScore(runId)]);
+      if (isStale()) return;
       switchTab(state.lastTab);
     }
   }
 }
 
 async function autoOpenLatestFile(runId, files) {
-  if (state.userSelectedFile) return;
+  if (state.userSelectedFile || state.currentRunId !== runId) return;
   try {
     if (!files) files = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
     let latest = null;
@@ -716,6 +742,7 @@ async function loadSavedOutput(runId) {
   body.innerHTML = '';
   try {
     const lines = await (await fetch(`${API}/api/runs/${runId}/output?tail=500`)).json();
+    if (state.currentRunId !== runId) return;
     if (!lines.length) { body.innerHTML = '<div class="placeholder">No agent output recorded</div>'; return; }
     // Limit rendering to last 500 lines to prevent browser freeze on large outputs
     const MAX_RENDER = 500;
@@ -791,6 +818,7 @@ function onStreamEnd(status, runId) {
   { const _el = document.getElementById('btn-stop-run'); if (_el) _el.style.display = 'none'; }
   // Wait for _meta.json to be written, then refresh
   setTimeout(async () => {
+    if (state.currentRunId !== runId) return;
     loadRuns(state.currentTaskId);
     loadWorkspace(runId);
     loadReport(runId);
@@ -813,24 +841,20 @@ async function stopRun() {
 function startAutoTrack(runId) {
   stopAutoTrack();
   let lastFileCount = 0;
-  let treeRefreshCounter = 0;
   state.autoTrackTimer = setInterval(async () => {
+    if (state.currentRunId !== runId) { stopAutoTrack(); return; }
     try {
-      // Use lightweight endpoint for file follow (only code/outputs/report/)
+      // Only fetch output files (lightweight), merge with cached input files for tree
       const outFiles = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
+      const allFiles = [...(state._cachedInputFiles || []), ...outFiles];
 
-      // Refresh full file tree every 3rd tick (9s) to avoid scanning data/
-      treeRefreshCounter++;
-      if (treeRefreshCounter >= 3) {
-        treeRefreshCounter = 0;
-        const allFiles = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
-        if (allFiles.length !== lastFileCount) {
-          lastFileCount = allFiles.length;
-          renderFileTree(allFiles, runId, null);
-        }
+      // Refresh file tree if file count changed
+      if (allFiles.length !== lastFileCount) {
+        lastFileCount = allFiles.length;
+        renderFileTree(allFiles, runId, null);
       }
 
-      // Auto-show most recently modified viewable file
+      // Auto-show most recently modified viewable file (from output files only)
       if (!state.userSelectedFile) {
         let latest = null;
         for (const f of outFiles) {
@@ -986,17 +1010,17 @@ function appendLine(text, cls) {
 
 /* ── Workspace ───────────────────────────────────────────────────────── */
 async function loadTaskFiles(taskId) {
-  // Show task structure (data/, related_work/, INSTRUCTIONS.md, empty dirs)
   try {
     const files = await (await fetch(`${API}/api/tasks/${taskId}/files`)).json();
+    if (state.currentTaskId !== taskId) return;
     renderFileTree(files, null, taskId);
   } catch (e) { console.error(e); }
 }
 
 async function loadStaticTaskFiles(taskId) {
-  // Static mode: load task file tree from exported JSON
   try {
     const files = await fetchStaticJSON(`data/tasks/${taskId}/files.json`);
+    if (state.currentTaskId !== taskId) return;
     if (files && files.length) {
       renderStaticTaskFileTree(files, taskId);
     } else {
@@ -1042,13 +1066,26 @@ function renderStaticTaskFileTree(files, taskId) {
       (pp && dirMap[pp] || tree).appendChild(item);
     }
   }
+  // Apply current expand/collapse state
+  if (!treeExpanded) {
+    tree.querySelectorAll('.file-tree-item.dir').forEach(item => {
+      item.dataset.open = 'false';
+      item.querySelector('.folder-arrow').innerHTML = '&#9654;';
+    });
+    tree.querySelectorAll('.file-tree-children').forEach(c => { c.style.display = 'none'; });
+  }
 }
 
 async function loadWorkspace(runId) {
   try {
-    const files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
-    renderFileTree(files, runId, null);
-    return files;
+    const inputFiles = await (await fetch(`${API}/api/runs/${runId}/input-files`)).json();
+    if (state.currentRunId !== runId) return [];
+    state._cachedInputFiles = inputFiles;
+    const outputFiles = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
+    if (state.currentRunId !== runId) return [];
+    const allFiles = [...inputFiles, ...outputFiles];
+    renderFileTree(allFiles, runId, null);
+    return outputFiles;
   } catch (e) { console.error(e); return []; }
 }
 
@@ -1100,6 +1137,14 @@ function renderFileTree(files, runId, taskId) {
       (pp && dirMap[pp] || tree).appendChild(item);
     }
   }
+  // Apply current expand/collapse state
+  if (!treeExpanded) {
+    tree.querySelectorAll('.file-tree-item.dir').forEach(item => {
+      item.dataset.open = 'false';
+      item.querySelector('.folder-arrow').innerHTML = '&#9654;';
+    });
+    tree.querySelectorAll('.file-tree-children').forEach(c => { c.style.display = 'none'; });
+  }
 }
 
 async function loadTaskFile(taskId, path, name, evt) {
@@ -1120,7 +1165,10 @@ async function loadFile(runId, path, name, evt, isAutoTrack) {
   renderFileContent(path, name, url, evt, baseUrl, path);
 }
 
+let _renderFileEpoch = 0;
 async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
+  const myEpoch = ++_renderFileEpoch;
+  const staleFile = () => _renderFileEpoch !== myEpoch;
   document.querySelectorAll('.file-tree-item').forEach(el => el.classList.remove('active'));
   if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
   document.getElementById('file-content-header').textContent = path;
@@ -1158,6 +1206,7 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
     if (STATIC_MODE) { div.innerHTML = '<div class="placeholder">Excel preview not available in static mode</div>'; return; }
     try {
       const res = await fetch(url.replace('/file?', '/xlsx_preview?'));
+      if (staleFile()) return;
       const data = await res.json();
       if (data.error) { div.innerHTML = `<div class="placeholder">${esc(data.error)}</div>`; return; }
       let html = '<div style="overflow:auto"><table class="xlsx-table"><thead><tr>';
@@ -1176,7 +1225,9 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
     } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
   } else if (VIEWABLE_CSV_EXTS.has(ext)) {
     try {
-      const text = await (await fetch(url)).text();
+      const raw = await (await fetch(url)).text();
+      if (staleFile()) return;
+      const text = raw.length > 500000 ? raw.substring(0, 500000) : raw;
       // Detect delimiter
       const firstLine = text.split('\n')[0] || '';
       const delim = ext === 'tsv' ? '\t' : firstLine.includes('\t') ? '\t' : firstLine.includes(',') ? ',' : /\s{2,}/.test(firstLine) ? /\s{2,}/ : ',';
@@ -1189,12 +1240,21 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
         html += '<tr>' + row.map(c => `<td>${esc(c.trim())}</td>`).join('') + '</tr>';
       });
       html += '</tbody></table></div>';
-      html += `<div style="margin-top:8px;font-size: 13.5px;color:var(--text-tertiary)">${lines.length} rows × ${rows[0].length} cols</div>`;
+      html += `<div style="margin-top:8px;font-size: 13.5px;color:var(--text-tertiary)">${lines.length} rows × ${rows[0].length} cols${raw.length > 500000 ? ' (truncated)' : ''}</div>`;
       div.innerHTML = html;
     } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
   } else {
     try {
-      const text = await (await fetch(url)).text();
+      let text = await (await fetch(url)).text();
+      if (staleFile()) return;
+      const MAX_PREVIEW_SIZE = 500000; // 500KB
+      let truncated = false;
+      if (text.length > MAX_PREVIEW_SIZE) {
+        const lines = text.substring(0, MAX_PREVIEW_SIZE).split('\n');
+        text = lines.join('\n');
+        truncated = true;
+      }
+      const truncNote = truncated ? `<div style="padding:8px;font-size:12px;color:var(--text-tertiary);border-top:1px solid var(--border)">File truncated (too large to preview in full)</div>` : '';
       if (ext === 'md') {
         // Render markdown with image URL rewriting
         let html = marked.parse(text);
@@ -1211,14 +1271,14 @@ async function renderFileContent(path, name, url, evt, baseUrl, filePath) {
           }
           return pre + baseUrl + encodeURIComponent(resolved) + post;
         });
-        div.innerHTML = `<div class="file-md-render">${html}</div>`;
+        div.innerHTML = `<div class="file-md-render">${html}</div>${truncNote}`;
       } else {
         const langMap = {py:'python',js:'javascript',json:'json',sh:'bash',yml:'yaml',yaml:'yaml',txt:null,csv:null,mat:null};
         const lang = langMap[ext];
         if (lang && typeof hljs !== 'undefined') {
-          div.innerHTML = `<pre class="file-code-block"><code>${hljs.highlight(text,{language:lang,ignoreIllegals:true}).value}</code></pre>`;
+          div.innerHTML = `<pre class="file-code-block"><code>${hljs.highlight(text,{language:lang,ignoreIllegals:true}).value}</code></pre>${truncNote}`;
         } else {
-          div.innerHTML = `<pre class="file-code-block"><code>${esc(text)}</code></pre>`;
+          div.innerHTML = `<pre class="file-code-block"><code>${esc(text)}</code></pre>${truncNote}`;
         }
       }
     } catch (_) { div.innerHTML = STATIC_MODE ? '<div class="placeholder">File not available due to GitHub Pages size limits.<br><br>View source on <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" style="color:var(--accent)">GitHub</a></div>' : '<div class="placeholder">Failed to load file</div>'; }
@@ -1253,6 +1313,7 @@ function fileIcon(n) {
 async function loadReport(runId) {
   try {
     const res = await fetch(`${API}/api/runs/${runId}/report`);
+    if (state.currentRunId !== runId) return;
     if (!res.ok) { document.getElementById('report-content').innerHTML = '<div class="placeholder">No report generated yet</div>'; return; }
     const data = await res.json();
     marked.setOptions({
@@ -1311,6 +1372,7 @@ async function loadScore(runId) {
   document.getElementById('btn-score').textContent = 'Score';
   try {
     const res = await fetch(`${API}/api/runs/${runId}/score`);
+    if (state.currentRunId !== runId) return;
     if (res.ok) { const s = await res.json(); if (s.items) { renderScore(s); document.getElementById('btn-score').textContent = 'Re-Score'; } }
   } catch (_) {}
 }
@@ -1407,9 +1469,9 @@ function toggleFileFollow() {
   state.userSelectedFile = !state.userSelectedFile;
   const isFollow = !state.userSelectedFile;
   document.getElementById('toggle-file-track').classList.toggle('on', isFollow);
+  if (!isFollow) return;
   // If turned on, immediately show latest file
-  if (isFollow && state.currentRunId) {
-    // Fetch fresh and open latest
+  if (state.currentRunId) {
     (async () => {
       try {
         const files = await (await fetch(`${API}/api/runs/${state.currentRunId}/output-files`)).json();
@@ -1419,11 +1481,12 @@ function toggleFileFollow() {
           if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f;
         }
         if (latest) loadFile(state.currentRunId, latest.path, latest.name, null, true);
-      } catch (_) {
-        // Fallback to full file list
-        autoOpenLatestFile(state.currentRunId);
-      }
+      } catch (_) {}
     })();
+  } else if (state.currentTaskId) {
+    // No run — fallback to INSTRUCTIONS.md
+    const baseUrl = `${API}/api/tasks/${state.currentTaskId}/file?path=`;
+    renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', baseUrl + encodeURIComponent('INSTRUCTIONS.md'), null, baseUrl, 'INSTRUCTIONS.md');
   }
 }
 
