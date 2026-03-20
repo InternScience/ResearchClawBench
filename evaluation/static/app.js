@@ -480,7 +480,7 @@ async function selectTask(taskId) {
         : '';
       return `<div class="checklist-item" data-checklist-idx="${i}">
         <div class="checklist-item-header">
-          <div><span class="score-item-type ${item.type}">${item.type}</span><span class="score-item-weight">w=${item.weight}</span></div>
+          <div><span class="score-item-type ${item.type}">${item.type}</span><span class="score-item-weight">Weight: ${item.weight}</span></div>
           <div class="checklist-score-slot" id="checklist-score-${i}"></div>
         </div>
         <p class="checklist-text${item.content&&item.content.length>200?' truncated':''}">${esc(item.content||'')}</p>${item.content&&item.content.length>200?'<button class="checklist-toggle" onclick="const p=this.previousElementSibling;p.classList.toggle(\'truncated\');this.textContent=p.classList.contains(\'truncated\')?\'show more\':\'show less\'">show more</button>':''}
@@ -553,7 +553,7 @@ async function selectTask(taskId) {
     const scoreBtn = document.getElementById('btn-score');
     if (scoreBtn) scoreBtn.textContent = 'Score';
   }
-  switchTab('research');
+  switchTab(state.lastTab);
 }
 
 /* ── Runs ────────────────────────────────────────────────────────────── */
@@ -1421,12 +1421,12 @@ async function fetchStaticJSON(path) {
 }
 
 function formatDuration(seconds) {
-  if (!seconds && seconds !== 0) return '00h00m00s';
+  if (!seconds && seconds !== 0) return '00h 00m 00s';
   seconds = Math.floor(seconds);
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
-  return `${String(h).padStart(2,'0')}h${String(m).padStart(2,'0')}m${String(s).padStart(2,'0')}s`;
+  return `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
 }
 
 let _durationTimer = null;

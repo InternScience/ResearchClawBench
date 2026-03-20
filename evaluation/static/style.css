@@ -97,10 +97,10 @@
     --bg-hover:        rgba(255,255,255,0.04);
     --bg-inset:        rgba(255,255,255,0.03);
     --text:            #e8e6df;
-    --text-secondary:  #8a8880;
-    --text-tertiary:   #5a5850;
-    --text-sidebar:    #c8c6bf;
-    --text-sidebar-dim:#6a6860;
+    --text-secondary:  #a8a69f;
+    --text-tertiary:   #7a7870;
+    --text-sidebar:    #d0cec7;
+    --text-sidebar-dim:#8a8880;
     --border:          rgba(255,255,255,0.08);
     --border-strong:   rgba(255,255,255,0.14);
     --ring:            rgba(255,255,255,0.04);
@@ -528,7 +528,7 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .terminal-status.running::before { background:var(--warn); animation:pulse 1.5s ease-in-out infinite; }
 .terminal-status.completed::before { background:var(--ok); }
 .duration-badge {
-    font-size: 11px; color: #000; font-family: var(--mono); font-weight: 600;
+    font-size: 11px; color: var(--text); font-family: var(--mono); font-weight: 400;
     background: var(--bg-inset); padding: 1px 6px; border-radius: 4px;
 }
 .terminal-body {
@@ -655,7 +655,7 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .checklist-score-slot { min-width: 60px; text-align: right; }
 .checklist-item p { font-size: 13.5px; margin-top: 4px; line-height: 1.5; color: var(--text-secondary); }
 .checklist-text.truncated { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.checklist-toggle { display: inline-block; font-size: 11px; color: var(--accent); cursor: pointer; margin-top: 4px; padding: 2px 8px; border: 1px solid var(--accent); border-radius: 4px; background: transparent; }
+.checklist-toggle { display: inline-block; font-size: 11px; color: var(--text-secondary); cursor: pointer; margin-top: 4px; padding: 2px 8px; border: none; border-radius: 4px; background: var(--bg-inset); filter: brightness(0.92); }
 .checklist-img { width: 100%; max-width: 280px; margin-top: 6px; border-radius: var(--radius-sm); border: 1px solid var(--border); display: block; }
 
 /* score ring (SVG circle) */
@@ -672,7 +672,7 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 }
 .score-item-type.text  { background: rgba(59,130,246,0.1); color: var(--info); }
 .score-item-type.image { background: rgba(236,72,153,0.1); color: #ec4899; }
-.score-item-weight { font-size: 11px; color: var(--text-tertiary); margin-left: 6px; }
+.score-item-weight { font-size: 13px; color: var(--text-secondary); margin-left: 8px; }
 .score-item-reasoning { font-size: 12px; color: var(--text-tertiary); font-style: italic; margin-top: 4px; }
 
 /* total score bar */
