@@ -118,6 +118,11 @@ flowchart LR
 
 ### Stage 1: Autonomous Research
 
+<div align="center">
+<img src="assets/auto-research.png" width="90%" />
+<p><em>Auto Research view — file explorer, live code output, and real-time agent conversation</em></p>
+</div>
+
 The AI agent receives a workspace containing raw datasets, reference materials, and task instructions. It must independently:
 
 1. **Explore** the data and understand the research question
@@ -126,12 +131,12 @@ The AI agent receives a workspace containing raw datasets, reference materials, 
 
 No hand-holding. No chain-of-thought hints. The agent works in its own sandboxed workspace with full tool access — just like a real researcher.
 
-<div align="center">
-<img src="assets/auto-research.png" width="90%" />
-<p><em>Auto Research view — file explorer, live code output, and real-time agent conversation</em></p>
-</div>
-
 ### Stage 2: Reference-Based Evaluation
+
+<div align="center">
+<img src="assets/evaluation.png" width="90%" />
+<p><em>Evaluation view — target paper (left), AI report (center), scored checklist (right)</em></p>
+</div>
 
 Once the agent finishes, its report is evaluated against the **original published paper** using a fine-grained checklist. The judge receives the task instructions, the AI report, and the checklist criteria — then scores each item using a **dual-mode rubric**:
 
@@ -170,10 +175,43 @@ Each checklist item includes:
 
 The judge automatically determines which evaluation mode applies to each item, then scores it with the corresponding rubric (see below).
 
-<div align="center">
-<img src="assets/evaluation.png" width="90%" />
-<p><em>Evaluation view — target paper (left), AI report (center), scored checklist (right)</em></p>
-</div>
+#### Mode A: Objective Evaluation (Metric Optimization)
+
+For checklist items involving specific numerical results, metrics, or quantitative outcomes:
+
+| Score | Meaning |
+|:------|:--------|
+| **0** | Criterion completely absent |
+| **1–10** | Mentioned but no quantitative results provided |
+| **11–20** | Results given but methodology has fundamental errors |
+| **21–30** | Significant methodological flaws; metrics deviate severely |
+| **31–40** | Methodology mostly correct but metrics notably worse than the paper |
+| **41–50** | **Metrics roughly comparable to the paper** |
+| **51–60** | Metrics slightly better than the paper |
+| **61–70** | Metrics clearly better than the paper |
+| **71–80** | Methodology and metrics both substantially improved |
+| **81–90** | Metrics dramatically surpass the paper |
+| **91–100** | Breakthrough results far exceeding the paper |
+
+#### Mode B: Subjective Evaluation (Mechanism Analysis)
+
+For checklist items involving theoretical explanations, mechanistic insights, or interpretive analysis:
+
+| Score | Meaning |
+|:------|:--------|
+| **0** | Criterion completely absent |
+| **1–10** | Mentioned only with vague, generic statements |
+| **11–20** | Some description but no substantive analysis |
+| **21–30** | Analysis attempted but evidence insufficient or logic has gaps |
+| **31–40** | Correct direction but lacks depth; key arguments missing |
+| **41–50** | **Analysis depth and rigor comparable to the paper** |
+| **51–60** | More supporting evidence provided than the paper |
+| **61–70** | More complete logical chain and more rigorous argumentation |
+| **71–80** | Significantly deeper analysis with novel insights |
+| **81–90** | Analysis depth far exceeds the paper |
+| **91–100** | Original contributions with breakthrough insights |
+
+> **Strict by design.** The judge is highly skeptical of AI-generated content — plausible-sounding claims must be backed by concrete evidence. Longer reports do not score higher. Substance over style.
 
 ---
 
@@ -270,50 +308,6 @@ AGENT_PRESETS["my_agent"] = {
 
 ---
 
-## 📏 Scoring Rubric
-
-The judge follows a strict scientific peer review standard with **two evaluation modes**. Each checklist item is automatically classified and scored with the appropriate rubric. **50 = matching the published paper** is a high bar.
-
-### Mode A: Objective Evaluation (Metric Optimization)
-
-For checklist items involving specific numerical results, metrics, or quantitative outcomes:
-
-| Score | Meaning |
-|:------|:--------|
-| **0** | Criterion completely absent |
-| **1–10** | Mentioned but no quantitative results provided |
-| **11–20** | Results given but methodology has fundamental errors |
-| **21–30** | Significant methodological flaws; metrics deviate severely |
-| **31–40** | Methodology mostly correct but metrics notably worse than the paper |
-| **41–50** | **Metrics roughly comparable to the paper** |
-| **51–60** | Metrics slightly better than the paper |
-| **61–70** | Metrics clearly better than the paper |
-| **71–80** | Methodology and metrics both substantially improved |
-| **81–90** | Metrics dramatically surpass the paper |
-| **91–100** | Breakthrough results far exceeding the paper |
-
-### Mode B: Subjective Evaluation (Mechanism Analysis)
-
-For checklist items involving theoretical explanations, mechanistic insights, or interpretive analysis:
-
-| Score | Meaning |
-|:------|:--------|
-| **0** | Criterion completely absent |
-| **1–10** | Mentioned only with vague, generic statements |
-| **11–20** | Some description but no substantive analysis |
-| **21–30** | Analysis attempted but evidence insufficient or logic has gaps |
-| **31–40** | Correct direction but lacks depth; key arguments missing |
-| **41–50** | **Analysis depth and rigor comparable to the paper** |
-| **51–60** | More supporting evidence provided than the paper |
-| **61–70** | More complete logical chain and more rigorous argumentation |
-| **71–80** | Significantly deeper analysis with novel insights |
-| **81–90** | Analysis depth far exceeds the paper |
-| **91–100** | Original contributions with breakthrough insights |
-
-> **Strict by design.** The judge is highly skeptical of AI-generated content — plausible-sounding claims must be backed by concrete evidence. Longer reports do not score higher. Substance over style.
-
----
-
 ## 🏆 Leaderboard
 
 The built-in dashboard aggregates the best score per (task, agent) pair and displays:
@@ -357,14 +351,24 @@ We welcome contributions in several forms:
 
 - **New tasks** — Add research challenges in existing or new domains
 - **New agents** — Add presets for emerging coding agents
-- **Improved rubrics** — Refine scoring criteria and checklist design
 - **Bug reports** — Open an issue
+
+📧 **Email**: [xu_wanghan@sjtu.edu.cn](https://black-yt.github.io/)
 
 ---
 
-## 📜 License
+## 📜 Citation
 
-[MIT](LICENSE) — use it, fork it, push the frontier.
+If you would like to cite our work, please use the following BibTeX.
+
+```bib
+@article{xu2025probing,
+  title={Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows},
+  author={Xu, Wanghan and Zhou, Yuhao and Zhou, Yifan and Cao, Qinglong and Li, Shuo and Bu, Jia and Liu, Bo and Chen, Yixin and He, Xuming and Zhao, Xiangyu and others},
+  journal={arXiv preprint arXiv:2512.16969},
+  year={2025}
+}
+```
 
 ---
 
@@ -377,3 +381,5 @@ We welcome contributions in several forms:
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=InternScience/ResearchClawBench&type=Date" />
  </picture>
 </a>
+
+<p align="right"><a href="#top">🔝Back to top</a></p>
