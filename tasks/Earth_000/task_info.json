@@ -1,11 +1,11 @@
 {
-    "task": "Input: 233 sets of mass change estimates for 19 global glacial regions, derived from four observational methods (glaciological measurements, DEM differencing, altimetry, gravimetry) and hybrid methods.\nOutput: 2000–2023 regional and global glacial mass change time series (annual resolution), including uncertainties, expressed as specific mass change (m w.e.) and total mass change (Gt).\nScientific Objective: Reconcile diverse observational methods to deliver a consistent and high-confidence assessment of global glacial mass change, and establish an observational benchmark for IPCC reports and climate model calibration.",
-    "data": [
-        {
-            "name": "GlaMBIE_Data_DOI_10.5904_wgms-glambie-2024-07",
-            "path": "./tasks/Earth_000/data/GlaMBIE_Data_DOI_10.5904_wgms-glambie-2024-07",
-            "type": "sequence_data",
-            "description": "This dataset is the result of collecting, homogenizing, combining, and analyzing regional estimates derived from four primary observation methods (in situ glaciological measurements, digital elevation model differencing, satellite altimetry, and gravimetry) as well as integrated methods. It incorporates 233 regional estimates of glacier mass change contributed by 35 research teams and approximately 450 data contributors."
-        }
-    ]
+  "task": "Input: 233 sets of mass change estimates for 19 global glacial regions, derived from four observational methods (glaciological measurements, DEM differencing, altimetry, gravimetry) and hybrid methods.\nOutput: 2000–2023 regional and global glacial mass change time series (annual resolution), including uncertainties, expressed as specific mass change (m w.e.) and total mass change (Gt).\nScientific Objective: Reconcile diverse observational methods to deliver a consistent and high-confidence assessment of global glacial mass change, and establish an observational benchmark for IPCC reports and climate model calibration.",
+  "data": [
+    {
+      "name": "glambie",
+      "path": "./tasks/Earth_000/data/glambie",
+      "type": "sequence_data",
+      "description": "This dataset is the result of collecting, homogenizing, combining, and analyzing regional estimates derived from four primary observation methods (in situ glaciological measurements, digital elevation model differencing, satellite altimetry, and gravimetry) as well as integrated methods. It incorporates 233 regional estimates of glacier mass change contributed by 35 research teams and approximately 450 data contributors."
+    }
+  ]
 }

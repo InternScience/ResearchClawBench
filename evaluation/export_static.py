@@ -215,6 +215,8 @@ def export_runs():
                 if src.stat().st_size > max_size:
                     continue
                 dst = files_dst / item["path"]
+                if len(str(dst)) > 200:
+                    continue
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(src, dst)
                 run_exported.add(item["path"])

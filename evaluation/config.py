@@ -36,7 +36,7 @@ AGENT_PRESETS = {
         "label": "OpenClaw",
         "icon": "O",
         "logo": "/static/logos/openclaw.svg",
-        "cmd": "openclaw agent --agent main --timeout 3600 --message \"$(printf 'You must complete this task fully autonomously without asking any questions. Everything is permitted. All file writes and creations must be inside the workspace: {workspace}\\n\\n'; cat '{prompt_file}')\"",
+        "cmd": "openclaw agent --agent main --timeout 3600 --message \"$(printf 'You are an autonomous research agent. Do NOT output a plan or ask for confirmation. Immediately start using your tools (exec, write, read) to complete the task step by step. Install packages with pip, write Python code, run it, generate figures, and write the report. Work inside: {workspace}\\n\\n'; cat '{prompt_file}')\"",
     },
 }
 
