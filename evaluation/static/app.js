@@ -690,18 +690,18 @@ async function selectRun(runId) {
       startStreaming(runId); switchTab(state.lastTab); loadWorkspace(runId);
     } else {
       // Load workspace + file first, then the rest in parallel
-      await loadWorkspace(runId);
-      autoOpenLatestFile(runId);
+      const wsFiles = await loadWorkspace(runId);
+      autoOpenLatestFile(runId, wsFiles);
       await Promise.all([loadSavedOutput(runId), loadReport(runId), loadScore(runId)]);
       switchTab(state.lastTab);
     }
   }
 }
 
-async function autoOpenLatestFile(runId) {
+async function autoOpenLatestFile(runId, files) {
   if (state.userSelectedFile) return;
   try {
-    const files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
+    if (!files) files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
     let latest = null;
     for (const f of files) {
       if (f.type !== 'file' || !isViewableFile(f.name)) continue;
@@ -1041,7 +1041,8 @@ async function loadWorkspace(runId) {
   try {
     const files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
     renderFileTree(files, runId, null);
-  } catch (e) { console.error(e); }
+    return files;
+  } catch (e) { console.error(e); return []; }
 }
 
 function renderFileTree(files, runId, taskId) {
