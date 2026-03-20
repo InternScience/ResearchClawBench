@@ -539,6 +539,8 @@ async function selectTask(taskId) {
       renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', instrUrl, null, `data/tasks/${taskId}/workspace/`, 'INSTRUCTIONS.md');
     } else {
       await loadTaskFiles(taskId);
+      document.getElementById('file-content-header').textContent = 'No file selected';
+      document.getElementById('file-content-body').innerHTML = '<div class="placeholder">Select a file from the explorer</div>';
     }
     // Clear non-file panels
     document.getElementById('terminal-body').innerHTML = '<div class="placeholder">No runs yet</div>';
