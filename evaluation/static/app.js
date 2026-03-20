@@ -483,7 +483,7 @@ async function selectTask(taskId) {
           <div><span class="score-item-type ${item.type}">${item.type}</span><span class="score-item-weight">w=${item.weight}</span></div>
           <div class="checklist-score-slot" id="checklist-score-${i}"></div>
         </div>
-        <p>${esc((item.content||'').substring(0,200))}${item.content&&item.content.length>200?'...':''}</p>
+        <p class="checklist-text${item.content&&item.content.length>200?' truncated':''}" onclick="this.classList.toggle('truncated')">${esc(item.content||'')}</p>
         ${imgHtml}
       </div>`;
     }).join('');
