@@ -110,7 +110,7 @@ const ICON_COLORS = { C: '#3f3f46', X: '#166534', O: '#92400e' };
 async function loadConfig() {
   if (STATIC_MODE) {
     // Static mode: hardcoded preset info, no agent selection UI
-    state.agentLogos = { 'Claude Code': 'static/logos/anthropic.svg', 'Codex CLI': 'static/logos/openai.svg', 'OpenClaw': 'static/logos/openclaw.svg' };
+    state.agentLogos = { 'Claude Code': 'static/logos/anthropic.svg', 'Codex CLI': 'static/logos/openai.svg', 'OpenClaw': 'static/logos/openclaw.svg', 'Nanobot': 'static/logos/nanobot.svg' };
     const container = document.getElementById('agent-options');
     if (container) container.style.display = 'none';
     return;
@@ -168,11 +168,17 @@ async function loadDashboard() {
     for (const t of taskList) {
       if (!(t in data.frontier)) data.frontier[t] = null;
     }
-    // Ensure all preset agents appear even if no runs
+    // Ensure all preset agents appear in preset order
+    const orderedAgents = [];
     for (const name of presetAgents) {
-      if (!data.agents.includes(name)) data.agents.push(name);
+      orderedAgents.push(name);
       if (!data.scores[name]) data.scores[name] = {};
     }
+    // Add any agents from data that aren't presets (at the end)
+    for (const name of data.agents) {
+      if (!orderedAgents.includes(name)) orderedAgents.push(name);
+    }
+    data.agents = orderedAgents;
 
     renderFrontierChart(data);
     renderLeaderboard(data);
@@ -846,7 +852,7 @@ function startAutoTrack(runId) {
     try {
       // Only fetch output files (lightweight), merge with cached input files for tree
       const outFiles = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
-      const allFiles = [...(state._cachedInputFiles || []), ...outFiles];
+      const allFiles = _sortFlatTree([...(state._cachedInputFiles || []), ...outFiles]);
 
       // Refresh file tree if file count changed
       if (allFiles.length !== lastFileCount) {
@@ -1091,10 +1097,28 @@ async function loadWorkspace(runId) {
     state._cachedInputFiles = inputFiles;
     const outputFiles = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
     if (state.currentRunId !== runId) return [];
-    const allFiles = [...inputFiles, ...outputFiles];
+    const allFiles = _sortFlatTree([...inputFiles, ...outputFiles]);
     renderFileTree(allFiles, runId, null);
     return outputFiles;
   } catch (e) { console.error(e); return []; }
+}
+
+function _sortFlatTree(items) {
+  // Group by top-level directory, sort groups alphabetically, root files last
+  const groups = {};
+  const rootFiles = [];
+  for (const item of items) {
+    const top = item.path.split('/')[0];
+    if (!item.path.includes('/') && item.type === 'file') { rootFiles.push(item); continue; }
+    if (!groups[top]) groups[top] = [];
+    groups[top].push(item);
+  }
+  const sorted = [];
+  for (const key of Object.keys(groups).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))) {
+    sorted.push(...groups[key]);
+  }
+  sorted.push(...rootFiles);
+  return sorted;
 }
 
 function renderFileTree(files, runId, taskId) {
