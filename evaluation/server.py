@@ -335,6 +335,26 @@ def api_run_files(run_id):
     return jsonify(build_file_tree(workspace))
 
 
+@app.route("/api/runs/<run_id>/output-files")
+def api_run_output_files(run_id):
+    """Get only agent-generated files (code/, outputs/, report/) + INSTRUCTIONS.md.
+    Much faster than /files for workspaces with large data/ directories."""
+    workspace = get_run_workspace(run_id)
+    if not workspace:
+        return jsonify({"error": "Run not found"}), 404
+    tree = []
+    for subdir in ["code", "outputs", "report"]:
+        sub = workspace / subdir
+        if sub.exists():
+            tree.append({"name": subdir, "path": subdir, "type": "directory"})
+            tree.extend(build_file_tree(sub, subdir))
+    instr = workspace / "INSTRUCTIONS.md"
+    if instr.exists():
+        st = instr.stat()
+        tree.append({"name": "INSTRUCTIONS.md", "path": "INSTRUCTIONS.md", "type": "file", "size": st.st_size, "mtime": st.st_mtime})
+    return jsonify(tree)
+
+
 @app.route("/api/runs/<run_id>/file")
 def api_run_file(run_id):
     """Serve a file from the workspace with path traversal protection."""

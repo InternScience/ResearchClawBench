@@ -701,7 +701,7 @@ async function selectRun(runId) {
 async function autoOpenLatestFile(runId, files) {
   if (state.userSelectedFile) return;
   try {
-    if (!files) files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
+    if (!files) files = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
     let latest = null;
     for (const f of files) {
       if (f.type !== 'file' || !isViewableFile(f.name) || !isAgentOutput(f.path)) continue;
@@ -813,21 +813,28 @@ async function stopRun() {
 function startAutoTrack(runId) {
   stopAutoTrack();
   let lastFileCount = 0;
+  let treeRefreshCounter = 0;
   state.autoTrackTimer = setInterval(async () => {
     try {
-      const files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
+      // Use lightweight endpoint for file follow (only code/outputs/report/)
+      const outFiles = await (await fetch(`${API}/api/runs/${runId}/output-files`)).json();
 
-      // Refresh file tree if file count changed
-      if (files.length !== lastFileCount) {
-        lastFileCount = files.length;
-        renderFileTree(files, runId, null);
+      // Refresh full file tree every 3rd tick (9s) to avoid scanning data/
+      treeRefreshCounter++;
+      if (treeRefreshCounter >= 3) {
+        treeRefreshCounter = 0;
+        const allFiles = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
+        if (allFiles.length !== lastFileCount) {
+          lastFileCount = allFiles.length;
+          renderFileTree(allFiles, runId, null);
+        }
       }
 
       // Auto-show most recently modified viewable file
       if (!state.userSelectedFile) {
         let latest = null;
-        for (const f of files) {
-          if (f.type !== 'file' || !isViewableFile(f.name) || !isAgentOutput(f.path)) continue;
+        for (const f of outFiles) {
+          if (f.type !== 'file' || !isViewableFile(f.name)) continue;
           if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f;
         }
         if (latest) {
@@ -1402,7 +1409,21 @@ function toggleFileFollow() {
   document.getElementById('toggle-file-track').classList.toggle('on', isFollow);
   // If turned on, immediately show latest file
   if (isFollow && state.currentRunId) {
-    autoOpenLatestFile(state.currentRunId);
+    // Fetch fresh and open latest
+    (async () => {
+      try {
+        const files = await (await fetch(`${API}/api/runs/${state.currentRunId}/output-files`)).json();
+        let latest = null;
+        for (const f of files) {
+          if (f.type !== 'file' || !isViewableFile(f.name)) continue;
+          if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f;
+        }
+        if (latest) loadFile(state.currentRunId, latest.path, latest.name, null, true);
+      } catch (_) {
+        // Fallback to full file list
+        autoOpenLatestFile(state.currentRunId);
+      }
+    })();
   }
 }
 
