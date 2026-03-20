@@ -133,20 +133,33 @@ No hand-holding. No chain-of-thought hints. The agent works in its own sandboxed
 
 ### Stage 2: Reference-Based Evaluation
 
-Once the agent finishes, its report is evaluated against the **original published paper** using a fine-grained checklist:
+Once the agent finishes, its report is evaluated against the **original published paper** using a fine-grained checklist. The judge receives the task instructions, the AI report, and the checklist criteria — then scores each item using a **dual-mode rubric**:
 
 ```mermaid
 flowchart TD
-    R["Agent Report"] --> J["Multimodal LLM Judge"]
-    P["Target Paper"] --> CL["Checklist"]
-    CL --> |"Text items"| J
-    CL --> |"Image items\n(target vs generated)"| J
-    J --> S1["Item 1: 38/100\nweight: 0.3"]
-    J --> S2["Item 2: 42/100\nweight: 0.5"]
-    J --> S3["Item 3: 25/100\nweight: 0.2"]
-    S1 & S2 & S3 --> T["Weighted Total Score"]
+    subgraph Inputs
+        I["INSTRUCTIONS.md\n(task background)"]
+        R["Agent Report\n(text + figures)"]
+        CL["Checklist\n(from target paper)"]
+    end
 
+    I & R & CL --> J["Multimodal LLM Judge"]
+
+    J --> DET{"Determine\nEvaluation Mode"}
+
+    DET -->|"Quantitative\nresults"| OBJ["Mode A: Objective\n(Metric Optimization)"]
+    DET -->|"Qualitative\nreasoning"| SUB["Mode B: Subjective\n(Mechanism Analysis)"]
+
+    OBJ --> SO["Score by metric\naccuracy vs paper"]
+    SUB --> SS["Score by evidence\nstrength vs paper"]
+
+    SO & SS --> T["Per-Item Scores\n+ Reasoning\n→ Weighted Total"]
+
+    style Inputs fill:#f0f4ff,stroke:#3b82f6,stroke-width:2px
     style J fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style OBJ fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+    style SUB fill:#fce7f3,stroke:#ec4899,stroke-width:2px
+    style T fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
 ```
 
 Each checklist item includes:
@@ -155,7 +168,7 @@ Each checklist item includes:
 - **Weight** reflecting the item's importance
 - **Type** — `text` for methodology/findings, `image` for figure comparison (multimodal vision)
 
-The judge uses a strict rubric where **50 = matching the published paper** and most AI reports score 25–40.
+The judge automatically determines which evaluation mode applies to each item, then scores it with the corresponding rubric (see below).
 
 <div align="center">
 <img src="assets/evaluation.png" width="90%" />
@@ -259,20 +272,45 @@ AGENT_PRESETS["my_agent"] = {
 
 ## 📏 Scoring Rubric
 
-The judge follows a strict scientific peer review standard:
+The judge follows a strict scientific peer review standard with **two evaluation modes**. Each checklist item is automatically classified and scored with the appropriate rubric. **50 = matching the published paper** is a high bar.
+
+### Mode A: Objective Evaluation (Metric Optimization)
+
+For checklist items involving specific numerical results, metrics, or quantitative outcomes:
 
 | Score | Meaning |
 |:------|:--------|
 | **0** | Criterion completely absent |
-| **1–15** | Mentioned in passing, no real analysis |
-| **16–30** | Some work attempted, shallow or with errors |
-| **31–45** | Partial attempt, reasonable but incomplete |
-| **46–55** | **Matches the published paper** — very rare for AI |
-| **56–70** | Matches and adds minor improvements |
-| **71–85** | Clearly surpasses the paper |
-| **86–100** | Exceptional — far exceeds the original |
+| **1–10** | Mentioned but no quantitative results provided |
+| **11–20** | Results given but methodology has fundamental errors |
+| **21–30** | Significant methodological flaws; metrics deviate severely |
+| **31–40** | Methodology mostly correct but metrics notably worse than the paper |
+| **41–50** | **Metrics roughly comparable to the paper** |
+| **51–60** | Metrics slightly better than the paper |
+| **61–70** | Metrics clearly better than the paper |
+| **71–80** | Methodology and metrics both substantially improved |
+| **81–90** | Metrics dramatically surpass the paper |
+| **91–100** | Breakthrough results far exceeding the paper |
 
-> Most AI-generated reports score **25–40**. Reaching 50 means genuinely matching a published paper. The benchmark is intentionally hard.
+### Mode B: Subjective Evaluation (Mechanism Analysis)
+
+For checklist items involving theoretical explanations, mechanistic insights, or interpretive analysis:
+
+| Score | Meaning |
+|:------|:--------|
+| **0** | Criterion completely absent |
+| **1–10** | Mentioned only with vague, generic statements |
+| **11–20** | Some description but no substantive analysis |
+| **21–30** | Analysis attempted but evidence insufficient or logic has gaps |
+| **31–40** | Correct direction but lacks depth; key arguments missing |
+| **41–50** | **Analysis depth and rigor comparable to the paper** |
+| **51–60** | More supporting evidence provided than the paper |
+| **61–70** | More complete logical chain and more rigorous argumentation |
+| **71–80** | Significantly deeper analysis with novel insights |
+| **81–90** | Analysis depth far exceeds the paper |
+| **91–100** | Original contributions with breakthrough insights |
+
+> **Strict by design.** The judge is highly skeptical of AI-generated content — plausible-sounding claims must be backed by concrete evidence. Longer reports do not score higher. Substance over style.
 
 ---
 
@@ -298,7 +336,6 @@ ResearchClawBench/
 │   ├── score.py                # Multimodal LLM scoring engine
 │   ├── config.py               # Agent presets + constants
 │   ├── utils.py                # File tree, path safety, discovery
-│   ├── export_static.py        # GitHub Pages static export
 │   ├── static/app.js           # Single-file frontend (~1200 LOC)
 │   └── templates/index.html    # Entry point
 ├── tasks/                      # 40 research tasks
