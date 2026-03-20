@@ -1,11 +1,11 @@
 {
-    "task": "Input: Network traffic flow data, including both benign and malicious traffic samples with temporal and topological features.Output: Intrusion detection results, including binary classification (benign vs. attack) and multi-class classification (specific attack types), particularly for known, unknown, and few-shot attack scenarios.Scientific Objective: To address the inconsistent performance and poor detection capability of existing Network Intrusion Detection Systems (NIDS) across different attack types—especially for unknown and few-shot attacks—by proposing a disentangled dynamic intrusion detection framework (DIDS-MFL). The framework aims to disentangle entangled feature distributions in traffic data through statistical and representational disentanglement, incorporate dynamic graph diffusion for spatiotemporal aggregation, and enhance few-shot learning via multi-scale representation fusion, thereby improving detection accuracy, consistency, and generalization in real-world network environments.",
-    "data": [
-        {
-            "name": "NF-UNSW-NB15-v2_3d.pt",
-            "path": "./tasks/Information_004/data/NF-UNSW-NB15-v2_3d.pt",
-            "type": "feature_data",
-            "description": "NF-UNSW-NB15 is a NetFlow‑based feature dataset where each row represents a single network flow described by 8 to 53 statistical features (e.g., timestamp, duration, bytes, packet rates, inter‑arrival times), extracted from packet headers and stored in CSV format for binary/multi‑class intrusion detection."
-        }
-    ]
+  "task": "Input: Network traffic flow data, including both benign and malicious traffic samples with temporal and topological features.Output: Intrusion detection results, including binary classification (benign vs. attack) and multi-class classification (specific attack types), particularly for known, unknown, and few-shot attack scenarios.Scientific Objective: To address the inconsistent performance and poor detection capability of existing Network Intrusion Detection Systems (NIDS) across different attack types—especially for unknown and few-shot attacks—by proposing a disentangled dynamic intrusion detection framework (DIDS-MFL). The framework aims to disentangle entangled feature distributions in traffic data through statistical and representational disentanglement, incorporate dynamic graph diffusion for spatiotemporal aggregation, and enhance few-shot learning via multi-scale representation fusion, thereby improving detection accuracy, consistency, and generalization in real-world network environments.",
+  "data": [
+    {
+      "name": "NF-UNSW-NB15-v2_3d.pt",
+      "path": "./data/NF-UNSW-NB15-v2_3d.pt",
+      "type": "feature_data",
+      "description": "NF-UNSW-NB15 is a NetFlow‑based feature dataset where each row represents a single network flow described by 8 to 53 statistical features (e.g., timestamp, duration, bytes, packet rates, inter‑arrival times), extracted from packet headers and stored in CSV format for binary/multi‑class intrusion detection."
+    }
+  ]
 }

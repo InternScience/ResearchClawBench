@@ -59,11 +59,11 @@ class TaskRunner:
         task_desc = self.task_info.get("task", "")
         data_parts = []
         for d in self.task_info.get("data", []):
-            orig_path = d.get("path", "")
-            ws_path = orig_path
-            if "/data/" in orig_path:
-                ws_path = "data/" + orig_path.split("/data/", 1)[1]
-            data_parts.append(f"- **{d['name']}** (`{ws_path}`): {d.get('description', '')}")
+            # Paths are always ./data/..., strip leading ./ for workspace-relative path
+            ws_path = d.get("path", "").lstrip("./")
+            data_type = d.get("type", "")
+            type_str = f" [{data_type}]" if data_type else ""
+            data_parts.append(f"- **{d['name']}**{type_str} (`{ws_path}`): {d.get('description', '')}")
         data_text = "\n".join(data_parts) if data_parts else "No specific data files."
 
         return f"""# Research Task

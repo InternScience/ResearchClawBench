@@ -1,11 +1,11 @@
 {
-    "task": "The input is single-cell readouts (such as scRNA-seq or protein imaging), and the output is a selected subset of dynamically expressed molecular features that best preserves continuous cellular trajectories. This setup supports analyses of neural lineage progression, glial activation, and neurodegeneration-related state transitions while reducing confounding variation.",
-    "data": [
-        {
-            "name": "adata_RPE.h5ad",
-            "path": "./tasks/Neuroscience_004/data/adata_RPE.h5ad",
-            "type": "feature_data",
-            "description": "A preprocessed single-cell dataset (protein iterative indirect immunofluorescence imaging) showcasing cellular state transitions in a retina-related context that is compatible with neuroscience-adjacent analysis."
-        }
-    ]
+  "task": "The input is single-cell readouts (such as scRNA-seq or protein imaging), and the output is a selected subset of dynamically expressed molecular features that best preserves continuous cellular trajectories. This setup supports analyses of neural lineage progression, glial activation, and neurodegeneration-related state transitions while reducing confounding variation.",
+  "data": [
+    {
+      "name": "adata_RPE.h5ad",
+      "path": "./data/adata_RPE.h5ad",
+      "type": "feature_data",
+      "description": "A preprocessed single-cell dataset (protein iterative indirect immunofluorescence imaging) showcasing cellular state transitions in a retina-related context that is compatible with neuroscience-adjacent analysis."
+    }
+  ]
 }

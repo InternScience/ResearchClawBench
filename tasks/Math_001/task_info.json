@@ -1,11 +1,11 @@
 {
-    "task": "Input: A smooth convex objective function f(x) (potentially with a non-smooth regularization term) and an initial starting point x_0.\r\nOutput: The optimal solution x* that minimizes the global objective function with an accelerated convergence rate.\r\nScientific Goal: To establish a unified Variable and Operator Splitting (VOS) framework that derives Nesterov's accelerated method and ADMM from a continuous-time dynamical system perspective, proving linear convergence using strong Lyapunov functions.",
-    "data": [
-        {
-            "name": "complex_optimization_data.npy",
-            "path": "./tasks/Math_001/data/complex_optimization_data.npy",
-            "type": "structure_data",
-            "description": "A synthetic, ill-conditioned dataset generated for high-dimensional Lasso regression. It contains the design matrix A (1000x2000), response vector b, and ground truth sparse coefficients x_true, stored in .npy format to verify algorithm convergence."
-        }
-    ]
+  "task": "Input: A smooth convex objective function f(x) (potentially with a non-smooth regularization term) and an initial starting point x_0.\r\nOutput: The optimal solution x* that minimizes the global objective function with an accelerated convergence rate.\r\nScientific Goal: To establish a unified Variable and Operator Splitting (VOS) framework that derives Nesterov's accelerated method and ADMM from a continuous-time dynamical system perspective, proving linear convergence using strong Lyapunov functions.",
+  "data": [
+    {
+      "name": "complex_optimization_data.npy",
+      "path": "./data/complex_optimization_data.npy",
+      "type": "structure_data",
+      "description": "A synthetic, ill-conditioned dataset generated for high-dimensional Lasso regression. It contains the design matrix A (1000x2000), response vector b, and ground truth sparse coefficients x_true, stored in .npy format to verify algorithm convergence."
+    }
+  ]
 }

@@ -1,23 +1,23 @@
 {
-    "task": "The scientific objective of this work is to develop an AI-powered search engine that accelerates the discovery of new altermagnetic materials with targeted physical properties. The input consists of crystal structure data (represented as graphs) from databases such as the Materials Project, including a large unlabeled set for pre-training and a small labeled set of known altermagnets (148 positive samples) for fine-tuning. The output is a list of candidate materials predicted to be altermagnets with high probability, along with their electronic structure properties confirmed by first-principles calculations (e.g., 50 newly discovered altermagnets with classifications such as metal/insulator and d/g/i-wave anisotropy).",
-    "data": [
-        {
-            "name": "pretrain_data.pt",
-            "path": "./tasks/Material_001/data/pretrain_data.pt",
-            "type": "structure_data",
-            "description": "This dataset contains a large number of unlabeled crystal structure graphs (5,000 samples) used for self-supervised pre-training. The model learns intrinsic representations of crystal structures without requiring magnetic labels, capturing general features that aid downstream tasks."
-        },
-        {
-            "name": "finetune_data.pt",
-            "path": "./tasks/Material_001/data/finetune_data.pt",
-            "type": "structure_data",
-            "description": "This labeled dataset (2,000 samples) consists of crystal graphs with binary labels indicating altermagnetic (positive) or non-altermagnetic (negative) materials. It simulates the scarcity of known altermagnets by having only 5% positive samples (100 positives, 1900 negatives). It is used to fine-tune the pre-trained encoder into a classifier."
-        },
-        {
-            "name": "candidate_data.pt",
-            "path": "./tasks/Material_001/data/candidate_data.pt",
-            "type": "structure_data",
-            "description": "This unlabeled dataset (1,000 samples) represents candidate materials whose magnetic properties are unknown. The trained classifier predicts the probability of each being an altermagnet. Hidden true labels are stored internally for evaluation, allowing measurement of discovery accuracy. Approximately 50 true positives are embedded based on generation rules."
-        }
-    ]
+  "task": "The scientific objective of this work is to develop an AI-powered search engine that accelerates the discovery of new altermagnetic materials with targeted physical properties. The input consists of crystal structure data (represented as graphs) from databases such as the Materials Project, including a large unlabeled set for pre-training and a small labeled set of known altermagnets (148 positive samples) for fine-tuning. The output is a list of candidate materials predicted to be altermagnets with high probability, along with their electronic structure properties confirmed by first-principles calculations (e.g., 50 newly discovered altermagnets with classifications such as metal/insulator and d/g/i-wave anisotropy).",
+  "data": [
+    {
+      "name": "pretrain_data.pt",
+      "path": "./data/pretrain_data.pt",
+      "type": "structure_data",
+      "description": "This dataset contains a large number of unlabeled crystal structure graphs (5,000 samples) used for self-supervised pre-training. The model learns intrinsic representations of crystal structures without requiring magnetic labels, capturing general features that aid downstream tasks."
+    },
+    {
+      "name": "finetune_data.pt",
+      "path": "./data/finetune_data.pt",
+      "type": "structure_data",
+      "description": "This labeled dataset (2,000 samples) consists of crystal graphs with binary labels indicating altermagnetic (positive) or non-altermagnetic (negative) materials. It simulates the scarcity of known altermagnets by having only 5% positive samples (100 positives, 1900 negatives). It is used to fine-tune the pre-trained encoder into a classifier."
+    },
+    {
+      "name": "candidate_data.pt",
+      "path": "./data/candidate_data.pt",
+      "type": "structure_data",
+      "description": "This unlabeled dataset (1,000 samples) represents candidate materials whose magnetic properties are unknown. The trained classifier predicts the probability of each being an altermagnet. Hidden true labels are stored internally for evaluation, allowing measurement of discovery accuracy. Approximately 50 true positives are embedded based on generation rules."
+    }
+  ]
 }

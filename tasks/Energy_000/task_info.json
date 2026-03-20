@@ -1,23 +1,23 @@
 {
-    "task": "(Definition of input, output, and scientific goal)Text to copy:Input: Experimental macroscopic data (voltage, temperature, and capacity curves under discharge conditions) and a multi-parameter search space defined by Latin Hypercube Sampling (LHS).Output: A set of identified high-fidelity internal parameters (such as particle radius, reaction rates, and thermal coefficients) for the electrochemical-aging-thermal (ECAT) coupled model.Scientific Goal: To develop a rapid and accurate parameter identification framework (MMGA) that uses an Artificial Neural Network (ANN) meta-model to replace computationally expensive physical simulations, thereby solving the trade-off between model complexity and calculation efficiency for Lithium-ion battery digital twins.",
-    "data": [
-        {
-            "name": "NASA PCoE Dataset Repository",
-            "path": "./tasks/Energy_000/data/NASA PCoE Dataset Repository",
-            "type": "structure_data",
-            "description": "Experimental aging data of 18650 Li-ion batteries provided by the NASA Prognostics Center of Excellence (PCoE). It includes voltage, current, and temperature profiles recorded during constant current (CC) discharge cycles at room temperature, used here for experimental validation of the identification algorithm."
-        },
-        {
-            "name": "CS2_36",
-            "path": "./tasks/Energy_000/data/CS2_36",
-            "type": "sequence_data",
-            "description": "Cycle life test data for a Commercial NCM (Nickel Cobalt Manganese) 18650 cell provided by the University of Maryland CALCE Battery Research Group. The dataset features standard 1C constant current discharge curves, used as the primary reference for parameter identification."
-        },
-        {
-            "name": "Oxford Battery Degradation Dataset",
-            "path": "./tasks/Energy_000/data/Oxford Battery Degradation Dataset",
-            "type": "feature_data",
-            "description": "Long-term battery degradation data provided by the Oxford Battery Intelligence Lab. It contains dynamic urban driving profiles (highly transient current loads) obtained from 740mAh pouch cells, utilized to validate the model's generalization ability under dynamic conditions."
-        }
-    ]
+  "task": "(Definition of input, output, and scientific goal)Text to copy:Input: Experimental macroscopic data (voltage, temperature, and capacity curves under discharge conditions) and a multi-parameter search space defined by Latin Hypercube Sampling (LHS).Output: A set of identified high-fidelity internal parameters (such as particle radius, reaction rates, and thermal coefficients) for the electrochemical-aging-thermal (ECAT) coupled model.Scientific Goal: To develop a rapid and accurate parameter identification framework (MMGA) that uses an Artificial Neural Network (ANN) meta-model to replace computationally expensive physical simulations, thereby solving the trade-off between model complexity and calculation efficiency for Lithium-ion battery digital twins.",
+  "data": [
+    {
+      "name": "NASA PCoE Dataset Repository",
+      "path": "./data/NASA PCoE Dataset Repository",
+      "type": "structure_data",
+      "description": "Experimental aging data of 18650 Li-ion batteries provided by the NASA Prognostics Center of Excellence (PCoE). It includes voltage, current, and temperature profiles recorded during constant current (CC) discharge cycles at room temperature, used here for experimental validation of the identification algorithm."
+    },
+    {
+      "name": "CS2_36",
+      "path": "./data/CS2_36",
+      "type": "sequence_data",
+      "description": "Cycle life test data for a Commercial NCM (Nickel Cobalt Manganese) 18650 cell provided by the University of Maryland CALCE Battery Research Group. The dataset features standard 1C constant current discharge curves, used as the primary reference for parameter identification."
+    },
+    {
+      "name": "Oxford Battery Degradation Dataset",
+      "path": "./data/Oxford Battery Degradation Dataset",
+      "type": "feature_data",
+      "description": "Long-term battery degradation data provided by the Oxford Battery Intelligence Lab. It contains dynamic urban driving profiles (highly transient current loads) obtained from 740mAh pouch cells, utilized to validate the model's generalization ability under dynamic conditions."
+    }
+  ]
 }

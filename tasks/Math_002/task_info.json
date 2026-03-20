@@ -1,53 +1,53 @@
 {
-    "task": "Input: A MAPF (Multi-Agent Path Finding) instance I, which consists of a discrete 2D grid map with static obstacles and a set of agents, each with a distinct start position and a designated goal position.\n\nOutput: A solution path set P, consisting of collision-free paths for all agents that navigate them from their start positions to their goal positions without vertex or swapping collisions.\n\nScientific Goal (Task): To solve the Multi-Agent Path Finding problem by developing a hybrid algorithm that integrates Multi-Agent Reinforcement Learning into the Large Neighborhood Search framework. The specific objective is to balance solution quality (reducing collisions via MARL in early stages) and computational efficiency (using Prioritized Planning in later stages) to achieve higher success rates in complex environments compared to existing methods.",
-    "data": [
-        {
-            "name": "maps_60_10_10_0.175",
-            "path": "./tasks/Math_003/data/maps_60_10_10_0.175",
-            "type": "structure_data",
-            "description": "The task set consists of static 2D grid maps )and multi-agent task configurations defined by preset parameters such as agent count, start positions, and target positions."
-        },
-        {
-            "name": "empty",
-            "path": "./tasks/Math_003/data/empty",
-            "type": "structure_data",
-            "description": "Dataset of empty 2D grid maps (likely 25x25) with no static obstacles, containing multi-agent task configurations to evaluate navigation in high-density open spaces without structural blockages."
-        },
-        {
-            "name": "maze",
-            "path": "./tasks/Math_003/data/maze",
-            "type": "structure_data",
-            "description": "Dataset of maze-structured 2D grid maps (25x25) characterized by complex corridors and dead-ends, containing task configurations designed to test pathfinding algorithms in highly constrained environments."
-        },
-        {
-            "name": "random_large",
-            "path": "./tasks/Math_003/data/random_large",
-            "type": "structure_data",
-            "description": "Dataset of large-scale (50x50) 2D grid maps with randomly generated obstacles (17.5% density), containing task configurations serving as a benchmark for algorithm scalability in unstructured environments."
-        },
-        {
-            "name": "random_medium",
-            "path": "./tasks/Math_003/data/random_medium",
-            "type": "structure_data",
-            "description": "Dataset of medium-sized (25x25) 2D grid maps with randomly distributed obstacles (17.5% density), containing task configurations that balance map complexity and computational load for standard evaluation."
-        },
-        {
-            "name": "random_small",
-            "path": "./tasks/Math_003/data/random_small",
-            "type": "structure_data",
-            "description": "Dataset of small-scale (10x10) 2D grid maps with random obstacles (17.5% density), containing task configurations primarily used for rapid testing and analyzing algorithm behavior in tight spaces."
-        },
-        {
-            "name": "room",
-            "path": "./tasks/Math_003/data/room",
-            "type": "structure_data",
-            "description": "Dataset of room-structured 2D grid maps (25x25) simulating indoor environments with connected chambers and narrow doorways, containing task configurations for analyzing bottleneck traversal."
-        },
-        {
-            "name": "warehouse",
-            "path": "./tasks/Math_003/data/warehouse",
-            "type": "structure_data",
-            "description": "Dataset of warehouse-style 2D grid maps (25x25) with organized shelf layouts, containing task configurations specifically designed to simulate automated logistics and retrieval scenarios."
-        }
-    ]
+  "task": "Input: A MAPF (Multi-Agent Path Finding) instance I, which consists of a discrete 2D grid map with static obstacles and a set of agents, each with a distinct start position and a designated goal position.\n\nOutput: A solution path set P, consisting of collision-free paths for all agents that navigate them from their start positions to their goal positions without vertex or swapping collisions.\n\nScientific Goal (Task): To solve the Multi-Agent Path Finding problem by developing a hybrid algorithm that integrates Multi-Agent Reinforcement Learning into the Large Neighborhood Search framework. The specific objective is to balance solution quality (reducing collisions via MARL in early stages) and computational efficiency (using Prioritized Planning in later stages) to achieve higher success rates in complex environments compared to existing methods.",
+  "data": [
+    {
+      "name": "maps_60_10_10_0.175",
+      "path": "./data/maps_60_10_10_0.175",
+      "type": "structure_data",
+      "description": "The task set consists of static 2D grid maps )and multi-agent task configurations defined by preset parameters such as agent count, start positions, and target positions."
+    },
+    {
+      "name": "empty",
+      "path": "./data/empty",
+      "type": "structure_data",
+      "description": "Dataset of empty 2D grid maps (likely 25x25) with no static obstacles, containing multi-agent task configurations to evaluate navigation in high-density open spaces without structural blockages."
+    },
+    {
+      "name": "maze",
+      "path": "./data/maze",
+      "type": "structure_data",
+      "description": "Dataset of maze-structured 2D grid maps (25x25) characterized by complex corridors and dead-ends, containing task configurations designed to test pathfinding algorithms in highly constrained environments."
+    },
+    {
+      "name": "random_large",
+      "path": "./data/random_large",
+      "type": "structure_data",
+      "description": "Dataset of large-scale (50x50) 2D grid maps with randomly generated obstacles (17.5% density), containing task configurations serving as a benchmark for algorithm scalability in unstructured environments."
+    },
+    {
+      "name": "random_medium",
+      "path": "./data/random_medium",
+      "type": "structure_data",
+      "description": "Dataset of medium-sized (25x25) 2D grid maps with randomly distributed obstacles (17.5% density), containing task configurations that balance map complexity and computational load for standard evaluation."
+    },
+    {
+      "name": "random_small",
+      "path": "./data/random_small",
+      "type": "structure_data",
+      "description": "Dataset of small-scale (10x10) 2D grid maps with random obstacles (17.5% density), containing task configurations primarily used for rapid testing and analyzing algorithm behavior in tight spaces."
+    },
+    {
+      "name": "room",
+      "path": "./data/room",
+      "type": "structure_data",
+      "description": "Dataset of room-structured 2D grid maps (25x25) simulating indoor environments with connected chambers and narrow doorways, containing task configurations for analyzing bottleneck traversal."
+    },
+    {
+      "name": "warehouse",
+      "path": "./data/warehouse",
+      "type": "structure_data",
+      "description": "Dataset of warehouse-style 2D grid maps (25x25) with organized shelf layouts, containing task configurations specifically designed to simulate automated logistics and retrieval scenarios."
+    }
+  ]
 }

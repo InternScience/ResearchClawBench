@@ -1,11 +1,11 @@
 {
-    "task": "Input:\nThe MPtrj dataset from the Materials Project (~1.5 million inorganic crystal structures and relaxation trajectories) and the MACE graph neural network architecture.\n\nOutput:\nA general-purpose foundation model for atomistic potentials that can be directly applied to diverse chemical systems (liquids, solids, catalysis, reactions, etc.), with the ability to achieve ab initio accuracy after fine-tuning on minimal task-specific data.\n\nScientific Goal:\nTo develop and validate a universal foundation model for atomistic simulations that covers the periodic table, stably simulates diverse material systems, and achieves quantitative accuracy with minimal fine-tuning.",
-    "data": [
-        {
-            "name": "MACE-MP-0_Reproduction Dataset.txt",
-            "path": "./tasks/Material_003/data/MACE-MP-0_Reproduction_Dataset.txt",
-            "type": "structure_data",
-            "description": "This dataset contains all parameters and structural information needed to reproduce the performance of the MACE-MP-0 foundation model on three key tests: liquid water structure, adsorption energy scaling relations on transition metal surfaces, and CRBH20 reaction barriers."
-        }
-    ]
+  "task": "Input:\nThe MPtrj dataset from the Materials Project (~1.5 million inorganic crystal structures and relaxation trajectories) and the MACE graph neural network architecture.\n\nOutput:\nA general-purpose foundation model for atomistic potentials that can be directly applied to diverse chemical systems (liquids, solids, catalysis, reactions, etc.), with the ability to achieve ab initio accuracy after fine-tuning on minimal task-specific data.\n\nScientific Goal:\nTo develop and validate a universal foundation model for atomistic simulations that covers the periodic table, stably simulates diverse material systems, and achieves quantitative accuracy with minimal fine-tuning.",
+  "data": [
+    {
+      "name": "MACE-MP-0_Reproduction Dataset.txt",
+      "path": "./data/MACE-MP-0_Reproduction_Dataset.txt",
+      "type": "structure_data",
+      "description": "This dataset contains all parameters and structural information needed to reproduce the performance of the MACE-MP-0 foundation model on three key tests: liquid water structure, adsorption energy scaling relations on transition metal surfaces, and CRBH20 reaction barriers."
+    }
+  ]
 }

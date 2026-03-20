@@ -1,17 +1,17 @@
 {
-    "task": "Develop a unified deep learning framework that takes protein sequences, nucleic acid sequences, and small molecule structures as input, and outputs accurate 3D structures of biomolecular complexes using a diffusion-based architecture to predict interactions across diverse biological molecules.",
-    "data": [
-        {
-            "name": "2l3r_protein.pdb",
-            "path": "./tasks/Chemistry_002/data/sample/2l3r/2l3r_protein.pdb",
-            "type": "protein_structure",
-            "description": "This file contains the experimental structure of the FKBP12 protein (PDB ID: 2L3R) determined by NMR. It includes only the CA atoms of all 107 residues in PDB format. This file serves as the ground truth protein structure for evaluating AlphaFold 3 predictions. The CA coordinates are directly comparable to the model's protein backbone output and are used in RMSD calculations and structural overlay visualizations."
-        },
-        {
-            "name": "2l3r_ligand.sdf",
-            "path": "./tasks/Chemistry_002/data/sample/2l3r/2l3r_ligand.sdf",
-            "type": "ligand_structure",
-            "description": "This file provides the experimental 3D conformation of the FK506 ligand, stored in the standard Structure-Data File (SDF) format. It contains the full atomic coordinates, bond connectivity, and chemical properties of the molecule. This is the primary reference for evaluating ligand pose prediction accuracy; the ligand RMSD is computed by aligning the predicted ligand coordinates to this reference using symmetry-aware Hungarian matching."
-        }
-    ]
+  "task": "Develop a unified deep learning framework that takes protein sequences, nucleic acid sequences, and small molecule structures as input, and outputs accurate 3D structures of biomolecular complexes using a diffusion-based architecture to predict interactions across diverse biological molecules.",
+  "data": [
+    {
+      "name": "2l3r_protein.pdb",
+      "path": "./data/sample/2l3r/2l3r_protein.pdb",
+      "type": "protein_structure",
+      "description": "This file contains the experimental structure of the FKBP12 protein (PDB ID: 2L3R) determined by NMR. It includes only the CA atoms of all 107 residues in PDB format. This file serves as the ground truth protein structure for evaluating AlphaFold 3 predictions. The CA coordinates are directly comparable to the model's protein backbone output and are used in RMSD calculations and structural overlay visualizations."
+    },
+    {
+      "name": "2l3r_ligand.sdf",
+      "path": "./data/sample/2l3r/2l3r_ligand.sdf",
+      "type": "ligand_structure",
+      "description": "This file provides the experimental 3D conformation of the FK506 ligand, stored in the standard Structure-Data File (SDF) format. It contains the full atomic coordinates, bond connectivity, and chemical properties of the molecule. This is the primary reference for evaluating ligand pose prediction accuracy; the ligand RMSD is computed by aligning the predicted ligand coordinates to this reference using symmetry-aware Hungarian matching."
+    }
+  ]
 }

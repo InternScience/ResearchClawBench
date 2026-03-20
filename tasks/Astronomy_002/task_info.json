@@ -1,11 +1,11 @@
 {
-    "task": "The scientific goal of this paper is to achieve a ~1% precision measurement of the Hubble constant \\(H_0\\) by constructing a “Local Distance Network” that combines multiple distance indicators through a covariance‑weighted approach, providing a robust consensus result to address the Hubble tension. Inputs include geometric anchors (Milky Way parallaxes, LMC/SMC detached eclipsing binaries, NGC4258 masers), primary distance indicators (Cepheids, TRGB, Miras, JAGB), secondary indicators (SNe Ia, SBF, SNe II, FP, TF), and Hubble‑flow measurements. Outputs are a consensus value of \\(H_0\\) (baseline \\(H_0 = 73.50 \\pm 0.81 \\ \\mathrm{km\\,s^{-1}\\,Mpc^{-1}}\\)), results from various analysis variants, and comparisons with early‑universe (CMB) constraints, along with publicly released software and data products.",
-    "data": [
-        {
-            "name": "H0DN_MinimalDataset.txt",
-            "path": "./tasks/Astronomy_003/data/H0DN_MinimalDataset.txt",
-            "type": "feature_data",
-            "description": "A minimal dataset to reproduce the Hubble constant measurement using the generalized least squares framework of the Distance Network, including geometric anchors, primary distance indicator measurements, secondary calibrations, and Hubble flow observations."
-        }
-    ]
+  "task": "The scientific goal of this paper is to achieve a ~1% precision measurement of the Hubble constant \\(H_0\\) by constructing a “Local Distance Network” that combines multiple distance indicators through a covariance‑weighted approach, providing a robust consensus result to address the Hubble tension. Inputs include geometric anchors (Milky Way parallaxes, LMC/SMC detached eclipsing binaries, NGC4258 masers), primary distance indicators (Cepheids, TRGB, Miras, JAGB), secondary indicators (SNe Ia, SBF, SNe II, FP, TF), and Hubble‑flow measurements. Outputs are a consensus value of \\(H_0\\) (baseline \\(H_0 = 73.50 \\pm 0.81 \\ \\mathrm{km\\,s^{-1}\\,Mpc^{-1}}\\)), results from various analysis variants, and comparisons with early‑universe (CMB) constraints, along with publicly released software and data products.",
+  "data": [
+    {
+      "name": "H0DN_MinimalDataset.txt",
+      "path": "./data/H0DN_MinimalDataset.txt",
+      "type": "feature_data",
+      "description": "A minimal dataset to reproduce the Hubble constant measurement using the generalized least squares framework of the Distance Network, including geometric anchors, primary distance indicator measurements, secondary calibrations, and Hubble flow observations."
+    }
+  ]
 }

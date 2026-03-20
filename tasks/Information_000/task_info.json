@@ -1,17 +1,17 @@
 {
-    "task": "Build a unified autoregressive framework that decouples visual encoding to perform both multimodal understanding (e.g., visual question answering) and visual generation (e.g., text-to-image generation) within a single Transformer architecture.",
-    "data": [
-        {
-            "name": "equation.png",
-            "path": "./tasks/Information_000/data/equation.png",
-            "type": "sequence_data",
-            "description": "An image containing a mathematical equation used to evaluate the model's optical character recognition (OCR) and formula-to-LaTeX conversion capabilities."
-        },
-        {
-            "name": "doge.jpg",
-            "path": "./tasks/Information_000/data/doge.png",
-            "type": "sequence_data",
-            "description": "A specific meme image (\"Swole Doge vs. Cheems\") used in Figure 5 of the paper. It contains embedded text (\"Decoupling Visual Encoding\" vs. \"Single Visual Encoder\") and visual metaphors to evaluate the model's high-level semantic understanding of humor."
-        }
-    ]
+  "task": "Build a unified autoregressive framework that decouples visual encoding to perform both multimodal understanding (e.g., visual question answering) and visual generation (e.g., text-to-image generation) within a single Transformer architecture.",
+  "data": [
+    {
+      "name": "equation.png",
+      "path": "./data/equation.png",
+      "type": "sequence_data",
+      "description": "An image containing a mathematical equation used to evaluate the model's optical character recognition (OCR) and formula-to-LaTeX conversion capabilities."
+    },
+    {
+      "name": "doge.jpg",
+      "path": "./data/doge.png",
+      "type": "sequence_data",
+      "description": "A specific meme image (\"Swole Doge vs. Cheems\") used in Figure 5 of the paper. It contains embedded text (\"Decoupling Visual Encoding\" vs. \"Single Visual Encoder\") and visual metaphors to evaluate the model's high-level semantic understanding of humor."
+    }
+  ]
 }

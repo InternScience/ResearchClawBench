@@ -3,7 +3,7 @@
   "data": [
     {
       "name": "glambie",
-      "path": "./tasks/Earth_000/data/glambie",
+      "path": "./data/glambie",
       "type": "sequence_data",
       "description": "This dataset is the result of collecting, homogenizing, combining, and analyzing regional estimates derived from four primary observation methods (in situ glaciological measurements, digital elevation model differencing, satellite altimetry, and gravimetry) as well as integrated methods. It incorporates 233 regional estimates of glacier mass change contributed by 35 research teams and approximately 450 data contributors."
     }

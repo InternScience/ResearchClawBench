@@ -1,11 +1,11 @@
 {
-    "task": "Input: NOAA weather-modification records released by the target paper, covering reported cloud-seeding projects in the United States from 2000 to 2025. Output: reproducible tables and figure-level evidence for spatial concentration, annual activity dynamics, purpose composition, and agent-apparatus deployment patterns. Scientific objective: test whether the paper's central empirical conclusions can be independently recovered from the published structured dataset using transparent, script-based analysis.",
-    "data": [
-        {
-            "name": "cloud_seeding_us_2000_2025",
-            "path": "./tasks/Earth_001/data/dataset1_cloud_seeding_records",
-            "type": "sequence_data",
-            "description": "Official project-level cloud-seeding records released with the target paper, covering reported U.S. activities from 2000 to 2025. This is the only dataset used in this submission and it supports all reproduced tables, figures, and summary conclusions. The dataset contains 12 structured fields per record: filename, project name, year, season, state, operator affiliation, seeding agent, deployment apparatus, stated purpose, target area, control area, start date, and end date. The data enables comprehensive analysis of temporal trends, geographic distributions, operational characteristics, and methodological patterns in U.S. weather modification activities over a 25-year period."
-        }
-    ]
+  "task": "Input: NOAA weather-modification records released by the target paper, covering reported cloud-seeding projects in the United States from 2000 to 2025. Output: reproducible tables and figure-level evidence for spatial concentration, annual activity dynamics, purpose composition, and agent-apparatus deployment patterns. Scientific objective: test whether the paper's central empirical conclusions can be independently recovered from the published structured dataset using transparent, script-based analysis.",
+  "data": [
+    {
+      "name": "cloud_seeding_us_2000_2025",
+      "path": "./data/dataset1_cloud_seeding_records",
+      "type": "sequence_data",
+      "description": "Official project-level cloud-seeding records released with the target paper, covering reported U.S. activities from 2000 to 2025. This is the only dataset used in this submission and it supports all reproduced tables, figures, and summary conclusions. The dataset contains 12 structured fields per record: filename, project name, year, season, state, operator affiliation, seeding agent, deployment apparatus, stated purpose, target area, control area, start date, and end date. The data enables comprehensive analysis of temporal trends, geographic distributions, operational characteristics, and methodological patterns in U.S. weather modification activities over a 25-year period."
+    }
+  ]
 }

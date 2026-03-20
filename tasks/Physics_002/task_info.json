@@ -1,17 +1,17 @@
 {
-    "task": "Evaluation of the computational power of random quantum circuit sampling (RCS) on arbitrary geometries as presented in the paper .Input: Experimental sampling results (bitstring counts/samples) and their corresponding ideal distribution information (which can be the full ideal probability/amplitude or that of a verifiable subset) for different qubit counts N, circuit depths d, and instance indices r. The data should enable the implementation of the fidelity estimation workflow used in the paper (e.g., XEB, MB regression probability, gate‑count/error propagation models, etc.).  Output: A fidelity estimate with uncertainty for each (N, d, r) configuration. Under settings such as scanning d for fixed N or scanning N for fixed d, comparative curves should be plotted to validate the paper’s core conclusion regarding the “gap between the experimental fidelity and classical approximability under arbitrary‑geometry/high‑connectivity random circuits.”",
-    "data": [
-        {
-            "name": "results",
-            "path": "./tasks/Physics_003/data/results",
-            "type": "sequence_data",
-            "description": "The measurement result subset output from the Random Quantum Circuit Sampling (RCS) experiment is saved per circuit instance as results/N40_verification/N40_d*_XEB/*_counts.json. Each JSON file records several measured bitstrings (represented as tuple-strings or bitstrings) and their occurrence counts, which are used to compute the counts-weighted XEB fidelity estimate."
-        },
-        {
-            "name": "amplitudes",
-            "path": "./tasks/Physics_003/data/amplitudes",
-            "type": "sequence_data",
-            "description": "The corresponding subset of ideal distribution information is saved per circuit instance as amplitudes/N40_verification/N40_d*_XEB/*_amplitudes.json. Each JSON file provides the ideal amplitudes or ideal probabilities for a set of bitstrings (unified as ideal_probs in your code), which are used to match with the measured counts and compute XEB (the number of matched keys is typically 20 in your reproduction)."
-        }
-    ]
+  "task": "Evaluation of the computational power of random quantum circuit sampling (RCS) on arbitrary geometries as presented in the paper .Input: Experimental sampling results (bitstring counts/samples) and their corresponding ideal distribution information (which can be the full ideal probability/amplitude or that of a verifiable subset) for different qubit counts N, circuit depths d, and instance indices r. The data should enable the implementation of the fidelity estimation workflow used in the paper (e.g., XEB, MB regression probability, gate‑count/error propagation models, etc.).  Output: A fidelity estimate with uncertainty for each (N, d, r) configuration. Under settings such as scanning d for fixed N or scanning N for fixed d, comparative curves should be plotted to validate the paper’s core conclusion regarding the “gap between the experimental fidelity and classical approximability under arbitrary‑geometry/high‑connectivity random circuits.”",
+  "data": [
+    {
+      "name": "results",
+      "path": "./data/results",
+      "type": "sequence_data",
+      "description": "The measurement result subset output from the Random Quantum Circuit Sampling (RCS) experiment is saved per circuit instance as results/N40_verification/N40_d*_XEB/*_counts.json. Each JSON file records several measured bitstrings (represented as tuple-strings or bitstrings) and their occurrence counts, which are used to compute the counts-weighted XEB fidelity estimate."
+    },
+    {
+      "name": "amplitudes",
+      "path": "./data/amplitudes",
+      "type": "sequence_data",
+      "description": "The corresponding subset of ideal distribution information is saved per circuit instance as amplitudes/N40_verification/N40_d*_XEB/*_amplitudes.json. Each JSON file provides the ideal amplitudes or ideal probabilities for a set of bitstrings (unified as ideal_probs in your code), which are used to match with the measured counts and compute XEB (the number of matched keys is typically 20 in your reproduction)."
+    }
+  ]
 }

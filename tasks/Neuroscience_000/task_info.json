@@ -1,23 +1,23 @@
 {
-    "task": "Input: pose-derived frame-level feature tables and aligned behavior labels (Attack, Sniffing) from the official SimBA sample project. Output: trained supervised classifiers, quantitative evaluation reports, precision-recall diagnostics, confusion matrices, and feature-importance tables. Scientific objective: verify, on open data and executable code, whether the SimBA-style workflow can reproducibly transform tracked behavior features into transparent and auditable behavior classification evidence.",
-    "data": [
-        {
-            "name": "Together_1_features_extracted.csv",
-            "path": "./tasks/Neuroscience_000/data/Together_1_features_extracted.csv",
-            "type": "feature_data",
-            "description": "Frame-level engineered features derived from tracked animal pose signals in the official SimBA sample project; used as model input matrix X for both behavior labels."
-        },
-        {
-            "name": "Together_1_targets_inserted.csv",
-            "path": "./tasks/Neuroscience_000/data/Together_1_targets_inserted.csv",
-            "type": "sequence_data",
-            "description": "Frame-aligned target annotations for Attack and Sniffing from the same sample project; used as supervised targets y during train/test evaluation."
-        },
-        {
-            "name": "Together_1_machine_results_reference.csv",
-            "path": "./tasks/Neuroscience_000/data/Together_1_machine_results_reference.csv",
-            "type": "feature_data",
-            "description": "Reference output table provided with the sample project, retained as auxiliary material for contextual comparison with reproduced classifier outputs."
-        }
-    ]
+  "task": "Input: pose-derived frame-level feature tables and aligned behavior labels (Attack, Sniffing) from the official SimBA sample project. Output: trained supervised classifiers, quantitative evaluation reports, precision-recall diagnostics, confusion matrices, and feature-importance tables. Scientific objective: verify, on open data and executable code, whether the SimBA-style workflow can reproducibly transform tracked behavior features into transparent and auditable behavior classification evidence.",
+  "data": [
+    {
+      "name": "Together_1_features_extracted.csv",
+      "path": "./data/Together_1_features_extracted.csv",
+      "type": "feature_data",
+      "description": "Frame-level engineered features derived from tracked animal pose signals in the official SimBA sample project; used as model input matrix X for both behavior labels."
+    },
+    {
+      "name": "Together_1_targets_inserted.csv",
+      "path": "./data/Together_1_targets_inserted.csv",
+      "type": "sequence_data",
+      "description": "Frame-aligned target annotations for Attack and Sniffing from the same sample project; used as supervised targets y during train/test evaluation."
+    },
+    {
+      "name": "Together_1_machine_results_reference.csv",
+      "path": "./data/Together_1_machine_results_reference.csv",
+      "type": "feature_data",
+      "description": "Reference output table provided with the sample project, retained as auxiliary material for contextual comparison with reproduced classifier outputs."
+    }
+  ]
 }

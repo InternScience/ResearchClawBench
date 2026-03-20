@@ -1,41 +1,41 @@
 {
-    "task": "Input is protein sequence features converted to monomer compositions; Output is hydrogel adhesive strength. To de novo design synthetic hydrogels that achieve robust underwater adhesion (>1 MPa) by statistically replicating the sequence features of natural adhesive proteins.",
-    "data": [
-        {
-            "name": "Initial_Training_Data_180",
-            "path": "./tasks/Life_000/data/Original Data_ML_20220829.xlsx",
-            "type": "feature_data",
-            "description": "Batch 1, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
-        },
-        {
-            "name": "Initial_Training_Data_180",
-            "path": "./tasks/Life_000/data/Original Data_ML_20221031.xlsx",
-            "type": "feature_data",
-            "description": "Batch 2, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
-        },
-        {
-            "name": "Initial_Training_Data_180",
-            "path": "./tasks/Life_000/data/Original Data_ML_20221129.xlsx",
-            "type": "feature_data",
-            "description": "Batch 3, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
-        },
-        {
-            "name": "Initial_Training_Data",
-            "path": "./tasks/Life_000/data/184_verified_Original Data_ML_20230926.xlsx",
-            "type": "feature_data",
-            "description": "The cleaned and verified dataset containing the initial 184 hydrogel formulations. This file is the primary input for the 'rfr_gp.py' script to train the initial machine learning models."
-        },
-        {
-            "name": "Final_Optimization_Dataset",
-            "path": "./tasks/Life_000/data/ML_ei&pred (1&2&3rounds)_20240408.xlsx",
-            "type": "feature_data",
-            "description": "The comprehensive dataset aggregating experimental results from all optimization rounds (1, 2, and 3). It serves as the input for evaluation notebooks to analyze the overall optimization trajectory and validate performance."
-        },
-        {
-            "name": "Final_Optimization_Dataset",
-            "path": "./tasks/Life_000/data/ML_ei&pred_20240213.xlsx",
-            "type": "feature_data",
-            "description": "The comprehensive dataset aggregating experimental results from another batch of final optimization dataset. It serves as the input for evaluation notebooks to analyze the overall optimization trajectory and validate performance."
-        }
-    ]
+  "task": "Input is protein sequence features converted to monomer compositions; Output is hydrogel adhesive strength. To de novo design synthetic hydrogels that achieve robust underwater adhesion (>1 MPa) by statistically replicating the sequence features of natural adhesive proteins.",
+  "data": [
+    {
+      "name": "Initial_Training_Data_180",
+      "path": "./data/Original Data_ML_20220829.xlsx",
+      "type": "feature_data",
+      "description": "Batch 1, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
+    },
+    {
+      "name": "Initial_Training_Data_180",
+      "path": "./data/Original Data_ML_20221031.xlsx",
+      "type": "feature_data",
+      "description": "Batch 2, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
+    },
+    {
+      "name": "Initial_Training_Data_180",
+      "path": "./data/Original Data_ML_20221129.xlsx",
+      "type": "feature_data",
+      "description": "Batch 3, The initial experimental dataset containing monomer compositions and adhesive strengths for the 180 bio-inspired hydrogels used to train the base models."
+    },
+    {
+      "name": "Initial_Training_Data",
+      "path": "./data/184_verified_Original Data_ML_20230926.xlsx",
+      "type": "feature_data",
+      "description": "The cleaned and verified dataset containing the initial 184 hydrogel formulations. This file is the primary input for the 'rfr_gp.py' script to train the initial machine learning models."
+    },
+    {
+      "name": "Final_Optimization_Dataset",
+      "path": "./data/ML_ei&pred (1&2&3rounds)_20240408.xlsx",
+      "type": "feature_data",
+      "description": "The comprehensive dataset aggregating experimental results from all optimization rounds (1, 2, and 3). It serves as the input for evaluation notebooks to analyze the overall optimization trajectory and validate performance."
+    },
+    {
+      "name": "Final_Optimization_Dataset",
+      "path": "./data/ML_ei&pred_20240213.xlsx",
+      "type": "feature_data",
+      "description": "The comprehensive dataset aggregating experimental results from another batch of final optimization dataset. It serves as the input for evaluation notebooks to analyze the overall optimization trajectory and validate performance."
+    }
+  ]
 }

@@ -1,11 +1,11 @@
 {
-    "task": "Input multi-step analytic calculation tasks of the Hartree-Fock method from 15 quantum many-body physics research papers; output correctly derived Hartree-Fock Hamiltonians, calculation step scores, and automated results of paper information extraction and step scoring; the scientific goal is to verify whether large language models (LLMs) can accurately perform research-level theoretical physics calculations via structured prompt templates and mitigate key bottlenecks in the research process.",
-    "data": [
-        {
-            "name": "2111.01152",
-            "path": "./tasks/Information_002/data/2111.01152",
-            "type": "feature_data",
-            "description": "The target scientific paper defining the AB-stacked MoTe2/WSe2 moiré system and its Hamiltonian parameters."
-        }
-    ]
+  "task": "Input multi-step analytic calculation tasks of the Hartree-Fock method from 15 quantum many-body physics research papers; output correctly derived Hartree-Fock Hamiltonians, calculation step scores, and automated results of paper information extraction and step scoring; the scientific goal is to verify whether large language models (LLMs) can accurately perform research-level theoretical physics calculations via structured prompt templates and mitigate key bottlenecks in the research process.",
+  "data": [
+    {
+      "name": "2111.01152",
+      "path": "./data/2111.01152",
+      "type": "feature_data",
+      "description": "The target scientific paper defining the AB-stacked MoTe2/WSe2 moiré system and its Hamiltonian parameters."
+    }
+  ]
 }

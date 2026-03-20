@@ -1,17 +1,17 @@
 {
-    "task": "The input to HADDOCK3 consists of atomic coordinates of biomolecules (proteins, glycans, etc.) in PDB format, along with optional experimental restraints (e.g., ambiguous interaction restraints) and user-defined workflows. The output is an ensemble of modeled three-dimensional structures of biomolecular complexes, ranked and clustered according to various scoring functions. The scientific goal is to provide a versatile, modular platform for integrative modeling that leverages experimental data to predict accurate structures of biomolecular complexes, complementing machine learning approaches.",
-    "data": [
-        {
-            "name": "1brs_AD.pdb",
-            "path": "./tasks/Chemistry_003/data/1brs_AD.pdb",
-            "type": "structure_data",
-            "description": "Processed structure of barnase-barstar complex (chains A and D) without water, used as input for HADDOCK3 analysis."
-        },
-        {
-            "name": "skempi_v2.csv",
-            "path": "./tasks/Chemistry_003/data/skempi_v2.csv",
-            "type": "feature_data",
-            "description": "SKEMPI 2.0 database containing experimental binding affinity changes upon mutation, used for validation."
-        }
-    ]
+  "task": "The input to HADDOCK3 consists of atomic coordinates of biomolecules (proteins, glycans, etc.) in PDB format, along with optional experimental restraints (e.g., ambiguous interaction restraints) and user-defined workflows. The output is an ensemble of modeled three-dimensional structures of biomolecular complexes, ranked and clustered according to various scoring functions. The scientific goal is to provide a versatile, modular platform for integrative modeling that leverages experimental data to predict accurate structures of biomolecular complexes, complementing machine learning approaches.",
+  "data": [
+    {
+      "name": "1brs_AD.pdb",
+      "path": "./data/1brs_AD.pdb",
+      "type": "structure_data",
+      "description": "Processed structure of barnase-barstar complex (chains A and D) without water, used as input for HADDOCK3 analysis."
+    },
+    {
+      "name": "skempi_v2.csv",
+      "path": "./data/skempi_v2.csv",
+      "type": "feature_data",
+      "description": "SKEMPI 2.0 database containing experimental binding affinity changes upon mutation, used for validation."
+    }
+  ]
 }

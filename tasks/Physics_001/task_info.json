@@ -1,11 +1,11 @@
 {
-    "task": "Input\nA magic-angle twisted bilayer graphene (MATBG) device with gate-tunable carrier density, subjected to DC bias current and microwave probe signals at cryogenic temperatures (~20 mK).\n\nOutput\nThe device's DC resistance, microwave resonance frequency, and their dependence on temperature, gate voltage, and current. The core extracted physical quantity is the superfluid stiffness and its temperature and current dependence.\n\nScientific Goal\nTo directly measure the superfluid stiffness of MATBG, test whether it significantly exceeds predictions of conventional Fermi liquid theory, investigate its power-law temperature dependence to reveal the nature of unconventional pairing (anisotropic gap), and verify the crucial role of quantum geometric effects in flat-band superconductivity.",
-    "data": [
-        {
-            "name": "MATBG Superfluid Stiffness Core Dataset.txt",
-            "path": "./tasks/Physics_001/data/MATBG Superfluid Stiffness Core Dataset.txt",
-            "type": "feature_data",
-            "description": "This dataset fully contains all simulated data required to reproduce the three core experiments of the target study, covering carrier density dependence, temperature dependence, and current dependence. It can be directly used to independently verify key conclusions such as quantum geometry-dominated enhancement of superfluid stiffness, power-law behavior of anisotropic gaps, and quadratic current relationships."
-        }
-    ]
+  "task": "Input\nA magic-angle twisted bilayer graphene (MATBG) device with gate-tunable carrier density, subjected to DC bias current and microwave probe signals at cryogenic temperatures (~20 mK).\n\nOutput\nThe device's DC resistance, microwave resonance frequency, and their dependence on temperature, gate voltage, and current. The core extracted physical quantity is the superfluid stiffness and its temperature and current dependence.\n\nScientific Goal\nTo directly measure the superfluid stiffness of MATBG, test whether it significantly exceeds predictions of conventional Fermi liquid theory, investigate its power-law temperature dependence to reveal the nature of unconventional pairing (anisotropic gap), and verify the crucial role of quantum geometric effects in flat-band superconductivity.",
+  "data": [
+    {
+      "name": "MATBG Superfluid Stiffness Core Dataset.txt",
+      "path": "./data/MATBG Superfluid Stiffness Core Dataset.txt",
+      "type": "feature_data",
+      "description": "This dataset fully contains all simulated data required to reproduce the three core experiments of the target study, covering carrier density dependence, temperature dependence, and current dependence. It can be directly used to independently verify key conclusions such as quantum geometry-dominated enhancement of superfluid stiffness, power-law behavior of anisotropic gaps, and quadratic current relationships."
+    }
+  ]
 }

@@ -1,11 +1,11 @@
 {
-    "task": "Input:  1. Particle types and sizes: Atoms of varying sizes (e.g., alkali metals Na, K, Rb, Cs; transition metals Ag, Cu, Ni, etc.) or colloidal particles.  2. Path rules: Shell sequence paths defined in the hexagonal lattice (e.g., $(0,0) \rightarrow (0,1) \rightarrow (1,1) \rightarrow (1,2)\\dots$).  3. Interaction parameters: Interatomic potentials (e.g., Lennard-Jones, Gupta) or first-principles calculation parameters.  Output:  1. Predicted stable multi-shell icosahedral structures (e.g., $\\mathrm{Na_{13}@K_{32}}$, $\\mathrm{Ni_{147}@Ag_{192}}$).  2. Optimal size mismatch values between adjacent shells.  3. Shell sequences and paths formed via self-assembly in growth simulations.  Scientific Objective: To establish a universal theoretical framework for the rational design of multi-component nanoclusters and nanoparticles with specific symmetry (chiral or achiral) and compositional sequences, and to predict their stability and growth behavior, ultimately enabling targeted material fabrication for applications in catalysis, optics, and related fields.",
-    "data": [
-        {
-            "name": "Multi-component Icosahedral Reproduction Data.txt",
-            "path": "./tasks/Physics_000/data/Multi-component Icosahedral Reproduction Data.txt",
-            "type": "sequence_data",
-            "description": "This dataset contains complete parameters and result data for reproducing all simulation experiments from the paper \"General theory for packing icosahedral shells into multi-component aggregates\", enabling full reproduction of theoretical calculations, experimental verification, and dynamic growth simulations in any computational environment."
-        }
-    ]
+  "task": "Input:  1. Particle types and sizes: Atoms of varying sizes (e.g., alkali metals Na, K, Rb, Cs; transition metals Ag, Cu, Ni, etc.) or colloidal particles.  2. Path rules: Shell sequence paths defined in the hexagonal lattice (e.g., $(0,0) \rightarrow (0,1) \rightarrow (1,1) \rightarrow (1,2)\\dots$).  3. Interaction parameters: Interatomic potentials (e.g., Lennard-Jones, Gupta) or first-principles calculation parameters.  Output:  1. Predicted stable multi-shell icosahedral structures (e.g., $\\mathrm{Na_{13}@K_{32}}$, $\\mathrm{Ni_{147}@Ag_{192}}$).  2. Optimal size mismatch values between adjacent shells.  3. Shell sequences and paths formed via self-assembly in growth simulations.  Scientific Objective: To establish a universal theoretical framework for the rational design of multi-component nanoclusters and nanoparticles with specific symmetry (chiral or achiral) and compositional sequences, and to predict their stability and growth behavior, ultimately enabling targeted material fabrication for applications in catalysis, optics, and related fields.",
+  "data": [
+    {
+      "name": "Multi-component Icosahedral Reproduction Data.txt",
+      "path": "./data/Multi-component Icosahedral Reproduction Data.txt",
+      "type": "sequence_data",
+      "description": "This dataset contains complete parameters and result data for reproducing all simulation experiments from the paper \"General theory for packing icosahedral shells into multi-component aggregates\", enabling full reproduction of theoretical calculations, experimental verification, and dynamic growth simulations in any computational environment."
+    }
+  ]
 }

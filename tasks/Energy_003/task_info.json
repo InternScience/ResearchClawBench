@@ -1,11 +1,11 @@
 {
-    "task": "Input: Raw data sourced from sensor measurements (electricity, heat, cooling loads, PV generation of 147 buildings) of the Arizona State University Campus Metabolism Project and meteorological observations (temperature, humidity, wind speed, pressure, precipitation) from the U.S. National Weather Service.\r\n\r\nOutput: A multi-source, hierarchical time-series dataset (HEEW) comprising 11,987,328 records with 13 hourly variables (electricity, heat, cooling loads, PV generation, GHG emissions, and 7 weather attributes) from 2014 to 2022, along with data cleaning algorithms.\r\n\r\nScientific Goal: To provide a publicly available, comprehensive, and hierarchical benchmark dataset for energy system management, machine learning, and data-driven optimization (e.g., load forecasting, anomaly detection, clustering, imputation), addressing the gaps in existing multi-energy datasets regarding thermal loads, PV generation, emissions, and long-term coverage.",
-    "data": [
-        {
-            "name": "HEEW_Mini-Dataset",
-            "path": "./tasks/Energy_004/data/HEEW_Mini-Dataset",
-            "type": "sequence_data",
-            "description": "This compact and small dataset version of the core features of the target literature HEEW contains hourly electricity, heat, cooling load, photovoltaic power generation, greenhouse gas emissions, and seven meteorological data for the entire year of 2014. The data is organized in a hierarchical structure, covering 10 independent buildings (BN001–BN010), one aggregated community (CN01), and the entire area (Total), and is used to replicate the core experiments in the paper such as data cleaning, correlation analysis, and consistency verification of hierarchical aggregation, providing example data support for multi-energy system research and the development of machine learning algorithms."
-        }
-    ]
+  "task": "Input: Raw data sourced from sensor measurements (electricity, heat, cooling loads, PV generation of 147 buildings) of the Arizona State University Campus Metabolism Project and meteorological observations (temperature, humidity, wind speed, pressure, precipitation) from the U.S. National Weather Service.\r\n\r\nOutput: A multi-source, hierarchical time-series dataset (HEEW) comprising 11,987,328 records with 13 hourly variables (electricity, heat, cooling loads, PV generation, GHG emissions, and 7 weather attributes) from 2014 to 2022, along with data cleaning algorithms.\r\n\r\nScientific Goal: To provide a publicly available, comprehensive, and hierarchical benchmark dataset for energy system management, machine learning, and data-driven optimization (e.g., load forecasting, anomaly detection, clustering, imputation), addressing the gaps in existing multi-energy datasets regarding thermal loads, PV generation, emissions, and long-term coverage.",
+  "data": [
+    {
+      "name": "HEEW_Mini-Dataset",
+      "path": "./data/HEEW_Mini-Dataset",
+      "type": "sequence_data",
+      "description": "This compact and small dataset version of the core features of the target literature HEEW contains hourly electricity, heat, cooling load, photovoltaic power generation, greenhouse gas emissions, and seven meteorological data for the entire year of 2014. The data is organized in a hierarchical structure, covering 10 independent buildings (BN001–BN010), one aggregated community (CN01), and the entire area (Total), and is used to replicate the core experiments in the paper such as data cleaning, correlation analysis, and consistency verification of hierarchical aggregation, providing example data support for multi-energy system research and the development of machine learning algorithms."
+    }
+  ]
 }
