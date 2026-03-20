@@ -656,6 +656,7 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .checklist-item p { font-size: 13.5px; margin-top: 4px; line-height: 1.5; color: var(--text-secondary); }
 .checklist-text.truncated { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
 .checklist-text:not(.truncated) { cursor: pointer; }
+.checklist-toggle { display: inline-block; font-size: 12px; color: var(--accent); cursor: pointer; margin-top: 2px; }
 .checklist-img { width: 100%; max-width: 280px; margin-top: 6px; border-radius: var(--radius-sm); border: 1px solid var(--border); display: block; }
 
 /* score ring (SVG circle) */

@@ -483,7 +483,7 @@ async function selectTask(taskId) {
           <div><span class="score-item-type ${item.type}">${item.type}</span><span class="score-item-weight">w=${item.weight}</span></div>
           <div class="checklist-score-slot" id="checklist-score-${i}"></div>
         </div>
-        <p class="checklist-text${item.content&&item.content.length>200?' truncated':''}" onclick="this.classList.toggle('truncated')">${esc(item.content||'')}</p>
+        <p class="checklist-text${item.content&&item.content.length>200?' truncated':''}" onclick="this.classList.toggle('truncated');this.nextElementSibling.textContent=this.classList.contains('truncated')?'show more...':'show less'">${esc(item.content||'')}</p>${item.content&&item.content.length>200?'<span class="checklist-toggle" onclick="const p=this.previousElementSibling;p.classList.toggle(\'truncated\');this.textContent=p.classList.contains(\'truncated\')?\'show more...\':\'show less\'">show more...</span>':''}
         ${imgHtml}
       </div>`;
     }).join('');
@@ -539,8 +539,9 @@ async function selectTask(taskId) {
       renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', instrUrl, null, `data/tasks/${taskId}/workspace/`, 'INSTRUCTIONS.md');
     } else {
       await loadTaskFiles(taskId);
-      document.getElementById('file-content-header').textContent = 'No file selected';
-      document.getElementById('file-content-body').innerHTML = '<div class="placeholder">Select a file from the explorer</div>';
+      // Auto-open INSTRUCTIONS.md
+      const baseUrl = `${API}/api/tasks/${taskId}/file?path=`;
+      renderFileContent('INSTRUCTIONS.md', 'INSTRUCTIONS.md', baseUrl + encodeURIComponent('INSTRUCTIONS.md'), null, baseUrl, 'INSTRUCTIONS.md');
     }
     // Clear non-file panels
     document.getElementById('terminal-body').innerHTML = '<div class="placeholder">No runs yet</div>';
@@ -620,11 +621,9 @@ async function selectRun(runId) {
     const files = await fetchStaticJSON(`data/runs/${runId}/files.json`);
     if (files && files.length) {
       renderFileTree(files, runId, null);
-      // Auto-open: prefer report/report.md, then latest file by mtime
+      // Auto-open: latest viewable file by mtime
       let best = null;
-      const report = files.find(f => f.path === 'report/report.md' && f.type === 'file' && f.exported !== false);
-      if (report) { best = report; }
-      else { for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; } }
+      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; }
       if (best) {
         const url = `data/runs/${runId}/workspace/${best.path}`;
         renderFileContent(best.path, best.name, url, null, `data/runs/${runId}/workspace/`, best.path);
@@ -689,8 +688,6 @@ async function autoOpenLatestFile(runId) {
   if (state.userSelectedFile) return;
   try {
     const files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
-    const report = files.find(f => f.path === 'report/report.md' && f.type === 'file');
-    if (report) { loadFile(runId, report.path, report.name, null, true); return; }
     let latest = null;
     for (const f of files) {
       if (f.type !== 'file' || !isViewableFile(f.name)) continue;
