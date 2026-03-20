@@ -637,7 +637,7 @@ async function selectRun(runId) {
       renderFileTree(files, runId, null);
       // Auto-open: latest viewable file by mtime
       let best = null;
-      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; }
+      for (const f of files) { if (f.type !== 'file' || !isViewableFile(f.name) || f.exported === false || !isAgentOutput(f.path)) continue; if (!best || (f.mtime && f.mtime > (best.mtime || 0))) best = f; }
       if (best) {
         const url = `data/runs/${runId}/workspace/${best.path}`;
         renderFileContent(best.path, best.name, url, null, `data/runs/${runId}/workspace/`, best.path);
@@ -704,7 +704,7 @@ async function autoOpenLatestFile(runId, files) {
     if (!files) files = await (await fetch(`${API}/api/runs/${runId}/files`)).json();
     let latest = null;
     for (const f of files) {
-      if (f.type !== 'file' || !isViewableFile(f.name)) continue;
+      if (f.type !== 'file' || !isViewableFile(f.name) || !isAgentOutput(f.path)) continue;
       if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f;
     }
     if (latest) loadFile(runId, latest.path, latest.name, null, true);
@@ -827,7 +827,7 @@ function startAutoTrack(runId) {
       if (!state.userSelectedFile) {
         let latest = null;
         for (const f of files) {
-          if (f.type !== 'file' || !isViewableFile(f.name)) continue;
+          if (f.type !== 'file' || !isViewableFile(f.name) || !isAgentOutput(f.path)) continue;
           if (!latest || (f.mtime && f.mtime > (latest.mtime || 0))) latest = f;
         }
         if (latest) {
@@ -1224,6 +1224,12 @@ const VIEWABLE_IMG_EXTS = new Set(['png','jpg','jpeg','gif','bmp','webp','svg'])
 const VIEWABLE_EMBED_EXTS = new Set(['pdf']);
 const VIEWABLE_TABLE_EXTS = new Set(['xlsx','xls']);
 const VIEWABLE_CSV_EXTS = new Set(['csv','tsv','dat']);
+
+function isAgentOutput(path) {
+  // Only consider files that could be agent-generated for auto-open/follow
+  // Skip data/ and related_work/ (input files the agent doesn't modify)
+  return !path.startsWith('data/') && !path.startsWith('related_work/');
+}
 
 function isViewableFile(name) {
   const ext = name.split('.').pop().toLowerCase();
