@@ -314,6 +314,13 @@ The prompt injected into `<PROMPT>` is auto-generated from `evaluation/instructi
 
 ## 🏆 Leaderboard
 
+You can view the leaderboard on our [Website](https://internscience.github.io/ResearchClawBench-Home/), which is **updated in real time**.
+
+<div align="center">
+<img src="assets/leaderboard.png" width="90%" />
+<p><em>Leaderboard</em></p>
+</div>
+
 The built-in dashboard aggregates the best score per (task, agent) pair and displays:
 
 - **Frontier chart** — best score per task across all agents
