@@ -190,7 +190,7 @@ function renderFrontierChart(data) {
   if (!ctx) return;
 
   const labels = data.tasks;
-  // X-axis: show only domain name (strip _NNN), but keep all 50 ticks
+  // X-axis: show only domain name (strip _NNN), but keep all 40 ticks
   const domainLabels = labels.map(t => t.replace(/_\d+$/, ''));
   const datasets = [];
 
@@ -223,6 +223,7 @@ function renderFrontierChart(data) {
     pointRadius: 0,
     fill: true,
     tension: 0.2,
+    spanGaps: true,
   });
 
   // Human Level baseline at 50
@@ -309,8 +310,8 @@ function renderFrontierChart(data) {
             minRotation: 0,
             autoSkip: false,
             callback: function(value, index) {
-              // Show domain name at midpoint of each 5-task group
-              if (index % 5 === 2) return domainLabels[index];
+              // Show domain name at midpoint of each 4-task group
+              if (index % 4 === 1) return domainLabels[index];
               return '';
             },
           },
@@ -491,7 +492,7 @@ async function selectTask(taskId) {
     const imgBase = STATIC_MODE ? `data/tasks/${taskId}/` : `${API}/api/tasks/${taskId}/target_image?path=`;
     document.getElementById('task-checklist-preview').innerHTML = checklist.map((item, i) => {
       const imgHtml = item.type === 'image' && item.path
-        ? `<img class="checklist-img" src="${STATIC_MODE ? imgBase + item.path : imgBase + encodeURIComponent(item.path)}" alt="target">`
+        ? `<img class="checklist-img" src="${STATIC_MODE ? imgBase + item.path : imgBase + encodeURIComponent(item.path)}" alt="target" onclick="openImageOverlay(this.src)">`
         : '';
       return `<div class="checklist-item" data-checklist-idx="${i}">
         <div class="checklist-item-header">
@@ -1564,6 +1565,14 @@ function toggleDomainCollapse() {
   if (btn) btn.innerHTML = domainsExpanded ? '&#9660;' : '&#9654;';
   document.querySelectorAll('.domain-toggle').forEach(t => t.classList.toggle('open', domainsExpanded));
   document.querySelectorAll('.domain-tasks').forEach(t => t.classList.toggle('open', domainsExpanded));
+}
+
+function openImageOverlay(src) {
+  const overlay = document.createElement('div');
+  overlay.className = 'image-overlay';
+  overlay.innerHTML = `<div class="image-overlay-close">&times;</div><img src="${src}">`;
+  overlay.onclick = () => overlay.remove();
+  document.body.appendChild(overlay);
 }
 
 function backToDashboard() {

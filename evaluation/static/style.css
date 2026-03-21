@@ -666,7 +666,10 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .checklist-item p { font-size: 13.5px; margin-top: 4px; line-height: 1.5; color: var(--text-secondary); }
 .checklist-text.truncated { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .checklist-toggle { display: inline-block; font-size: 11px; color: var(--text-secondary); cursor: pointer; margin-top: 4px; padding: 2px 8px; border: none; border-radius: 4px; background: var(--bg-inset); filter: brightness(0.92); }
-.checklist-img { width: 100%; max-width: 280px; margin-top: 6px; border-radius: var(--radius-sm); border: 1px solid var(--border); display: block; }
+.checklist-img { width: 100%; max-width: 280px; margin-top: 6px; border-radius: var(--radius-sm); border: 1px solid var(--border); display: block; cursor: pointer; }
+.image-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: pointer; }
+.image-overlay img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+.image-overlay-close { position: absolute; top: 16px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; line-height: 1; }
 
 /* score ring (SVG circle) */
 .score-ring-wrap { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
