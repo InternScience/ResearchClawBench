@@ -263,14 +263,20 @@ def api_run_stream(run_id):
 
     def generate():
         """Generator that yields SSE events."""
+        MAX_INITIAL_LINES = 500  # Skip old history to prevent browser freeze on large outputs
         line_offset = 0
         keepalive_counter = 0
+        initial = True
         while True:
             # Read new lines from output file
             if output_path.exists():
                 try:
                     with open(output_path, "r", encoding="utf-8", errors="replace") as f:
                         lines = f.readlines()
+                    if initial:
+                        # On first connection, skip to last MAX_INITIAL_LINES to avoid flooding
+                        line_offset = max(0, len(lines) - MAX_INITIAL_LINES)
+                        initial = False
                     new_lines = lines[line_offset:]
                     for line in new_lines:
                         line = line.strip()

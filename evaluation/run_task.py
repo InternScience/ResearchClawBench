@@ -105,6 +105,7 @@ class TaskRunner:
             cmd_str = cmd_str.replace("<WORKSPACE>", f'"{workspace_path}"')
 
         clean_env = os.environ.copy()
+        clean_env["PYTHONUNBUFFERED"] = "1"  # Force unbuffered stdout for real-time streaming
 
         try:
             self.process = subprocess.Popen(
