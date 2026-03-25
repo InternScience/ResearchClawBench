@@ -642,7 +642,7 @@ async function selectRun(runId) {
   document.getElementById('score-total-area').innerHTML = '';
   document.querySelectorAll('.checklist-score-slot').forEach(el => el.innerHTML = '');
   document.querySelectorAll('.score-item-reasoning').forEach(el => el.remove());
-  document.getElementById('btn-score').textContent = 'Score';
+  { const _s = document.getElementById('btn-score'); if (_s) _s.textContent = 'Score'; }
 
   const isStale = () => state.currentRunId !== runId;
 
@@ -1437,11 +1437,11 @@ async function loadScore(runId) {
   document.getElementById('score-total-area').innerHTML = '';
   document.querySelectorAll('.checklist-score-slot').forEach(el => el.innerHTML = '');
   document.querySelectorAll('.score-item-reasoning').forEach(el => el.remove());
-  document.getElementById('btn-score').textContent = 'Score';
+  { const _s = document.getElementById('btn-score'); if (_s) _s.textContent = 'Score'; }
   try {
     const res = await fetch(`${API}/api/runs/${runId}/score`);
     if (state.currentRunId !== runId) return;
-    if (res.ok) { const s = await res.json(); if (s.items) { renderScore(s); document.getElementById('btn-score').textContent = 'Re-Score'; } }
+    if (res.ok) { const s = await res.json(); if (s.items) { renderScore(s); const _s2 = document.getElementById('btn-score'); if (_s2) _s2.textContent = 'Re-Score'; } }
   } catch (_) {}
 }
 
