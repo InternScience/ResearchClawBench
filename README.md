@@ -249,6 +249,8 @@ Each domain contains **4 carefully curated tasks** with complete experimental da
 
 ```bash
 git clone https://github.com/InternScience/ResearchClawBench.git
+# If you only need to run evaluations, you can instead use:
+# git clone --depth 1 https://github.com/InternScience/ResearchClawBench.git
 cd ResearchClawBench
 pip install -r evaluation/requirements.txt
 ```
@@ -263,7 +265,18 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 SCORER_MODEL=gpt-5.1
 ```
 
-### 3. Launch
+### 3. Install Agents
+
+Install whichever agent(s) you plan to benchmark. You do not need all four.
+
+| Agent | Official installation guide | Notes |
+|:------|:----------------------------|:------|
+| **Claude Code** | [Claude Code overview](https://code.claude.com/docs/en/overview) | Anthropic official docs |
+| **Codex CLI** | [Codex CLI](https://developers.openai.com/codex/cli) | OpenAI official docs |
+| **OpenClaw** | [OpenClaw](https://openclaw.ai/) | Official website and setup entry |
+| **Nanobot** | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | Official GitHub repository |
+
+### 4. Launch
 
 ```bash
 python -m evaluation
@@ -271,7 +284,7 @@ python -m evaluation
 
 Open **http://localhost:5000** — browse tasks, pick an agent, hit **Start Run**, and watch the research happen live.
 
-### 4. Score
+### 5. Score
 
 After a run completes, switch to the **Evaluation** tab and click **Score**. The multimodal LLM judge evaluates each checklist item and returns per-item scores with reasoning.
 
