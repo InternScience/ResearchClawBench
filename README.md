@@ -9,14 +9,14 @@
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-gray)](https://huggingface.co/datasets/InternScience/ResearchClawBench)&#160;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Domains](https://img.shields.io/badge/Domains-10-green.svg)](#-10-scientific-domains)
-[![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-10-scientific-domains)
+[![Domains](https://img.shields.io/badge/Domains-10-green.svg)](#-scientific-domains)
+[![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-scientific-domains)
 [![GitHub](https://img.shields.io/github/stars/InternScience/ResearchClawBench?style=social)](https://github.com/InternScience/ResearchClawBench)
 
 **Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery**
 
 
-[Quick Start](#-quick-start) | [Submit Tasks](#-submit-new-tasks) | [How It Works](#%EF%B8%8F-how-it-works) | [Domains](#-10-scientific-domains) | [Leaderboard](#-leaderboard) | [Add Your Agent](#-add-your-own-agent)
+[Quick Start](#-quick-start) | [Submit Tasks](#-submit-new-tasks) | [How It Works](#%EF%B8%8F-how-it-works) | [Domains](#-scientific-domains) | [Leaderboard](#-leaderboard) | [Add Your Agent](#-add-your-own-agent)
 
 </div>
 
@@ -221,7 +221,7 @@ For checklist items involving theoretical explanations, mechanistic insights, or
 
 > **Strict by design.** The judge is highly skeptical of AI-generated content — plausible-sounding claims must be backed by concrete evidence. Longer reports do not score higher. Substance over style.
 
-### 🔬 10 Scientific Domains
+### 🔬 Scientific Domains
 
 Each domain contains **4 carefully curated tasks** with complete experimental data from real published research:
 
@@ -239,6 +239,31 @@ Each domain contains **4 carefully curated tasks** with complete experimental da
 | **Physics** | Quantum geometry, superfluid stiffness | `.h5`, `.json`, `.csv` |
 
 **40 tasks total** — each a self-contained research challenge selected from high-quality human-authored publications, spanning the full spectrum from data analysis to novel scientific insight.
+
+### 📁 Project Structure
+
+```
+ResearchClawBench/
+├── evaluation/                 # Core evaluation framework
+│   ├── server.py               # Flask API + SSE streaming
+│   ├── run_task.py             # Workspace setup + agent subprocess
+│   ├── score.py                # Multimodal LLM scoring engine
+│   ├── config.py               # Paths, constants, loads agents.json
+│   ├── agents.json             # Agent presets (add your own here)
+│   ├── instructions_tmpl.py    # Unified prompt template for all agents
+│   ├── utils.py                # File tree, path safety, discovery
+│   ├── static/app.js           # Single-file frontend
+│   └── templates/index.html    # Entry point
+├── tasks/                      # 40 research tasks
+│   ├── Astronomy_000/
+│   │   ├── task_info.json      # Task description + data manifest
+│   │   ├── data/               # Raw experimental datasets
+│   │   ├── related_work/       # Reference papers
+│   │   └── target_study/       # Paper + checklist + images
+│   ├── Chemistry_000/
+│   └── ...                     # 10 domains x 4 tasks
+└── workspaces/                 # Generated at runtime (gitignored)
+```
 
 ---
 
@@ -363,9 +388,7 @@ After a submission is merged into the dataset repository, you can download it in
 
 ---
 
-## Results And Repository
-
-### 🏆 Leaderboard
+## 🏆 Leaderboard
 
 You can view the leaderboard on our [Website](https://internscience.github.io/ResearchClawBench-Home/), which is **updated in real time**.
 
@@ -381,31 +404,6 @@ The built-in dashboard aggregates the best score per (task, agent) pair and disp
 - **Per-task breakdown** — view any agent's report, code, and score reasoning
 
 The frontier represents the **state of the art** — every point above 50 is uncharted territory where AI surpasses human researchers on that specific task.
-
-### 📁 Project Structure
-
-```
-ResearchClawBench/
-├── evaluation/                 # Core evaluation framework
-│   ├── server.py               # Flask API + SSE streaming
-│   ├── run_task.py             # Workspace setup + agent subprocess
-│   ├── score.py                # Multimodal LLM scoring engine
-│   ├── config.py               # Paths, constants, loads agents.json
-│   ├── agents.json             # Agent presets (add your own here)
-│   ├── instructions_tmpl.py    # Unified prompt template for all agents
-│   ├── utils.py                # File tree, path safety, discovery
-│   ├── static/app.js           # Single-file frontend
-│   └── templates/index.html    # Entry point
-├── tasks/                      # 40 research tasks
-│   ├── Astronomy_000/
-│   │   ├── task_info.json      # Task description + data manifest
-│   │   ├── data/               # Raw experimental datasets
-│   │   ├── related_work/       # Reference papers
-│   │   └── target_study/       # Paper + checklist + images
-│   ├── Chemistry_000/
-│   └── ...                     # 10 domains x 4 tasks
-└── workspaces/                 # Generated at runtime (gitignored)
-```
 
 ---
 
