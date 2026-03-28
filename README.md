@@ -30,7 +30,9 @@ ResearchClawBench is a benchmark that measures whether AI coding agents can **in
 
 Unlike benchmarks that test coding ability or factual recall, ResearchClawBench asks: *given the same data and tools a human researcher had, can an AI agent arrive at the same (or better) scientific conclusions?*
 
-## ✨ Highlights
+## Overview
+
+### ✨ Highlights
 
 <table>
 <tr>
@@ -47,22 +49,11 @@ Unlike benchmarks that test coding ability or factual recall, ResearchClawBench 
 </tr>
 </table>
 
-## 📢 News
-
-- **2026-03-27** 🤗 Released a Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench), including 10 additional tasks from ResearchClawBench-Self and a task downloader script.
-- **2026-03-27** 📨 Opened the [ResearchClawBench submission Space](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit) for community task uploads. New tasks are validated there and reviewed through Hugging Face dataset PRs instead of being added to this GitHub repository.
-- **2026-03-20** 🐈 Added [Nanobot](https://github.com/HKUDS/nanobot) as a new agent — ultra-lightweight OpenClaw alternative with reliable multi-step tool execution. Agent config moved to `agents.json` for easy customization.
-- **2026-03-19** 🚀 Initial release with Claude Code, Codex CLI, and OpenClaw support. 40 tasks across 10 scientific domains.
-
----
-
-## 🎬 Demo
+### 🎬 Demo
 
 https://github.com/user-attachments/assets/94829265-80a8-4d61-a744-3800603de6d9
 
----
-
-## 💡 Why ResearchClawBench?
+### 💡 Why ResearchClawBench?
 
 Most AI benchmarks evaluate what models **know**. We evaluate what agents can **do**.
 
@@ -72,9 +63,18 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 - **Agent-agnostic.** Ships with first-class support for Claude Code, Codex CLI, and OpenClaw. Bring your own agent in one line.
 - **From Re-Discovery to New-Discovery.** Scoring above 50 means matching the original paper; above 70 means *surpassing* it. The frontier is wide open.
 
+### 📢 News
+
+- **2026-03-27** 🤗 Released a Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench), including 10 additional tasks from ResearchClawBench-Self and a task downloader script.
+- **2026-03-27** 📨 Opened the [ResearchClawBench submission Space](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit) for community task uploads. New tasks are validated there and reviewed through Hugging Face dataset PRs instead of being added to this GitHub repository.
+- **2026-03-20** 🐈 Added [Nanobot](https://github.com/HKUDS/nanobot) as a new agent — ultra-lightweight OpenClaw alternative with reliable multi-step tool execution. Agent config moved to `agents.json` for easy customization.
+- **2026-03-19** 🚀 Initial release with Claude Code, Codex CLI, and OpenClaw support. 40 tasks across 10 scientific domains.
+
 ---
 
-## 🏗️ Data Construction
+## Understanding The Benchmark
+
+### 🏗️ Data Construction
 
 Every task in ResearchClawBench is built through a rigorous, expert-driven pipeline to ensure scientific validity and reproducibility:
 
@@ -103,9 +103,7 @@ flowchart TD
 
 5. **Human Reproduction & Validation** — Human researchers independently reproduce the paper's results using only the provided data and instructions, verifying that every checklist item is achievable. This ensures the benchmark is fair and the checklist is grounded in reality.
 
----
-
-## ⚙️ How It Works
+### ⚙️ How It Works
 
 ResearchClawBench operates in two distinct stages:
 
@@ -126,7 +124,7 @@ flowchart LR
     style Stage2 fill:#fff7ed,stroke:#f59e0b,stroke-width:2px
 ```
 
-### Stage 1: Autonomous Research
+#### Stage 1: Autonomous Research
 
 <div align="center">
 <img src="assets/auto-research.png" width="90%" />
@@ -141,7 +139,7 @@ The AI agent receives a workspace containing raw datasets, reference materials, 
 
 No hand-holding. No chain-of-thought hints. The agent works in its own sandboxed workspace with full tool access — just like a real researcher.
 
-### Stage 2: Reference-Based Evaluation
+#### Stage 2: Reference-Based Evaluation
 
 <div align="center">
 <img src="assets/evaluation.png" width="90%" />
@@ -185,7 +183,7 @@ Each checklist item includes:
 
 The judge automatically determines which evaluation mode applies to each item, then scores it with the corresponding rubric (see below).
 
-#### Mode A: Objective Evaluation (Metric Optimization)
+##### Mode A: Objective Evaluation (Metric Optimization)
 
 For checklist items involving specific numerical results, metrics, or quantitative outcomes:
 
@@ -203,7 +201,7 @@ For checklist items involving specific numerical results, metrics, or quantitati
 | **81–90** | Metrics dramatically surpass the paper |
 | **91–100** | Breakthrough results far exceeding the paper |
 
-#### Mode B: Subjective Evaluation (Mechanism Analysis)
+##### Mode B: Subjective Evaluation (Mechanism Analysis)
 
 For checklist items involving theoretical explanations, mechanistic insights, or interpretive analysis:
 
@@ -223,9 +221,7 @@ For checklist items involving theoretical explanations, mechanistic insights, or
 
 > **Strict by design.** The judge is highly skeptical of AI-generated content — plausible-sounding claims must be backed by concrete evidence. Longer reports do not score higher. Substance over style.
 
----
-
-## 🔬 10 Scientific Domains
+### 🔬 10 Scientific Domains
 
 Each domain contains **4 carefully curated tasks** with complete experimental data from real published research:
 
@@ -246,9 +242,11 @@ Each domain contains **4 carefully curated tasks** with complete experimental da
 
 ---
 
-## 🚀 Quick Start
+## Using ResearchClawBench
 
-### 1. Install
+### 🚀 Quick Start
+
+#### 1. Install
 
 ```bash
 git clone https://github.com/InternScience/ResearchClawBench.git
@@ -258,7 +256,7 @@ cd ResearchClawBench
 pip install -r evaluation/requirements.txt
 ```
 
-### 2. Download Additional Hugging Face Tasks (Optional)
+#### 2. Download Additional Hugging Face Tasks (Optional)
 
 The Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench) currently includes **10 additional tasks beyond the 40 tasks in this repository**, sourced from `ResearchClawBench-Self` and stored in the same `tasks/<TaskID>/...` layout.
 
@@ -287,7 +285,7 @@ The downloaded files are placed directly under that tasks directory, for example
 
 Any task directory placed under `tasks/` with a valid `task_info.json` will be discovered automatically by the evaluation UI/API.
 
-### 3. Configure
+#### 3. Configure
 
 Create `evaluation/.env` with your scoring model credentials:
 
@@ -297,7 +295,7 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 SCORER_MODEL=gpt-5.1
 ```
 
-### 4. Install Agents
+#### 4. Install Agents
 
 Install whichever agent(s) you plan to benchmark. You do not need all four.
 
@@ -308,7 +306,7 @@ Install whichever agent(s) you plan to benchmark. You do not need all four.
 | **OpenClaw** | [OpenClaw](https://openclaw.ai/) | Official website and setup entry |
 | **Nanobot** | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | Official GitHub repository |
 
-### 5. Launch
+#### 5. Launch
 
 ```bash
 python -m evaluation
@@ -316,23 +314,11 @@ python -m evaluation
 
 Open **http://localhost:5000** — browse tasks, pick an agent, hit **Start Run**, and watch the research happen live.
 
-### 6. Score
+#### 6. Score
 
 After a run completes, switch to the **Evaluation** tab and click **Score**. The multimodal LLM judge evaluates each checklist item and returns per-item scores with reasoning.
 
-## 📨 Submit New Tasks
-
-The GitHub benchmark repository stays focused on the base 40 tasks. New task submissions should go through the [ResearchClawBench submission Space](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit), which validates the uploaded zip and opens a PR against the [Hugging Face dataset repository](https://huggingface.co/datasets/InternScience/ResearchClawBench) for maintainer review.
-
-- Submission Space: [InternScience/ResearchClawBench-Task-Submit](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit)
-- Dataset destination: [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench)
-- Example task format: [tasks/Astronomy_000](https://github.com/InternScience/ResearchClawBench/tree/main/tasks/Astronomy_000)
-
-After a submission is merged into the dataset repository, you can download it into your local `tasks/` directory with `download_tasks.py`, and the evaluation UI/API will discover it automatically.
-
----
-
-## 🤖 Supported Agents
+### 🤖 Supported Agents
 
 ResearchClawBench ships with built-in support for four frontier coding agents:
 
@@ -343,7 +329,7 @@ ResearchClawBench ships with built-in support for four frontier coding agents:
 | <img src="evaluation/static/logos/openclaw.svg" width="16" /> **OpenClaw** | `openclaw agent ...` | Self-hosted gateway, 3600s timeout |
 | <img src="evaluation/static/logos/nanobot.svg" width="16" /> **Nanobot** | `nanobot agent -m ...` | Ultra-lightweight, reliable tool execution |
 
-### 🔧 Add Your Own Agent
+#### 🔧 Add Your Own Agent
 
 Agent configuration is stored in `evaluation/agents.json`. To add a new agent, simply append an entry:
 
@@ -365,9 +351,21 @@ Agent configuration is stored in `evaluation/agents.json`. To add a new agent, s
 
 The prompt injected into `<PROMPT>` is auto-generated from `evaluation/instructions_tmpl.py`, which combines a unified agent persona (autonomous execution guidelines, workspace sandbox rules) with task-specific instructions (description, data files, deliverables). All agents receive the exact same prompt — no code changes required, just edit the JSON file and restart the server.
 
+### 📨 Submit New Tasks
+
+The GitHub benchmark repository stays focused on the base 40 tasks. New task submissions should go through the [ResearchClawBench submission Space](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit), which validates the uploaded zip and opens a PR against the [Hugging Face dataset repository](https://huggingface.co/datasets/InternScience/ResearchClawBench) for maintainer review.
+
+- Submission Space: [InternScience/ResearchClawBench-Task-Submit](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit)
+- Dataset destination: [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench)
+- Example task format: [tasks/Astronomy_000](https://github.com/InternScience/ResearchClawBench/tree/main/tasks/Astronomy_000)
+
+After a submission is merged into the dataset repository, you can download it into your local `tasks/` directory with `download_tasks.py`, and the evaluation UI/API will discover it automatically.
+
 ---
 
-## 🏆 Leaderboard
+## Results And Repository
+
+### 🏆 Leaderboard
 
 You can view the leaderboard on our [Website](https://internscience.github.io/ResearchClawBench-Home/), which is **updated in real time**.
 
@@ -384,9 +382,7 @@ The built-in dashboard aggregates the best score per (task, agent) pair and disp
 
 The frontier represents the **state of the art** — every point above 50 is uncharted territory where AI surpasses human researchers on that specific task.
 
----
-
-## 📁 Project Structure
+### 📁 Project Structure
 
 ```
 ResearchClawBench/
@@ -413,7 +409,9 @@ ResearchClawBench/
 
 ---
 
-## 🤝 Contributing
+## Community
+
+### 🤝 Contributing
 
 We welcome contributions in several forms — see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
@@ -431,9 +429,7 @@ We welcome contributions in several forms — see [CONTRIBUTING.md](CONTRIBUTING
   <img src="https://raw.githubusercontent.com/InternScience/ResearchClawBench/main/assets/whatsappjpg.jpg" alt="WhatsApp" width="200">
 </p>
 
----
-
-## 📜 Citation
+### 📜 Citation
 
 If you would like to cite our work, please use the following BibTeX.
 
@@ -446,9 +442,7 @@ If you would like to cite our work, please use the following BibTeX.
 }
 ```
 
----
-
-## ⭐ Star History
+### ⭐ Star History
 
 <a href="https://www.star-history.com/?repos=InternScience%2FResearchClawBench&type=date&legend=top-left">
  <picture>
