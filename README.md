@@ -65,6 +65,7 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
+- **2026-03-30** 🧬 Added built-in [EvoScientist](https://github.com/EvoScientist/EvoScientist) support and clarified multimodal judge prompting so the first attached image is explicitly treated as the ground-truth figure.
 - **2026-03-27** 🤗 Released a Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench), including 10 additional tasks from ResearchClawBench-Self and a task downloader script.
 - **2026-03-27** 📨 Opened the [ResearchClawBench submission Space](https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit) for community task uploads. New tasks are validated there and reviewed through Hugging Face dataset PRs instead of being added to this GitHub repository.
 - **2026-03-20** 🐈 Added [Nanobot](https://github.com/HKUDS/nanobot) as a new agent — ultra-lightweight OpenClaw alternative with reliable multi-step tool execution. Agent config moved to `agents.json` for easy customization.
@@ -339,7 +340,7 @@ SCORER_MODEL=gpt-5.1
 
 #### 4. Install Agents
 
-Install whichever agent(s) you plan to benchmark. You do not need all four.
+Install whichever agent(s) you plan to benchmark. You do not need all five.
 
 | Agent | Official installation guide | Notes |
 |:------|:----------------------------|:------|
@@ -347,6 +348,7 @@ Install whichever agent(s) you plan to benchmark. You do not need all four.
 | **Codex CLI** | [Codex CLI](https://developers.openai.com/codex/cli) | OpenAI official docs |
 | **OpenClaw** | [OpenClaw](https://openclaw.ai/) | Official website and setup entry |
 | **Nanobot** | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | Official GitHub repository |
+| **EvoScientist** | [EvoScientist/EvoScientist](https://github.com/EvoScientist/EvoScientist) | Official GitHub repository |
 
 #### 5. Launch
 
@@ -362,7 +364,7 @@ After a run completes, switch to the **Evaluation** tab and click **Score**. The
 
 ### 🤖 Supported Agents
 
-ResearchClawBench ships with built-in support for four frontier coding agents:
+ResearchClawBench ships with built-in support for five frontier coding agents:
 
 | Agent | Command | Notes |
 |:------|:--------|:------|
@@ -370,6 +372,7 @@ ResearchClawBench ships with built-in support for four frontier coding agents:
 | <img src="evaluation/static/logos/openai.svg" width="16" /> **Codex CLI** | `codex exec --full-auto ...` | OpenAI, full-auto mode |
 | <img src="evaluation/static/logos/openclaw.svg" width="16" /> **OpenClaw** | `openclaw agent ...` | Self-hosted gateway, 3600s timeout |
 | <img src="evaluation/static/logos/nanobot.svg" width="16" /> **Nanobot** | `nanobot agent -m ...` | Ultra-lightweight, reliable tool execution |
+| <img src="evaluation/static/logos/evo.svg" width="16" /> **EvoScientist** | `evosci --ui cli ...` | Self-evolving AI Scientists |
 
 #### 🔧 Add Your Own Agent
 

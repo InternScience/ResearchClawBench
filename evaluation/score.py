@@ -139,6 +139,7 @@ def _build_image_prompt(report_text: str, item: dict, instructions: str) -> str:
 
 ## Task
 Compare the AI-generated images against the target image from the original paper.
+When images are attached, the first image is always the ground-truth target image from the original paper. All subsequent images are from the AI agent's workspace/report.
 First determine if this criterion is Objective (Mode A) or Subjective (Mode B), then apply the corresponding rubric strictly.
 Superficially similar plots with wrong scales, missing data, or incorrect trends should score low.
 
