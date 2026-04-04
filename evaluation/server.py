@@ -553,12 +553,12 @@ def api_leaderboard():
     Returns:
       tasks: [task_id, ...]
       agents: [agent_name, ...]
-      scores: {agent_name: {task_id: {score, run_id}, ...}, ...}
-      frontier: {task_id: max_score, ...}
+      scores: {agent_name: {task_id: {score, run_id, duration_seconds, model}, ...}, ...}
+      frontier: {task_id: max_score_or_null, ...}
     """
     all_runs = list_runs()
-    # For each (task, agent), keep only the best scored run
-    best = {}  # (task_id, agent_name) -> {score, run_id}
+    # For each (task, agent), keep only the best scored run.
+    best = {}  # (task_id, agent_name) -> leaderboard cell metadata
     for run in all_runs:
         ws = get_run_workspace(run["run_id"])
         if not ws:
@@ -575,9 +575,15 @@ def api_leaderboard():
         task_id = run["task_id"]
         agent = score_data.get("agent_name", run.get("agent_name", "Unknown"))
         total = score_data.get("total_score", 0)
+        entry = {
+            "score": total,
+            "run_id": run["run_id"],
+            "duration_seconds": run.get("duration_seconds"),
+            "model": run.get("model", ""),
+        }
         key = (task_id, agent)
         if key not in best or total > best[key]["score"]:
-            best[key] = {"score": total, "run_id": run["run_id"]}
+            best[key] = entry
 
     # Build structured response
     tasks_set = set()
@@ -600,12 +606,12 @@ def api_leaderboard():
     # Frontier: max score per task across all agents
     frontier = {}
     for task in tasks_list:
-        max_score = 0
+        best_entry = None
         for agent in agents_list:
             key = (task, agent)
-            if key in best and best[key]["score"] > max_score:
-                max_score = best[key]["score"]
-        frontier[task] = max_score
+            if key in best and (best_entry is None or best[key]["score"] > best_entry["score"]):
+                best_entry = best[key]
+        frontier[task] = best_entry["score"] if best_entry else None
 
     return jsonify({
         "tasks": tasks_list,

@@ -93,7 +93,7 @@ const API = '';
 })();
 
 /* ── State ───────────────────────────────────────────────────────────── */
-let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research', _cachedInputFiles: [], _selectEpoch: 0 };
+let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research', _cachedInputFiles: [], _selectEpoch: 0, _pendingRunId: null };
 
 /* ── Init ────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
@@ -331,6 +331,8 @@ function renderFrontierChart(data) {
 
   // Custom HTML legend with logos
   const legendEl = document.getElementById('chart-legend');
+  const agentModelLabels = {};
+  data.agents.forEach(agent => { agentModelLabels[agent] = getAgentModelLabel(data, agent); });
   legendEl.innerHTML = frontierChart.data.datasets.map((ds, i) => {
     const logo = state.agentLogos[ds.label];
     const logoHtml = logo ? `<img src="${logo}" alt="">` : '';
@@ -340,7 +342,11 @@ function renderFrontierChart(data) {
     if (ds.label.startsWith('Human')) {
       return `<div class="chart-legend-item"><span class="chart-legend-swatch dashed" style="border-color:${ds.borderColor}"></span>${ds.label}</div>`;
     }
-    return `<div class="chart-legend-item">${logoHtml}<span class="chart-legend-swatch" style="background:${ds.borderColor}"></span>${esc(ds.label)}</div>`;
+    const modelLabel = agentModelLabels[ds.label];
+    const textHtml = modelLabel
+      ? `<span class="chart-legend-text"><span>${esc(ds.label)}</span><span class="chart-legend-model">${esc(modelLabel)}</span></span>`
+      : `<span>${esc(ds.label)}</span>`;
+    return `<div class="chart-legend-item">${logoHtml}<span class="chart-legend-swatch" style="background:${ds.borderColor}"></span>${textHtml}</div>`;
   }).join('');
 }
 
@@ -358,15 +364,47 @@ function renderLeaderboard(data) {
   }
 
   function scoreColor(v) {
-    if (v <= 0) return 'transparent';
     const t = Math.max(0, Math.min(100, v)) / 100;
     const hue = t < 0.5 ? t * 2 * 55 : 55 + (t - 0.5) * 2 * 65;
     return `hsl(${hue}, 75%, ${42 + t * 12}%)`;
   }
-  function cellStyle(v) { return v > 0 ? `background:${scoreColor(v)};color:#fff;font-weight:600;` : ''; }
+  function cellStyle(v) {
+    return Number.isFinite(v) ? `background:${scoreColor(v)};color:#fff;font-weight:600;` : '';
+  }
+  function renderMetricLines(entry) {
+    const timeText = formatLeaderboardDuration(entry?.duration_seconds);
+    const costText = Number.isFinite(entry?.cost_usd) ? formatUsdCost(entry.cost_usd) : '';
+    if (!costText) return `<span class="leaderboard-cell-meta"><span>${timeText}</span></span>`;
+    return `<span class="leaderboard-cell-meta"><span>${costText}</span><span>${timeText}</span></span>`;
+  }
+  function renderScoreBlock(entry, clickable) {
+    if (!entry || !Number.isFinite(entry.score)) return '<span class="score-cell score-cell-empty">-</span>';
+    const scoreHtml = `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
+    const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div>`;
+    return clickable ? `<td class="leaderboard-score-td" onclick="goToRun('${entry.run_id}')">${inner}</td>` : `<td class="leaderboard-score-td">${inner}</td>`;
+  }
+  function averageEntry(entries) {
+    const scored = entries.filter(e => Number.isFinite(e?.score));
+    if (!scored.length) return null;
+    const average = key => {
+      const values = scored.map(e => e[key]).filter(Number.isFinite);
+      return values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
+    };
+    return { score: average('score'), duration_seconds: average('duration_seconds'), cost_usd: average('cost_usd') };
+  }
+  function frontierEntry(task) {
+    return data.agents
+      .map(agent => data.scores[agent]?.[task])
+      .filter(Boolean)
+      .reduce((best, entry) => !best || entry.score > best.score ? entry : best, null);
+  }
 
   let html = '<table class="leaderboard"><thead><tr><th>Task</th>';
-  data.agents.forEach(a => html += `<th>${agentLogoHtml(a, 20)} ${esc(a)}</th>`);
+  data.agents.forEach(a => {
+    const modelLabel = getAgentModelLabel(data, a);
+    const modelHtml = modelLabel ? `<span class="leaderboard-agent-model">${esc(modelLabel)}</span>` : '';
+    html += `<th><div class="leaderboard-agent-head">${agentLogoHtml(a, 20)}<span class="leaderboard-agent-name">${esc(a)}</span>${modelHtml}</div></th>`;
+  });
   html += '<th>Frontier</th></tr></thead><tbody>';
 
   data.tasks.forEach(task => {
@@ -374,17 +412,14 @@ function renderLeaderboard(data) {
     data.agents.forEach(agent => {
       const entry = data.scores[agent]?.[task];
       if (entry) {
-        const s = entry.score;
-        html += `<td onclick="goToRun('${entry.run_id}')" style="cursor:pointer"><span class="score-cell" style="${cellStyle(s)}">${s.toFixed(1)}</span></td>`;
+        html += renderScoreBlock(entry, true);
       } else {
-        html += STATIC_MODE
-          ? '<td><span class="running-cell">running</span></td>'
-          : '<td class="no-score">-</td>';
+        html += '<td class="no-score">-</td>';
       }
     });
-    const f = data.frontier[task];
-    if (f && f > 0) {
-      html += `<td><span class="score-cell" style="${cellStyle(f)}">${f.toFixed(1)}</span></td>`;
+    const frontier = frontierEntry(task);
+    if (frontier) {
+      html += renderScoreBlock(frontier, false);
     } else {
       html += '<td class="no-score">-</td>';
     }
@@ -394,24 +429,71 @@ function renderLeaderboard(data) {
   // Average row — only count tasks that have scores
   html += '<tr class="frontier-row"><td>Average</td>';
   data.agents.forEach(agent => {
-    const scores = data.tasks.map(t => data.scores[agent]?.[t]?.score).filter(v => v != null);
-    const avg = scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : 0;
-    html += `<td><span class="score-cell" style="${cellStyle(avg)}">${scores.length ? avg.toFixed(1) : '-'}</span></td>`;
+    const avgEntry = averageEntry(data.tasks.map(t => data.scores[agent]?.[t]).filter(Boolean));
+    if (!avgEntry) {
+      html += '<td class="no-score">-</td>';
+      return;
+    }
+    html += renderScoreBlock(avgEntry, false);
   });
-  const fScores = data.tasks.map(t => data.frontier[t]).filter(v => v != null && v > 0);
-  const fAvg = fScores.length ? fScores.reduce((a, b) => a + b, 0) / fScores.length : 0;
-  html += `<td><span class="score-cell" style="${cellStyle(fAvg)}">${fScores.length ? fAvg.toFixed(1) : '-'}</span></td>`;
+  const frontierAvgEntry = averageEntry(data.tasks.map(frontierEntry).filter(Boolean));
+  if (frontierAvgEntry) {
+    html += renderScoreBlock(frontierAvgEntry, false);
+  } else {
+    html += '<td class="no-score">-</td>';
+  }
   html += '</tr></tbody></table>';
 
   wrap.innerHTML = html;
+  syncLeaderboardScrollbar();
 }
 
-function goToRun(runId) {
+function syncLeaderboardScrollbar() {
+  const wrap = document.getElementById('leaderboard-wrap');
+  const shell = document.getElementById('leaderboard-scrollbar-shell');
+  const bar = document.getElementById('leaderboard-scrollbar');
+  const spacer = document.getElementById('leaderboard-scrollbar-spacer');
+  const table = wrap?.querySelector('.leaderboard');
+  if (!wrap || !shell || !bar || !spacer || !table) return;
+
+  const contentWidth = Math.max(table.scrollWidth, wrap.scrollWidth);
+  const viewportWidth = wrap.clientWidth;
+  const needsScroll = contentWidth > viewportWidth + 4;
+
+  shell.style.display = needsScroll ? 'flex' : 'none';
+  const wrapMaxScroll = Math.max(0, contentWidth - viewportWidth);
+  const barViewportWidth = bar.clientWidth;
+  spacer.style.width = `${Math.max(barViewportWidth, wrapMaxScroll + barViewportWidth)}px`;
+
+  if (!bar._leaderboardBound) {
+    let syncing = false;
+    bar.addEventListener('scroll', () => {
+      if (syncing) return;
+      syncing = true;
+      wrap.scrollLeft = bar.scrollLeft;
+      syncing = false;
+    });
+    wrap.addEventListener('scroll', () => {
+      if (syncing) return;
+      syncing = true;
+      bar.scrollLeft = wrap.scrollLeft;
+      syncing = false;
+    });
+    window.addEventListener('resize', () => {
+      window.requestAnimationFrame(syncLeaderboardScrollbar);
+    });
+    bar._leaderboardBound = true;
+  }
+
+  bar.scrollLeft = Math.min(wrap.scrollLeft, bar.scrollWidth - bar.clientWidth);
+}
+
+async function goToRun(runId) {
   // Extract task_id from run_id (format: TaskId_timestamp)
   const parts = runId.split('_');
   const taskId = parts.slice(0, -2).join('_'); // e.g. "Energy_000" from "Energy_000_20260318_..."
-  selectTask(taskId);
-  setTimeout(() => selectRun(runId), 300);
+  state._pendingRunId = runId;
+  await selectTask(taskId);
 }
 
 /* ── Tasks ───────────────────────────────────────────────────────────── */
@@ -551,9 +633,13 @@ async function selectTask(taskId) {
     ? (state._runsIndex || []).filter(r => r.task_id === taskId).sort((a,b) => (b.timestamp||'').localeCompare(a.timestamp||''))
     : await (await fetch(`${API}/api/runs?task_id=${taskId}`)).json();
   if (stale()) return;
+  const pendingRunId = state._pendingRunId;
+  const preferredRun = pendingRunId ? runs.find(r => r.run_id === pendingRunId) : null;
   if (runs.length > 0) {
-    await selectRun(runs[0].run_id);
+    state._pendingRunId = null;
+    await selectRun((preferredRun || runs[0]).run_id);
   } else {
+    state._pendingRunId = null;
     state.currentRunId = null;
     // Load task file tree (both modes)
     if (STATIC_MODE) {
@@ -594,7 +680,8 @@ async function loadRuns(taskId) {
   div.innerHTML = runs.map(r => {
     const ts = r.timestamp || '';
     const fmt = ts.length >= 15 ? `${ts.slice(0,4)}-${ts.slice(4,6)}-${ts.slice(6,8)} ${ts.slice(9,11)}:${ts.slice(11,13)}` : ts;
-    const modelStr = r.model ? `<span class="run-item-model">${esc(r.model)}</span>` : '';
+    const modelLabel = r.model_display || r.model;
+    const modelStr = modelLabel ? `<span class="run-item-model">${esc(modelLabel)}</span>` : '';
     return `
     <div class="run-item ${r.run_id===state.currentRunId?'active':''}" data-run-id="${r.run_id}">
       <span class="status-dot ${r.status}"></span>
@@ -1616,6 +1703,32 @@ function formatDuration(seconds) {
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
   return `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+}
+
+function formatLeaderboardDuration(seconds) {
+  if (!Number.isFinite(seconds)) return '--';
+  seconds = Math.max(0, Math.round(seconds));
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}h ${String(m).padStart(2, '0')}m`;
+  if (m > 0) return `${m}m ${String(s).padStart(2, '0')}s`;
+  return `${s}s`;
+}
+
+function formatUsdCost(cost) {
+  if (!Number.isFinite(cost)) return '--';
+  if (cost < 0.01) return '<$0.01';
+  if (cost < 1) return `$${cost.toFixed(2)}`;
+  if (cost < 10) return `$${cost.toFixed(1)}`;
+  return `$${Math.round(cost)}`;
+}
+
+function getAgentModelLabel(data, agent) {
+  const entries = Object.values(data?.scores?.[agent] || {}).filter(Boolean);
+  const labels = [...new Set(entries.map(e => e.model_display || e.model).filter(Boolean))];
+  if (labels.length !== 1) return '';
+  return labels[0];
 }
 
 let _durationTimer = null;
