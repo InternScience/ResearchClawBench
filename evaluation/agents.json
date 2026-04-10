@@ -34,5 +34,11 @@
     "icon": "H",
     "logo": "/static/logos/rh.svg",
     "cmd": "python3 /abs/path/to/ResearchHarness/run_agent.py <PROMPT> --workspace-root <WORKSPACE> --role-prompt-file /abs/path/to/ResearchHarness/benchmarks/ResearchClawBench/role_prompt.md --trace-dir <WORKSPACE>"
+  },
+  "researchclaw": {
+    "label": "ResearchClaw",
+    "icon": "R",
+    "logo": "/static/logos/researchclaw.svg",
+    "cmd": "researchclaw agent -m <PROMPT> -w <WORKSPACE>"
   }
 }
