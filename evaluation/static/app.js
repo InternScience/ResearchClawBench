@@ -110,7 +110,16 @@ const ICON_COLORS = { C: '#3f3f46', X: '#166534', O: '#92400e' };
 async function loadConfig() {
   if (STATIC_MODE) {
     // Static mode: hardcoded preset info, no agent selection UI
-    state.agentLogos = { 'Claude Code': 'static/logos/anthropic.svg', 'Codex CLI': 'static/logos/openai.svg', 'OpenClaw': 'static/logos/openclaw.svg', 'Nanobot': 'static/logos/nanobot.svg', 'EvoScientist': 'static/logos/evo.svg' };
+    state.agentLogos = {
+      'Claude Code': 'static/logos/anthropic.svg',
+      'Codex CLI': 'static/logos/openai.svg',
+      'ARIS Codex': 'static/logos/asx.svg',
+      'OpenClaw': 'static/logos/openclaw.svg',
+      'Nanobot': 'static/logos/nanobot.svg',
+      'EvoScientist': 'static/logos/evo.svg',
+      'ResearchClaw': 'static/logos/researchclaw.svg',
+      'ResearchHarness': 'static/logos/rh.svg',
+    };
     const container = document.getElementById('agent-options');
     if (container) container.style.display = 'none';
     return;
