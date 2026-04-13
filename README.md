@@ -39,7 +39,7 @@ Unlike benchmarks that test coding ability or factual recall, ResearchClawBench 
 <td align="center" width="25%">🔄<br/><b>Two-Stage Pipeline</b><br/><sub>Autonomous research + rigorous peer-review-style evaluation</sub></td>
 <td align="center" width="25%">🧪<br/><b>40 Real-Science Tasks</b><br/><sub>10 disciplines, curated datasets from published papers</sub></td>
 <td align="center" width="25%">👁️<br/><b>Expert-Annotated Data</b><br/><sub>Tasks, checklists & datasets curated by domain experts</sub></td>
-<td align="center" width="25%">🤖<br/><b>Multi-Agent Support</b><br/><sub>Claude Code, Codex CLI, OpenClaw, Nanobot, EvoScientist, ResearchClaw, ResearchHarness & custom agents</sub></td>
+<td align="center" width="25%">🤖<br/><b>Multi-Agent Support</b><br/><sub>Claude Code, Codex CLI, ARIS Codex, OpenClaw, Nanobot, EvoScientist, ResearchClaw, ResearchHarness & custom agents</sub></td>
 </tr>
 <tr>
 <td align="center">🚀<br/><b>Re-Discovery to New-Discovery</b><br/><sub>50 = match the paper, 70+ = surpass it</sub></td>
@@ -60,11 +60,12 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 - **Real science, not toy problems.** 40 tasks sourced from published papers across 10 disciplines, each with curated experimental datasets.
 - **Two-stage pipeline.** Autonomous research first, rigorous evaluation second — just like peer review.
 - **Fine-grained, multimodal scoring.** A weighted checklist with text and image criteria, judged by an LLM acting as a strict peer reviewer.
-- **Agent-agnostic.** Ships with built-in support for Claude Code, Codex CLI, OpenClaw, Nanobot, EvoScientist, ResearchClaw, and a lightweight ResearchHarness baseline. Bring your own agent in one line.
+- **Agent-agnostic.** Ships with built-in support for Claude Code, Codex CLI, ARIS Codex, OpenClaw, Nanobot, EvoScientist, ResearchClaw, and a lightweight ResearchHarness baseline. Bring your own agent in one line.
 - **From Re-Discovery to New-Discovery.** Scoring above 50 means matching the original paper; above 70 means *surpassing* it. The frontier is wide open.
 
 ### 📢 News
 
+- **2026-04-13** 🧭 Added built-in **ARIS Codex** UI support and documentation. Imported benchmark runs are supported in the leaderboard and run browser; one-click launch is not yet supported in the public preset.
 - **2026-04-10** 🔬 Added built-in [ResearchClaw](https://github.com/researchclaw/researchclaw) support — an intelligent agent-powered research assistant with built-in skills for paper search, literature review, and data analysis.
 - **2026-04-07** 🧪 Added built-in [ResearchHarness](https://github.com/black-yt/ResearchHarness) support as a lightweight baseline agent for testing different LLMs under the same ResearchClawBench workflow.
 - **2026-03-30** 🧬 Added built-in [EvoScientist](https://github.com/EvoScientist/EvoScientist) support and clarified multimodal judge prompting so the first attached image is explicitly treated as the ground-truth figure.
@@ -342,12 +343,13 @@ SCORER_MODEL=gpt-5.1
 
 #### 4. Install Agents
 
-Install whichever agent(s) you plan to benchmark. You do not need all six.
+Install whichever agent(s) you plan to benchmark. You do not need every built-in preset.
 
 | Agent | Official installation guide | Notes |
 |:------|:----------------------------|:------|
 | **Claude Code** | [Claude Code overview](https://code.claude.com/docs/en/overview) | Anthropic official docs |
 | **Codex CLI** | [Codex CLI](https://developers.openai.com/codex/cli) | OpenAI official docs |
+| **ARIS Codex** | Local ARIS Codex wrapper | Imported runs are supported in the UI. The public preset is documentation-only for now; one-click launch is not yet supported. |
 | **OpenClaw** | [OpenClaw](https://openclaw.ai/) | Official website and setup entry |
 | **Nanobot** | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | Official GitHub repository |
 | **EvoScientist** | [EvoScientist/EvoScientist](https://github.com/EvoScientist/EvoScientist) | Official GitHub repository |
@@ -368,12 +370,13 @@ After a run completes, switch to the **Evaluation** tab and click **Score**. The
 
 ### 🤖 Supported Agents
 
-ResearchClawBench ships with built-in support for five frontier coding agents, ResearchClaw, plus a lightweight ResearchHarness baseline:
+ResearchClawBench ships with built-in support for Claude Code, Codex CLI, ARIS Codex, OpenClaw, Nanobot, EvoScientist, ResearchClaw, plus a lightweight ResearchHarness baseline:
 
 | Agent | Command | Notes |
 |:------|:--------|:------|
 | <img src="evaluation/static/logos/anthropic.svg" width="16" /> **Claude Code** | `claude -p ...` | Anthropic, stream-JSON output |
 | <img src="evaluation/static/logos/openai.svg" width="16" /> **Codex CLI** | `codex exec --full-auto ...` | OpenAI, full-auto mode |
+| <img src="evaluation/static/logos/asx.svg" width="16" /> **ARIS Codex** | `One-click launch is not yet supported.` | Historical imported runs are supported in the UI; add your own local wrapper if you want to benchmark it interactively. |
 | <img src="evaluation/static/logos/openclaw.svg" width="16" /> **OpenClaw** | `openclaw agent ...` | Self-hosted gateway, 3600s timeout |
 | <img src="evaluation/static/logos/nanobot.svg" width="16" /> **Nanobot** | `nanobot agent -m ...` | Ultra-lightweight, reliable tool execution |
 | <img src="evaluation/static/logos/evo.svg" width="16" /> **EvoScientist** | `evosci --ui cli ...` | Self-evolving AI Scientists |

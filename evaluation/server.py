@@ -35,6 +35,25 @@ CORS(app)
 
 # Track active runners
 _active_runners: dict[str, TaskRunner] = {}
+RESEARCHHARNESS_LABEL = "ResearchHarness"
+
+
+def _order_agent_labels(agent_names):
+    names = set(agent_names)
+    ordered = []
+    for preset in AGENT_PRESETS.values():
+        label = preset.get("label", "")
+        if label in names and label != RESEARCHHARNESS_LABEL and label not in ordered:
+            ordered.append(label)
+    ordered.extend(
+        sorted(
+            name for name in names
+            if name not in ordered and name != RESEARCHHARNESS_LABEL
+        )
+    )
+    if RESEARCHHARNESS_LABEL in names:
+        ordered.append(RESEARCHHARNESS_LABEL)
+    return ordered
 
 
 # --- Pages ---
@@ -593,7 +612,7 @@ def api_leaderboard():
         agents_set.add(a)
 
     tasks_list = sorted(tasks_set)
-    agents_list = sorted(agents_set)
+    agents_list = _order_agent_labels(agents_set)
 
     scores = {}
     for agent in agents_list:

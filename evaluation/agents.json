@@ -11,6 +11,12 @@
     "logo": "/static/logos/openai.svg",
     "cmd": "codex exec --full-auto <PROMPT>"
   },
+  "aris_codex": {
+    "label": "ARIS Codex",
+    "icon": "ASX",
+    "logo": "/static/logos/asx.svg",
+    "cmd": "bash -lc 'echo \"One-click launch is not yet supported for ARIS Codex.\" >&2; exit 1'"
+  },
   "openclaw": {
     "label": "OpenClaw",
     "icon": "O",
@@ -29,16 +35,16 @@
     "logo": "/static/logos/evo.svg",
     "cmd": "bash -c 'set -euo pipefail; workspace=\"$1\"; base_prompt=\"$2\"; extra_prompt=$'\"'\"'### EvoScientist Path Usage\n- The current working directory is already the workspace root. Use relative paths from . for all file-oriented tools.\n- Allowed examples: ls(.), ls(data), ls(related_work), read_file(data/...), and writing to code/..., outputs/..., and report/....\n- Do not pass the absolute workspace path to file-oriented tools.'\"'\"'; current_prompt=\"$base_prompt\"$'\"'\"'\n\n'\"'\"'\"$extra_prompt\"; exec evosci --ui cli --workdir \"$workspace\" --auto-approve -p \"$current_prompt\"' -- <WORKSPACE> <PROMPT>"
   },
-  "researchharness": {
-    "label": "ResearchHarness",
-    "icon": "H",
-    "logo": "/static/logos/rh.svg",
-    "cmd": "python3 /abs/path/to/ResearchHarness/run_agent.py <PROMPT> --workspace-root <WORKSPACE> --role-prompt-file /abs/path/to/ResearchHarness/benchmarks/ResearchClawBench/role_prompt.md --trace-dir <WORKSPACE>"
-  },
   "researchclaw": {
     "label": "ResearchClaw",
     "icon": "R",
     "logo": "/static/logos/researchclaw.svg",
     "cmd": "researchclaw agent -m <PROMPT> -w <WORKSPACE>"
+  },
+  "researchharness": {
+    "label": "ResearchHarness",
+    "icon": "H",
+    "logo": "/static/logos/rh.svg",
+    "cmd": "python3 /abs/path/to/ResearchHarness/run_agent.py <PROMPT> --workspace-root <WORKSPACE> --role-prompt-file /abs/path/to/ResearchHarness/benchmarks/ResearchClawBench/role_prompt.md --trace-dir <WORKSPACE>"
   }
 }
