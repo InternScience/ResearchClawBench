@@ -392,10 +392,6 @@ function renderLeaderboard(data) {
     const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div>`;
     return clickable ? `<td class="leaderboard-score-td" onclick="goToRun('${entry.run_id}')">${inner}</td>` : `<td class="leaderboard-score-td">${inner}</td>`;
   }
-  function renderMissingScoreBlock() {
-    if (STATIC_MODE) return '<td class="no-score"><span class="running-cell">running</span></td>';
-    return '<td class="no-score">-</td>';
-  }
   function averageEntry(entries) {
     const scored = entries.filter(e => Number.isFinite(e?.score));
     if (!scored.length) return null;
@@ -427,7 +423,7 @@ function renderLeaderboard(data) {
       if (entry) {
         html += renderScoreBlock(entry, true);
       } else {
-        html += renderMissingScoreBlock();
+        html += '<td class="no-score">-</td>';
       }
     });
     const frontier = frontierEntry(task);
