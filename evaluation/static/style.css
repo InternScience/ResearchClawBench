@@ -289,6 +289,13 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 
 .score-cell { border-radius: 4px; padding: 3px 8px; display: inline-block; min-width: 38px; text-align: center; font-size: 13px; }
 .score-cell.score-cell-empty { background: transparent; color: var(--text-tertiary); }
+.running-cell {
+  font-size: 10px;
+  color: var(--warn);
+  font-style: italic;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 .leaderboard-score-td { font-family: var(--mono); }
 .leaderboard-score-wrap { display: flex; align-items: center; justify-content: flex-start; gap: 7px; padding-left: 10px; }
 .leaderboard-cell-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; font-size: 11px; line-height: 1.15; color: var(--text-secondary); font-family: var(--mono); }
