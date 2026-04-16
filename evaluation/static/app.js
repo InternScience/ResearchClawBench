@@ -1839,6 +1839,7 @@ function getModelLogo(model) {
   const mappings = [
     [/^GPT\b/i, 'static/logos/openai.svg'],
     [/^Claude\b/i, 'static/logos/anthropic.svg'],
+    [/^Gemini/i, 'static/logos/gemini.png'],
     [/^Qwen/i, 'static/logos/qwen.png'],
     [/^GLM\b/i, 'static/logos/glm.webp'],
     [/^Kimi\b/i, 'static/logos/kimi.png'],
