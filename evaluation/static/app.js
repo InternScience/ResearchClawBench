@@ -314,7 +314,7 @@ function renderFrontierChart(data) {
           bodyFont: { family: "'Fira Code', monospace", size: 16 },
           callbacks: {
             title: (items) => labels[items[0].dataIndex] || '',
-            label: c2 => `${c2.dataset.label}: ${c2.parsed.y !== null ? c2.parsed.y.toFixed(1) : '-'}`,
+            label: c2 => `${getAgentDisplayLabel(data, c2.dataset.label)}: ${c2.parsed.y !== null ? c2.parsed.y.toFixed(1) : '-'}`,
           },
         },
       },
@@ -348,8 +348,6 @@ function renderFrontierChart(data) {
 
   // Custom HTML legend with logos
   const legendEl = document.getElementById('chart-legend');
-  const agentModelLabels = {};
-  data.agents.forEach(agent => { agentModelLabels[agent] = getAgentModelLabel(data, agent); });
   legendEl.innerHTML = frontierChart.data.datasets.map((ds, i) => {
     const logo = getAgentLogo(ds.label);
     const logoHtml = logo ? `<img src="${logo}" alt="">` : '';
@@ -359,12 +357,24 @@ function renderFrontierChart(data) {
     if (ds.label.startsWith('Human')) {
       return `<div class="chart-legend-item"><span class="chart-legend-swatch dashed" style="border-color:${ds.borderColor}"></span>${ds.label}</div>`;
     }
-    const modelLabel = agentModelLabels[ds.label];
+    const displayLabel = getAgentDisplayLabel(data, ds.label);
+    const modelLabel = getAgentSecondaryLabel(data, ds.label);
     const textHtml = modelLabel
-      ? `<span class="chart-legend-text"><span>${esc(ds.label)}</span><span class="chart-legend-model">${esc(modelLabel)}</span></span>`
-      : `<span>${esc(ds.label)}</span>`;
+      ? `<span class="chart-legend-text"><span>${esc(displayLabel)}</span><span class="chart-legend-model">${esc(modelLabel)}</span></span>`
+      : `<span>${esc(displayLabel)}</span>`;
     return `<div class="chart-legend-item">${logoHtml}<span class="chart-legend-swatch" style="background:${ds.borderColor}"></span>${textHtml}</div>`;
   }).join('');
+
+  const card = ctx.closest('.card');
+  if (card) {
+    let noteEl = card.querySelector('.dashboard-footnote.frontier-footnote');
+    if (!noteEl) {
+      noteEl = document.createElement('div');
+      noteEl.className = 'dashboard-footnote frontier-footnote';
+      ctx.parentElement.insertAdjacentElement('afterend', noteEl);
+    }
+    noteEl.innerHTML = researchHarnessFootnoteHtml();
+  }
 }
 
 function renderLeaderboard(data) {
@@ -396,11 +406,12 @@ function renderLeaderboard(data) {
     if (!costText) return `<span class="leaderboard-cell-meta"><span>${timeText}</span></span>`;
     return `<span class="leaderboard-cell-meta"><span>${costText}</span><span>${timeText}</span></span>`;
   }
-  function renderScoreBlock(entry, clickable) {
+  function renderScoreBlock(entry, clickable, extraClass = '') {
     if (!entry || !Number.isFinite(entry.score)) return '<span class="score-cell score-cell-empty">-</span>';
     const scoreHtml = `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
     const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div>`;
-    return clickable ? `<td class="leaderboard-score-td" onclick="goToRun('${entry.run_id}')">${inner}</td>` : `<td class="leaderboard-score-td">${inner}</td>`;
+    const tdClass = `leaderboard-score-td${extraClass ? ` ${extraClass}` : ''}`;
+    return clickable ? `<td class="${tdClass}" onclick="goToRun('${entry.run_id}')">${inner}</td>` : `<td class="${tdClass}">${inner}</td>`;
   }
   function averageEntry(entries) {
     const scored = entries.filter(e => Number.isFinite(e?.score));
@@ -416,6 +427,26 @@ function renderLeaderboard(data) {
       .map(agent => data.scores[agent]?.[task])
       .filter(Boolean)
       .reduce((best, entry) => !best || entry.score > best.score ? entry : best, null);
+  }
+  function averageScoreForAgent(agent) {
+    return averageEntry(data.tasks.map(task => data.scores[agent]?.[task]).filter(Boolean))?.score ?? -Infinity;
+  }
+  function splitAgentGroups(list) {
+    const agents = [];
+    const llms = [];
+    list.forEach(name => {
+      if (isResearchHarnessAgent(name)) {
+        llms.push(name);
+      } else {
+        agents.push(name);
+      }
+    });
+    llms.sort((a, b) => {
+      const diff = averageScoreForAgent(b) - averageScoreForAgent(a);
+      if (diff) return diff;
+      return getAgentDisplayLabel(data, a).localeCompare(getAgentDisplayLabel(data, b));
+    });
+    return { agents, llms };
   }
   function renderSummaryCell(entry) {
     if (!entry || !Number.isFinite(entry.score)) return '<td class="no-score leaderboard-static-cell">-</td>';
@@ -450,52 +481,68 @@ function renderLeaderboard(data) {
       );
       return { agent, overall, domains: domainsMap };
     });
-    rows.sort((a, b) => {
+    const sortRows = rowsToSort => rowsToSort.sort((a, b) => {
       const av = Number.isFinite(a.overall?.score) ? a.overall.score : -Infinity;
       const bv = Number.isFinite(b.overall?.score) ? b.overall.score : -Infinity;
       if (bv !== av) return bv - av;
-      return a.agent.localeCompare(b.agent);
+      return getAgentDisplayLabel(data, a.agent).localeCompare(getAgentDisplayLabel(data, b.agent));
     });
-    return { domains, rows };
+    return {
+      domains,
+      agentRows: sortRows(rows.filter(row => !isResearchHarnessAgent(row.agent))),
+      llmRows: sortRows(rows.filter(row => isResearchHarnessAgent(row.agent))),
+    };
   }
 
+  const groupedAgents = splitAgentGroups(data.agents);
+  const orderedTaskAgents = [...groupedAgents.agents, ...groupedAgents.llms];
+  const firstLlmAgent = groupedAgents.agents.length && groupedAgents.llms.length ? groupedAgents.llms[0] : '';
   const domainSummary = summarizeByDomain();
 
-  let summaryHtml = '<table class="leaderboard leaderboard-summary"><thead><tr><th>Agent</th><th>Overall</th>';
+  let summaryHtml = '<table class="leaderboard leaderboard-summary"><thead><tr><th>Agent/LLM</th><th>Overall</th>';
   domainSummary.domains.forEach(domain => {
     summaryHtml += `<th>${esc(domain)}</th>`;
   });
   summaryHtml += '</tr></thead><tbody>';
-  domainSummary.rows.forEach((row, index) => {
-    const modelLabel = getAgentModelLabel(data, row.agent);
-    const modelHtml = modelLabel ? `<span class="leaderboard-agent-model">${esc(modelLabel)}</span>` : '';
-    const medal = Number.isFinite(row.overall?.score) && index < 3 ? ['🥇', '🥈', '🥉'][index] : '';
-    const medalHtml = medal ? `<span class="leaderboard-medal" aria-hidden="true">${medal}</span>` : '';
-    summaryHtml += `<tr><td><div class="leaderboard-agent-row"><span class="leaderboard-agent-name">${medalHtml}${agentLogoHtml(row.agent, 18)}<span>${esc(row.agent)}</span></span>${modelHtml}</div></td>`;
-    summaryHtml += renderSummaryCell(row.overall);
-    domainSummary.domains.forEach(domain => {
-      summaryHtml += renderSummaryCell(row.domains[domain]);
+  function appendSummaryRows(rows, addDivider) {
+    rows.forEach((row, index) => {
+      const rowClass = addDivider && index === 0 ? ' class="leaderboard-group-start-row"' : '';
+      const displayLabel = getAgentDisplayLabel(data, row.agent);
+      const modelLabel = getAgentSecondaryLabel(data, row.agent);
+      const modelHtml = modelLabel ? `<span class="leaderboard-agent-model">${esc(modelLabel)}</span>` : '';
+      const medal = Number.isFinite(row.overall?.score) && index < 3 ? ['🥇', '🥈', '🥉'][index] : '';
+      const medalHtml = medal ? `<span class="leaderboard-medal" aria-hidden="true">${medal}</span>` : '';
+      summaryHtml += `<tr${rowClass}><td><div class="leaderboard-agent-row"><span class="leaderboard-agent-name">${medalHtml}${agentLogoHtml(row.agent, 18)}<span>${esc(displayLabel)}</span></span>${modelHtml}</div></td>`;
+      summaryHtml += renderSummaryCell(row.overall);
+      domainSummary.domains.forEach(domain => {
+        summaryHtml += renderSummaryCell(row.domains[domain]);
+      });
+      summaryHtml += '</tr>';
     });
-    summaryHtml += '</tr>';
-  });
+  }
+  appendSummaryRows(domainSummary.agentRows, false);
+  appendSummaryRows(domainSummary.llmRows, domainSummary.agentRows.length > 0);
   summaryHtml += '</tbody></table>';
 
   let taskHtml = '<table class="leaderboard"><thead><tr><th>Task</th>';
-  data.agents.forEach(a => {
-    const modelLabel = getAgentModelLabel(data, a);
+  orderedTaskAgents.forEach(a => {
+    const displayLabel = getAgentDisplayLabel(data, a);
+    const modelLabel = getAgentSecondaryLabel(data, a);
     const modelHtml = modelLabel ? `<span class="leaderboard-agent-model">${esc(modelLabel)}</span>` : '';
-    taskHtml += `<th><div class="leaderboard-agent-head">${agentLogoHtml(a, 20)}<span class="leaderboard-agent-name">${esc(a)}</span>${modelHtml}</div></th>`;
+    const dividerClass = a === firstLlmAgent ? ' class="leaderboard-group-divider-left"' : '';
+    taskHtml += `<th${dividerClass}><div class="leaderboard-agent-head">${agentLogoHtml(a, 20)}<span class="leaderboard-agent-name">${esc(displayLabel)}</span>${modelHtml}</div></th>`;
   });
   taskHtml += '<th>Frontier</th></tr></thead><tbody>';
 
   data.tasks.forEach(task => {
     taskHtml += `<tr><td>${esc(task)}</td>`;
-    data.agents.forEach(agent => {
+    orderedTaskAgents.forEach(agent => {
       const entry = data.scores[agent]?.[task];
+      const dividerClass = agent === firstLlmAgent ? 'leaderboard-group-divider-left' : '';
       if (entry) {
-        taskHtml += renderScoreBlock(entry, true);
+        taskHtml += renderScoreBlock(entry, true, dividerClass);
       } else {
-        taskHtml += '<td class="no-score">-</td>';
+        taskHtml += `<td class="no-score${dividerClass ? ` ${dividerClass}` : ''}">-</td>`;
       }
     });
     const frontier = frontierEntry(task);
@@ -509,13 +556,14 @@ function renderLeaderboard(data) {
 
   // Average row — only count tasks that have scores
   taskHtml += '<tr class="frontier-row"><td>Average</td>';
-  data.agents.forEach(agent => {
+  orderedTaskAgents.forEach(agent => {
     const avgEntry = averageEntry(data.tasks.map(t => data.scores[agent]?.[t]).filter(Boolean));
+    const dividerClass = agent === firstLlmAgent ? 'leaderboard-group-divider-left' : '';
     if (!avgEntry) {
-      taskHtml += '<td class="no-score">-</td>';
+      taskHtml += `<td class="no-score${dividerClass ? ` ${dividerClass}` : ''}">-</td>`;
       return;
     }
-    taskHtml += renderScoreBlock(avgEntry, false);
+    taskHtml += renderScoreBlock(avgEntry, false, dividerClass);
   });
   const frontierAvgEntry = averageEntry(data.tasks.map(frontierEntry).filter(Boolean));
   if (frontierAvgEntry) {
@@ -529,7 +577,8 @@ function renderLeaderboard(data) {
     <div class="leaderboard-stack">
       ${renderSection('summary', 'By Domain', summaryHtml, 'Slide to view more domains')}
       ${renderSection('task', 'By Task', taskHtml, 'Slide to view more agents', '<span class="leaderboard-note-icon" aria-hidden="true">👉</span> Click any scored cell to jump to run details')}
-    </div>`;
+    </div>
+    <div class="dashboard-footnote leaderboard-footnote">${researchHarnessFootnoteHtml()}</div>`;
 
   container.innerHTML = html;
   syncLeaderboardScrollbars();
@@ -1784,8 +1833,28 @@ function getAgentBaseLabel(name) {
   return m ? m[1] : String(name);
 }
 
+function getModelLogo(model) {
+  const label = String(model || '');
+  if (!label) return '';
+  const mappings = [
+    [/^GPT\b/i, 'static/logos/openai.svg'],
+    [/^Claude\b/i, 'static/logos/anthropic.svg'],
+    [/^Qwen/i, 'static/logos/qwen.png'],
+    [/^GLM\b/i, 'static/logos/glm.webp'],
+    [/^Kimi\b/i, 'static/logos/kimi.png'],
+    [/^MiMo\b/i, 'static/logos/mimo.png'],
+    [/^Grok\b/i, 'static/logos/grok.png'],
+  ];
+  const match = mappings.find(([pattern]) => pattern.test(label));
+  return match ? match[1] : '';
+}
+
 function getAgentLogo(name) {
-  return state.agentLogos[name] || state.agentLogos[getAgentBaseLabel(name)] || '';
+  if (state.agentLogos[name]) return state.agentLogos[name];
+  if (isResearchHarnessAgent(name)) {
+    return getModelLogo(getResearchHarnessModelName(null, name)) || state.agentLogos[getAgentBaseLabel(name)] || '';
+  }
+  return state.agentLogos[getAgentBaseLabel(name)] || getModelLogo(name) || '';
 }
 
 function agentLogoHtml(name, size = 16) {
@@ -1831,6 +1900,33 @@ function getAgentModelLabel(data, agent) {
   const labels = [...new Set(entries.map(e => e.model_display || e.model).filter(Boolean))];
   if (labels.length !== 1) return '';
   return labels[0];
+}
+
+function isResearchHarnessAgent(name) {
+  return /^ResearchHarness\b/.test(String(name || ''));
+}
+
+function getResearchHarnessModelName(data, agent) {
+  const match = String(agent || '').match(/^ResearchHarness \((.+)\)$/);
+  if (match) return match[1];
+  return getAgentModelLabel(data, agent) || '';
+}
+
+function getAgentDisplayLabel(data, agent) {
+  if (agent === 'Frontier' || String(agent || '').startsWith('Human')) return String(agent || '');
+  if (isResearchHarnessAgent(agent)) return getResearchHarnessModelName(data, agent) || String(agent || '');
+  return String(agent || '');
+}
+
+function getAgentSecondaryLabel(data, agent) {
+  if (isResearchHarnessAgent(agent)) return '';
+  const modelLabel = getAgentModelLabel(data, agent);
+  if (!modelLabel || modelLabel === getAgentDisplayLabel(data, agent)) return '';
+  return modelLabel;
+}
+
+function researchHarnessFootnoteHtml() {
+  return 'Note: All standalone LLM results below are evaluated with <a href="https://github.com/black-yt/ResearchHarness" target="_blank" rel="noopener noreferrer">ResearchHarness</a>.';
 }
 
 let _durationTimer = null;

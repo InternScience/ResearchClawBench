@@ -257,6 +257,9 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .chart-legend-swatch { width: 14px; height: 3px; border-radius: 2px; }
 .chart-legend-swatch.dashed { border-top: 2px dashed; width: 18px; height: 0; background: none; }
 .chart-container { position: relative; width: 100%; height: 416px; }
+.dashboard-footnote { margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--text-secondary); }
+.dashboard-footnote a { color: var(--accent); text-decoration: none; }
+.dashboard-footnote a:hover { text-decoration: underline; }
 
 .stats { display: flex; gap: 28px; }
 .stat { text-align: center; }
@@ -304,6 +307,8 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .leaderboard-summary th, .leaderboard-summary td { padding: 5px 4px; }
 .leaderboard-summary th:first-child, .leaderboard-summary td:first-child { min-width: 74px; }
 .leaderboard-summary th:not(:first-child), .leaderboard-summary td:not(:first-child) { width: 126px; min-width: 126px; max-width: 126px; }
+.leaderboard-group-start-row td { border-top: 3px solid var(--border-strong); }
+.leaderboard-group-divider-left { box-shadow: inset 3px 0 0 var(--border-strong); }
 .leaderboard-summary td { cursor: default; }
 .leaderboard-summary td:hover { background: transparent; }
 .leaderboard-static-cell { cursor: default; }
