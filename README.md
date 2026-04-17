@@ -39,7 +39,7 @@ Unlike benchmarks that test coding ability or factual recall, ResearchClawBench 
 <td align="center" width="25%">🔄<br/><b>Two-Stage Pipeline</b><br/><sub>Autonomous research + rigorous peer-review-style evaluation</sub></td>
 <td align="center" width="25%">🧪<br/><b>40 Real-Science Tasks</b><br/><sub>10 disciplines, curated datasets from published papers</sub></td>
 <td align="center" width="25%">👁️<br/><b>Expert-Annotated Data</b><br/><sub>Tasks, checklists & datasets curated by domain experts</sub></td>
-<td align="center" width="25%">🤖<br/><b>Multi-Agent Support</b><br/><sub>Claude Code, Codex CLI, ARIS Codex, OpenClaw, Nanobot, EvoScientist, ResearchClaw, ResearchHarness & custom agents</sub></td>
+<td align="center" width="25%">🤖<br/><b>Multi-Agent Support</b><br/><sub>Claude Code, Codex CLI, OpenClaw, ResearchClaw, ... & custom agents</sub></td>
 </tr>
 <tr>
 <td align="center">🚀<br/><b>Re-Discovery to New-Discovery</b><br/><sub>50 = match the paper, 70+ = surpass it</sub></td>
