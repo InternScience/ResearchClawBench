@@ -304,7 +304,7 @@ pip install -r evaluation/requirements.txt
 
 #### 2. Download Additional Hugging Face Tasks (Optional)
 
-The Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench) currently includes **16 additional tasks beyond the 40 tasks in this repository**, combining the original `*_005` releases with newer community-submitted tasks in the same `tasks/<TaskID>/...` layout.
+The Hugging Face dataset mirror at [InternScience/ResearchClawBench](https://huggingface.co/datasets/InternScience/ResearchClawBench) currently includes **16 community-contributed tasks beyond the 40 tasks in this repository**, all packaged in the same `tasks/<TaskID>/...` layout.
 
 If you want to use these extra tasks directly in this repository, set `--output-dir` to your local `tasks/` directory.
 
