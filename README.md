@@ -325,10 +325,10 @@ python download_tasks.py --all --output-dir /path/to/ResearchClawBench/tasks
 Download one or more specific tasks:
 
 ```bash
-python download_tasks.py --task Astronomy_005 --task Physics_005 --output-dir /path/to/ResearchClawBench/tasks
+python download_tasks.py --task Astronomy_004 --task Physics_004 --output-dir /path/to/ResearchClawBench/tasks
 ```
 
-The downloaded files are placed directly under that tasks directory, for example `/path/to/ResearchClawBench/tasks/Astronomy_005/...`.
+The downloaded files are placed directly under that tasks directory, for example `/path/to/ResearchClawBench/tasks/Astronomy_004/...`.
 
 Any task directory placed under `tasks/` with a valid `task_info.json` will be discovered automatically by the evaluation UI/API.
 
