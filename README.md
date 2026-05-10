@@ -435,7 +435,7 @@ We welcome contributions in several forms — see [CONTRIBUTING.md](CONTRIBUTING
 <p align="center">
   <img src="https://raw.githubusercontent.com/InternScience/ResearchClawBench/main/assets/wechat.jpg" alt="WeChat" width="200">
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/InternScience/ResearchClawBench/main/assets/whatsappjpg.jpg" alt="WhatsApp" width="200">
+  <img src="https://raw.githubusercontent.com/InternScience/ResearchClawBench/main/assets/whatsapp.jpg" alt="WhatsApp" width="200">
 </p>
 
 ### 📜 Citation
