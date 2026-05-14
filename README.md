@@ -355,7 +355,7 @@ Install whichever agent(s) you plan to benchmark. You do not need every built-in
 | **Nanobot** | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | Official GitHub repository |
 | **EvoScientist** | [EvoScientist/EvoScientist](https://github.com/EvoScientist/EvoScientist) | Official GitHub repository |
 | **ResearchClaw** | [ymx10086/ResearchClaw](https://github.com/ymx10086/ResearchClaw) | `pip install researchclaw` |
-| **ResearchHarness** | [InternScience/ResearchHarness Space](https://huggingface.co/spaces/InternScience/ResearchHarness) | Lightweight baseline harness for testing different LLMs; replace `/abs/path/to/ResearchHarness` in `agents.json` |
+| **ResearchHarness** | [InternScience/ResearchHarness](https://github.com/InternScience/ResearchHarness) | Lightweight baseline harness for testing different LLMs; replace `/abs/path/to/ResearchHarness` in `agents.json` |
 
 #### 5. Launch
 
