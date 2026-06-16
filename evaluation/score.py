@@ -14,9 +14,10 @@ The judge evaluates end-to-end automated scientific discovery capability.
 import json
 import os
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from structai import LLMAgent, multi_thread
+from structai.llm_api import encode_image, extract_text_outputs, load_file
 
 from .config import JUDGE_MODEL_NAME, IMAGE_EXTENSIONS, MAX_IMAGE_SIZE, TASKS_DIR
 from .utils import get_run_workspace, safe_resolve
@@ -72,6 +73,76 @@ Use this when the criterion involves theoretical explanations, mechanistic insig
 - Be highly skeptical of AI-generated content: it may sound plausible but contain factual errors, fabricated numbers, or unsupported conclusions. Verify claims against the criterion carefully.
 - Be strict but fair.
 """
+
+
+def _uses_max_completion_tokens(model_version: str) -> bool:
+    """Return whether chat completions require max_completion_tokens."""
+    model = (model_version or "").lower()
+    return model.startswith(("gpt-5", "o1", "o3", "o4"))
+
+
+def _completion_token_limit_kwargs(model_version: str, max_tokens: int | None) -> dict[str, int]:
+    if max_tokens is None:
+        return {}
+    if _uses_max_completion_tokens(model_version):
+        return {"max_completion_tokens": max_tokens}
+    return {"max_tokens": max_tokens}
+
+
+class JudgeLLMAgent(LLMAgent):
+    """LLMAgent variant that handles newer OpenAI token-limit parameters."""
+
+    def _llm_api_impl(self, query, system_prompt=None, **kwargs):
+        if kwargs.get("use_responses_api", self.use_responses_api):
+            return super()._llm_api_impl(query, system_prompt, **kwargs)
+
+        image_paths = kwargs.get("image_paths", None)
+        max_tokens = kwargs.get("max_tokens", self.max_tokens)
+        temperature = kwargs.get("temperature", self.temperature)
+        history = kwargs.get("history", None)
+        n = kwargs.get("n", 1)
+        if system_prompt is None:
+            system_prompt = self.system_prompt
+
+        if image_paths is None:
+            content: Any = query
+        else:
+            content = [{"type": "text", "text": query}]
+            for image_path in image_paths:
+                try:
+                    img = load_file(image_path)
+                    img_str = encode_image(img)
+                except Exception:
+                    continue
+
+                content.append({
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/jpeg;base64,{img_str}",
+                    },
+                })
+
+        if isinstance(history, list) and len(history) > 0:
+            messages = (
+                [{"role": "system", "content": system_prompt}]
+                + history
+                + [{"role": "user", "content": content}]
+            )
+        else:
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": content},
+            ]
+
+        create_kwargs = {
+            "model": self.model_version,
+            "messages": messages,
+            "temperature": temperature,
+            "n": n,
+            **_completion_token_limit_kwargs(self.model_version, max_tokens),
+        }
+        response = self.client.chat.completions.create(**create_kwargs)
+        return extract_text_outputs(response)
 
 
 def _read_report(workspace: Path) -> Optional[str]:
@@ -225,7 +296,7 @@ def score_workspace(workspace: str | Path) -> dict:
                 "JUDGE_API_BASE, and JUDGE_MODEL_NAME in evaluation/.env."
             )
         }
-    agent = LLMAgent(
+    agent = JudgeLLMAgent(
         api_key=judge_api_key,
         api_base=judge_api_base,
         model_version=JUDGE_MODEL_NAME,
