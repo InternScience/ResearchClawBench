@@ -520,14 +520,11 @@ We welcome contributions in several forms — see [CONTRIBUTING.md](CONTRIBUTING
 If you would like to cite our work, please use the following BibTeX.
 
 ```bib
-@misc{xu2026researchclawbenchbenchmarkendtoendautonomous,
-      title={ResearchClawBench: A Benchmark for End-to-End Autonomous Scientific Research}, 
-      author={Wanghan Xu and Shuo Li and Tianlin Ye and Qinglong Cao and Yixin Chen and Hengjian Gao and Yiheng Wang and Qi Li and Kun Li and Sheng Xu and Shengdu Chai and Fangchen Yu and Xiangyu Zhao and Zhangrui Zhao and Weijie Ma and Zijie Guo and Haoyu Zhou and Haoxiang Yin and Lixue Cheng and Chaofan Hu and Haoxuan Li and Lu Mi and Xuxuan Xie and Yifan Zhou and Ruizhe Chen and Zhiwang Zhou and Xingjian Guo and Yuhao Zhou and Xuming He and Shengyuan Xu and Xinyu Gu and Jiamin Wu and Mianxin Liu and Chunfeng Song and Fenghua Ling and Dongzhan Zhou and Shixiang Tang and Yuqiang Li and Mao Su and Peng Ye and Siqi Sun and Bin Wang and Xue Yang and Zhenfei Yin and Tianfan Fu and Guangtao Zhai and Wanli Ouyang and Bo Zhang and Lei Bai and Wenlong Zhang},
-      year={2026},
-      eprint={2606.07591},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2606.07591}, 
+@article{xu2026researchclawbench,
+  title={ResearchClawBench: A Benchmark for End-to-End Autonomous Scientific Research},
+  author={Xu, Wanghan and Li, Shuo and Ye, Tianlin and Cao, Qinglong and Chen, Yixin and Gao, Hengjian and Wang, Yiheng and Li, Qi and Li, Kun and Xu, Sheng and others},
+  journal={arXiv preprint arXiv:2606.07591},
+  year={2026}
 }
 ```
 
