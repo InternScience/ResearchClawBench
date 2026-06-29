@@ -582,12 +582,12 @@ function renderLeaderboard(data) {
       lines.push(`Attempts included: ${entry.scored_runs ?? '-'} / ${entry.attempts ?? '-'}`);
     }
     if (Number.isFinite(entry.tasks)) lines.push(`Tasks: ${entry.tasks}`);
-    if (runs) lines.push(`Runs${entry.runs_truncated ? ' (first 20)' : ''}: ${runs}${entry.runs_truncated ? ', ...' : ''}`);
+    if (runs && !Number.isFinite(entry.tasks)) lines.push(`Runs: ${runs}`);
     return lines.join('\n');
   }
   function pass5CellAttr(entry) {
     const tooltip = pass5Tooltip(entry);
-    return tooltip ? ` data-tooltip="${esc(tooltip)}"` : '';
+    return tooltip ? ` data-tooltip="${esc(tooltip)}" tabindex="0"` : '';
   }
   function renderScoreBlock(entry, clickable, extraClass = '', showDetailsMarker = true) {
     if (!entry || !Number.isFinite(entry.score)) return '<span class="score-cell score-cell-empty">-</span>';
@@ -597,7 +597,7 @@ function renderLeaderboard(data) {
     const detailsState = getRunDetailsState(entry);
     const detailsHtml = showDetailsMarker && !isPass5 ? runDetailsMarkerHtml(detailsState, 'leaderboard-details-marker') : '';
     const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${detailsHtml}${renderMetricLines(entry)}</div>`;
-    const tdClass = `leaderboard-score-td${extraClass ? ` ${extraClass}` : ''}`;
+    const tdClass = `leaderboard-score-td${isPass5 ? ' leaderboard-static-cell' : ''}${extraClass ? ` ${extraClass}` : ''}`;
     const pass5Attr = isPass5 ? pass5CellAttr(entry) : '';
     if (!clickable || isPass5) return `<td class="${tdClass}"${pass5Attr}>${inner}</td>`;
     const handler = entry.details_exported === false
@@ -782,11 +782,79 @@ function renderLeaderboard(data) {
       ${renderSection('summary', 'By Domain', summaryHtml, 'Slide to view more domains')}
       ${renderSection('task', 'By Task', taskHtml, 'Slide to view more agents', isPass5 ? 'Pass@5 cells are summary-only and do not link to run details.' : '<span class="leaderboard-note-icon" aria-hidden="true">👉</span> Click scored cells to open run details when available')}
     </div>
-    ${isPass5 ? '<div class="leaderboard-detail-legend">Pass@5 cells show the best score first, followed by smaller mean ± std statistics; hover any scored cell for min/max, attempts, and per-run scores.</div>' : `<div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>`}
+    ${isPass5 ? '<div class="leaderboard-detail-legend">Pass@5 cells show the best score first, followed by smaller mean ± std statistics; task-cell hovers include the five attempt scores, while aggregate hovers omit long per-task score lists.</div>' : `<div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>`}
     <div class="dashboard-footnote leaderboard-footnote">${researchHarnessFootnoteHtml()}</div>`;
 
   container.innerHTML = html;
+  bindFloatingTooltips(container);
   syncLeaderboardScrollbars();
+}
+
+let floatingTooltipEl = null;
+let floatingTooltipTarget = null;
+
+function getFloatingTooltipEl() {
+  if (floatingTooltipEl) return floatingTooltipEl;
+  floatingTooltipEl = document.createElement('div');
+  floatingTooltipEl.className = 'floating-tooltip';
+  floatingTooltipEl.setAttribute('role', 'tooltip');
+  document.body.appendChild(floatingTooltipEl);
+  return floatingTooltipEl;
+}
+
+function positionFloatingTooltip(target) {
+  if (!floatingTooltipEl || !target) return;
+  const rect = target.getBoundingClientRect();
+  const margin = 10;
+  const width = floatingTooltipEl.offsetWidth;
+  const height = floatingTooltipEl.offsetHeight;
+  let left = rect.left + rect.width / 2 - width / 2;
+  let top = rect.top - height - margin;
+  left = Math.max(8, Math.min(left, window.innerWidth - width - 8));
+  if (top < 8) top = rect.bottom + margin;
+  if (top + height > window.innerHeight - 8) top = Math.max(8, window.innerHeight - height - 8);
+  floatingTooltipEl.style.left = `${left}px`;
+  floatingTooltipEl.style.top = `${top}px`;
+}
+
+function showFloatingTooltip(target) {
+  const text = target?.getAttribute('data-tooltip');
+  if (!text) return;
+  const el = getFloatingTooltipEl();
+  floatingTooltipTarget = target;
+  el.textContent = text;
+  el.classList.add('visible');
+  positionFloatingTooltip(target);
+}
+
+function hideFloatingTooltip(target) {
+  if (target && floatingTooltipTarget && target !== floatingTooltipTarget) return;
+  if (floatingTooltipEl) floatingTooltipEl.classList.remove('visible');
+  floatingTooltipTarget = null;
+}
+
+function bindFloatingTooltips(root) {
+  if (!root || root.dataset.floatingTooltipsBound === '1') return;
+  root.dataset.floatingTooltipsBound = '1';
+  root.addEventListener('mouseover', event => {
+    const target = event.target.closest('[data-tooltip]');
+    if (target && root.contains(target)) showFloatingTooltip(target);
+  });
+  root.addEventListener('mousemove', () => {
+    if (floatingTooltipTarget) positionFloatingTooltip(floatingTooltipTarget);
+  });
+  root.addEventListener('mouseout', event => {
+    const target = event.target.closest('[data-tooltip]');
+    if (target && !target.contains(event.relatedTarget)) hideFloatingTooltip(target);
+  });
+  root.addEventListener('focusin', event => {
+    const target = event.target.closest('[data-tooltip]');
+    if (target && root.contains(target)) showFloatingTooltip(target);
+  });
+  root.addEventListener('focusout', event => {
+    const target = event.target.closest('[data-tooltip]');
+    if (target) hideFloatingTooltip(target);
+  });
 }
 
 function syncLeaderboardSectionScrollbar(key) {
