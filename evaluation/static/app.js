@@ -93,7 +93,7 @@ const API = '';
 })();
 
 /* ── State ───────────────────────────────────────────────────────────── */
-let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research', _cachedInputFiles: [], _selectEpoch: 0, _pendingRunId: null };
+let state = { currentTaskId: null, currentRunId: null, eventSource: null, tasks: {}, selectedAgent: null, userSelectedFile: false, autoTrackTimer: null, agentLogos: {}, autoFollow: true, lastTab: 'research', dashboardPassMode: 'pass1', _dashboardPass1: null, _dashboardPass5: null, _cachedInputFiles: [], _selectEpoch: 0, _pendingRunId: null };
 
 /* ── Init ────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
@@ -172,34 +172,119 @@ async function loadDashboard() {
     const data = STATIC_MODE
       ? (await fetchStaticJSON('data/leaderboard.json')) || { tasks: [], agents: [], scores: {}, frontier: {} }
       : await (await fetch(`${API}/api/leaderboard`)).json();
-    // Ensure all tasks on x-axis
-    data.tasks = taskList;
-    for (const t of taskList) {
-      if (!(t in data.frontier)) data.frontier[t] = null;
-    }
-    // Ensure all preset agents appear in preset order
-    const variantBases = new Set(
-      (data.agents || [])
-        .map(name => getAgentBaseLabel(name))
-        .filter(base => base)
-    );
-    const orderedAgents = [];
-    for (const name of presetAgents) {
-      const hasDirectScores = !!data.scores[name] && Object.keys(data.scores[name]).length > 0;
-      const hiddenByVariantOnly = variantBases.has(name) && (data.agents || []).some(agent => agent !== name && getAgentBaseLabel(agent) === name);
-      if (hiddenByVariantOnly && !hasDirectScores) continue;
-      orderedAgents.push(name);
-      if (!data.scores[name]) data.scores[name] = {};
-    }
-    // Add any agents from data that aren't presets (at the end)
-    for (const name of data.agents) {
-      if (!orderedAgents.includes(name)) orderedAgents.push(name);
-    }
-    data.agents = orderedAgents;
-
-    renderFrontierChart(data);
-    renderLeaderboard(data);
+    const pass5Data = STATIC_MODE ? await fetchStaticJSON('data/pass5_leaderboard.json') : null;
+    state._dashboardPass1 = prepareDashboardData(data, taskList, presetAgents, false);
+    state._dashboardPass5 = pass5Data ? prepareDashboardData(pass5Data, taskList, [], true) : null;
+    if (!state._dashboardPass5) state.dashboardPassMode = 'pass1';
+    renderPassModeControls(!!state._dashboardPass5);
+    renderCurrentDashboard();
   } catch (e) { console.error('Dashboard load failed:', e); }
+}
+
+function prepareDashboardData(data, taskList, presetAgents = [], pass5Only = false) {
+  const normalized = data || { tasks: [], agents: [], scores: {}, frontier: {} };
+  normalized.scores = normalized.scores || {};
+  normalized.frontier = normalized.frontier || {};
+  normalized.tasks = taskList;
+  for (const t of taskList) {
+    if (!(t in normalized.frontier)) normalized.frontier[t] = null;
+  }
+  if (pass5Only) {
+    normalized.agents = (normalized.agents || []).filter(name => Object.keys(normalized.scores[name] || {}).length > 0);
+    normalized.pass_mode = 'pass5';
+    return normalized;
+  }
+
+  const variantBases = new Set(
+    (normalized.agents || [])
+      .map(name => getAgentBaseLabel(name))
+      .filter(base => base)
+  );
+  const orderedAgents = [];
+  for (const name of presetAgents) {
+    const hasDirectScores = !!normalized.scores[name] && Object.keys(normalized.scores[name]).length > 0;
+    const hiddenByVariantOnly = variantBases.has(name) && (normalized.agents || []).some(agent => agent !== name && getAgentBaseLabel(agent) === name);
+    if (hiddenByVariantOnly && !hasDirectScores) continue;
+    orderedAgents.push(name);
+    if (!normalized.scores[name]) normalized.scores[name] = {};
+  }
+  for (const name of normalized.agents || []) {
+    if (!orderedAgents.includes(name)) orderedAgents.push(name);
+  }
+  normalized.agents = orderedAgents;
+  normalized.pass_mode = normalized.pass_mode || 'pass1';
+  return normalized;
+}
+
+function getCurrentDashboardData() {
+  return state.dashboardPassMode === 'pass5' && state._dashboardPass5
+    ? state._dashboardPass5
+    : state._dashboardPass1;
+}
+
+function renderCurrentDashboard() {
+  const data = getCurrentDashboardData();
+  if (!data) return;
+  renderFrontierChart(data);
+  renderLeaderboard(data);
+  updatePassModeControls();
+}
+
+function setDashboardPassMode(mode) {
+  const nextMode = mode === 'pass5' && state._dashboardPass5 ? 'pass5' : 'pass1';
+  if (state.dashboardPassMode === nextMode) return;
+  state.dashboardPassMode = nextMode;
+  renderCurrentDashboard();
+}
+
+function renderPassModeControls(hasPass5) {
+  const slots = document.querySelectorAll('[data-pass-mode-slot]');
+  slots.forEach(slot => {
+    if (!hasPass5) {
+      slot.innerHTML = '';
+      return;
+    }
+    if (!slot.innerHTML) {
+      slot.innerHTML = `
+        <div class="pass-mode-control">
+          <div class="pass-mode-toggle" role="group" aria-label="Leaderboard pass mode">
+            <span class="pass-mode-indicator" aria-hidden="true"></span>
+            <button class="pass-mode-btn" type="button" data-pass-mode-option="pass1">Pass@1</button>
+            <button class="pass-mode-btn" type="button" data-pass-mode-option="pass5">Pass@5</button>
+          </div>
+          <span class="pass-mode-info" tabindex="0" aria-label="Pass mode details">i
+            <span class="pass-mode-tooltip">Pass@1 reports single-run leaderboard scores after rerunning failed jobs when possible, emphasizing completed single-run capability. Pass@5 uses five attempts per task, takes the best score for frontier/ranking, and treats failed or unscored tasks as 0 to emphasize stability and coverage.</span>
+          </span>
+        </div>`;
+      slot.querySelectorAll('[data-pass-mode-option]').forEach(btn => {
+        btn.onclick = () => setDashboardPassMode(btn.dataset.passModeOption);
+      });
+    }
+  });
+  if (!window._passModeResizeHandler) {
+    window._passModeResizeHandler = true;
+    window.addEventListener('resize', updatePassModeIndicators);
+  }
+  updatePassModeControls();
+}
+
+function updatePassModeControls() {
+  document.querySelectorAll('[data-pass-mode-option]').forEach(btn => {
+    const active = btn.dataset.passModeOption === state.dashboardPassMode;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  requestAnimationFrame(updatePassModeIndicators);
+}
+
+function updatePassModeIndicators() {
+  document.querySelectorAll('.pass-mode-toggle').forEach(control => {
+    const activeBtn = control.querySelector('[data-pass-mode-option].active');
+    const indicator = control.querySelector('.pass-mode-indicator');
+    if (!activeBtn || !indicator) return;
+    indicator.style.left = `${activeBtn.offsetLeft}px`;
+    indicator.style.width = `${activeBtn.offsetWidth}px`;
+  });
 }
 
 function getAverageAgentScore(data, agent) {
@@ -243,14 +328,26 @@ function getFrontierAgentOrder(data) {
   ];
 }
 
+function formatNumber(value) {
+  return Number.isFinite(value) ? value.toFixed(1) : '-';
+}
+
 function renderFrontierChart(data) {
   const ctx = document.getElementById('frontier-chart');
   if (!ctx) return;
 
+  const isPass5 = data.pass_mode === 'pass5';
   const labels = data.tasks;
   // X-axis: show only domain name (strip _NNN), but keep all 40 ticks
   const domainLabels = labels.map(t => t.replace(/_\d+$/, ''));
   const datasets = [];
+
+  const subtitle = ctx.closest('.card')?.querySelector('.chart-subtitle');
+  if (subtitle) {
+    subtitle.textContent = isPass5
+      ? 'Pass@5 frontier shows the max score per task across five attempts. Failed or unscored tasks count as 0 in pass@5 statistics.'
+      : 'Best score per task across all agents. 50 = matches original paper, 100 = surpasses it.';
+  }
 
   // Each agent as a line. Keep full agents before standalone LLMs, with
   // same-family entries grouped by the strongest member to avoid a noisy legend.
@@ -356,7 +453,14 @@ function renderFrontierChart(data) {
           bodyFont: { family: "'Fira Code', monospace", size: 16 },
           callbacks: {
             title: (items) => labels[items[0].dataIndex] || '',
-            label: c2 => `${getAgentDisplayLabel(data, c2.dataset.label)}: ${c2.parsed.y !== null ? c2.parsed.y.toFixed(1) : '-'}`,
+            label: c2 => {
+              const value = c2.parsed.y !== null ? c2.parsed.y.toFixed(1) : '-';
+              if (isPass5 && data.scores[c2.dataset.label]?.[labels[c2.dataIndex]]) {
+                const entry = data.scores[c2.dataset.label][labels[c2.dataIndex]];
+                return `${getAgentDisplayLabel(data, c2.dataset.label)}: max ${value}; mean ${formatNumber(entry.mean)} ± ${formatNumber(entry.std)}`;
+              }
+              return `${getAgentDisplayLabel(data, c2.dataset.label)}: ${value}`;
+            },
           },
         },
       },
@@ -423,6 +527,7 @@ function renderLeaderboard(data) {
   const container = document.getElementById('leaderboard-wrap');
   const legacyShell = document.getElementById('leaderboard-scrollbar-shell');
   if (legacyShell) legacyShell.style.display = 'none';
+  const isPass5 = data.pass_mode === 'pass5';
 
   // Live clock (static mode only)
   if (STATIC_MODE) {
@@ -443,19 +548,48 @@ function renderLeaderboard(data) {
     return Number.isFinite(v) ? `background:${scoreColor(v)};color:#fff;font-weight:600;` : '';
   }
   function renderMetricLines(entry) {
+    if (isPass5) return '';
     const timeText = formatLeaderboardDuration(entry?.duration_seconds);
     const costText = Number.isFinite(entry?.cost_usd) ? formatUsdCost(entry.cost_usd) : '';
     if (!costText) return `<span class="leaderboard-cell-meta"><span>${timeText}</span></span>`;
     return `<span class="leaderboard-cell-meta"><span>${costText}</span><span>${timeText}</span></span>`;
   }
+  function pass5MainText(entry) {
+    const mean = Number.isFinite(entry?.mean) ? entry.mean : entry?.score;
+    return `${formatNumber(mean)} ± ${formatNumber(entry?.std)}`;
+  }
+  function pass5Tooltip(entry) {
+    if (!entry) return '';
+    const runs = Array.isArray(entry.runs)
+      ? entry.runs.map(v => Number.isFinite(v) ? v.toFixed(1) : '—').join(', ')
+      : '';
+    const lines = [
+      `Pass@5 best: ${formatNumber(entry.score)}`,
+      `Mean ± std: ${pass5MainText(entry)}`,
+      `Min / max: ${formatNumber(entry.min)} / ${formatNumber(entry.max ?? entry.score)}`,
+    ];
+    if (Number.isFinite(entry.scored_runs) || Number.isFinite(entry.attempts)) {
+      lines.push(`Scored attempts: ${entry.scored_runs ?? '-'} / ${entry.attempts ?? '-'}`);
+    }
+    if (Number.isFinite(entry.tasks)) lines.push(`Tasks: ${entry.tasks}`);
+    if (runs) lines.push(`Runs${entry.runs_truncated ? ' (first 20)' : ''}: ${runs}${entry.runs_truncated ? ', ...' : ''}`);
+    return lines.join('\n');
+  }
+  function pass5CellAttr(entry) {
+    const tooltip = pass5Tooltip(entry);
+    return tooltip ? ` data-tooltip="${esc(tooltip)}"` : '';
+  }
   function renderScoreBlock(entry, clickable, extraClass = '', showDetailsMarker = true) {
     if (!entry || !Number.isFinite(entry.score)) return '<span class="score-cell score-cell-empty">-</span>';
-    const scoreHtml = `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
+    const displayValue = isPass5 ? pass5MainText(entry) : entry.score.toFixed(1);
+    const colorValue = isPass5 && Number.isFinite(entry.mean) ? entry.mean : entry.score;
+    const scoreHtml = `<span class="score-cell${isPass5 ? ' score-cell-pass5' : ''}" style="${cellStyle(colorValue)}">${displayValue}</span>`;
     const detailsState = getRunDetailsState(entry);
-    const detailsHtml = showDetailsMarker ? runDetailsMarkerHtml(detailsState, 'leaderboard-details-marker') : '';
+    const detailsHtml = showDetailsMarker && !isPass5 ? runDetailsMarkerHtml(detailsState, 'leaderboard-details-marker') : '';
     const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${detailsHtml}${renderMetricLines(entry)}</div>`;
     const tdClass = `leaderboard-score-td${extraClass ? ` ${extraClass}` : ''}`;
-    if (!clickable) return `<td class="${tdClass}">${inner}</td>`;
+    const pass5Attr = isPass5 ? pass5CellAttr(entry) : '';
+    if (!clickable || isPass5) return `<td class="${tdClass}"${pass5Attr}>${inner}</td>`;
     const handler = entry.details_exported === false
       ? `showRunDetailsUnavailableNotice()`
       : `goToRun('${entry.run_id}')`;
@@ -464,6 +598,28 @@ function renderLeaderboard(data) {
   function averageEntry(entries) {
     const scored = entries.filter(e => Number.isFinite(e?.score));
     if (!scored.length) return null;
+    if (isPass5) {
+      const attempts = scored.flatMap(entry => Array.isArray(entry.runs) ? entry.runs.filter(Number.isFinite) : []);
+      const mean = values => values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
+      const attemptMean = mean(attempts);
+      const attemptStd = attempts.length && Number.isFinite(attemptMean)
+        ? Math.sqrt(mean(attempts.map(v => (v - attemptMean) ** 2)))
+        : null;
+      const scoreMean = mean(scored.map(e => e.score).filter(Number.isFinite));
+      return {
+        score: scoreMean,
+        mean: attemptMean ?? scoreMean,
+        std: attemptStd,
+        min: attempts.length ? Math.min(...attempts) : Math.min(...scored.map(e => e.score).filter(Number.isFinite)),
+        max: attempts.length ? Math.max(...attempts) : Math.max(...scored.map(e => e.score).filter(Number.isFinite)),
+        runs: attempts.slice(0, 20),
+        runs_truncated: attempts.length > 20,
+        attempts: scored.reduce((sum, entry) => sum + (Number.isFinite(entry.attempts) ? entry.attempts : 0), 0),
+        scored_runs: attempts.length,
+        tasks: scored.length,
+        details_state: 'none',
+      };
+    }
     const average = key => {
       const values = scored.map(e => e[key]).filter(Number.isFinite);
       return values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
@@ -483,8 +639,11 @@ function renderLeaderboard(data) {
   }
   function renderSummaryCell(entry) {
     if (!entry || !Number.isFinite(entry.score)) return '<td class="no-score leaderboard-static-cell">-</td>';
-    const scoreHtml = `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
-    return `<td class="leaderboard-score-td leaderboard-static-cell"><div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div></td>`;
+    const displayValue = isPass5 ? pass5MainText(entry) : entry.score.toFixed(1);
+    const colorValue = isPass5 && Number.isFinite(entry.mean) ? entry.mean : entry.score;
+    const scoreHtml = `<span class="score-cell${isPass5 ? ' score-cell-pass5' : ''}" style="${cellStyle(colorValue)}">${displayValue}</span>`;
+    const pass5Attr = isPass5 ? pass5CellAttr(entry) : '';
+    return `<td class="leaderboard-score-td leaderboard-static-cell"${pass5Attr}><div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div></td>`;
   }
   function renderSection(key, title, tableHtml, hint, note = '') {
     const noteHtml = note ? `<div class="leaderboard-section-note">${note}</div>` : '';
@@ -534,7 +693,7 @@ function renderLeaderboard(data) {
   ];
   const firstLlmAgent = domainSummary.agentRows.length && domainSummary.llmRows.length ? domainSummary.llmRows[0].agent : '';
 
-  let summaryHtml = '<table class="leaderboard leaderboard-summary"><thead><tr><th>Agent/LLM</th><th>Overall</th>';
+  let summaryHtml = `<table class="leaderboard leaderboard-summary${isPass5 ? ' leaderboard-pass5' : ''}"><thead><tr><th>Agent/LLM</th><th>Overall</th>`;
   domainSummary.domains.forEach(domain => {
     summaryHtml += `<th>${esc(domain)}</th>`;
   });
@@ -559,7 +718,7 @@ function renderLeaderboard(data) {
   appendSummaryRows(domainSummary.llmRows, domainSummary.agentRows.length > 0);
   summaryHtml += '</tbody></table>';
 
-  let taskHtml = '<table class="leaderboard"><thead><tr><th>Task</th>';
+  let taskHtml = `<table class="leaderboard${isPass5 ? ' leaderboard-pass5' : ''}"><thead><tr><th>Task</th>`;
   orderedTaskAgents.forEach(a => {
     const displayLabel = getAgentDisplayLabel(data, a);
     const modelLabel = getAgentSecondaryLabel(data, a);
@@ -575,7 +734,7 @@ function renderLeaderboard(data) {
       const entry = data.scores[agent]?.[task];
       const dividerClass = agent === firstLlmAgent ? 'leaderboard-group-divider-left' : '';
       if (entry) {
-        taskHtml += renderScoreBlock(entry, true, dividerClass);
+        taskHtml += renderScoreBlock(entry, !isPass5, dividerClass, !isPass5);
       } else {
         taskHtml += `<td class="no-score${dividerClass ? ` ${dividerClass}` : ''}">-</td>`;
       }
@@ -611,9 +770,9 @@ function renderLeaderboard(data) {
   const html = `
     <div class="leaderboard-stack">
       ${renderSection('summary', 'By Domain', summaryHtml, 'Slide to view more domains')}
-      ${renderSection('task', 'By Task', taskHtml, 'Slide to view more agents', '<span class="leaderboard-note-icon" aria-hidden="true">👉</span> Click scored cells to open run details when available')}
+      ${renderSection('task', 'By Task', taskHtml, 'Slide to view more agents', isPass5 ? 'Pass@5 cells are summary-only and do not link to run details.' : '<span class="leaderboard-note-icon" aria-hidden="true">👉</span> Click scored cells to open run details when available')}
     </div>
-    <div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>
+    ${isPass5 ? '<div class="leaderboard-detail-legend">Pass@5 shows mean ± std in cells; hover any scored cell for pass@5 best, min/max, attempts, and per-run scores.</div>' : `<div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>`}
     <div class="dashboard-footnote leaderboard-footnote">${researchHarnessFootnoteHtml()}</div>`;
 
   container.innerHTML = html;
