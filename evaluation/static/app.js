@@ -555,8 +555,18 @@ function renderLeaderboard(data) {
     return `<span class="leaderboard-cell-meta"><span>${costText}</span><span>${timeText}</span></span>`;
   }
   function pass5MainText(entry) {
-    const mean = Number.isFinite(entry?.mean) ? entry.mean : entry?.score;
-    return `${formatNumber(mean)} ± ${formatNumber(entry?.std)}`;
+    return formatNumber(entry?.score);
+  }
+  function pass5StatsText(entry) {
+    const mean = Number.isFinite(entry?.mean) ? entry.mean : null;
+    const std = Number.isFinite(entry?.std) ? entry.std : null;
+    if (!Number.isFinite(mean) && !Number.isFinite(std)) return '';
+    return `${formatNumber(mean)} ± ${formatNumber(std)}`;
+  }
+  function renderPass5ScoreCell(entry) {
+    const statsText = pass5StatsText(entry);
+    const statsHtml = statsText ? `<span class="pass5-score-stats">${statsText}</span>` : '';
+    return `<span class="score-cell score-cell-pass5" style="${cellStyle(entry.score)}"><span class="pass5-score-main">${pass5MainText(entry)}</span>${statsHtml}</span>`;
   }
   function pass5Tooltip(entry) {
     if (!entry) return '';
@@ -565,11 +575,11 @@ function renderLeaderboard(data) {
       : '';
     const lines = [
       `Pass@5 best: ${formatNumber(entry.score)}`,
-      `Mean ± std: ${pass5MainText(entry)}`,
+      `Mean ± std: ${pass5StatsText(entry) || '-'}`,
       `Min / max: ${formatNumber(entry.min)} / ${formatNumber(entry.max ?? entry.score)}`,
     ];
     if (Number.isFinite(entry.scored_runs) || Number.isFinite(entry.attempts)) {
-      lines.push(`Scored attempts: ${entry.scored_runs ?? '-'} / ${entry.attempts ?? '-'}`);
+      lines.push(`Attempts included: ${entry.scored_runs ?? '-'} / ${entry.attempts ?? '-'}`);
     }
     if (Number.isFinite(entry.tasks)) lines.push(`Tasks: ${entry.tasks}`);
     if (runs) lines.push(`Runs${entry.runs_truncated ? ' (first 20)' : ''}: ${runs}${entry.runs_truncated ? ', ...' : ''}`);
@@ -581,9 +591,9 @@ function renderLeaderboard(data) {
   }
   function renderScoreBlock(entry, clickable, extraClass = '', showDetailsMarker = true) {
     if (!entry || !Number.isFinite(entry.score)) return '<span class="score-cell score-cell-empty">-</span>';
-    const displayValue = isPass5 ? pass5MainText(entry) : entry.score.toFixed(1);
-    const colorValue = isPass5 && Number.isFinite(entry.mean) ? entry.mean : entry.score;
-    const scoreHtml = `<span class="score-cell${isPass5 ? ' score-cell-pass5' : ''}" style="${cellStyle(colorValue)}">${displayValue}</span>`;
+    const scoreHtml = isPass5
+      ? renderPass5ScoreCell(entry)
+      : `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
     const detailsState = getRunDetailsState(entry);
     const detailsHtml = showDetailsMarker && !isPass5 ? runDetailsMarkerHtml(detailsState, 'leaderboard-details-marker') : '';
     const inner = `<div class="leaderboard-score-wrap">${scoreHtml}${detailsHtml}${renderMetricLines(entry)}</div>`;
@@ -639,9 +649,9 @@ function renderLeaderboard(data) {
   }
   function renderSummaryCell(entry) {
     if (!entry || !Number.isFinite(entry.score)) return '<td class="no-score leaderboard-static-cell">-</td>';
-    const displayValue = isPass5 ? pass5MainText(entry) : entry.score.toFixed(1);
-    const colorValue = isPass5 && Number.isFinite(entry.mean) ? entry.mean : entry.score;
-    const scoreHtml = `<span class="score-cell${isPass5 ? ' score-cell-pass5' : ''}" style="${cellStyle(colorValue)}">${displayValue}</span>`;
+    const scoreHtml = isPass5
+      ? renderPass5ScoreCell(entry)
+      : `<span class="score-cell" style="${cellStyle(entry.score)}">${entry.score.toFixed(1)}</span>`;
     const pass5Attr = isPass5 ? pass5CellAttr(entry) : '';
     return `<td class="leaderboard-score-td leaderboard-static-cell"${pass5Attr}><div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div></td>`;
   }
@@ -772,7 +782,7 @@ function renderLeaderboard(data) {
       ${renderSection('summary', 'By Domain', summaryHtml, 'Slide to view more domains')}
       ${renderSection('task', 'By Task', taskHtml, 'Slide to view more agents', isPass5 ? 'Pass@5 cells are summary-only and do not link to run details.' : '<span class="leaderboard-note-icon" aria-hidden="true">👉</span> Click scored cells to open run details when available')}
     </div>
-    ${isPass5 ? '<div class="leaderboard-detail-legend">Pass@5 shows mean ± std in cells; hover any scored cell for pass@5 best, min/max, attempts, and per-run scores.</div>' : `<div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>`}
+    ${isPass5 ? '<div class="leaderboard-detail-legend">Pass@5 cells show the best score first, followed by smaller mean ± std statistics; hover any scored cell for min/max, attempts, and per-run scores.</div>' : `<div class="leaderboard-detail-legend">${runDetailsLegendHtml()}</div>`}
     <div class="dashboard-footnote leaderboard-footnote">${researchHarnessFootnoteHtml()}</div>`;
 
   container.innerHTML = html;

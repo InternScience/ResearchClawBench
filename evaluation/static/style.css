@@ -311,7 +311,9 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .leaderboard .frontier-row td:first-child { font-family: var(--font); font-size: 14.5px; }
 
 .score-cell { border-radius: 4px; padding: 3px 8px; display: inline-block; min-width: 38px; text-align: center; font-size: 13px; }
-.score-cell-pass5 { min-width: 78px; }
+.score-cell-pass5 { min-width: 116px; display: inline-flex; align-items: baseline; justify-content: center; gap: 6px; padding: 4px 9px; }
+.pass5-score-main { font-size: 13.5px; line-height: 1; }
+.pass5-score-stats { font-size: 10.5px; line-height: 1; font-weight: 600; opacity: 0.82; }
 .score-cell.score-cell-empty { background: transparent; color: var(--text-tertiary); }
 .leaderboard-score-td { font-family: var(--mono); position: relative; }
 .leaderboard-score-wrap { display: flex; align-items: center; justify-content: flex-start; gap: 7px; padding-left: 10px; }
@@ -326,8 +328,8 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .leaderboard-summary th, .leaderboard-summary td { padding: 5px 4px; }
 .leaderboard-summary th:first-child, .leaderboard-summary td:first-child { min-width: 74px; }
 .leaderboard-summary th:not(:first-child), .leaderboard-summary td:not(:first-child) { width: 126px; min-width: 126px; max-width: 126px; }
-.leaderboard-pass5 th:not(:first-child), .leaderboard-pass5 td:not(:first-child) { min-width: 164px; }
-.leaderboard-summary.leaderboard-pass5 th:not(:first-child), .leaderboard-summary.leaderboard-pass5 td:not(:first-child) { width: 148px; min-width: 148px; max-width: 148px; }
+.leaderboard-pass5 th:not(:first-child), .leaderboard-pass5 td:not(:first-child) { min-width: 176px; }
+.leaderboard-summary.leaderboard-pass5 th:not(:first-child), .leaderboard-summary.leaderboard-pass5 td:not(:first-child) { width: 162px; min-width: 162px; max-width: 162px; }
 .leaderboard-score-td[data-tooltip]:hover::after, .leaderboard-score-td[data-tooltip]:focus-within::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: 60; transform: translateX(-50%); min-width: 210px; max-width: 320px; padding: 10px 12px; border-radius: 14px; background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); box-shadow: 0 16px 50px rgba(15,23,42,0.20); white-space: pre-line; text-align: left; font-family: var(--font); font-size: 12px; line-height: 1.45; pointer-events: none; }
 .leaderboard-group-start-row td { border-top: 3px solid var(--border-strong); }
 .leaderboard-group-divider-left { box-shadow: inset 3px 0 0 var(--border-strong); }
