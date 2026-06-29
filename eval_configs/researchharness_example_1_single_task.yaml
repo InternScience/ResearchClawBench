@@ -20,6 +20,9 @@ max_concurrent_runs: 1
 researchharness:
   max_rounds: 500
   max_runtime_seconds: 10800
+  llm_request_timeout_seconds: 1200
+  webfetch_tool_timeout_seconds: 300
+  readpdf_tool_timeout_seconds: 300
   max_output_tokens: 16384
   max_input_tokens: 131072
   compact_trigger_tokens: "96k"

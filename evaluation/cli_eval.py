@@ -20,6 +20,7 @@ import threading
 import time
 import traceback
 import tempfile
+from contextlib import contextmanager
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
@@ -101,6 +102,10 @@ CLI_WORKSPACE_GROUP = "cli_runs"
 CLI_RUN_PREFIX = "cli"
 EVAL_REPORT_PREFIX = "eval_report"
 RESEARCHHARNESS_TOOL_ENV_VARS = ("SERPER_KEY", "JINA_KEY", "MINERU_TOKEN")
+RESEARCHHARNESS_TOOL_TIMEOUT_ENV = {
+    "webfetch_tool_timeout_seconds": "WEBFETCH_TIMEOUT_SECONDS",
+    "readpdf_tool_timeout_seconds": "READPDF_TIMEOUT_SECONDS",
+}
 
 
 def _cli_workspaces_dir() -> Path:
@@ -183,6 +188,37 @@ def _as_optional_float(value: Any, name: str) -> float | None:
         return float(value)
     except (TypeError, ValueError) as exc:
         raise EvalConfigError(f"{name} must be a number.") from exc
+
+
+def _format_env_float(value: float) -> str:
+    return str(int(value)) if value.is_integer() else str(value)
+
+
+def _researchharness_tool_timeout_env(config: dict[str, Any]) -> dict[str, str]:
+    rh = _section(config, "researchharness", {})
+    env: dict[str, str] = {}
+    for yaml_key, env_key in RESEARCHHARNESS_TOOL_TIMEOUT_ENV.items():
+        value = _as_optional_float(rh.get(yaml_key), f"researchharness.{yaml_key}")
+        if value is None:
+            continue
+        if value <= 0:
+            raise EvalConfigError(f"researchharness.{yaml_key} must be > 0.")
+        env[env_key] = _format_env_float(value)
+    return env
+
+
+@contextmanager
+def _temporary_env(overrides: dict[str, str]):
+    previous = {key: os.environ.get(key) for key in overrides}
+    try:
+        os.environ.update(overrides)
+        yield
+    finally:
+        for key, value in previous.items():
+            if value is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = value
 
 
 def _as_required_bool(value: Any, name: str) -> bool:
@@ -352,6 +388,18 @@ def _validate_researchharness_config(config: dict[str, Any]) -> None:
     rh = _section(config, "researchharness", {})
     if "max_llm_calls" in rh:
         raise EvalConfigError("researchharness.max_llm_calls is no longer supported; use researchharness.max_rounds.")
+    if "timeout_seconds" in rh:
+        raise EvalConfigError(
+            "researchharness.timeout_seconds is too broad; use researchharness.llm_request_timeout_seconds."
+        )
+    if "webfetch_timeout_seconds" in rh:
+        raise EvalConfigError(
+            "researchharness.webfetch_timeout_seconds is too broad; use researchharness.webfetch_tool_timeout_seconds."
+        )
+    if "readpdf_timeout_seconds" in rh:
+        raise EvalConfigError(
+            "researchharness.readpdf_timeout_seconds is too broad; use researchharness.readpdf_tool_timeout_seconds."
+        )
 
 
 def _load_researchharness():
@@ -377,7 +425,7 @@ def _build_llm_config(default_llm_config, config: dict[str, Any], model: ModelCo
     llm = default_llm_config(model_name=model.name, extra_body=model.extra_body or None)
     llm["api_base"] = model.api_base
     llm["api_key"] = model.api_key
-    timeout = _as_optional_float(rh.get("timeout_seconds"), "researchharness.timeout_seconds")
+    timeout = _as_optional_float(rh.get("llm_request_timeout_seconds"), "researchharness.llm_request_timeout_seconds")
     if timeout is not None:
         llm["timeout_seconds"] = timeout
     generate_cfg = dict(llm.get("generate_cfg", {}))
@@ -1136,6 +1184,7 @@ def _print_dry_run(task_plan: list[TaskPlanItem], max_workers: int, model: Model
 def run_eval(config_path: Path, *, dry_run: bool, no_score: bool, skip_secret_check: bool) -> int:
     config = _load_yaml(config_path)
     _validate_researchharness_config(config)
+    tool_timeout_env = _researchharness_tool_timeout_env(config)
     repeats = _as_positive_int(config.get("repeats_per_task"), "repeats_per_task", 1)
     task_plan = _resolve_task_plan(config, repeats)
     max_workers = _as_positive_int(config.get("max_concurrent_runs"), "max_concurrent_runs", 1)
@@ -1170,29 +1219,30 @@ def run_eval(config_path: Path, *, dry_run: bool, no_score: bool, skip_secret_ch
     batch_start = time.time()
     previous_handlers = _install_interrupt_handlers()
     try:
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = [
-                executor.submit(
-                    _run_one,
-                    spec,
-                    config=config,
-                    config_name=config_name,
-                    model=model,
-                    scorer=scorer,
-                    batch_dir=batch.batch_dir,
-                    role_prompt=role_prompt,
-                    ResearchClawBenchAgent=ResearchClawBenchAgent,
-                    default_llm_config=default_llm_config,
-                )
-                for spec in specs
-            ]
-            for future in as_completed(futures):
-                row = future.result()
-                rows.append(row)
-                print(
-                    f"[{len(rows)}/{len(specs)}] {row['task_id']} repeat={row['repeat']} "
-                    f"status={row['status']} score={_format_value(row.get('score'))} run_id={row['run_id']}"
-                )
+        with _temporary_env(tool_timeout_env):
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                futures = [
+                    executor.submit(
+                        _run_one,
+                        spec,
+                        config=config,
+                        config_name=config_name,
+                        model=model,
+                        scorer=scorer,
+                        batch_dir=batch.batch_dir,
+                        role_prompt=role_prompt,
+                        ResearchClawBenchAgent=ResearchClawBenchAgent,
+                        default_llm_config=default_llm_config,
+                    )
+                    for spec in specs
+                ]
+                for future in as_completed(futures):
+                    row = future.result()
+                    rows.append(row)
+                    print(
+                        f"[{len(rows)}/{len(specs)}] {row['task_id']} repeat={row['repeat']} "
+                        f"status={row['status']} score={_format_value(row.get('score'))} run_id={row['run_id']}"
+                    )
     finally:
         _restore_interrupt_handlers(previous_handlers)
 

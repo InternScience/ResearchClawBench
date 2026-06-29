@@ -265,6 +265,45 @@ judge_model:
         self.assertEqual(scorer.model, "judge-test")
         self.assertEqual(scorer.model_source, "JUDGE_MODEL_NAME")
 
+    def test_researchharness_timeout_fields_are_specific(self):
+        model = cli_eval.ModelConfig(
+            name="fake-model",
+            api_base="http://example.invalid/v1",
+            api_key="fake-key",
+            extra_body={},
+            name_source="literal",
+            api_key_source="literal",
+            api_base_source="literal",
+        )
+        config = {
+            "researchharness": {
+                "llm_request_timeout_seconds": 1200,
+                "webfetch_tool_timeout_seconds": 300,
+                "readpdf_tool_timeout_seconds": 301,
+            }
+        }
+
+        llm = cli_eval._build_llm_config(fake_default_llm_config, config, model)
+        self.assertEqual(llm["timeout_seconds"], 1200.0)
+        self.assertEqual(
+            cli_eval._researchharness_tool_timeout_env(config),
+            {
+                "WEBFETCH_TIMEOUT_SECONDS": "300",
+                "READPDF_TIMEOUT_SECONDS": "301",
+            },
+        )
+
+        rejected = [
+            ("timeout_seconds", "llm_request_timeout_seconds"),
+            ("webfetch_timeout_seconds", "webfetch_tool_timeout_seconds"),
+            ("readpdf_timeout_seconds", "readpdf_tool_timeout_seconds"),
+        ]
+        for old_name, new_name in rejected:
+            with self.subTest(old_name=old_name):
+                with self.assertRaises(cli_eval.EvalConfigError) as ctx:
+                    cli_eval._validate_researchharness_config({"researchharness": {old_name: 1}})
+                self.assertIn(new_name, str(ctx.exception))
+
     def test_missing_model_name_env_value_is_rejected_for_real_runs(self):
         config = {
             "agent_model": {
@@ -348,6 +387,67 @@ judge_model:
             self.assertEqual(os.environ["HTTP_PROXY"], "http://proxy.example:7890")
             self.assertEqual(os.environ["HTTPS_PROXY"], "http://proxy.example:7890")
             self.assertEqual(os.environ["NO_PROXY"], "127.0.0.1,localhost")
+
+    def test_tool_timeout_yaml_is_injected_for_preflight_and_restored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            config_path = tmp_path / "eval.yaml"
+            workspace_root = tmp_path / "workspaces"
+            config_path.write_text(
+                """
+name: timeout_injection
+agent_model:
+  name: fake-model
+  api_base: http://example.invalid/v1
+  api_key: fake-key
+tasks:
+  - id: Material_002
+repeats_per_task: 1
+max_concurrent_runs: 1
+researchharness:
+  webfetch_tool_timeout_seconds: 321
+  readpdf_tool_timeout_seconds: 322
+judge_model:
+  enabled: false
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            seen_timeouts = []
+
+            def fake_preflight():
+                seen_timeouts.append(
+                    (
+                        os.environ.get("WEBFETCH_TIMEOUT_SECONDS"),
+                        os.environ.get("READPDF_TIMEOUT_SECONDS"),
+                    )
+                )
+                return True, [{"name": "all", "status": "PASS", "detail": "ok"}], ""
+
+            env = {
+                "SERPER_KEY": "serper",
+                "JINA_KEY": "jina",
+                "MINERU_TOKEN": "mineru",
+                "WEBFETCH_TIMEOUT_SECONDS": "111",
+            }
+            with (
+                patch.dict(os.environ, env, clear=True),
+                patch.object(cli_eval, "WORKSPACES_DIR", workspace_root),
+                patch.object(cli_eval, "_load_researchharness", fake_researchharness),
+                patch.object(cli_eval, "_run_researchharness_tool_preflight", side_effect=fake_preflight),
+                redirect_stdout(StringIO()),
+            ):
+                code = cli_eval.run_eval(
+                    config_path,
+                    dry_run=False,
+                    no_score=True,
+                    skip_secret_check=False,
+                )
+
+                self.assertEqual(code, 0)
+                self.assertEqual(seen_timeouts, [("321", "322")])
+                self.assertEqual(os.environ["WEBFETCH_TIMEOUT_SECONDS"], "111")
+                self.assertNotIn("READPDF_TIMEOUT_SECONDS", os.environ)
 
     def test_real_run_skips_when_researchharness_tool_preflight_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
