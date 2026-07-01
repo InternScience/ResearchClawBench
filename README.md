@@ -7,8 +7,8 @@
 [![Official Site](https://img.shields.io/badge/Official%20Site-333399.svg?logo=homepage)](https://InternScience.github.io/ResearchClawBench-Home/)&#160;
 [![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/InternScience/ResearchClawBench)&#160;
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-gray)](https://huggingface.co/datasets/InternScience/ResearchClawBench)&#160;
+[![ModelScope](https://img.shields.io/badge/ModelScope-6f42c1.svg)](https://www.modelscope.cn/datasets/InternScience/ResearchClawBench)&#160;
 [![arXiv](https://img.shields.io/badge/arXiv-paper-b31b1b.svg?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2606.07591)&#160;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Domains](https://img.shields.io/badge/Domains-10-green.svg)](#-scientific-domains)
 [![Tasks](https://img.shields.io/badge/Tasks-40-orange.svg)](#-scientific-domains)
 [![GitHub](https://img.shields.io/github/stars/InternScience/ResearchClawBench?style=social)](https://github.com/InternScience/ResearchClawBench)
