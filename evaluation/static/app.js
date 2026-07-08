@@ -2373,6 +2373,7 @@ function getModelLogo(model) {
     [/^MiniMax\b/i, 'static/logos/minimax.png'],
     [/^Grok\b/i, 'static/logos/grok.png'],
     [/^DeepSeek\b/i, 'static/logos/deepseek.png'],
+    [/^Hy3\b/i, 'static/logos/hunyuan.png'],
   ];
   const match = mappings.find(([pattern]) => pattern.test(label));
   return match ? match[1] : '';
