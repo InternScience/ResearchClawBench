@@ -2448,7 +2448,27 @@ function showRunDetailsUnavailableNotice() {
 }
 
 async function fetchStaticJSON(path) {
-  try { return await (await fetch(path)).json(); } catch (_) { return null; }
+  try {
+    return await (await fetch(staticJSONPath(path), { cache: 'no-cache' })).json();
+  } catch (_) {
+    return null;
+  }
+}
+
+function staticJSONPath(path) {
+  const version = getStaticAssetVersion();
+  if (!version || path.includes('v=')) return path;
+  return `${path}${path.includes('?') ? '&' : '?'}v=${encodeURIComponent(version)}`;
+}
+
+function getStaticAssetVersion() {
+  const scripts = Array.from(document.getElementsByTagName('script'));
+  for (let i = scripts.length - 1; i >= 0; i--) {
+    const src = scripts[i].getAttribute('src') || '';
+    const match = src.match(/(?:^|\/)static\/app\.js\?v=([^&#]+)/);
+    if (match) return match[1];
+  }
+  return '';
 }
 
 function formatDuration(seconds) {
