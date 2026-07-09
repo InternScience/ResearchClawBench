@@ -65,16 +65,17 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
+- **2026-07-09** 📊 Evaluated [Open Science](https://github.com/ai4s-research/open-science) with Claude-Opus-4.8 as an additional autonomous research agent. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-08** 📊 Evaluated Hy3-Preview, a preview model rather than a final release, as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-01** 📈 Added Pass@5 leaderboard results, including stability-oriented statistics across repeated runs. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-06-24** 📊 Evaluated GLM-5.2 as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-06-09** 📄 ResearchClawBench paper preprint is available on [arXiv](https://arxiv.org/pdf/2606.07591).
 - **2026-06-09** 📊 Evaluated MiniMax-M3 as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
-- **2026-06-05** 🧪 Added `rcb-eval`, a YAML-configured command-line evaluation workflow powered by ResearchHarness, supporting concurrent runs, repeated trials, automatic scoring, and Markdown evaluation reports with per-run and per-task statistics.
 
 <details>
 <summary>👉 More News (Click to expand)</summary>
 
+- **2026-06-05** 🧪 Added `rcb-eval`, a YAML-configured command-line evaluation workflow powered by ResearchHarness, supporting concurrent runs, repeated trials, automatic scoring, and Markdown evaluation reports with per-run and per-task statistics.
 - **2026-06-03** 🧬 Added leaderboard results for [EvoScientist](https://github.com/EvoScientist/EvoScientist) v0.1.1 while retaining EvoScientist v0.0.4 as a separate versioned baseline. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-06-02** 📊 Evaluated Claude-Opus-4.8 as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-05-28** 📊 Evaluated two additional standalone LLMs with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness): Gemini-3.5-Flash and Qwen3.7-Max. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
@@ -530,15 +531,5 @@ If you would like to cite our work, please use the following BibTeX.
   year={2026}
 }
 ```
-
-### ⭐ Star History
-
-<a href="https://www.star-history.com/?repos=InternScience%2FResearchClawBench&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=InternScience/ResearchClawBench&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=InternScience/ResearchClawBench&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=InternScience/ResearchClawBench&type=date&legend=top-left" />
- </picture>
-</a>
 
 <p align="right"><a href="#top">🔝Back to top</a></p>

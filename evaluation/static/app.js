@@ -118,6 +118,7 @@ async function loadConfig() {
       'Nanobot': 'static/logos/nanobot.svg',
       'EvoScientist': 'static/logos/evo.svg',
       'ResearchClaw': 'static/logos/researchclaw.svg',
+      'Open Science': 'static/logos/openscience.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
