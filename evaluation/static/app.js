@@ -119,6 +119,7 @@ async function loadConfig() {
       'EvoScientist': 'static/logos/evo.svg',
       'ResearchClaw': 'static/logos/researchclaw.svg',
       'Open Science': 'static/logos/openscience.png',
+      'Qiushi': 'static/logos/qiushi.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
@@ -717,7 +718,7 @@ function renderLeaderboard(data) {
       const modelHtml = modelLabel ? `<span class="leaderboard-agent-model">${esc(modelLabel)}</span>` : '';
       const medal = Number.isFinite(row.overall?.score) && index < 3 ? ['🥇', '🥈', '🥉'][index] : '';
       const medalHtml = medal ? `<span class="leaderboard-medal" aria-hidden="true">${medal}</span>` : '';
-      summaryHtml += `<tr${rowClass}><td><div class="leaderboard-agent-row"><span class="leaderboard-agent-name">${medalHtml}${agentLogoHtml(row.agent, 18)}<span>${esc(displayLabel)}</span></span>${modelHtml}</div></td>`;
+      summaryHtml += `<tr${rowClass}><td><div class="leaderboard-agent-row"><span class="leaderboard-agent-name">${medalHtml}${agentLogoHtml(row.agent, 18)}${renderAgentNameWithSourceLink(row.agent, displayLabel)}</span>${modelHtml}</div></td>`;
       summaryHtml += renderSummaryCell(row.overall);
       domainSummary.domains.forEach(domain => {
         summaryHtml += renderSummaryCell(row.domains[domain]);
@@ -2184,6 +2185,21 @@ function backToDashboard() {
 
 /* ── Util ────────────────────────────────────────────────────────────── */
 function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+const AGENT_SOURCE_URLS = {
+  'ARIS Codex': 'https://github.com/wanshuiyin/auto-claude-code-research-in-sleep',
+  'EvoScientist': 'https://github.com/EvoScientist/EvoScientist',
+  'Nanobot': 'https://github.com/HKUDS/nanobot',
+  'Open Science': 'https://github.com/ai4s-research/open-science',
+  'Qiushi': 'https://oxelra.com/',
+};
+
+function renderAgentNameWithSourceLink(agent, label) {
+  const url = AGENT_SOURCE_URLS[getAgentBaseLabel(agent)] || AGENT_SOURCE_URLS[agent];
+  const text = esc(label);
+  if (!url) return `<span>${text}</span>`;
+  return `<a class="leaderboard-agent-source-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${text}</a>`;
+}
 
 let mermaidRenderCounter = 0;
 
