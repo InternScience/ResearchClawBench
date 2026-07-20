@@ -120,6 +120,7 @@ async function loadConfig() {
       'ResearchClaw': 'static/logos/researchclaw.svg',
       'Open Science': 'static/logos/openscience.png',
       'Qiushi': 'static/logos/qiushi.png',
+      'Qiushi Engine': 'static/logos/qiushi.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
@@ -2192,6 +2193,7 @@ const AGENT_SOURCE_URLS = {
   'Nanobot': 'https://github.com/HKUDS/nanobot',
   'Open Science': 'https://github.com/ai4s-research/open-science',
   'Qiushi': 'https://oxelra.com/',
+  'Qiushi Engine': 'https://oxelra.com/',
 };
 
 function renderAgentNameWithSourceLink(agent, label) {
