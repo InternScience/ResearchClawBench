@@ -119,7 +119,6 @@ async function loadConfig() {
       'EvoScientist': 'static/logos/evo.svg',
       'ResearchClaw': 'static/logos/researchclaw.svg',
       'Open Science': 'static/logos/openscience.png',
-      'Qiushi': 'static/logos/qiushi.png',
       'Qiushi Engine': 'static/logos/qiushi.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
@@ -2192,7 +2191,6 @@ const AGENT_SOURCE_URLS = {
   'EvoScientist': 'https://github.com/EvoScientist/EvoScientist',
   'Nanobot': 'https://github.com/HKUDS/nanobot',
   'Open Science': 'https://github.com/ai4s-research/open-science',
-  'Qiushi': 'https://oxelra.com/',
   'Qiushi Engine': 'https://oxelra.com/',
 };
 
