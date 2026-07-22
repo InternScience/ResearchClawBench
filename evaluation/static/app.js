@@ -657,6 +657,11 @@ function renderLeaderboard(data) {
     const pass5Attr = isPass5 ? pass5CellAttr(entry) : '';
     return `<td class="leaderboard-score-td leaderboard-static-cell"${pass5Attr}><div class="leaderboard-score-wrap">${scoreHtml}${renderMetricLines(entry)}</div></td>`;
   }
+  function renderSourceCell(agent) {
+    const source = getLeaderboardResultSource(agent);
+    const label = getLeaderboardResultSourceLabel(source);
+    return `<td class="leaderboard-source-cell leaderboard-static-cell"><button class="leaderboard-source-button" type="button" onclick="event.stopPropagation();showLeaderboardSourceNotice('${source}')">${esc(label)}</button></td>`;
+  }
   function renderSection(key, title, tableHtml, hint, note = '') {
     const noteHtml = note ? `<div class="leaderboard-section-note">${note}</div>` : '';
     return `
@@ -705,7 +710,7 @@ function renderLeaderboard(data) {
   ];
   const firstLlmAgent = domainSummary.agentRows.length && domainSummary.llmRows.length ? domainSummary.llmRows[0].agent : '';
 
-  let summaryHtml = `<table class="leaderboard leaderboard-summary${isPass5 ? ' leaderboard-pass5' : ''}"><thead><tr><th>Agent/LLM</th><th>Overall</th>`;
+  let summaryHtml = `<table class="leaderboard leaderboard-summary${isPass5 ? ' leaderboard-pass5' : ''}"><thead><tr><th>Agent/LLM</th><th>Overall</th><th class="leaderboard-source-th">Source</th>`;
   domainSummary.domains.forEach(domain => {
     summaryHtml += `<th>${esc(domain)}</th>`;
   });
@@ -720,6 +725,7 @@ function renderLeaderboard(data) {
       const medalHtml = medal ? `<span class="leaderboard-medal" aria-hidden="true">${medal}</span>` : '';
       summaryHtml += `<tr${rowClass}><td><div class="leaderboard-agent-row"><span class="leaderboard-agent-name">${medalHtml}${agentLogoHtml(row.agent, 18)}${renderAgentNameWithSourceLink(row.agent, displayLabel)}</span>${modelHtml}</div></td>`;
       summaryHtml += renderSummaryCell(row.overall);
+      summaryHtml += renderSourceCell(row.agent);
       domainSummary.domains.forEach(domain => {
         summaryHtml += renderSummaryCell(row.domains[domain]);
       });
@@ -2438,6 +2444,40 @@ function runDetailsMarkerHtml(state, extraClass = '') {
 
 function runDetailsLegendHtml() {
   return `${runDetailsMarkerHtml('full')} Full run details available · ${runDetailsMarkerHtml('summary')} Summary-only score; full details are omitted only to save site storage, not because of an agent issue.`;
+}
+
+const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine']);
+
+function getLeaderboardResultSource(agent) {
+  return COMMUNITY_LEADERBOARD_AGENTS.has(String(agent || '')) ? 'community' : 'internal';
+}
+
+function getLeaderboardResultSourceLabel(source) {
+  return source === 'community' ? 'Community' : 'Internal';
+}
+
+function showLeaderboardSourceNotice(source = 'internal') {
+  const existing = document.querySelector('.run-details-notice-overlay');
+  if (existing) existing.remove();
+  const normalized = source === 'community' ? 'community' : 'internal';
+  const isCommunity = normalized === 'community';
+  const overlay = document.createElement('div');
+  overlay.className = 'run-details-notice-overlay';
+  overlay.innerHTML = `
+    <div class="run-details-notice-card" role="dialog" aria-modal="true" aria-label="Leaderboard result source">
+      <button class="run-details-notice-close" type="button" aria-label="Close">&times;</button>
+      <div class="run-details-notice-kicker">Result source</div>
+      <h3>${isCommunity ? 'Community-provided result' : 'RCB team internal test'}</h3>
+      <p>${isCommunity ? 'This result was provided by a community contributor and is shown alongside internally tested results.' : 'This result was produced by the RCB team using the official ResearchClawBench evaluation workflow.'}</p>
+      <p>Both source types refer to results evaluated under the official ResearchClawBench setting.</p>
+      <p>If you would like to contribute results, please evaluate with the official RCB workflow, package the complete run folder, and contact <a href="mailto:xu_wanghan@sjtu.edu.cn">xu_wanghan@sjtu.edu.cn</a>.</p>
+      <button class="run-details-notice-action" type="button">Continue browsing</button>
+    </div>`;
+  const close = () => overlay.remove();
+  overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
+  overlay.querySelector('.run-details-notice-close').onclick = close;
+  overlay.querySelector('.run-details-notice-action').onclick = close;
+  document.body.appendChild(overlay);
 }
 
 function showRunDetailsUnavailableNotice() {

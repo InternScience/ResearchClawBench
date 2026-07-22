@@ -332,6 +332,10 @@ body { height: 100vh; font-family: var(--font); font-size: 17px; line-height: 1.
 .leaderboard-summary th:not(:first-child), .leaderboard-summary td:not(:first-child) { width: 126px; min-width: 126px; max-width: 126px; }
 .leaderboard-pass5 th:not(:first-child), .leaderboard-pass5 td:not(:first-child) { min-width: 176px; }
 .leaderboard-summary.leaderboard-pass5 th:not(:first-child), .leaderboard-summary.leaderboard-pass5 td:not(:first-child) { width: 162px; min-width: 162px; max-width: 162px; }
+.leaderboard-summary th.leaderboard-source-th, .leaderboard-summary td.leaderboard-source-cell { width: 92px; min-width: 92px; max-width: 92px; }
+.leaderboard-source-cell { font-family: var(--font); }
+.leaderboard-source-button { border: 0; background: transparent; color: inherit; font: inherit; padding: 2px 6px; border-radius: 999px; cursor: pointer; }
+.leaderboard-source-button:hover, .leaderboard-source-button:focus-visible { background: var(--bg-hover); outline: none; }
 .floating-tooltip { position: fixed; z-index: 3000; min-width: 210px; max-width: 340px; padding: 10px 12px; border-radius: 14px; background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); box-shadow: 0 18px 56px rgba(15,23,42,0.22); white-space: pre-line; text-align: left; font-family: var(--font); font-size: 12px; line-height: 1.45; pointer-events: none; opacity: 0; transform: translateY(3px); transition: opacity 0.12s ease, transform 0.12s ease; }
 .floating-tooltip.visible { opacity: 1; transform: translateY(0); }
 .leaderboard-group-start-row td { border-top: 3px solid var(--border-strong); }
