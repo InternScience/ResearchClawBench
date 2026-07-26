@@ -159,6 +159,7 @@ def _score_single_item(agent: LLMAgent, report_text: str, item: dict,
         img_paths = []
         if target_image_path and target_image_path.exists():
             img_paths.append(str(target_image_path))
+        # Some judge model providers limit images per request; remove or raise this cap if the runtime supports larger image batches.
         for img in generated_images[:5]:
             if img.exists() and img.stat().st_size <= MAX_IMAGE_SIZE:
                 img_paths.append(str(img))
