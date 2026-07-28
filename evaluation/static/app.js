@@ -120,6 +120,7 @@ async function loadConfig() {
       'ResearchClaw': 'static/logos/researchclaw.svg',
       'Open Science': 'static/logos/openscience.png',
       'Qiushi Engine': 'static/logos/qiushi.png',
+      'InnoClaw': 'static/logos/innoclaw.jpg',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
@@ -2446,7 +2447,7 @@ function runDetailsLegendHtml() {
   return `${runDetailsMarkerHtml('full')} Full run details available · ${runDetailsMarkerHtml('summary')} Summary-only score; full details are omitted only to save site storage, not because of an agent issue.`;
 }
 
-const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine']);
+const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw']);
 
 function getLeaderboardResultSource(agent) {
   return COMMUNITY_LEADERBOARD_AGENTS.has(String(agent || '')) ? 'community' : 'internal';
