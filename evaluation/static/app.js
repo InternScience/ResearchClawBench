@@ -2199,6 +2199,7 @@ const AGENT_SOURCE_URLS = {
   'Nanobot': 'https://github.com/HKUDS/nanobot',
   'Open Science': 'https://github.com/ai4s-research/open-science',
   'Qiushi Engine': 'https://oxelra.com/',
+  'InnoClaw': 'https://github.com/SpectrAI-Initiative/InnoClaw',
 };
 
 function renderAgentNameWithSourceLink(agent, label) {
@@ -2450,7 +2451,8 @@ function runDetailsLegendHtml() {
 const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw']);
 
 function getLeaderboardResultSource(agent) {
-  return COMMUNITY_LEADERBOARD_AGENTS.has(String(agent || '')) ? 'community' : 'internal';
+  const label = String(agent || '');
+  return COMMUNITY_LEADERBOARD_AGENTS.has(label) || COMMUNITY_LEADERBOARD_AGENTS.has(getAgentBaseLabel(label)) ? 'community' : 'internal';
 }
 
 function getLeaderboardResultSourceLabel(source) {
