@@ -301,7 +301,7 @@ function getAgentScoreCoverage(data, agent) {
 }
 
 function roundScoreForRank(score) {
-  return Number.isFinite(score) ? Math.round(score * 100) / 100 : -Infinity;
+  return Number.isFinite(score) ? Math.round(score * 10) / 10 : -Infinity;
 }
 
 function compareAgentsByScore(data, a, b) {
