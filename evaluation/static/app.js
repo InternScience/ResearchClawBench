@@ -296,9 +296,23 @@ function getAverageAgentScore(data, agent) {
   return scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : -Infinity;
 }
 
+function getAgentScoreCoverage(data, agent) {
+  return Object.values(data?.scores?.[agent] || {}).filter(entry => Number.isFinite(entry?.score)).length;
+}
+
+function roundScoreForRank(score) {
+  return Number.isFinite(score) ? Math.round(score * 100) / 100 : -Infinity;
+}
+
 function compareAgentsByScore(data, a, b) {
-  const diff = getAverageAgentScore(data, b) - getAverageAgentScore(data, a);
-  if (diff) return diff;
+  const aScore = getAverageAgentScore(data, a);
+  const bScore = getAverageAgentScore(data, b);
+  const roundedDiff = roundScoreForRank(bScore) - roundScoreForRank(aScore);
+  if (roundedDiff) return roundedDiff;
+  const coverageDiff = getAgentScoreCoverage(data, b) - getAgentScoreCoverage(data, a);
+  if (coverageDiff) return coverageDiff;
+  const rawDiff = bScore - aScore;
+  if (rawDiff) return rawDiff;
   return getAgentDisplayLabel(data, a).localeCompare(getAgentDisplayLabel(data, b));
 }
 
@@ -691,12 +705,7 @@ function renderLeaderboard(data) {
       );
       return { agent, overall, domains: domainsMap };
     });
-    const sortRows = rowsToSort => rowsToSort.sort((a, b) => {
-      const av = Number.isFinite(a.overall?.score) ? a.overall.score : -Infinity;
-      const bv = Number.isFinite(b.overall?.score) ? b.overall.score : -Infinity;
-      if (bv !== av) return bv - av;
-      return getAgentDisplayLabel(data, a.agent).localeCompare(getAgentDisplayLabel(data, b.agent));
-    });
+    const sortRows = rowsToSort => rowsToSort.sort((a, b) => compareAgentsByScore(data, a.agent, b.agent));
     return {
       domains,
       agentRows: sortRows(rows.filter(row => !isResearchHarnessAgent(row.agent))),
