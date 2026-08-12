@@ -121,6 +121,7 @@ async function loadConfig() {
       'Open Science': 'static/logos/openscience.png',
       'Qiushi Engine': 'static/logos/qiushi.png',
       'InnoClaw': 'static/logos/innoclaw.jpg',
+      'AutoSciRub': 'static/logos/autoscirub.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
@@ -2457,7 +2458,7 @@ function runDetailsLegendHtml() {
   return `${runDetailsMarkerHtml('full')} Full run details available · ${runDetailsMarkerHtml('summary')} Summary-only score; full details are omitted only to save site storage, not because of an agent issue.`;
 }
 
-const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw']);
+const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw', 'AutoSciRub']);
 
 function getLeaderboardResultSource(agent) {
   const label = String(agent || '');
