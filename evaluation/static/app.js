@@ -2210,6 +2210,7 @@ const AGENT_SOURCE_URLS = {
   'Open Science': 'https://github.com/ai4s-research/open-science',
   'Qiushi Engine': 'https://oxelra.com/',
   'InnoClaw': 'https://github.com/SpectrAI-Initiative/InnoClaw',
+  'AutoSciRub': 'https://github.com/zjunlp/AutoSciRub',
 };
 
 function renderAgentNameWithSourceLink(agent, label) {
