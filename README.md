@@ -65,16 +65,17 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
+- **2026-08-20** 📊 Received an updated [AutoSciRub](https://github.com/zjunlp/AutoSciRub) submission and refreshed its leaderboard scores. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-19** 📊 Evaluated [OpenEvo](https://github.com/CompLifeLab-ZJU/OpenEvo) with GPT-5.5 as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-17** 📊 Updated [InnoClaw](https://github.com/SpectrAI-Initiative/InnoClaw) with a newly submitted complete set of 40 task results using GPT-5.5. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-12** 📊 Evaluated [AutoSciRub](https://github.com/zjunlp/AutoSciRub) with Codex GPT-5.6-Terra as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-28** 📊 Evaluated [InnoClaw](https://github.com/SpectrAI-Initiative/InnoClaw) with GPT-5.5 as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-15** 📊 Evaluated [Qiushi](https://oxelra.com/) with GPT-5.5 as an additional autonomous research agent. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
-- **2026-07-09** 📊 Evaluated [Open Science](https://github.com/ai4s-research/open-science) with Claude-Opus-4.8 as an additional autonomous research agent. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 
 <details>
 <summary>👉 More News (Click to expand)</summary>
 
+- **2026-07-09** 📊 Evaluated [Open Science](https://github.com/ai4s-research/open-science) with Claude-Opus-4.8 as an additional autonomous research agent. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-08** 📊 Evaluated Hy3-Preview, a preview model rather than a final release, as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-07-01** 📈 Added Pass@5 leaderboard results, including stability-oriented statistics across repeated runs. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-06-24** 📊 Evaluated GLM-5.2 as an additional standalone LLM with [ResearchHarness](https://huggingface.co/spaces/InternScience/ResearchHarness). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
