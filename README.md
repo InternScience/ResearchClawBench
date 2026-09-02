@@ -65,7 +65,7 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
-- **2026-09-02** 📊 Evaluated [Ligase](https://gradence.com.cn/products/wecode.html#biopharma) with GPT-5.6-Sol + GRD-King + GRD-Jin as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
+- **2026-09-02** 📊 Evaluated [Ligase](https://gradence.com.cn/products/wecode.html#biopharma) with GPT-5.6-Sol as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-20** 📊 Received an updated [AutoSciRub](https://github.com/zjunlp/AutoSciRub) submission and refreshed its leaderboard scores. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-19** 📊 Evaluated [OpenEvo](https://github.com/CompLifeLab-ZJU/OpenEvo) with GPT-5.5 as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-17** 📊 Updated [InnoClaw](https://github.com/SpectrAI-Initiative/InnoClaw) with a newly submitted complete set of 40 task results using GPT-5.5. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
