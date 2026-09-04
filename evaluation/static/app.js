@@ -122,7 +122,7 @@ async function loadConfig() {
       'Qiushi Engine': 'static/logos/qiushi.png',
       'InnoClaw': 'static/logos/innoclaw.jpg',
       'AutoSciRub': 'static/logos/autoscirub.png',
-      'OpenEvo': 'static/logos/openevo.png',
+      'EvoLab': 'static/logos/evolab.png',
       'Ligase': 'static/logos/ligase.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
@@ -2213,7 +2213,7 @@ const AGENT_SOURCE_URLS = {
   'Qiushi Engine': 'https://oxelra.com/',
   'InnoClaw': 'https://github.com/SpectrAI-Initiative/InnoClaw',
   'AutoSciRub': 'https://github.com/zjunlp/AutoSciRub',
-  'OpenEvo': 'https://github.com/CompLifeLab-ZJU/OpenEvo',
+  'EvoLab': 'https://evo-lab.org/',
   'Ligase': 'https://gradence.com.cn/products/wecode.html#biopharma',
 };
 
@@ -2463,7 +2463,7 @@ function runDetailsLegendHtml() {
   return `${runDetailsMarkerHtml('full')} Full run details available · ${runDetailsMarkerHtml('summary')} Summary-only score; full details are omitted only to save site storage, not because of an agent issue.`;
 }
 
-const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw', 'AutoSciRub', 'OpenEvo', 'Ligase']);
+const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw', 'AutoSciRub', 'EvoLab', 'Ligase']);
 
 function getLeaderboardResultSource(agent) {
   const label = String(agent || '');
