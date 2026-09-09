@@ -65,6 +65,7 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
+- **2026-09-09** 📊 Updated [Qiushi Engine](https://oxelra.com/) with a new complete set of 40 task results using DeepSeek-V4-Pro-Preview, refreshing leaderboard scores, run times, and cost estimates. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-09-02** 📊 Received a new [AutoSciRub](https://github.com/zjunlp/AutoSciRub) submission and refreshed its leaderboard scores, run times, and cost estimates. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-09-02** 📊 Evaluated [Ligase](https://gradence.com.cn/products/wecode.html#biopharma) with GPT-5.6-Sol as an additional community-provided autonomous research agent result. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-08-20** 📊 Received an updated [AutoSciRub](https://github.com/zjunlp/AutoSciRub) submission and refreshed its leaderboard scores. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
