@@ -124,6 +124,7 @@ async function loadConfig() {
       'AutoSciRub': 'static/logos/autoscirub.png',
       'EvoLab': 'static/logos/evolab.png',
       'Ligase': 'static/logos/ligase.png',
+      'jiutian-DeepInsight': 'static/logos/jiutian-deepinsight.png',
       'ResearchHarness': 'static/logos/rh.svg',
     };
     const container = document.getElementById('agent-options');
@@ -2215,6 +2216,7 @@ const AGENT_SOURCE_URLS = {
   'AutoSciRub': 'https://github.com/zjunlp/AutoSciRub',
   'EvoLab': 'https://evo-lab.org/',
   'Ligase': 'https://gradence.com.cn/products/wecode.html#biopharma',
+  'jiutian-DeepInsight': 'https://deemed-held-physiology-linear.trycloudflare.com/landing/index.html',
 };
 
 function renderAgentNameWithSourceLink(agent, label) {
@@ -2463,7 +2465,7 @@ function runDetailsLegendHtml() {
   return `${runDetailsMarkerHtml('full')} Full run details available · ${runDetailsMarkerHtml('summary')} Summary-only score; full details are omitted only to save site storage, not because of an agent issue.`;
 }
 
-const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw', 'AutoSciRub', 'EvoLab', 'Ligase']);
+const COMMUNITY_LEADERBOARD_AGENTS = new Set(['EvoScientist (0.1.1)', 'Qiushi Engine', 'InnoClaw', 'AutoSciRub', 'EvoLab', 'Ligase', 'jiutian-DeepInsight']);
 
 function getLeaderboardResultSource(agent) {
   const label = String(agent || '');
