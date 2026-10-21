@@ -47,6 +47,12 @@
     "logo": "/static/logos/lingtai.png",
     "cmd": "cd <WORKSPACE> && lingtai-tui -p <PROMPT>"
   },
+  "autor": {
+    "label": "AutoR",
+    "icon": "A",
+    "logo": "/static/logos/autor.svg",
+    "cmd": "python3 /abs/path/to/AutoR/rcb_agent.py --workspace <WORKSPACE> --prompt <PROMPT>"
+  },
   "researchharness": {
     "label": "ResearchHarness",
     "icon": "H",
