@@ -5,13 +5,13 @@
       "name": "20231012-06_input_netcdf.nc",
       "path": "./data/20231012-06_input_netcdf.nc",
       "type": "sequence_data",
-      "description": "Pre-processed input data (20231012-06_input_netcdf.nc) with shape (2, 70, 721, 1440) representing two consecutive 6-hour atmospheric states at 0.25° resolution with 70 variables/channels"
+      "description": "Sample input with shape (2, 70, 181, 360), representing two consecutive 6-hour atmospheric states on a 1-degree grid."
     },
     {
       "name": "006.nc",
       "path": "./data/006.nc",
       "type": "sequence_data",
-      "description": "FuXi output forecasts (006.nc) at 6-hour intervals up to 15 days."
+      "description": "Sample FuXi output on a 1-degree grid for one 6-hour forecast step, not a 15-day forecast sequence."
     }
   ]
 }

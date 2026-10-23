@@ -17,7 +17,7 @@
         "keywords": [
             "Determination of Power-Law Exponent: The fitted temperature dependence yields a power-law exponent \\( n = 2.5 \\pm 0.2 \\), which lies within the reported range of \\( n = 2-3 \\) in the literature, clearly ruling out the exponential behavior of isotropic BCS models (typically \\( n \\geq 4.5 \\)).",
             "Evidence for Anisotropic Gap: The power-law exponent \\( n \\approx 2.3-2.8 \\) is consistent with the theoretically predicted temperature dependence for an anisotropic superconducting gap, indicating that MATBG possesses a direction-dependent superconducting gap structure, rather than isotropic s-wave pairing.",
-            "Linear Relationship in Log-Log Plot: In the plot of \\( \\log[D_s(0)-D_s(T)] \\) versus \\( \\log(T_c-T) \\), the low-temperature region shows a clear linear relationship with a slope of \\( n \\), further verifying the reliability of the power-law behavior and contrasting with the linear temperature dependence of nodal superconductors."
+            "Linear Relationship in Log-Log Plot: In the plot of \\( \\log[D_s(0)-D_s(T)] \\) versus \\( \\log(T/T_c) \\), the low-temperature region shows a clear linear relationship with a slope of \\( n \\), further verifying the reliability of the power-law behavior and contrasting with the linear temperature dependence of nodal superconductors."
         ],
         "weight": 0.35
     },
