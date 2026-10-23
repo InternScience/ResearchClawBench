@@ -5,7 +5,7 @@
       "name": "MATBG Superfluid Stiffness Core Dataset.txt",
       "path": "./data/MATBG Superfluid Stiffness Core Dataset.txt",
       "type": "feature_data",
-      "description": "Text export of simulated carrier-density, temperature, and current-dependence arrays. The carrier-density and microwave blocks each provide 50 coordinates with 50 response values per curve. Several temperature and DC-current response arrays have different lengths from their supplied axes, and their coordinate mappings are unspecified. Quantitative fits to those curves require a coordinate mapping or a corrected source export. See ./data/README.md for array lengths and source-data availability."
+      "description": "Simulated carrier-density, temperature, and current-dependence arrays. Several temperature and DC-current response arrays have different lengths from their supplied coordinate arrays, and their pointwise mappings are not specified."
     }
   ]
 }

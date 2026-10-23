@@ -5,13 +5,13 @@
       "name": "20231012-06_input_netcdf.nc",
       "path": "./data/20231012-06_input_netcdf.nc",
       "type": "sequence_data",
-      "description": "Sample input array with dimensions (time=2, level=70, lat=181, lon=360) on a 1-degree grid, with times 2023-10-12 00:00 and 06:00 UTC. This packaged sample differs from the (2, 70, 721, 1440) 0.25-degree input used by the full-resolution FuXi model. See ./data/README.md for the verified dimensions and upstream model/data resources."
+      "description": "Sample input with shape (2, 70, 181, 360), representing two consecutive 6-hour atmospheric states on a 1-degree grid."
     },
     {
       "name": "006.nc",
       "path": "./data/006.nc",
       "type": "sequence_data",
-      "description": "Single 6-hour sample forecast with dimensions (time=1, step=1, level=70, lat=181, lon=360), one step value of 6, and a 1-degree grid. This file contains one forecast lead rather than a 15-day sequence. See ./data/README.md for sample coverage and upstream resources for a full forecast experiment."
+      "description": "Sample FuXi output on a 1-degree grid for one 6-hour forecast step, not a 15-day forecast sequence."
     }
   ]
 }
