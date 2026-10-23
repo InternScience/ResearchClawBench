@@ -5,13 +5,13 @@
       "name": "2l3r_protein.pdb",
       "path": "./data/sample/2l3r/2l3r_protein.pdb",
       "type": "protein_structure",
-      "description": "This file contains the experimental structure of the FKBP12 protein (PDB ID: 2L3R) determined by NMR. It includes only the CA atoms of all 107 residues in PDB format. This file serves as the ground truth protein structure for evaluating AlphaFold 3 predictions. The CA coordinates are directly comparable to the model's protein backbone output and are used in RMSD calculations and structural overlay visualizations."
+      "description": "This file contains the full-atom protein component of the UHRF1 tandem Tudor domain–histone H3 peptide complex (derived from chain A of the first NMR model in PDB entry 2L3R). It comprises 161 residues and 2,591 ATOM records including hydrogens. The 161 CA coordinates can be extracted for protein backbone RMSD calculations and structural overlay visualizations. See https://www.rcsb.org/structure/2L3R for the source structure."
     },
     {
       "name": "2l3r_ligand.sdf",
       "path": "./data/sample/2l3r/2l3r_ligand.sdf",
       "type": "ligand_structure",
-      "description": "This file provides the experimental 3D conformation of the FK506 ligand, stored in the standard Structure-Data File (SDF) format. It contains the full atomic coordinates, bond connectivity, and chemical properties of the molecule. This is the primary reference for evaluating ligand pose prediction accuracy; the ligand RMSD is computed by aligning the predicted ligand coordinates to this reference using symmetry-aware Hungarian matching."
+      "description": "This file contains the experimental conformation of the histone H3-derived peptide bound to the UHRF1 tandem Tudor domains in PDB entry 2L3R, including trimethyllysine. It is stored in Structure-Data File (SDF) format with 194 atoms including hydrogens. Its 90 non-hydrogen atoms correspond to chain B of the first NMR model. The file provides the reference peptide coordinates and bond connectivity for pose comparisons with the supplied protein structure. See https://www.rcsb.org/structure/2L3R for the source complex."
     }
   ]
 }
