@@ -5,13 +5,13 @@
       "name": "7xg4.pdb",
       "path": "./data/7xg4.pdb",
       "type": "structure_data",
-      "description": "Query complex structure from PDB ID 7xg4 (Pseudomonas aeruginosa type IV‑A CRISPR–Cas system). Used in the paper as a known structural hit against an environmental Sulfitobacter sp. JL08 complex."
+      "description": "Provided structure from PDB entry 7XG4, a Pseudomonas aeruginosa type IV-A CRISPR-Cas complex. The supplied file contains nine protein chains (A-H and L). In the Foldseek-Multimer paper, 7XG4 is a structural hit for a predicted Sulfitobacter sp. JL08 complex. See ./data/README.md for the source of that separate predicted structure."
     },
     {
       "name": "6n40.pdb",
       "path": "./data/6n40.pdb",
       "type": "structure_data",
-      "description": "Target complex structure from PDB ID 6n40. Used for pairwise structural alignment with 7xg4 to test Foldseek‑Multimer’s alignment capability."
+      "description": "Provided structure from PDB entry 6N40, the monomeric MmpL3 membrane protein from Mycobacterium smegmatis. The supplied file contains one protein chain (A); it is a different structure from the predicted Sulfitobacter sp. JL08 complex used in the paper. See https://www.rcsb.org/structure/6N40 and ./data/README.md for structure identities and source references."
     }
   ]
 }
