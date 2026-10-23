@@ -5,7 +5,7 @@
       "name": "2l3r_protein.pdb",
       "path": "./data/sample/2l3r/2l3r_protein.pdb",
       "type": "protein_structure",
-      "description": "This file contains the full-atom protein component of the UHRF1 tandem Tudor domain–histone H3 peptide complex (PDB ID: 2L3R, first NMR model, chain A). It comprises 161 residues and 2,591 ATOM records including hydrogens. The 161 CA coordinates can be extracted for protein backbone RMSD calculations and structural overlay visualizations. See https://www.rcsb.org/structure/2L3R for the source structure."
+      "description": "This file contains the full-atom protein component of the UHRF1 tandem Tudor domain–histone H3 peptide complex (derived from chain A of the first NMR model in PDB entry 2L3R). It comprises 161 residues and 2,591 ATOM records including hydrogens. The 161 CA coordinates can be extracted for protein backbone RMSD calculations and structural overlay visualizations. See https://www.rcsb.org/structure/2L3R for the source structure."
     },
     {
       "name": "2l3r_ligand.sdf",
