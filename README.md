@@ -65,6 +65,7 @@ Most AI benchmarks evaluate what models **know**. We evaluate what agents can **
 
 ### 📢 News
 
+- **2026-10-28** 📊 Updated [jiutian-DeepInsight](https://deemed-held-physiology-linear.trycloudflare.com/landing/index.html) evaluation results for 33 retained tasks (average score 28.38). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-09-17** 📊 Added [InnoClaw (2.0)](https://github.com/SpectrAI-Initiative/InnoClaw) with a new complete set of 40 task results using GPT-5.5, listed alongside the previous InnoClaw entry (average score 34.89, ranking #2 among agents). Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-09-09** 📊 Updated [Qiushi Engine](https://oxelra.com/) with a new complete set of 40 task results using DeepSeek-V4-Pro-Preview, refreshing leaderboard scores, run times, and cost estimates. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
 - **2026-09-02** 📊 Received a new [AutoSciRub](https://github.com/zjunlp/AutoSciRub) submission and refreshed its leaderboard scores, run times, and cost estimates. Results are available on the [Leaderboard](https://internscience.github.io/ResearchClawBench-Home/).
